@@ -22,8 +22,8 @@ public class Game {
 		
 		
 		switch (numberOfPlayers) {
+				
 		case 2:
-			//if(numberOfPlayers==2) {
 			System.out.println("Insert player name: ");
 			in.nextLine();
 			name= in.nextLine();
@@ -45,10 +45,9 @@ public class Game {
 			System.out.println("Insert player name: ");
 			name= in.nextLine();
 			player3= new Player(name);
-			//}
 			break;
+				
 		case 4:
-			//if(numberOfPlayers==4) {
 			System.out.println("Insert player name: ");
 			in.nextLine();
 			name= in.nextLine();
@@ -62,29 +61,17 @@ public class Game {
 			System.out.println("Insert player name: ");
 			name= in.nextLine();
 			player4= new Player(name);
-			//}
 			break;
 			
 		}
-			//System.out.println("player1: ");
 			player1.stampa();
 		
-			//System.out.println("player2: ");
 			player2.stampa();
 		
-			//System.out.println("player3: ");
 			player3.stampa();
 	
-			//System.out.println("player4: ");
 			player4.stampa();
 		
-		
-		/*System.out.println(player1.getID());
-		System.out.println(player1.getName());
-		System.out.println(player2.getID());
-		System.out.println(player2.getName());
-		*/
-
 			in.close();
 	}
 
