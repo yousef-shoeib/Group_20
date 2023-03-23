@@ -31,10 +31,9 @@ public class Game {
 			System.out.println("Insert player name: ");
 			name= in.nextLine();
 			player2= new Player(name);
-		//}
 			break;
+				
 		case 3:
-			//if(numberOfPlayers==3) {
 			System.out.println("Insert player name: ");
 			in.nextLine();
 			name= in.nextLine();
