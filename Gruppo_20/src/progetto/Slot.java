@@ -20,7 +20,7 @@ public class Slot {
 	}
 
 	public void setStato(boolean state) {
-		this.state = stato;
+		this.state = state;
 	}
 
 	public Slot()
