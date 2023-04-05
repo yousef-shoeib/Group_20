@@ -5,7 +5,12 @@ public class Grid {
 	private int rows;
 	private int columns;
 	private Slot[][] slots;
-	public Grid(int rows, int columns) {
+	
+	public Grid() {
+
+	}
+	
+	/*public Grid(int rows, int columns) {
 		this.rows=rows;
 		this.columns=columns;
 		this.slots= new Slot[rows][columns];
@@ -17,7 +22,7 @@ public class Grid {
 		this.columns=columns;
 		this.slots= new Slot[rows][columns];
 		this.setSlots();
-	}
+	}*/
 	
 	/*public Grid[][] createPersonalGoalCard() {
 		Grid[][] personalObjectiveCard= new Grid[6][5];
@@ -31,8 +36,8 @@ public class Grid {
 		int number =1;
 		for(int row=0;row<rows;row++) {
 			for(int column=0;column<columns;column++) {
-				this.slots[row][column]=new Slot(number,row,column);
-				this.slots[row][column].setId(0);
+				//this.slots[row][column]=new Slot(number,row,column);
+			//	this.slots[row][column].setId(0);
 				number++;
 			}
 		}
@@ -43,15 +48,16 @@ public class Grid {
 	public Slot[][] getSlots(){
 		return this.slots;
 	}
-	public void printGridNumber() {
+/*	public void printGridNumber() {
 		for(int i =1;i<=this.rows;i++) {
 			System.out.println("");
 			for(int j =1;j<=this.columns;j++) {
 				System.out.print(this.getSlot(i,j).getNumber()+"\t");
 			}
 		}
-	}
-	public void printGridId() {
+	}*/
+	
+/*	public void printGridId() {
 		for(int i =1;i<=this.rows;i++) {
 			System.out.println("");
 			for(int j =1;j<=this.columns;j++) {
@@ -62,7 +68,7 @@ public class Grid {
 				}
 			}System.out.println("");
 		}
-	}
+	}*/
 	
 	/*public void setSlot() {
 		this.slot = new Slot();
