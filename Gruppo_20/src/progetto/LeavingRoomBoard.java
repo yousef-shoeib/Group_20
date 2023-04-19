@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class LeavingRoomBoard extends Grid {
 
-private Slot [][] matrGrid;
+	//private Slot [][] matrGrid;
 	
 	private int[][] configMatrTwoPlayer = {	{0,0,0,0,0,0,0,0,0}, 
 											{0,0,0,1,1,0,0,0,0},
@@ -40,7 +40,8 @@ private Slot [][] matrGrid;
 	
 	public LeavingRoomBoard(int nPlayers)
 	{
-		matrGrid = new Slot[9][9];
+		super(9,9);
+		//matrGrid = new Slot[9][9];
 		init(nPlayers);
 	}
 

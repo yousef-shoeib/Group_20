@@ -2,21 +2,27 @@ package progetto;
 
 
 public class Grid {
-	private int rows;
-	private int columns;
-	private Slot[][] slots;
+	protected int rows;
+	protected int columns;
+	protected Slot[][] matrGrid;
 	
-	public Grid() {
 
-	}
-	
-	/*public Grid(int rows, int columns) {
+	public Grid(int rows, int columns) {
 		this.rows=rows;
 		this.columns=columns;
-		this.slots= new Slot[rows][columns];
-		this.setSlots();
+		this.matrGrid= new Slot[rows][columns];
+		//this.setSlots();
 	}
 	
+	public int getRows() {
+		return this.rows;
+	}
+	public int getColumns() {
+		return this.columns;
+	}
+	
+	
+	/*
 	public Grid(int rows, int columns, int numberOfPlayers) {
 		this.rows=rows;
 		this.columns=columns;
@@ -32,7 +38,7 @@ public class Grid {
 		return personalObjectiveCard;		
 	}*/
 	
-	public void setSlots() {
+	/*public void setSlots() {
 		int number =1;
 		for(int row=0;row<rows;row++) {
 			for(int column=0;column<columns;column++) {
@@ -47,7 +53,7 @@ public class Grid {
 	}
 	public Slot[][] getSlots(){
 		return this.slots;
-	}
+	}*/
 /*	public void printGridNumber() {
 		for(int i =1;i<=this.rows;i++) {
 			System.out.println("");
@@ -73,10 +79,5 @@ public class Grid {
 	/*public void setSlot() {
 		this.slot = new Slot();
 	}*/
-	public int getRows() {
-		return this.rows;
-	}
-	public int getColumns() {
-		return this.columns;
-	}
+
 }
