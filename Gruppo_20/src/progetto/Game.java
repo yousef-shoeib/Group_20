@@ -23,7 +23,7 @@ public class Game {
 		
 		in.nextLine();
 		for(int i =0;i<numberOfPlayers;i++) {
-			System.out.println("Insert player name: ");
+			System.out.println("Insert player"+(i+1)+" name: ");
 			name= in.nextLine();
 			players [i]= new Player(name);
 		}
@@ -31,13 +31,17 @@ public class Game {
 		for(int i =0;i<numberOfPlayers;i++) {
 		players[i].print();
 		}
-		/*
-		System.out.println(players[0].getBookshelfSlot(2,3).getNumber());
 		
-		//players[0].getBookshelf().printGridNumber();
+		/*
+		//System.out.println(players[0].getBookshelfSlot(2,3).getNumber());
+		System.out.println("libreria");
+		players[0].getBookshelf().printGridNumber();
 		
 		
 		LivingRoomBoard board = new LivingRoomBoard();
+		System.out.println("tabellone numeri");
+		board.printGridNumber();
+		System.out.println("tabellone id");
 		board.printGridId();
 		*/
 		in.close();

@@ -2,29 +2,24 @@ package progetto;
 
 public class Player {
 
-	private int ID;
+	private final int ID;
 	private String name;
-	private static int playerCounter = 0;
+	private static int PLAYERCOUNTER = 0;
 	//private Grid bookshelfDisplay; //da creare come classe che usa Grid
 	private int points;
-	
+	private Bookshelf bookshelf;
 
-    private int IDGenerator() 
+    /*private int IDGenerator() 
     {
-        playerCounter++;
-        ID = playerCounter;
-        return ID;
-    }
-
-    public Player () {
-	}
-	
+        return PLAYERCOUNTER++;
+        
+    }*/
 	public Player (String name) {
 		this.name=name;
-		//playerCounter++;
-		//this.ID = playerCounter;
+		PLAYERCOUNTER++;
+		this.ID = PLAYERCOUNTER;
 		//this.bookshelfDisplay = new Grid(6,5);
-		this.ID = IDGenerator();
+		//this.ID = IDGenerator();
 		this.points=0;
 	}
 	
@@ -45,8 +40,8 @@ public class Player {
 		}
 		
 	}
-/*
-	public Grid getBookshelf() {
+
+	/*public Grid getBookshelf() {
 		return bookshelfDisplay;
 	}
 	public Slot getBookshelfSlot(int row, int column) {
@@ -56,14 +51,18 @@ public class Player {
 
 	public void setBookshelf(Grid bookshelf) {
 		this.bookshelfDisplay= bookshelf;
-	}
-*/
+	}*/
+
 	public int getPoints() {
 		return points;
 	}
 
 	public void addPoints(int points) {
 		this.points += points;
+	}
+
+	public Bookshelf getBookshelf() {
+		return bookshelf;
 	}
 
 	
