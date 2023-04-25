@@ -1,5 +1,7 @@
 package progetto;
 
+import cards.PersonalGoalCard;
+
 public class Player {
 
 	private final int ID;
@@ -8,6 +10,7 @@ public class Player {
 	//private Grid bookshelfDisplay; //da creare come classe che usa Grid
 	private int points;
 	private Bookshelf bookshelf;
+	private PersonalGoalCard personalGoalCard;
 
     /*private int IDGenerator() 
     {
@@ -63,6 +66,14 @@ public class Player {
 
 	public Bookshelf getBookshelf() {
 		return bookshelf;
+	}
+
+	public PersonalGoalCard getPersonalGoalCard() {
+		return personalGoalCard;
+	}
+
+	public void setPersonalGoalCard(PersonalGoalCard personalGoalCard) {
+		this.personalGoalCard = personalGoalCard;
 	}
 
 	
