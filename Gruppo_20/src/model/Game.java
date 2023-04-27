@@ -1,6 +1,12 @@
-package progetto;
+package model;
 
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+
+import progetto.LeavingRoomBoard;
+import progetto.Player;
 
 public class Game {
 
@@ -114,6 +120,58 @@ public class Game {
 			in.close();
 			
 		*/	
+	}
+	
+	private LeavingRoomBoard leavingRoomBoard;
+	private List<ItemTile>listItemTile;
+	private Map<String,ItemTile> boardItemTile;
+
+	public List<ItemTile> getListItemTile() {
+		return listItemTile;
+	}
+	public Game()
+	{
+		listItemTile = new ArrayList<>();
+		boardItemTile = new HashMap<>();
+	}
+	public void start(int numberOfPlayers)
+	{
+		leavingRoomBoard = new LeavingRoomBoard(numberOfPlayers);
+		readFile(listItemTile);
+		leavingRoomBoard.putItemTiles(listItemTile, boardItemTile);
+		
+		//leavingRoomBoard.printGrid();
+	}
+	private void readFile(List<ItemTile> listItemTile)
+	{
+		/**
+		 * Carica ItemTiles da File
+		 */
+		File file = new File("./resources/item.txt");
+		Scanner scanner = null;
+		try
+		{
+			scanner = new Scanner(file);
+			while(scanner.hasNext())
+			{
+				String pathImg = scanner.nextLine();
+				ItemTile itemTile = new ItemTile(pathImg);
+				listItemTile.add(itemTile);
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			scanner.close();
+		}
+
+	}
+	
+	public LeavingRoomBoard getLeavingRoomBoard() {
+		return leavingRoomBoard;
 	}
 
 }
