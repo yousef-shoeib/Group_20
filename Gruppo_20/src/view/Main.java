@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.EventQueue;
+
 import controller.MainController;
 import model.Game;
 
