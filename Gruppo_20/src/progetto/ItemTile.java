@@ -1,6 +1,6 @@
 package progetto;
 
 public class ItemTile {
-
-	private String Color;
+	
+		private String Color;
 }
