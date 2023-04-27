@@ -1,17 +1,27 @@
 package progetto;
 
-
-public class Grid {
+public abstract class Grid {
+	
 	protected int rows;
 	protected int columns;
 	protected Slot[][] matrGrid;
 	
 
+	public Slot[][] getMatrGrid() {
+		return matrGrid;
+	}
+
 	public Grid(int rows, int columns) {
+		
+		if(rows < 0)
+			throw new IllegalArgumentException("number of rows must be greater than or equal to 0");
+		
+		if(columns < 0)
+			throw new IllegalArgumentException("number of columns must be greater than or equal to 0");
+		
 		this.rows=rows;
 		this.columns=columns;
 		this.matrGrid= new Slot[rows][columns];
-		//this.setSlots();
 	}
 	
 	public int getRows() {
@@ -21,14 +31,10 @@ public class Grid {
 		return this.columns;
 	}
 	
-	
-	/*
-	public Grid(int rows, int columns, int numberOfPlayers) {
-		this.rows=rows;
-		this.columns=columns;
-		this.slots= new Slot[rows][columns];
-		this.setSlots();
-	}*/
+	public Slot getSlot(int x,int y)
+	{
+		return matrGrid[x][y];
+	}
 	
 	/*public Grid[][] createPersonalGoalCard() {
 		Grid[][] personalObjectiveCard= new Grid[6][5];
@@ -48,12 +54,7 @@ public class Grid {
 			}
 		}
 	}
-	public Slot getSlot(int row, int column) {
-		return slots[row-1][column-1];
-	}
-	public Slot[][] getSlots(){
-		return this.slots;
-	}*/
+
 /*	public void printGridNumber() {
 		for(int i =1;i<=this.rows;i++) {
 			System.out.println("");
@@ -63,21 +64,26 @@ public class Grid {
 		}
 	}*/
 	
-/*	public void printGridId() {
-		for(int i =1;i<=this.rows;i++) {
-			System.out.println("");
-			for(int j =1;j<=this.columns;j++) {
-				if(this.getSlot(i,j).getId()==0) {
-					System.out.print(" \t");
-				}else {
-					System.out.print(this.getSlot(i,j).getId()+"\t");
+	public void printGrid() {
+		for(int x = 0; x < this.rows; x++)
+		{
+			System.out.println("\n");
+			System.out.println("------------------------------------------------------------------------");
+			
+			for(int y = 0; y < this.columns ; y++)
+			{
+				if(matrGrid[x][y].State())
+				{
+					System.out.print( "  ("+ x + "," + y + ")" ) ;
+					System.out.print( " " + matrGrid[x][y].getItemTile().getPathImg() + 
+							" lb" + matrGrid[x][y].getItemTile().getId()) ;
 				}
-			}System.out.println("");
+				else
+					System.out.print(" - ");
+		
+			}
 		}
-	}*/
-	
-	/*public void setSlot() {
-		this.slot = new Slot();
-	}*/
+		System.out.println("\n");
+	}
 
 }

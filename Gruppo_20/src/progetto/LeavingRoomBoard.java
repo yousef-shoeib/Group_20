@@ -6,8 +6,6 @@ import java.util.Random;
 
 public class LeavingRoomBoard extends Grid {
 
-	//private Slot [][] matrGrid;
-	
 	private int[][] configMatrTwoPlayer = {	{0,0,0,0,0,0,0,0,0}, 
 											{0,0,0,1,1,0,0,0,0},
 											{0,0,0,1,1,1,0,0,0},
@@ -38,16 +36,22 @@ public class LeavingRoomBoard extends Grid {
 												{0,0,0,1,1,1,0,0,0},
 												{0,0,0,0,1,1,0,0,0}};
 	
+	private static final int DIM = 9;
+	
 	public LeavingRoomBoard(int nPlayers)
 	{
-		super(9,9);
-		//matrGrid = new Slot[9][9];
+		super(DIM,DIM);
 		init(nPlayers);
 	}
 
+	/**
+	 * Init the grid based on the number of players
+	 * @param nPlayer
+	 */
 	private void init(int  nPlayer)
 	{
 		int[][] tempConfigMatr = {};
+		
 		if(nPlayer == 2)
 			tempConfigMatr = configMatrTwoPlayer;
 		if(nPlayer == 3)
@@ -55,9 +59,9 @@ public class LeavingRoomBoard extends Grid {
 		if(nPlayer == 4)
 			tempConfigMatr = configMatrFourPlayer;
 			
-		for(int x = 0; x < 9; x++)
+		for(int x = 0; x < this.rows; x++)
 		{
-			for(int y = 0; y < 9; y++)
+			for(int y = 0; y < this.columns; y++)
 			{
 				Slot slot = new Slot();
 				if(tempConfigMatr[x][y] == 1)
@@ -68,33 +72,41 @@ public class LeavingRoomBoard extends Grid {
 		}
 	}
 	
-	//Assign Item Tile a slot
-	public Slot[][] assegnaItemTile(List<ItemTile> listItemTile, HashMap<String, ItemTile> boardItemTile)
+	/**
+	 * Randomly assign tiles to the grid
+	 * @param listItemTile
+	 * @param boardItemTile
+	 * @return matriGrid
+	 */
+	public void putItemTiles(List<ItemTile> listItemTile, HashMap<String, ItemTile> boardItemTile)
 	{
 		Random random = new Random();
 				
-		for(int x = 0; x < 9; x++)
+		for(int x = 0; x < this.rows; x++)
 		{
-			for(int y = 0; y < 9; y++)
+			for(int y = 0; y < this.columns; y++)
 			{
-				if(matrGrid[x][y].isState() == "T")
+				matrGrid[x][y].setX(x);
+				matrGrid[x][y].setY(y);
+				
+				if(matrGrid[x][y].State())
 				{
 					ItemTile itemTile = listItemTile.remove(random.nextInt(listItemTile.size()));
-					//itemTile.setX(x);
-					//itemTile.setY(y);
-					//matrGrid[x][y].setItemTile(itemTile);
-					//boardItemTile.put("lb"+itemTile.getId(), itemTile); 
-				//System.out.println(matrGriglia[x][y].getItemTile().getColor());
+					itemTile.setX(x);
+					itemTile.setY(y);
+					matrGrid[x][y].setItemTile(itemTile);
+					boardItemTile.put("lb"+itemTile.getId(), itemTile); 
 				}
 
 			}
 		}
-		return matrGrid;
 	}
 	
 	//Check has free side
-	public boolean hasFreeSide(int x, int y)
+	private boolean tileHasFreeSide(ItemTile currentItemTile)
 	{			
+		int x = currentItemTile.getX();
+		int y = currentItemTile.getY();
 		
 		if(x == 0 || y == 0 || x == 8 || y == 8)
 			return true;
@@ -104,15 +116,60 @@ public class LeavingRoomBoard extends Grid {
 		Slot slot3 = matrGrid[(x+1)][y];
 		Slot slot4 = matrGrid[x][(y+1)];
 		
-		if(slot1.isState().equals("F") || slot1.getItemTile().equals(null))
+		if(!slot1.State() || slot1.getItemTile() == null)
 			return true;
-		if(slot2.isState().equals("F") || slot2.getItemTile().equals(null))
+		if(!slot2.State() || slot2.getItemTile() == null)
 			return true;
-		if(slot3.isState().equals("F") || slot3.getItemTile().equals(null))
+		if(!slot3.State() || slot3.getItemTile() == null)
 			return true;
-		if(slot4.isState().equals("F") || slot4.getItemTile().equals(null))
+		if(!slot4.State() || slot4.getItemTile() == null)
 			return true;
 		
 		return false;
 	}
+	
+	private boolean tileAreAdjacent(ItemTile currentItemTile, ItemTile gettedItemTile)
+	{
+		Slot currentSlot = matrGrid[currentItemTile.getX()][currentItemTile.getY()];
+		Slot gettedSlot = matrGrid[gettedItemTile.getX()][gettedItemTile.getY()];
+		
+		//Check its adjacent
+		if(currentItemTile.getX() == gettedItemTile.getX())
+		{	
+			if(currentSlot.getY() - 1 == gettedSlot.getY() || currentSlot.getY() + 1 == gettedSlot.getY())
+				return true;
+		}
+		if(currentSlot.getY() == gettedSlot.getY())
+		{	
+			if(currentSlot.getX() - 1 == gettedSlot.getX() || currentSlot.getX() + 1 == gettedSlot.getX())
+				return true;
+		}
+		
+		return false;
+	}
+	
+	public ItemTile getTile(ItemTile currentItemTile, ItemTile gettedItemTile)
+	{
+		if(currentItemTile == null)
+			throw new NullPointerException("no tile selected");
+		
+		if (!tileHasFreeSide(currentItemTile))
+			return null;
+		
+		if(gettedItemTile == null)
+		{
+			this.matrGrid[currentItemTile.getX()][currentItemTile.getY()].setItemTile(null);
+			return currentItemTile;
+		}
+		
+		if(tileAreAdjacent(currentItemTile,gettedItemTile))
+		{
+			this.matrGrid[currentItemTile.getX()][currentItemTile.getY()].setItemTile(null);
+			return currentItemTile;
+		}
+		
+		return null;
+	}
+	
+	
 }
