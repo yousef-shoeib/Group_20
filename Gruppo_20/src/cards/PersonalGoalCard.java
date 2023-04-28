@@ -49,7 +49,24 @@ public abstract class PersonalGoalCard extends Grid{
 		return counter;
 	}
 	
-	
+	public void setPoints() {
+		int matches=this.countMatches();
+		if(matches==1||matches==2) {
+			this.points=matches;
+		}
+		if(matches==3) {
+			this.points=4;
+		}
+		if(matches==4) {
+			this.points=6;
+		}
+		if(matches==5) {
+			this.points=9;
+		}
+		if(matches==6) {
+			this.points=12;
+		}
+	}
 	public int getPoints() {
 		return points;
 	}
