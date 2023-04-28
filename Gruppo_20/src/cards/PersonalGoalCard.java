@@ -2,7 +2,7 @@ package cards;
 
 import java.util.ArrayList;
 
-import progetto.Grid;
+import model.Grid;
 
 public abstract class PersonalGoalCard extends Grid{
 	private int points;
@@ -46,24 +46,6 @@ public abstract class PersonalGoalCard extends Grid{
 				counter++;
 			}
 		}
-		/*if(match1) {
-			counter++;
-		}
-		if(match2) {
-			counter++;
-		}
-		if(match3) {
-			counter++;
-		}
-		if(match4) {
-			counter++;
-		}
-		if(match5) {
-			counter++;
-		}
-		if(match6) {
-			counter++;
-		}*/
 		return counter;
 	}
 	

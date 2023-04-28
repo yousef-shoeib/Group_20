@@ -1,12 +1,12 @@
 package model;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
-import progetto.LeavingRoomBoard;
-import progetto.Player;
 
 public class Game {
 
@@ -138,7 +138,7 @@ public class Game {
 	{
 		leavingRoomBoard = new LeavingRoomBoard(numberOfPlayers);
 		readFile(listItemTile);
-		leavingRoomBoard.putItemTiles(listItemTile, boardItemTile);
+		//leavingRoomBoard.putItemTiles(listItemTile, boardItemTile);
 		
 		//leavingRoomBoard.printGrid();
 	}
@@ -155,8 +155,8 @@ public class Game {
 			while(scanner.hasNext())
 			{
 				String pathImg = scanner.nextLine();
-				ItemTile itemTile = new ItemTile(pathImg);
-				listItemTile.add(itemTile);
+				//ItemTile itemTile = new ItemTile(pathImg);
+				//listItemTile.add(itemTile);
 			}
 		}
 		catch(FileNotFoundException e)
