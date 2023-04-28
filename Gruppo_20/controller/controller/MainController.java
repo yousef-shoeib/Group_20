@@ -6,7 +6,7 @@ import java.util.List;
 
 import model.Game;
 import model.ItemTile;
-import model.LeavingRoomBoard;
+import model.LivingRoomBoard;
 import model.Slot;
 import view.MainFrame;
 
@@ -31,7 +31,7 @@ public class MainController {
 			public void actionPerformed(ActionEvent e) {
 				int numberOfPlayers = Integer.parseInt( mainFrame.getNPlayersComboBox().getSelectedItem().toString());
 				game.start(numberOfPlayers);
-				mainFrame.fillLeavingRoomBoard(game.getLeavingRoomBoard().getMatrGrid());
+				mainFrame.fillLeavingRoomBoard(game.getLivingRoomBoard().getMatrGrid());
 			}
 		} );
 	}

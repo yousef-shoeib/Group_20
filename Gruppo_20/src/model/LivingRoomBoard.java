@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class LeavingRoomBoard extends Grid {
+public class LivingRoomBoard extends Grid {
 
 	private int[][] configMatrTwoPlayer = {	{0,0,0,0,0,0,0,0,0}, 
 											{0,0,0,1,1,0,0,0,0},
@@ -38,7 +38,7 @@ public class LeavingRoomBoard extends Grid {
 	
 	private static final int DIM = 9;
 	
-	public LeavingRoomBoard(int nPlayers)
+	public LivingRoomBoard(int nPlayers)
 	{
 		super(DIM,DIM);
 		init(nPlayers);

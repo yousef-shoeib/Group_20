@@ -122,7 +122,7 @@ public class Game {
 		*/	
 	}
 	
-	private LeavingRoomBoard leavingRoomBoard;
+	private LivingRoomBoard livingRoomBoard;
 	private List<ItemTile>listItemTile;
 	private Map<String,ItemTile> boardItemTile;
 
@@ -136,7 +136,7 @@ public class Game {
 	}
 	public void start(int numberOfPlayers)
 	{
-		leavingRoomBoard = new LeavingRoomBoard(numberOfPlayers);
+		livingRoomBoard = new LivingRoomBoard(numberOfPlayers);
 		readFile(listItemTile);
 		//leavingRoomBoard.putItemTiles(listItemTile, boardItemTile);
 		
@@ -170,8 +170,8 @@ public class Game {
 
 	}
 	
-	public LeavingRoomBoard getLeavingRoomBoard() {
-		return leavingRoomBoard;
+	public LivingRoomBoard getLivingRoomBoard() {
+		return livingRoomBoard;
 	}
 
 }

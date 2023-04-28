@@ -15,7 +15,7 @@ public class Test {
 		ArrayList<ItemTile> listItemTile = new ArrayList<ItemTile>();
 		HashMap<String, ItemTile> boardItemTile = new HashMap<String, ItemTile>();
 		
-		LeavingRoomBoard leavingRoomBoard = new LeavingRoomBoard(numberOfPlayers);
+		LivingRoomBoard leavingRoomBoard = new LivingRoomBoard(numberOfPlayers);
 		
 		readFile(listItemTile);
 		
