@@ -26,8 +26,6 @@ import javax.swing.JButton;
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JComboBox nPlayersComboBox;
-	private JButton startGameButton;
 	private JPanel panel;
 
 	
@@ -45,15 +43,6 @@ public class MainFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		nPlayersComboBox = new JComboBox();
-		nPlayersComboBox.setModel(new DefaultComboBoxModel(new String[] {"2", "3", "4"}));
-		nPlayersComboBox.setBounds(34, 41, 101, 26);
-		contentPane.add(nPlayersComboBox);
-		
-		startGameButton = new JButton("Start");
-		startGameButton.setBounds(34, 85, 85, 21);
-		contentPane.add(startGameButton);
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(255, 128, 0));
@@ -109,14 +98,4 @@ public class MainFrame extends JFrame {
 		}
 		//repaint();
 	}
-	
-	public JComboBox getNPlayersComboBox() {
-		return nPlayersComboBox;
-	}
-
-
-
-	public JButton getStartGameButton() {
-		return startGameButton;
-	}}
-
+}

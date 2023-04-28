@@ -1,17 +1,21 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Game {
 
 	private LivingRoomBoard livingRoomBoard;
 	private Map<String,ItemTile> boardItemTile;
+	private List<Player> listPlayer;
 	private Bag bag;
 
 	public Game()
 	{
 		boardItemTile = new HashMap<>();
+		listPlayer = new ArrayList<>();
 	}
 	public void start(int numberOfPlayers)
 	{

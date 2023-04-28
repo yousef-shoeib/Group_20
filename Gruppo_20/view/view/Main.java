@@ -3,6 +3,7 @@ package view;
 import java.awt.EventQueue;
 
 import controller.MainController;
+import controller.SetGameController;
 import model.Game;
 
 public class Main {
@@ -13,9 +14,11 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainFrame frame = new MainFrame();
+					MainFrame mainFrame = null;
+					SetGameFrame setGameframe = new SetGameFrame();
 					Game game = new Game();
-					MainController mainController = new MainController(game,frame);
+					SetGameController setGameController = new SetGameController(setGameframe,mainFrame,game);
+					MainController mainController = new MainController(game,mainFrame);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
