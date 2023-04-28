@@ -1,7 +1,7 @@
 package model;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class LivingRoomBoard extends Grid {
@@ -78,7 +78,7 @@ public class LivingRoomBoard extends Grid {
 	 * @param boardItemTile
 	 * @return matriGrid
 	 */
-	public void putItemTiles(List<ItemTile> listItemTile, HashMap<String, ItemTile> boardItemTile)
+	public void putItemTiles(List<ItemTile> listItemTile, Map<String, ItemTile> boardItemTile)
 	{
 		Random random = new Random();
 				

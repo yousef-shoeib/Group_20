@@ -1,11 +1,28 @@
 package model;
 
 public class ItemTile {
+		private String pathImg;
 		private int x;
 		private int y;
 		private int id;
 		public int getId() {
 			return id;
+		}
+		private static int cont = 0;
+		
+		public ItemTile(String pathImg,String color)
+		{
+			this.pathImg = pathImg;
+			this.color = color;
+			id = cont;
+			cont = cont +1;
+		}
+		
+		public String getPathImg(){ 
+			return pathImg;
+		}
+		public void setPathImg(String pathImg) {
+			this.pathImg = pathImg;
 		}
 		public void setId(int id) {
 			this.id = id;
@@ -23,10 +40,10 @@ public class ItemTile {
 			this.y = y;
 		}
 		public String getColor() {
-			return Color;
+			return color;
 		}
 		public void setColor(String color) {
-			Color = color;
+			this.color = color;
 		}
-		private String Color;
+		private String color;
 }
