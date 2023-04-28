@@ -32,15 +32,12 @@ private List<ItemTile>listItemTile;
 			{
 				String[] components;
 				components = scanner.nextLine().split(",");
-				if(components.length == 2)
-				{
-					System.out.println(components.length);
+				
 					String pathImg = components[0];
 					String color = components[1];
 	
 					ItemTile itemTile = new ItemTile(pathImg,color);
 					listItemTile.add(itemTile);
-				}
 			}
 		}
 		catch(FileNotFoundException e)

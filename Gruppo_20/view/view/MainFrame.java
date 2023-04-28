@@ -78,9 +78,9 @@ public class MainFrame extends JFrame {
 				{	
 					itemTile = matrGrid[x][y].getItemTile();
 					lblNewLabel = new JLabel("New label");
-					//tempIcon = new ImageIcon(".\\resources\\MyShelfie_BGA\\17_MyShelfie_BGA\\item tiles\\"+ itemTile.getPathImg()+".png");
+					tempIcon = new ImageIcon(".\\Gruppo_20\\Assets\\itemTiles\\"+ itemTile.getPathImg()+".png");
 					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(70, 70, 70));
-					//lblNewLabel.setName("lb"+itemTile.getId());
+					lblNewLabel.setName("lb"+itemTile.getId());
 					lblNewLabel.setIcon(icon);
 					lblNewLabel.setText("");
 				
@@ -91,7 +91,7 @@ public class MainFrame extends JFrame {
 				else
 				{
 					lblNewLabel = new JLabel("New label");
-					tempIcon = new ImageIcon(".\\resources\\MyShelfie_BGA\\17_MyShelfie_BGA\\item tiles\\vuoto.jpg");
+					tempIcon = new ImageIcon(".\\Gruppo_20\\Assets\\itemTiles\\vuoto.jpg");
 					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(70, 70, 70));
 					lblNewLabel.setName("lbNull"+y);
 					//gestire opacita casella
@@ -99,7 +99,7 @@ public class MainFrame extends JFrame {
 					lblNewLabel.setText("");
 					
 					panel.add(lblNewLabel);
-					lblNewLabel.setVisible(false);
+					lblNewLabel.setVisible(true);
 				}
 								
 
