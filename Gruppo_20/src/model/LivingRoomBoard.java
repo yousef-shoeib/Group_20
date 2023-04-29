@@ -65,7 +65,7 @@ public class LivingRoomBoard extends Grid {
 			{
 				Slot slot = new Slot();
 				if(tempConfigMatr[x][y] == 1)
-					slot.setStato(true);
+					slot.setState(true);
 				
 				matrGrid[x][y] = slot;
 			}
@@ -78,7 +78,7 @@ public class LivingRoomBoard extends Grid {
 	 * @param boardItemTile
 	 * @return matriGrid
 	 */
-	public void putItemTiles(List<ItemTile> listItemTile, Map<String, ItemTile> boardItemTile)
+	public void putItemTiles(List<ItemTile> listItemTile)
 	{
 		Random random = new Random();
 				
@@ -95,7 +95,6 @@ public class LivingRoomBoard extends Grid {
 					itemTile.setX(x);
 					itemTile.setY(y);
 					matrGrid[x][y].setItemTile(itemTile);
-					boardItemTile.put("lb"+itemTile.getId(), itemTile); 
 				}
 
 			}
@@ -148,27 +147,33 @@ public class LivingRoomBoard extends Grid {
 		return false;
 	}
 	
-	public ItemTile getTile(ItemTile currentItemTile, ItemTile gettedItemTile)
+	public ItemTile getTile(ItemTile currentItemTile, ItemTile gettedItemTile) throws Exception
 	{
 		if(currentItemTile == null)
 			throw new NullPointerException("no tile selected");
 		
 		if (!tileHasFreeSide(currentItemTile))
-			return null;
+			throw new Exception("tile has not free side");
 		
 		if(gettedItemTile == null)
 		{
-			this.matrGrid[currentItemTile.getX()][currentItemTile.getY()].setItemTile(null);
 			return currentItemTile;
 		}
 		
-		if(tileAreAdjacent(currentItemTile,gettedItemTile))
+		if(!tileAreAdjacent(currentItemTile,gettedItemTile))
 		{
-			this.matrGrid[currentItemTile.getX()][currentItemTile.getY()].setItemTile(null);
-			return currentItemTile;
+			throw new Exception("tile are not adjacent");
 		}
 		
-		return null;
+		return currentItemTile;
+	}
+
+	public void removeTile(ItemTile item) {
+		Slot slot1 = getSlotFromTile(item);
+		System.out.println(slot1);
+		if(slot1 != null)
+			slot1.setItemTile(null);
+		
 	}
 	
 	

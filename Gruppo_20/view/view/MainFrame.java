@@ -6,7 +6,9 @@ import java.awt.EventQueue;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -22,11 +24,16 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel;
+	private JLabel lblNewLabel;
+	private JButton removeTileButton;
+	private List<JLabel> listTileLabel;
 
 	
 
@@ -50,6 +57,11 @@ public class MainFrame extends JFrame {
 		contentPane.add(panel);
 		int x = (getWidth()/2)-350;
 		panel.setBounds(x, 30, 700, 700);
+		listTileLabel = new ArrayList<>();
+		
+		removeTileButton = new JButton("Take");
+		removeTileButton.setBounds(67, 30, 77, 41);
+		contentPane.add(removeTileButton);
 
 	}
 	
@@ -60,7 +72,7 @@ public class MainFrame extends JFrame {
 			for(int y = 0; y < 9; y++)
 			{
 				ItemTile itemTile = null;
-				JLabel lblNewLabel =null;
+				lblNewLabel = null;
 				ImageIcon tempIcon =null;
 				ImageIcon icon=null;
 				if(matrGrid[x][y].State())
@@ -69,7 +81,7 @@ public class MainFrame extends JFrame {
 					lblNewLabel = new JLabel("New label");
 					tempIcon = new ImageIcon(".\\Gruppo_20\\Assets\\itemTiles\\"+ itemTile.getPathImg()+".png");
 					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(70, 70, 70));
-					lblNewLabel.setName("lb"+itemTile.getId());
+					lblNewLabel.setName(String.valueOf(itemTile.getId()));
 					lblNewLabel.setIcon(icon);
 					lblNewLabel.setText("");
 				
@@ -82,7 +94,7 @@ public class MainFrame extends JFrame {
 					lblNewLabel = new JLabel("New label");
 					tempIcon = new ImageIcon(".\\Gruppo_20\\Assets\\itemTiles\\vuoto.jpg");
 					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(70, 70, 70));
-					lblNewLabel.setName("lbNull"+y);
+					lblNewLabel.setName(String.valueOf(-1));
 					//gestire opacita casella
 					lblNewLabel.setIcon(icon);
 					lblNewLabel.setText("");
@@ -90,12 +102,25 @@ public class MainFrame extends JFrame {
 					panel.add(lblNewLabel);
 					lblNewLabel.setVisible(true);
 				}
-								
-
-						
+				
+				listTileLabel.add(lblNewLabel);		
 			}
 	
 		}
 		//repaint();
 	}
+
+	public JLabel getLblNewLabel() {
+		return lblNewLabel;
+	}
+
+	public List<JLabel> getListTileLabel() {
+		return listTileLabel;
+	}
+
+	public JButton getRemoveTileButton() {
+		return removeTileButton;
+	}
+
+
 }

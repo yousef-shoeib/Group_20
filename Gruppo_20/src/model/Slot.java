@@ -43,7 +43,7 @@ public class Slot {
 		return state;
 	}
 
-	public void setStato(boolean state) {
+	public void setState(boolean state) {
 		this.state = state;
 	}
 

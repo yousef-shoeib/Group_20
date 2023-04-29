@@ -36,6 +36,36 @@ public abstract class Grid {
 		return matrGrid[x][y];
 	}
 	
+	public Slot getSlotFromTile(ItemTile itemTile)
+	{
+		for(int x = 0; x < this.rows; x++)
+		{	
+			for(int y = 0; y < this.columns ; y++)
+			{
+				if(matrGrid[x][y].State())
+				{
+					if(matrGrid[x][y].getItemTile().getId() == itemTile.getId())
+						return matrGrid[x][y];
+				}
+			}
+		}
+		return null;
+	}
+	public ItemTile checkTile(int tileId)
+	{
+		for(int x = 0; x < this.rows; x++)
+		{	
+			for(int y = 0; y < this.columns ; y++)
+			{
+				if(matrGrid[x][y].State())
+				{
+					if(matrGrid[x][y].getItemTile().getId() == tileId)
+						return matrGrid[x][y].getItemTile();
+				}
+			}
+		}
+		return null;
+	}
 	/*public Grid[][] createPersonalGoalCard() {
 		Grid[][] personalObjectiveCard= new Grid[6][5];
 		this.rows=6;

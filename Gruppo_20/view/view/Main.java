@@ -15,10 +15,10 @@ public class Main {
 			public void run() {
 				try {
 					MainFrame mainFrame = null;
-					SetGameFrame setGameframe = new SetGameFrame();
+					MainController mainController = null;
+					SetGameFrame setGameFrame = new SetGameFrame();
 					Game game = new Game();
-					SetGameController setGameController = new SetGameController(setGameframe,mainFrame,game);
-					MainController mainController = new MainController(game,mainFrame);
+					SetGameController setGameController = new SetGameController(setGameFrame,mainFrame,game,mainController);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
