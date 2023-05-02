@@ -146,8 +146,16 @@ public class LivingRoomBoard extends Grid {
 		
 		return false;
 	}
-	
-	public ItemTile getTile(ItemTile currentItemTile, ItemTile gettedItemTile) throws Exception
+	private boolean tileIsInline(ItemTile currentItemTile, ItemTile previousTile)
+	{
+		if(currentItemTile.getX() == previousTile.getX())
+			return true;
+		if(currentItemTile.getY() == previousTile.getY())
+			return true;
+
+		return false;
+	}
+	public ItemTile getTile(ItemTile currentItemTile, ItemTile gettedItemTile,ItemTile previousTile) throws Exception
 	{
 		if(currentItemTile == null)
 			throw new NullPointerException("no tile selected");
@@ -164,16 +172,35 @@ public class LivingRoomBoard extends Grid {
 		{
 			throw new Exception("tile are not adjacent");
 		}
+		if(previousTile == null)
+		{
+			return currentItemTile;
+		}
+		if(!tileIsInline(currentItemTile,previousTile))
+			throw new Exception("tile are not adjacent");
 		
 		return currentItemTile;
 	}
 
-	public void removeTile(ItemTile item) {
-		Slot slot1 = getSlotFromTile(item);
-		System.out.println(slot1);
-		if(slot1 != null)
-			slot1.setItemTile(null);
+	public int removeTile(ItemTile item) {
 		
+		for(int x = 0; x < this.rows; x++)
+		{	
+			for(int y = 0; y < this.columns ; y++)
+			{
+				if(matrGrid[x][y].State())
+				{
+					if(matrGrid[x][y].getItemTile().getId() == item.getId())
+					{
+						ItemTile nullItem =null;
+						matrGrid[x][y].setItemTile(nullItem);;
+						return 1;
+					}
+					
+				}
+			}
+		}
+		return -1;
 	}
 	
 	

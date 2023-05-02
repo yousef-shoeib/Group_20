@@ -8,11 +8,13 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
 import model.Game;
 import model.ItemTile;
+import model.Player;
 import view.MainFrame;
 
 public class MainController {
@@ -20,6 +22,7 @@ public class MainController {
 	private Game game;
 	private MainFrame mainFrame;
 	private List<ItemTile> listToRemoveTile;
+	int cont = 0;
 	
 	public MainController(Game game, MainFrame mainFrame)
 	{
@@ -29,6 +32,14 @@ public class MainController {
 		
 		assignLblNewLabelController();
 		assignRemoveTileButtonController();
+		
+		Player player1 = new Player("pippo");
+		//int emptySlot = player1.getBookshelf().emptySlot();
+		int emptySlot = 5;
+		if(emptySlot > 2)
+			cont = 3;
+		else
+			cont = emptySlot;
 	}
 	
 	private void assignLblNewLabelController()
@@ -66,24 +77,33 @@ public class MainController {
 				
 				@Override
 				public void mouseClicked(MouseEvent e) {
+										
+					if(cont != 0)
+					{
+					   String keyTile = lblNewLabel.getName();
+					   ItemTile checkItemTile = game.getLivingRoomBoard().checkTile(Integer.parseInt(keyTile));
+					   ItemTile itemTile = null;
 					
-				   String keyTile = lblNewLabel.getName();
-				   ItemTile checkItemTile = game.getLivingRoomBoard().checkTile(Integer.parseInt(keyTile));
-				   ItemTile itemTile = null;
-				
-				   try 
-				   {
-					   itemTile = game.getLivingRoomBoard().getTile(checkItemTile,null);
-					   lblNewLabel.setBorder(new LineBorder(new Color(50,205,50), 2));
-						System.out.println("allow to take");
-						listToRemoveTile.add(itemTile);
-				
-				   } catch (Exception e2) 
-				   {
-					   System.out.println(e2.getMessage());
-					   lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 2));
-				   }
+					   try 
+					   {
+						   if(listToRemoveTile.size()== 0)   
+							   itemTile = game.getLivingRoomBoard().getTile(checkItemTile,null,null);
+						   else if(listToRemoveTile.size() == 1)
+							   itemTile = game.getLivingRoomBoard().getTile(checkItemTile,listToRemoveTile.get(0),null);
+						   else if(listToRemoveTile.size() == 2)
+							   itemTile = game.getLivingRoomBoard().getTile(checkItemTile,listToRemoveTile.get(0),listToRemoveTile.get(1));
+							   
+						   lblNewLabel.setBorder(new LineBorder(new Color(50,205,50), 2));
+						   System.out.println("allow to take");
+						   listToRemoveTile.add(itemTile);
+						   cont--;
 					
+					   } catch (Exception e2) 
+					   {
+						   System.out.println(e2.getMessage());
+						   lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 2));					   
+					   }
+					}
 				}
 			});
 		}
@@ -96,18 +116,38 @@ public class MainController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				cont = 3;
+				
 				for(ItemTile item : listToRemoveTile)
 				{
-					game.getLivingRoomBoard().removeTile(item);
-					for(JLabel lblNewLabel : mainFrame.getListTileLabel())
+					int result = game.getLivingRoomBoard().removeTile(item);
+					System.out.println(result);
+					/*for(JLabel lblNewLabel : mainFrame.getListTileLabel())
 					{
 						if(Integer.parseInt(lblNewLabel.getName())!= -1)
 						{
 							if(lblNewLabel.getName().equals(String.valueOf(item.getId())))
-								item.setPathImg(".\\Gruppo_20\\Assets\\itemTiles\\vuoto.jpg");				
+							{
+								item.setPathImg(".\\Gruppo_20\\Assets\\itemTiles\\vuoto.jpg");	
+							ImageIcon tempIcon = new ImageIcon(".\\Gruppo_20\\Assets\\itemTiles\\vuoto.jpg");
+							ImageIcon icon = new ImageIcon(tempIcon.getImage().getScaledInstance(70, 70, 70));
+							lblNewLabel.setIcon(icon);
+							}
 						}
-					}		
+					}	*/	
 				}
+				listToRemoveTile = null;
+				listToRemoveTile = new ArrayList<>();
+				
+				for(JLabel lblNewLabel : mainFrame.getListTileLabel())
+				{
+					if(Integer.parseInt(lblNewLabel.getName())!= -1)
+					{
+						lblNewLabel.setBorder(null);
+					}
+				}
+
 			}
 		} );
 	}

@@ -44,6 +44,7 @@ public abstract class Grid {
 			{
 				if(matrGrid[x][y].State())
 				{
+					System.out.println(matrGrid[x][y].State());
 					if(matrGrid[x][y].getItemTile().getId() == itemTile.getId())
 						return matrGrid[x][y];
 				}

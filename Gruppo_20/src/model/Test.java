@@ -13,13 +13,12 @@ public class Test {
 		int numberOfPlayers = 3;
 		
 		ArrayList<ItemTile> listItemTile = new ArrayList<ItemTile>();
-		HashMap<String, ItemTile> boardItemTile = new HashMap<String, ItemTile>();
 		
 		LivingRoomBoard leavingRoomBoard = new LivingRoomBoard(numberOfPlayers);
 		
 		readFile(listItemTile);
 		
-		leavingRoomBoard.putItemTiles(listItemTile, boardItemTile);
+		leavingRoomBoard.putItemTiles(listItemTile);
 		
 		leavingRoomBoard.printGrid();
 		
