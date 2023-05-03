@@ -23,7 +23,7 @@ private List<ItemTile>listItemTile;
 		/**
 		 * Carica ItemTiles da File
 		 */
-		File file = new File(".//resources//item.txt");
+		File file = new File(".//Gruppo_20//resources//item.txt");
 		try
 		{
 			Scanner scanner = new Scanner(file);
