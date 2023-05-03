@@ -11,6 +11,7 @@ public class Test {
 	public static void main(String[] args) {
 		
 		int numberOfPlayers = 3;
+		//commit di prova name
 		
 		ArrayList<ItemTile> listItemTile = new ArrayList<ItemTile>();
 		
