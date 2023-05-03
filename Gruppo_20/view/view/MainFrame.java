@@ -79,7 +79,7 @@ public class MainFrame extends JFrame {
 				{	
 					itemTile = matrGrid[x][y].getItemTile();
 					lblNewLabel = new JLabel("New label");
-					tempIcon = new ImageIcon(".\\Gruppo_20\\Assets\\itemTiles\\"+ itemTile.getPathImg()+".png");
+					tempIcon = new ImageIcon(".\\resources\\Assets\\itemTiles\\"+ itemTile.getPathImg()+".png");
 					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(70, 70, 70));
 					lblNewLabel.setName(String.valueOf(itemTile.getId()));
 					lblNewLabel.setIcon(icon);
@@ -92,7 +92,7 @@ public class MainFrame extends JFrame {
 				else
 				{
 					lblNewLabel = new JLabel("New label");
-					tempIcon = new ImageIcon(".\\Gruppo_20\\Assets\\itemTiles\\vuoto.jpg");
+					tempIcon = new ImageIcon(".\\resources\\Assets\\itemTiles\\vuoto.jpg");
 					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(70, 70, 70));
 					lblNewLabel.setName(String.valueOf(-1));
 					//gestire opacita casella
