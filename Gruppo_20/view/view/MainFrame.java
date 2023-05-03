@@ -26,12 +26,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.GridBagLayout;
+import javax.swing.JLayeredPane;
+import javax.swing.SwingConstants;
 
 public class MainFrame extends JFrame {
 
-	private JPanel contentPane;
-	private JPanel panel;
-	private JLabel lblNewLabel;
+	private JPanel contentPane;//
+	private JLabel background;
+	private JLabel itemTileLabel;
 	private JButton removeTileButton;
 	private List<JLabel> listTileLabel;
 
@@ -47,21 +52,29 @@ public class MainFrame extends JFrame {
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		panel = new JPanel();
-		panel.setBackground(new Color(255, 128, 0));
+		background = new JLabel();
+		
+		background.setBackground(new Color(255, 128, 0));
 		contentPane.setLayout(null);		
-		contentPane.add(panel);
+		contentPane.add(background);
 		int x = (getWidth()/2)-350;
-		panel.setBounds(x, 30, 700, 700);
+		background.setBounds(x, 30, 700, 700);
+		background.setLayout(new GridLayout(9, 9, 0, 0));
+		/////////////////////////
+		ImageIcon tempBackground =new ImageIcon(".\\resources\\Assets\\boards\\livingroom.png");
+		ImageIcon backgroundIcon=new ImageIcon(tempBackground.getImage().getScaledInstance(700, 700,Image.SCALE_SMOOTH));
+		background.setIcon(backgroundIcon);
+		//////////////////////
 		listTileLabel = new ArrayList<>();
 		
 		removeTileButton = new JButton("Take");
 		removeTileButton.setBounds(67, 30, 77, 41);
 		contentPane.add(removeTileButton);
+		
+		
 
 	}
 	
@@ -72,46 +85,47 @@ public class MainFrame extends JFrame {
 			for(int y = 0; y < 9; y++)
 			{
 				ItemTile itemTile = null;
-				lblNewLabel = null;
+				itemTileLabel = null;
+				
 				ImageIcon tempIcon =null;
 				ImageIcon icon=null;
 				if(matrGrid[x][y].State())
 				{	
 					itemTile = matrGrid[x][y].getItemTile();
-					lblNewLabel = new JLabel("New label");
+					itemTileLabel = new JLabel("New label");
 					tempIcon = new ImageIcon(".\\resources\\Assets\\itemTiles\\"+ itemTile.getPathImg()+".png");
-					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(70, 70, 70));
-					lblNewLabel.setName(String.valueOf(itemTile.getId()));
-					lblNewLabel.setIcon(icon);
-					lblNewLabel.setText("");
+					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(65, 65, Image.SCALE_SMOOTH));
+					itemTileLabel.setName(String.valueOf(itemTile.getId()));
+					itemTileLabel.setIcon(icon);
+					itemTileLabel.setText("");
 				
-					panel.add(lblNewLabel);
-					lblNewLabel.setVisible(true);
+					background.add(itemTileLabel);
+					itemTileLabel.setVisible(true);
 				
 				}
 				else
 				{
-					lblNewLabel = new JLabel("New label");
-					tempIcon = new ImageIcon(".\\resources\\Assets\\itemTiles\\vuoto.jpg");
-					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(70, 70, 70));
+					itemTileLabel = new JLabel("New label");
+					/*tempIcon = new ImageIcon(".\\resources\\Assets\\itemTiles\\vuoto.jpg");
+					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(65, 65, Image.SCALE_SMOOTH));
 					lblNewLabel.setName(String.valueOf(-1));
 					//gestire opacita casella
 					lblNewLabel.setIcon(icon);
 					lblNewLabel.setText("");
-					
-					panel.add(lblNewLabel);
-					lblNewLabel.setVisible(true);
+					*/
+					background.add(itemTileLabel);
+					itemTileLabel.setVisible(false);
 				}
 				
-				listTileLabel.add(lblNewLabel);		
+				listTileLabel.add(itemTileLabel);		
 			}
 	
 		}
 		//repaint();
 	}
 
-	public JLabel getLblNewLabel() {
-		return lblNewLabel;
+	public JLabel getItemTileLabel() {
+		return itemTileLabel;
 	}
 
 	public List<JLabel> getListTileLabel() {
@@ -121,6 +135,4 @@ public class MainFrame extends JFrame {
 	public JButton getRemoveTileButton() {
 		return removeTileButton;
 	}
-
-
 }
