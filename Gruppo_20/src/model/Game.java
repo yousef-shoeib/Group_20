@@ -10,9 +10,9 @@ public class Game {
 	private LivingRoomBoard livingRoomBoard;
 	private List<Player> listPlayer;
 	private Bag bag;
-
 	public Game()
-	{
+	{	
+		
 		listPlayer = new ArrayList<>();
 	}
 	public void start(int numberOfPlayers)

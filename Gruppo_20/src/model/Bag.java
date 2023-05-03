@@ -24,10 +24,9 @@ private List<ItemTile>listItemTile;
 		 * Carica ItemTiles da File
 		 */
 		File file = new File("./resources/item.txt");
-		Scanner scanner = null;
 		try
 		{
-			scanner = new Scanner(file);
+			Scanner scanner = new Scanner(file);
 			while(scanner.hasNext())
 			{
 				String[] components;
@@ -39,15 +38,13 @@ private List<ItemTile>listItemTile;
 					ItemTile itemTile = new ItemTile(pathImg,color);
 					listItemTile.add(itemTile);
 			}
+			scanner.close();
 		}
 		catch(FileNotFoundException e)
 		{
 			System.out.println(e.getMessage());
 		}
-		finally
-		{
-			scanner.close();
-		}
+
 
 	}
 }
