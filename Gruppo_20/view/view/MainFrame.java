@@ -106,13 +106,6 @@ public class MainFrame extends JFrame {
 				else
 				{
 					itemTileLabel = new JLabel("New label");
-					/*tempIcon = new ImageIcon(".\\resources\\Assets\\itemTiles\\vuoto.jpg");
-					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(65, 65, Image.SCALE_SMOOTH));
-					lblNewLabel.setName(String.valueOf(-1));
-					//gestire opacita casella
-					lblNewLabel.setIcon(icon);
-					lblNewLabel.setText("");
-					*/
 					background.add(itemTileLabel);
 					itemTileLabel.setVisible(false);
 				}
