@@ -34,7 +34,7 @@ public class MainController {
 		assignRemoveTileButtonController();
 		
 		Player player1 = new Player("pippo");
-		//int emptySlot = player1.getBookshelf().emptySlot();
+		//int emptySlot = player1.getBookshelf().maxDrawableTiles();
 		int emptySlot = 5;
 		if(emptySlot > 2)
 			cont = 3;

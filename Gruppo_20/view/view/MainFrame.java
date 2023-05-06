@@ -95,6 +95,7 @@ public class MainFrame extends JFrame {
 					itemTile = matrGrid[x][y].getItemTile();
 					itemTileLabel = new JLabel("New label");
 					tempIcon = new ImageIcon("./resources/Assets/itemTiles/"+ itemTile.getPathImg()+".png");
+					//tempIcon = new ImageIcon("./Gruppo_20/resources/Assets/itemTiles/"+ itemTile.getPathImg()+".png");
 					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(65, 65, Image.SCALE_SMOOTH));
 					itemTileLabel.setName(String.valueOf(itemTile.getId()));
 					itemTileLabel.setIcon(icon);
@@ -108,6 +109,7 @@ public class MainFrame extends JFrame {
 				{
 					itemTileLabel = new JLabel("New label");
 					background.add(itemTileLabel);
+					itemTileLabel.setName(String.valueOf(-1));
 					itemTileLabel.setVisible(false);
 				}
 				
