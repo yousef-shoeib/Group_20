@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import model.ItemTile;
 import model.Slot;
@@ -62,7 +63,8 @@ public class MainFrame extends JFrame {
 		contentPane.add(background);
 		int x = (getWidth()/2)-350;
 		background.setBounds(x, 30, 700, 700);
-		background.setLayout(new GridLayout(9, 9, 0, 0));
+		//background.setLayout(new GridLayout(9, 9, 0, 0));
+		background.setLayout(null);
 		/////////////////////////
 		ImageIcon tempBackground =new ImageIcon("./resources/Assets/boards/livingroom.png");
 		//ImageIcon tempBackground =new ImageIcon(".\\Gruppo_20\\resources\\Assets\\boards\\livingroom.png");
@@ -81,6 +83,8 @@ public class MainFrame extends JFrame {
 	
 	public void fillLeavingRoomBoard(Slot[][] matrGrid)
 	{
+		int first = 34;
+		int second = 35;
 		for(int x = 0; x < 9; x++)
 		{			
 			for(int y = 0; y < 9; y++)
@@ -96,25 +100,41 @@ public class MainFrame extends JFrame {
 					itemTileLabel = new JLabel("New label");
 					tempIcon = new ImageIcon("./resources/Assets/itemTiles/"+ itemTile.getPathImg()+".png");
 					//tempIcon = new ImageIcon("./Gruppo_20/resources/Assets/itemTiles/"+ itemTile.getPathImg()+".png");
-					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(65, 65, Image.SCALE_SMOOTH));
+					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(65,65, Image.SCALE_SMOOTH));
 					itemTileLabel.setName(String.valueOf(itemTile.getId()));
 					itemTileLabel.setIcon(icon);
 					itemTileLabel.setText("");
-				
+					itemTileLabel.setBounds(first, second, 65, 65);
+					itemTileLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
+					first+= 70;
 					background.add(itemTileLabel);
 					itemTileLabel.setVisible(true);
+					
+					listTileLabel.add(itemTileLabel);	
 				
 				}
 				else
 				{
-					itemTileLabel = new JLabel("New label");
-					background.add(itemTileLabel);
-					itemTileLabel.setName(String.valueOf(-1));
-					itemTileLabel.setVisible(false);
+					//itemTileLabel = new JLabel("New label");
+					//background.add(itemTileLabel);
+					
+					//tempIcon = new ImageIcon("./Gruppo_20/resources/Assets/itemTiles/vuoto.jpg");
+					//icon = new ImageIcon(tempIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH));
+					//itemTileLabel.setIcon(icon);
+					//itemTileLabel.setBounds(first, second, 65, 65);
+					first+= 70;
+					//itemTileLabel.setName(String.valueOf(-1));
+					//itemTileLabel.setVisible(true);
+					//itemTileLabel.setText("");
 				}
 				
-				listTileLabel.add(itemTileLabel);		
+				//listTileLabel.add(itemTileLabel);	
 			}
+			first = 34;
+			if(x>2)
+				second = second + 71;
+			else
+				second = second + 70;
 	
 		}
 		//repaint();

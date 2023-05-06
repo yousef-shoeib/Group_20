@@ -93,7 +93,7 @@ public class MainController {
 						   else if(listToRemoveTile.size() == 2)
 							   itemTile = game.getLivingRoomBoard().getTile(checkItemTile,listToRemoveTile.get(0),listToRemoveTile.get(1));
 							   
-						   lblNewLabel.setBorder(new LineBorder(new Color(50,205,50), 2));
+						   lblNewLabel.setBorder(new LineBorder(new Color(50,205,50), 3));
 						   System.out.println("allow to take");
 						   listToRemoveTile.add(itemTile);
 						   cont--;
@@ -101,7 +101,7 @@ public class MainController {
 					   } catch (Exception e2) 
 					   {
 						   System.out.println(e2.getMessage());
-						   lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 2));					   
+						   lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 3));					   
 					   }
 					}
 				}
