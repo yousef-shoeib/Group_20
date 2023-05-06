@@ -64,7 +64,8 @@ public class MainFrame extends JFrame {
 		background.setBounds(x, 30, 700, 700);
 		background.setLayout(new GridLayout(9, 9, 0, 0));
 		/////////////////////////
-		ImageIcon tempBackground =new ImageIcon(".\\Gruppo_20\\resources\\Assets\\boards\\livingroom.png");
+		ImageIcon tempBackground =new ImageIcon("./resources/Assets/boards/livingroom.png");
+		//ImageIcon tempBackground =new ImageIcon(".\\Gruppo_20\\resources\\Assets\\boards\\livingroom.png");
 		ImageIcon backgroundIcon=new ImageIcon(tempBackground.getImage().getScaledInstance(700, 700,Image.SCALE_SMOOTH));
 		background.setIcon(backgroundIcon);
 		//////////////////////
@@ -93,7 +94,7 @@ public class MainFrame extends JFrame {
 				{	
 					itemTile = matrGrid[x][y].getItemTile();
 					itemTileLabel = new JLabel("New label");
-					tempIcon = new ImageIcon(".\\Gruppo_20\\resources\\Assets\\itemTiles\\"+ itemTile.getPathImg()+".png");
+					tempIcon = new ImageIcon("./resources/Assets/itemTiles/"+ itemTile.getPathImg()+".png");
 					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(65, 65, Image.SCALE_SMOOTH));
 					itemTileLabel.setName(String.valueOf(itemTile.getId()));
 					itemTileLabel.setIcon(icon);

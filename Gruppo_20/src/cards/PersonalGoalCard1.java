@@ -15,7 +15,7 @@ public class PersonalGoalCard1 extends PersonalGoalCard {
 	private boolean match4= this.isColorMatching(3, 2, null);
 	private boolean match5= this.isColorMatching(1, 3, null);
 	private boolean match6= this.isColorMatching(5, 2, null);
-	private int points;
 	
+	private String path="./resources/Assets/personalGoalCards/Personal_Goals1.png";
 	
 }

@@ -12,6 +12,7 @@ public abstract class PersonalGoalCard extends Grid{
 	private boolean match4;
 	private boolean match5;
 	private boolean match6;
+	private String path;
 	private ArrayList<Boolean> matches= new ArrayList<Boolean>();
 	public void fillMatches() {
 		matches.add(match1);
@@ -70,6 +71,12 @@ public abstract class PersonalGoalCard extends Grid{
 	public int getPoints() {
 		return points;
 	}
+
+	public String getPath() {
+		return path;
+	}
+
+	
 	
 	
 }
