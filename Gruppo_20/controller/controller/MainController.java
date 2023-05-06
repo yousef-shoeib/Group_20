@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -23,6 +24,7 @@ public class MainController {
 	private MainFrame mainFrame;
 	private List<ItemTile> listToRemoveTile;
 	int cont = 0;
+	int check = 0;
 	
 	public MainController(Game game, MainFrame mainFrame)
 	{
@@ -44,6 +46,7 @@ public class MainController {
 	
 	private void assignLblNewLabelController()
 	{
+
 		for(JLabel lblNewLabel : mainFrame.getListTileLabel())
 		{
 			if(Integer.parseInt(lblNewLabel.getName())!= -1)
@@ -54,19 +57,21 @@ public class MainController {
 				@Override
 				public void mouseReleased(MouseEvent e) {
 					// TODO Auto-generated method stub
-					
 				}
 				
 				@Override
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
-					
 				}
 				
 				@Override
 				public void mouseExited(MouseEvent e) {
 					// TODO Auto-generated method stub
-					
+					if(check == 1)
+					{
+					   lblNewLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
+					   check = 0;
+					}
 				}
 				
 				@Override
@@ -101,8 +106,11 @@ public class MainController {
 					   } catch (Exception e2) 
 					   {
 						   System.out.println(e2.getMessage());
-						   lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 3));					   
+						   lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 3));
+						   check = 1;
 					   }
+						   
+						 
 					}
 				}
 			});
