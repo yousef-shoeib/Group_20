@@ -147,11 +147,11 @@ public class LivingRoomBoard extends Grid {
 		
 		return false;
 	}
-	private boolean tileIsInline(ItemTile currentSelectedTile, ItemTile firstSelectedTile)
+	private boolean tileIsInline(ItemTile currentSelectedTile, ItemTile lastSelectedTile, ItemTile firstSelectedTile)
 	{
-		if(currentSelectedTile.getX() == firstSelectedTile.getX())
+		if(currentSelectedTile.getX() == lastSelectedTile.getX() && currentSelectedTile.getX() == firstSelectedTile.getX())
 			return true;
-		if(currentSelectedTile.getY() == firstSelectedTile.getY())
+		if(currentSelectedTile.getY() == lastSelectedTile.getY() && currentSelectedTile.getY() == firstSelectedTile.getY())
 			return true;
 
 		return false;
@@ -218,7 +218,7 @@ public class LivingRoomBoard extends Grid {
 			return currentSelectedTile;
 		}
 		
-		if(!tileIsInline(currentSelectedTile,firstSelectedTile))
+		if(!tileIsInline(currentSelectedTile,lastSelectedTile,firstSelectedTile))
 		{
 			throw new Exception("tile are not inline");
 		}
