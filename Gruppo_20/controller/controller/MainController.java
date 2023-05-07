@@ -16,6 +16,7 @@ import javax.swing.border.LineBorder;
 import model.Game;
 import model.ItemTile;
 import model.Player;
+import model.SameTileSelectedException;
 import view.MainFrame;
 
 public class MainController {
@@ -103,9 +104,13 @@ public class MainController {
 						   listToRemoveTile.add(itemTile);
 						   cont--;
 					
-					   } catch (Exception e2) 
+					   }catch (SameTileSelectedException e2) 
 					   {
 						   System.out.println(e2.getMessage());
+					   }
+					   catch (Exception e3) 
+					   {
+						   System.out.println(e3.getMessage());
 						   lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 3));
 						   check = 1;
 					   }
