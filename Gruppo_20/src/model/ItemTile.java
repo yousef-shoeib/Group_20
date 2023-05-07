@@ -46,4 +46,13 @@ public class ItemTile {
 			this.color = color;
 		}
 		private String color;
+		
+		@Override
+		public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+			ItemTile item = (ItemTile) obj;
+			if(this.id == item.getId())
+				return true;
+		return false;
+		}
 }
