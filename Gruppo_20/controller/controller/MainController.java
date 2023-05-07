@@ -35,6 +35,7 @@ public class MainController {
 		
 		assignLblNewLabelController();
 		assignRemoveTileButtonController();
+		assignResetTileButtonController();
 		
 		Player player1 = new Player("pippo");
 		//int emptySlot = player1.getBookshelf().maxDrawableTiles();
@@ -83,7 +84,7 @@ public class MainController {
 				
 				@Override
 				public void mouseClicked(MouseEvent e) {
-										
+					
 					if(cont != 0)
 					{
 					   String keyTile = lblNewLabel.getName();
@@ -97,7 +98,7 @@ public class MainController {
 						   else if(listToRemoveTile.size() == 1)
 							   itemTile = game.getLivingRoomBoard().getTile(checkItemTile,listToRemoveTile.get(0),null);
 						   else if(listToRemoveTile.size() == 2)
-							   itemTile = game.getLivingRoomBoard().getTile(checkItemTile,listToRemoveTile.get(0),listToRemoveTile.get(1));
+							   itemTile = game.getLivingRoomBoard().getTile(checkItemTile,listToRemoveTile.get(1),listToRemoveTile.get(0));
 							   
 						   lblNewLabel.setBorder(new LineBorder(new Color(50,205,50), 3));
 						   System.out.println("allow to take");
@@ -136,30 +137,42 @@ public class MainController {
 				{
 					int result = game.getLivingRoomBoard().removeTile(item);
 					System.out.println(result);
-					/*for(JLabel lblNewLabel : mainFrame.getListTileLabel())
+					for(JLabel label : mainFrame.getListTileLabel())
 					{
-						if(Integer.parseInt(lblNewLabel.getName())!= -1)
-						{
-							if(lblNewLabel.getName().equals(String.valueOf(item.getId())))
+						if(label.getName().equals(String.valueOf(item.getId())))
 							{
-								item.setPathImg(".\\Gruppo_20\\Assets\\itemTiles\\vuoto.jpg");	
-							ImageIcon tempIcon = new ImageIcon(".\\Gruppo_20\\Assets\\itemTiles\\vuoto.jpg");
-							ImageIcon icon = new ImageIcon(tempIcon.getImage().getScaledInstance(70, 70, 70));
-							lblNewLabel.setIcon(icon);
+								label.setVisible(false);
 							}
-						}
-					}	*/	
+					}		
 				}
 				listToRemoveTile = null;
 				listToRemoveTile = new ArrayList<>();
+
+			}
+		} );
+	}
+	
+	private void assignResetTileButtonController()
+	{
+		mainFrame.getResetTileButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				
-				for(JLabel lblNewLabel : mainFrame.getListTileLabel())
+				cont = 3;
+				
+				for(ItemTile item : listToRemoveTile)
 				{
-					if(Integer.parseInt(lblNewLabel.getName())!= -1)
+					for(JLabel label : mainFrame.getListTileLabel())
 					{
-						lblNewLabel.setBorder(null);
-					}
+						if(label.getName().equals(String.valueOf(item.getId())))
+							{	
+								label.setBorder(new LineBorder(new Color(255,255,255), 3));
+							}
+					}		
 				}
+				listToRemoveTile = null;
+				listToRemoveTile = new ArrayList<>();
 
 			}
 		} );

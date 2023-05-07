@@ -102,10 +102,10 @@ public class LivingRoomBoard extends Grid {
 	}
 	
 	//Check has free side
-	private boolean tileHasFreeSide(ItemTile currentItemTile)
+	private boolean tileHasFreeSide(ItemTile currentSelectedTile)
 	{			
-		int x = currentItemTile.getX();
-		int y = currentItemTile.getY();
+		int x = currentSelectedTile.getX();
+		int y = currentSelectedTile.getY();
 		
 		if(x == 0 || y == 0 || x == 8 || y == 8)
 			return true;
@@ -115,59 +115,60 @@ public class LivingRoomBoard extends Grid {
 		Slot slot3 = matrGrid[(x+1)][y];
 		Slot slot4 = matrGrid[x][(y+1)];
 		
-		if(!slot1.State() || slot1.getItemTile() == null)
+		if(!slot1.State() || slot1.isEmpty())
 			return true;
-		if(!slot2.State() || slot2.getItemTile() == null)
+		if(!slot2.State() || slot2.isEmpty())
 			return true;
-		if(!slot3.State() || slot3.getItemTile() == null)
+		if(!slot3.State() || slot3.isEmpty())
 			return true;
-		if(!slot4.State() || slot4.getItemTile() == null)
+		if(!slot4.State() || slot4.isEmpty())
 			return true;
 		
 		return false;
 	}
 	
-	private boolean tilesAreAdjacent(ItemTile currentItemTile, ItemTile gettedItemTile)
+	private boolean tilesAreAdjacent(ItemTile currentSelectedTile, ItemTile lastSelectedTile)
 	{
-		Slot currentSlot = matrGrid[currentItemTile.getX()][currentItemTile.getY()];
-		Slot gettedSlot = matrGrid[gettedItemTile.getX()][gettedItemTile.getY()];
+		
+		Slot currentSelectedSlot = matrGrid[currentSelectedTile.getX()][currentSelectedTile.getY()];
+		Slot lastSelectedSlot = matrGrid[lastSelectedTile.getX()][lastSelectedTile.getY()];
 		
 		//Check its adjacent
-		if(currentItemTile.getX() == gettedItemTile.getX())
+		if(currentSelectedTile.getX() == lastSelectedTile.getX())
 		{	
-			if(currentSlot.getY() - 1 == gettedSlot.getY() || currentSlot.getY() + 1 == gettedSlot.getY())
+			if(currentSelectedSlot.getY() - 1 == lastSelectedSlot.getY() || currentSelectedSlot.getY() + 1 == lastSelectedSlot.getY())
 				return true;
 		}
-		if(currentSlot.getY() == gettedSlot.getY())
+		if(currentSelectedSlot.getY() == lastSelectedSlot.getY())
 		{	
-			if(currentSlot.getX() - 1 == gettedSlot.getX() || currentSlot.getX() + 1 == gettedSlot.getX())
+			if(currentSelectedSlot.getX() - 1 == lastSelectedSlot.getX() || currentSelectedSlot.getX() + 1 == lastSelectedSlot.getX())
 				return true;
 		}
 		
 		return false;
 	}
-	private boolean tileIsInline(ItemTile currentItemTile, ItemTile previousTile)
+	private boolean tileIsInline(ItemTile currentSelectedTile, ItemTile firstSelectedTile)
 	{
-		if(currentItemTile.getX() == previousTile.getX())
+		if(currentSelectedTile.getX() == firstSelectedTile.getX())
 			return true;
-		if(currentItemTile.getY() == previousTile.getY())
+		if(currentSelectedTile.getY() == firstSelectedTile.getY())
 			return true;
 
 		return false;
 	}
 	
-	private boolean tilesAlreadySelected(ItemTile currentItemTile, ItemTile gettedItemTile, ItemTile previousTile)
+	private boolean tilesAlreadySelected(ItemTile currentSelectedTile, ItemTile lastSelectedTile, ItemTile firstSelectedTile)
 	{
-		if(gettedItemTile != null)
+		if(lastSelectedTile != null)
 		{
-			if(currentItemTile.getId() == gettedItemTile.getId())
+			if(currentSelectedTile.getId() == lastSelectedTile.getId())
 			{
 				return true;
 			}
 		}
-		if(previousTile != null)
+		if(firstSelectedTile != null)
 		{
-			if(currentItemTile.getId() == previousTile.getId())
+			if(currentSelectedTile.getId() == firstSelectedTile.getId())
 			{
 				return true;
 			}
@@ -176,45 +177,51 @@ public class LivingRoomBoard extends Grid {
 		return false;
 	}
 	
-	public ItemTile getTile(ItemTile currentItemTile, ItemTile gettedItemTile,ItemTile previousTile) throws Exception
+	public ItemTile getTile(ItemTile currentSelectedTile, ItemTile lastSelectedTile,ItemTile firstSelectedTile) throws Exception
 	{
 
-		if(currentItemTile == null)
+		if(currentSelectedTile == null)
 		{
 			throw new NullPointerException("no tile selected");
 		}
 		
-		if(tilesAlreadySelected(currentItemTile,gettedItemTile,previousTile))
+		if(tilesAlreadySelected(currentSelectedTile,lastSelectedTile,firstSelectedTile))
 		{
 			throw new SameTileSelectedException("Tile already selected. Select another tile");
 		}
 		
-		if (!tileHasFreeSide(currentItemTile))
+		if (!tileHasFreeSide(currentSelectedTile))
 		{
 			throw new Exception("tile has not free side");
 		}
 		
-		if(gettedItemTile == null)
+		if(lastSelectedTile == null)
 		{
-			return currentItemTile;
+			return currentSelectedTile;
 		}
 		
-		if(!tilesAreAdjacent(currentItemTile,gettedItemTile))
+		if(!tilesAreAdjacent(currentSelectedTile,lastSelectedTile))
 		{
-			throw new Exception("tile are not adjacent");
+			if(firstSelectedTile == null)
+				throw new Exception("tile are not adjacent");
+			else
+				if(!tilesAreAdjacent(currentSelectedTile,firstSelectedTile))
+				{
+					throw new Exception("tile are not adjacent");
+				}
 		}
 		
-		if(previousTile == null)
+		if(firstSelectedTile == null)
 		{
-			return currentItemTile;
+			return currentSelectedTile;
 		}
 		
-		if(!tileIsInline(currentItemTile,previousTile))
+		if(!tileIsInline(currentSelectedTile,firstSelectedTile))
 		{
-			throw new Exception("tile are not adjacent");
+			throw new Exception("tile are not inline");
 		}
 		
-		return currentItemTile;
+		return currentSelectedTile;
 	}
 
 	public int removeTile(ItemTile item) {
@@ -223,12 +230,11 @@ public class LivingRoomBoard extends Grid {
 		{	
 			for(int y = 0; y < this.columns ; y++)
 			{
-				if(matrGrid[x][y].State())
+				if(matrGrid[x][y].State() && !matrGrid[x][y].isEmpty())
 				{
 					if(matrGrid[x][y].getItemTile().getId() == item.getId())
 					{
-						ItemTile nullItem =null;
-						matrGrid[x][y].setItemTile(nullItem);;
+						matrGrid[x][y].setItemTile(null);;
 						return 1;
 					}
 					
