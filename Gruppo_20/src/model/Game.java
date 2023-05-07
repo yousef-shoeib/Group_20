@@ -12,7 +12,6 @@ public class Game {
 	private Bag bag;
 	public Game()
 	{	
-		
 		listPlayer = new ArrayList<>();
 	}
 	public void start(int numberOfPlayers)

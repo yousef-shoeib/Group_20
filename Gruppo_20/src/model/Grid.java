@@ -38,13 +38,15 @@ public abstract class Grid {
 	
 	public Slot getSlotFromTile(ItemTile itemTile)
 	{
+		if(itemTile == null)
+			throw new NullPointerException("itemTile is null");
+		
 		for(int x = 0; x < this.rows; x++)
 		{	
 			for(int y = 0; y < this.columns ; y++)
 			{
-				if(matrGrid[x][y].State())
+				if(matrGrid[x][y].State() && !matrGrid[x][y].isEmpty())
 				{
-					System.out.println(matrGrid[x][y].State());
 					if(matrGrid[x][y].getItemTile().getId() == itemTile.getId())
 						return matrGrid[x][y];
 				}
@@ -58,7 +60,7 @@ public abstract class Grid {
 		{	
 			for(int y = 0; y < this.columns ; y++)
 			{
-				if(matrGrid[x][y].State())
+				if(matrGrid[x][y].State() && !matrGrid[x][y].isEmpty())
 				{
 					if(matrGrid[x][y].getItemTile().getId() == tileId)
 						return matrGrid[x][y].getItemTile();

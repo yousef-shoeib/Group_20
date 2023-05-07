@@ -46,6 +46,15 @@ public class Slot {
 	public void setState(boolean state) {
 		this.state = state;
 	}
+	
+	public boolean isEmpty()
+	{
+		if(this.itemTile == null)
+		{
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Default Constructor
