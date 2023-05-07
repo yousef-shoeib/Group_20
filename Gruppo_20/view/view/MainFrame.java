@@ -40,6 +40,7 @@ public class MainFrame extends JFrame {
 	private JLabel itemTileLabel;
 	private JButton removeTileButton;
 	private List<JLabel> listTileLabel;
+	private JButton resetTileButton;
 
 	
 
@@ -76,6 +77,10 @@ public class MainFrame extends JFrame {
 		removeTileButton = new JButton("Take");
 		removeTileButton.setBounds(67, 30, 77, 41);
 		contentPane.add(removeTileButton);
+		
+		resetTileButton = new JButton("Reset");
+		resetTileButton.setBounds(67, 93, 77, 41);
+		contentPane.add(resetTileButton);
 		
 		
 
@@ -150,5 +155,9 @@ public class MainFrame extends JFrame {
 
 	public JButton getRemoveTileButton() {
 		return removeTileButton;
+	}
+
+	public JButton getResetTileButton() {
+		return resetTileButton;
 	}
 }
