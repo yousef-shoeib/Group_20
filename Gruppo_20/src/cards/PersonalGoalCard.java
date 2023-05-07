@@ -2,9 +2,9 @@ package cards;
 
 import java.util.ArrayList;
 
-import model.Grid;
+import model.Bookshelf;
 
-public abstract class PersonalGoalCard extends Grid{
+public abstract class PersonalGoalCard {
 	private int points;
 	private boolean match1;
 	private boolean match2;
@@ -13,6 +13,7 @@ public abstract class PersonalGoalCard extends Grid{
 	private boolean match5;
 	private boolean match6;
 	private String path;
+	private Bookshelf bookshelf;
 	private ArrayList<Boolean> matches= new ArrayList<Boolean>();
 	public void fillMatches() {
 		matches.add(match1);
@@ -22,16 +23,16 @@ public abstract class PersonalGoalCard extends Grid{
 		matches.add(match5);
 		matches.add(match6);
 	}
-	
-	public PersonalGoalCard() {
-		super(6, 5);
+	public PersonalGoalCard(Bookshelf b) {
+		this.bookshelf=b;
 	}
+	
 	public String getColor(int row, int column) {
 		return "";
 		//return this.getItemTile(row, column).getColor();
 	}
-	public boolean isColorMatching(int row, int column, String color) {
-		if(this.getColor(row, column)==color) {
+	public boolean isColorMatching(int row, int column, String color) {// cambiare in bookshelf.getTile(row, column).getColor()
+		if(this.bookshelf.getTile(row, column).getColor()==color) {
 			return true;
 		}
 		else {
@@ -74,6 +75,16 @@ public abstract class PersonalGoalCard extends Grid{
 
 	public String getPath() {
 		return path;
+	}
+
+
+	public Bookshelf getBookshelf() {
+		return bookshelf;
+	}
+
+
+	public void setBookshelf(Bookshelf bookshelf) {
+		this.bookshelf = bookshelf;
 	}
 
 	

@@ -1,6 +1,12 @@
 package cards;
 
+import model.Bookshelf;
+
 public class PersonalGoalCard3 extends PersonalGoalCard {
+	public PersonalGoalCard3(Bookshelf b) {
+		super(b);
+	}
+
 	/* riga.colonna tipo
 	 * 1.0 quadro
 	 * 1.3 giochi

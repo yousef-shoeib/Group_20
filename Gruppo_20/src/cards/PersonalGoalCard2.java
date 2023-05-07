@@ -1,5 +1,7 @@
 package cards;
 
+import model.Bookshelf;
+
 public class PersonalGoalCard2 extends PersonalGoalCard {
 	/* riga.colonna tipo
 	 * 1.1 pianta
@@ -11,6 +13,9 @@ public class PersonalGoalCard2 extends PersonalGoalCard {
 	 */
 	
 	
+	public PersonalGoalCard2(Bookshelf b) {
+		super(b);
+	}
 	private boolean match1= this.isColorMatching(1, 1, null);
 	private boolean match2= this.isColorMatching(2, 0, null);
 	private boolean match3= this.isColorMatching(2, 2, null);
