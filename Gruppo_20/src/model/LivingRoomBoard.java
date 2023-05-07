@@ -127,7 +127,7 @@ public class LivingRoomBoard extends Grid {
 		return false;
 	}
 	
-	private boolean tilesAreAdjacent(ItemTile currentSelectedTile, ItemTile lastSelectedTile)
+	public boolean tilesAreAdjacent(ItemTile currentSelectedTile, ItemTile lastSelectedTile)
 	{
 		
 		Slot currentSelectedSlot = matrGrid[currentSelectedTile.getX()][currentSelectedTile.getY()];
@@ -177,9 +177,12 @@ public class LivingRoomBoard extends Grid {
 		return false;
 	}
 	
-	public ItemTile getTile(ItemTile currentSelectedTile, ItemTile lastSelectedTile,ItemTile firstSelectedTile) throws Exception
+	public ItemTile getTile(ItemTile currentSelectedTile, ItemTile lastSelectedTile,ItemTile firstSelectedTile,int maxNumberGettable) throws Exception
 	{
-
+		if(maxNumberGettable == 0)
+		{
+			throw new IllegalArgumentException("you have already selected the maximum number of tiles");
+		}
 		if(currentSelectedTile == null)
 		{
 			throw new NullPointerException("no tile selected");
@@ -189,7 +192,6 @@ public class LivingRoomBoard extends Grid {
 		{
 			throw new SameTileSelectedException("Tile already selected. Select another tile");
 		}
-		
 		if (!tileHasFreeSide(currentSelectedTile))
 		{
 			throw new Exception("tile has not free side");
