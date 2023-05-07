@@ -6,7 +6,7 @@ public class Bookshelf extends Grid {
 	public Bookshelf() {
 		super(6, 5);
 	}
-
+	private String path="./resources/Assets/boards/bookshelf_orth.png";
 	public void addItemTiles(int column, ArrayList<ItemTile> tiles) {
 		int n = 0;
 		for (int i = 0; i < tiles.size(); i++) {
@@ -40,6 +40,9 @@ public class Bookshelf extends Grid {
 				if (this.getSlot(row, column).getItemTile() == null) {
 					maxNumberOfTiles++;
 				}
+				/*if(this.getSlot(row, column).getItemTile() != null) {
+					break;
+				}*/
 				if (maxNumberOfTiles == 3) {
 					return maxNumberOfTiles;
 				}
@@ -95,5 +98,9 @@ public class Bookshelf extends Grid {
 			this.search(i - 1, j);
 			this.search(i, j - 1);
 		}
+	}
+
+	public String getPath() {
+		return path;
 	}
 }
