@@ -21,11 +21,10 @@ public class SetGameFrame extends JFrame {
 	private JPanel contentPane;
 	private JButton startGameButton;
 	private JComboBox nPlayersComboBox;
-	private JTextField player1TextField;
-	private JTextField player2TextField;
-	private JTextField player3TextField;
-	private JTextField player4TextField;
+	private JTextField playerTextField;
 	private JLabel lblNewLabel;
+	private JButton addPlayerButton;
+	private JLabel playerLabel;
 
 
 	/**
@@ -37,7 +36,7 @@ public class SetGameFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(0, 0, 450, 550);
+		setBounds(0, 0, 550, 350);
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		
 		setVisible(true);
@@ -48,7 +47,8 @@ public class SetGameFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		startGameButton = new JButton("START");
-		startGameButton.setBounds(163, 426, 114, 35);
+		startGameButton.setEnabled(false);
+		startGameButton.setBounds(207, 247, 114, 35);
 		contentPane.add(startGameButton);
 		
 		nPlayersComboBox = new JComboBox();
@@ -60,52 +60,25 @@ public class SetGameFrame extends JFrame {
 		numberOfPlayersLabel.setBounds(62, 112, 159, 13);
 		contentPane.add(numberOfPlayersLabel);
 		
-		JLabel player1Label = new JLabel("Player 1");
-		player1Label.setBounds(62, 169, 159, 13);
-		contentPane.add(player1Label);
+		playerLabel = new JLabel("Player 1");
+		playerLabel.setBounds(62, 169, 92, 13);
+		contentPane.add(playerLabel);
 		
-		player1TextField = new JTextField();
-		player1TextField.setToolTipText("Enter player1' name");
-		player1TextField.setBounds(192, 163, 159, 26);
-		contentPane.add(player1TextField);
-		player1TextField.setColumns(10);
-		
-		player2TextField = new JTextField();
-		player2TextField.setToolTipText("Enter player2' name");
-		player2TextField.setColumns(10);
-		player2TextField.setBounds(192, 223, 159, 26);
-		contentPane.add(player2TextField);
-		
-		JLabel player2Label = new JLabel("Player 2");
-		player2Label.setBounds(62, 229, 159, 13);
-		contentPane.add(player2Label);
-		
-		player3TextField = new JTextField();
-		player3TextField.setEditable(false);
-		player3TextField.setToolTipText("Enter player3' name");
-		player3TextField.setColumns(10);
-		player3TextField.setBounds(192, 285, 159, 26);
-		contentPane.add(player3TextField);
-		
-		JLabel player3Label = new JLabel("Player 3");
-		player3Label.setBounds(62, 291, 159, 13);
-		contentPane.add(player3Label);
-		
-		player4TextField = new JTextField();
-		player4TextField.setEditable(false);
-		player4TextField.setToolTipText("Enter player4' name");
-		player4TextField.setColumns(10);
-		player4TextField.setBounds(192, 345, 159, 26);
-		contentPane.add(player4TextField);
-		
-		JLabel player4Label = new JLabel("Player 4");
-		player4Label.setBounds(62, 351, 159, 13);
-		contentPane.add(player4Label);
+		playerTextField = new JTextField();
+		playerTextField.setToolTipText("Enter player' name");
+		playerTextField.setBounds(192, 163, 159, 26);
+		contentPane.add(playerTextField);
+		playerTextField.setColumns(10);
 		
 		lblNewLabel = new JLabel("SET PLAYERS");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setBounds(163, 34, 114, 35);
+		lblNewLabel.setBounds(207, 34, 114, 35);
 		contentPane.add(lblNewLabel);
+		
+		addPlayerButton = new JButton("Add Player");
+		addPlayerButton.setEnabled(false);
+		addPlayerButton.setBounds(384, 158, 100, 35);
+		contentPane.add(addPlayerButton);
 	}
 
 	public JButton getStartGameButton() {
@@ -117,18 +90,14 @@ public class SetGameFrame extends JFrame {
 	}
 
 	public JTextField getPlayer1TextField() {
-		return player1TextField;
+		return playerTextField;
 	}
 
-	public JTextField getPlayer2TextField() {
-		return player2TextField;
+	public JButton getAddPlayerButton() {
+		return addPlayerButton;
 	}
 
-	public JTextField getPlayer3TextField() {
-		return player3TextField;
-	}
-
-	public JTextField getPlayer4TextField() {
-		return player4TextField;
+	public JLabel getPlayerLabel() {
+		return playerLabel;
 	}
 }
