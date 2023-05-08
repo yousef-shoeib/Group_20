@@ -87,7 +87,7 @@ public abstract class PersonalGoalCard {
 		return bookshelf;
 	}
 
-	public static PersonalGoalCard assignPersonalGoalCard(Bookshelf b) {
+	public static PersonalGoalCard assignPersonalGoalCard() {
 		Random r = new Random();
 		int n=r.nextInt(12)+1;
 		PersonalGoalCard card = null;
