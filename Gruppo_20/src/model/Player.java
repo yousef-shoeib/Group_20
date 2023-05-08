@@ -22,7 +22,7 @@ public class Player {
 		PLAYERCOUNTER++;
 		this.ID = PLAYERCOUNTER;
 		this.bookshelf = new Bookshelf();
-		this.personalGoalCard = PersonalGoalCard.assignPersonalGoalCard();
+		this.personalGoalCard = PersonalGoalCard.assignPersonalGoalCard(this.bookshelf);
 		this.points=0;
 	}
 	
