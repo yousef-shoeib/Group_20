@@ -3,6 +3,7 @@ package cards;
 import java.util.ArrayList;
 import java.util.Random;
 
+import cards.Match;
 import model.Bookshelf;
 
 public abstract class PersonalGoalCard {
@@ -55,22 +56,22 @@ public abstract class PersonalGoalCard {
 		return counter;
 	}
 	
-	public int getPoints() {
-		int matches=0;//this.countMatches();
+	public int getPoints(int numberOfMatches) {
+		//this.countMatches();
 		int points=0;
-		if(matches==1||matches==2) {
-			points=matches;
+		if(numberOfMatches==1||numberOfMatches==2) {
+			points=numberOfMatches;
 		}
-		if(matches==3) {
+		if(numberOfMatches==3) {
 			points=4;
 		}
-		if(matches==4) {
+		if(numberOfMatches==4) {
 			points=6;
 		}
-		if(matches==5) {
+		if(numberOfMatches==5) {
 			points=9;
 		}
-		if(matches==6) {
+		if(numberOfMatches==6) {
 			points=12;
 		}
 		return points;
