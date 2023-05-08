@@ -21,8 +21,8 @@ public class Player {
 		this.name=name;
 		PLAYERCOUNTER++;
 		this.ID = PLAYERCOUNTER;
-		//this.bookshelfDisplay = new Grid(6,5);
-		//this.ID = IDGenerator();
+		this.bookshelf = new Bookshelf();
+		this.personalGoalCard = PersonalGoalCard.assignPersonalGoalCard(this.bookshelf);
 		this.points=0;
 	}
 	
@@ -43,7 +43,7 @@ public class Player {
 		}
 		
 	}
-
+	
 	/*public Grid getBookshelf() {
 		return bookshelfDisplay;
 	}

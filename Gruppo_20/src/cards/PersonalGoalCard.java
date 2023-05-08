@@ -1,6 +1,7 @@
 package cards;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import model.Bookshelf;
 
@@ -82,7 +83,51 @@ public abstract class PersonalGoalCard {
 		return bookshelf;
 	}
 
-
+	public static PersonalGoalCard assignPersonalGoalCard(Bookshelf b) {
+		Random r = new Random();
+		int n=r.nextInt(12)+1;
+		PersonalGoalCard card = null;
+		switch(n) {
+		case 1:
+			card=new PersonalGoalCard1(b);
+			break;
+		case 2:
+			card=new PersonalGoalCard2(b);
+			break;
+		case 3:
+			card=new PersonalGoalCard3(b);
+			break;
+		case 4:
+			card=new PersonalGoalCard4(b);
+			break;
+		case 5:
+			card=new PersonalGoalCard5(b);
+			break;
+		case 6:
+			card=new PersonalGoalCard6(b);
+			break;
+		case 7:
+			card=new PersonalGoalCard7(b);
+			break;
+		case 8:
+			card=new PersonalGoalCard8(b);
+			break;
+		case 9:
+			card=new PersonalGoalCard9(b);
+			break;
+		case 10:
+			card=new PersonalGoalCard10(b);
+			break;
+		case 11:
+			card=new PersonalGoalCard11(b);
+			break;
+		case 12:
+			card=new PersonalGoalCard12(b);
+			break;
+			
+		}
+		return card;
+	}
 	public void setBookshelf(Bookshelf bookshelf) {
 		this.bookshelf = bookshelf;
 	}
