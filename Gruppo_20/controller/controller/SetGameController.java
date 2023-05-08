@@ -20,8 +20,38 @@ public class SetGameController {
 		this.setGameFrame = setGameFrame;
 		this.mainFrame = mainFrame;
 		this.mainController = mainController;
-		
+
+		assignNPlayersComboBoxController();
 		assignStartButtonController();
+	}
+	private void assignNPlayersComboBoxController()
+	{
+		setGameFrame.getNPlayersComboBox().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			int choice = Integer.parseInt((String) setGameFrame.getNPlayersComboBox().getSelectedItem());
+				
+				if(choice == 2) {
+					setGameFrame.getPlayer1TextField().setEditable(true);
+					setGameFrame.getPlayer2TextField().setEditable(true);
+					setGameFrame.getPlayer3TextField().setEditable(false);
+					setGameFrame.getPlayer4TextField().setEditable(false);
+					setGameFrame.getPlayer3TextField().setText("");
+					setGameFrame.getPlayer4TextField().setText("");
+				}
+				if(choice == 3) {
+						setGameFrame.getPlayer3TextField().setEditable(true);
+						setGameFrame.getPlayer4TextField().setEditable(false);
+						setGameFrame.getPlayer4TextField().setText("");
+				}
+				if(choice == 4) {
+						setGameFrame.getPlayer3TextField().setEditable(true);
+						setGameFrame.getPlayer4TextField().setEditable(true);
+				}
+			}
+		});
 	}
 	private void assignStartButtonController()
 	{

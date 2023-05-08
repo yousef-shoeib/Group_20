@@ -13,6 +13,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class SetGameFrame extends JFrame {
 
@@ -30,6 +32,7 @@ public class SetGameFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public SetGameFrame() {
+		setTitle("My Shelfie - Set Players");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(".\\resources\\Assets\\PublisherMaterial\\Icon 50x50px.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -39,7 +42,7 @@ public class SetGameFrame extends JFrame {
 		
 		setVisible(true);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -78,6 +81,7 @@ public class SetGameFrame extends JFrame {
 		contentPane.add(player2Label);
 		
 		player3TextField = new JTextField();
+		player3TextField.setEditable(false);
 		player3TextField.setToolTipText("Enter player3' name");
 		player3TextField.setColumns(10);
 		player3TextField.setBounds(192, 285, 159, 26);
@@ -88,6 +92,7 @@ public class SetGameFrame extends JFrame {
 		contentPane.add(player3Label);
 		
 		player4TextField = new JTextField();
+		player4TextField.setEditable(false);
 		player4TextField.setToolTipText("Enter player4' name");
 		player4TextField.setColumns(10);
 		player4TextField.setBounds(192, 345, 159, 26);
@@ -109,5 +114,21 @@ public class SetGameFrame extends JFrame {
 
 	public JComboBox getNPlayersComboBox() {
 		return nPlayersComboBox;
+	}
+
+	public JTextField getPlayer1TextField() {
+		return player1TextField;
+	}
+
+	public JTextField getPlayer2TextField() {
+		return player2TextField;
+	}
+
+	public JTextField getPlayer3TextField() {
+		return player3TextField;
+	}
+
+	public JTextField getPlayer4TextField() {
+		return player4TextField;
 	}
 }

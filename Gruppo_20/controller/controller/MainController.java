@@ -209,8 +209,7 @@ public class MainController {
 				   }
 				   else
 				   {
-					   ItemTile item1 = listToRemoveTile.remove(index);
-					   System.out.println("RemovedItem"+item1.getId());
+					   listToRemoveTile.remove(index);
 					   lblNewLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
 					   maxNumberGettableTile++;
 				   }
@@ -226,8 +225,7 @@ public class MainController {
 				   }
 				   else
 				   {
-					   ItemTile item1 = listToRemoveTile.remove(index);
-					   System.out.println("RemovedItem"+item1.getId());
+					   listToRemoveTile.remove(index);
 					   lblNewLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
 					   maxNumberGettableTile++;
 				   }
@@ -243,8 +241,7 @@ public class MainController {
 				   }
 				   else
 				   {
-					   ItemTile item1 = listToRemoveTile.remove(index);
-					   System.out.println("RemovedItem"+item1.getId());
+					   listToRemoveTile.remove(index);
 					   lblNewLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
 					   maxNumberGettableTile++;
 				   }
@@ -253,7 +250,6 @@ public class MainController {
 		   else
 		   {
 			   ItemTile item1 = listToRemoveTile.remove(index);
-			   System.out.println("RemovedItem"+item1.getId());
 			   lblNewLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
 			   maxNumberGettableTile++;
 		   }
