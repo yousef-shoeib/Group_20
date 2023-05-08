@@ -1,6 +1,8 @@
 package cards;
 
 
+import java.util.ArrayList;
+
 import model.ItemTileType;
 
 public class PersonalGoalCard8 extends PersonalGoalCard {
@@ -20,7 +22,7 @@ public class PersonalGoalCard8 extends PersonalGoalCard {
 	private Match match4= new Match(3, 0, ItemTileType.PLANT);
 	private Match match5= new Match(4, 3, ItemTileType.BOOK);
 	private Match match6= new Match(5, 3, ItemTileType.GAME);
-
+	private ArrayList<Match> matches= this.fillMatches();
 	private String path="./resources/Assets/personalGoalCards/Personal_Goals8.png";
 	
 }

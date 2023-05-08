@@ -15,14 +15,16 @@ public abstract class PersonalGoalCard {
 	private Match match5;
 	private Match match6;
 	private String path;
-	private ArrayList<Match> matches= new ArrayList<>();
-	public void fillMatches() {
+	private ArrayList<Match> matches=null;
+	public ArrayList<Match> fillMatches() {
+		ArrayList<Match> matches= new ArrayList<>();
 		matches.add(match1);
 		matches.add(match2);
 		matches.add(match3);
 		matches.add(match4);
 		matches.add(match5);
 		matches.add(match6);
+		return matches;
 	}
 	
 	public PersonalGoalCard() {
