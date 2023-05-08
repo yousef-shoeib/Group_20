@@ -1,11 +1,10 @@
 package cards;
 
 import model.Bookshelf;
+import model.ItemTileType;
 
 public class PersonalGoalCard10 extends PersonalGoalCard {
-	public PersonalGoalCard10(Bookshelf b) {
-		super(b);	
-	}
+	
 
 	/* riga.colonna tipo
 	 * 0.4 trofei
@@ -15,12 +14,12 @@ public class PersonalGoalCard10 extends PersonalGoalCard {
 	 * 4.1 quadri
 	 * 5.3 piante
 	 */
-	private boolean match1= this.isColorMatching(0, 4, null);
-	private boolean match2= this.isColorMatching(1, 1, null);
-	private boolean match3= this.isColorMatching(2, 0, null);
-	private boolean match4= this.isColorMatching(3, 3, null);
-	private boolean match5= this.isColorMatching(4, 1, null);
-	private boolean match6= this.isColorMatching(5, 3, null);
+	private Match match1= new Match(0, 4, ItemTileType.TROPHY);
+	private Match match2= new Match(1, 1, ItemTileType.GAME);
+	private Match match3= new Match(2, 0, ItemTileType.BOOK);
+	private Match match4= new Match(3, 3, ItemTileType.CAT);
+	private Match match5= new Match(4, 1, ItemTileType.FRAME);
+	private Match match6= new Match(5, 3, ItemTileType.PLANT);
 
 	private String path="./resources/Assets/personalGoalCards/Personal_Goals10.png";
 	

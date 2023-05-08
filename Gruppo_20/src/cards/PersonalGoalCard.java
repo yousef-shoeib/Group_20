@@ -24,16 +24,20 @@ public abstract class PersonalGoalCard {
 		matches.add(match5);
 		matches.add(match6);
 	}
-	public PersonalGoalCard(Bookshelf b) {
-		this.bookshelf=b;
+	
+	public PersonalGoalCard() {
+		
 	}
 	
 	public String getColor(int row, int column) {
 		return "";
 		//return this.getItemTile(row, column).getColor();
 	}
-	public boolean isColorMatching(int row, int column, String color) {// cambiare in bookshelf.getTile(row, column).getColor()
-		if(this.bookshelf.getTile(row, column).getColor()==color) {
+	public boolean isColorMatching(int row, int column, String color,Bookshelf bookshelf) {// cambiare in bookshelf.getTile(row, column).getColor()
+		if(bookshelf.getSlot(row, column).isEmpty()) {
+			return false;
+		}
+		if(bookshelf.getTile(row, column).getColor()==color) {
 			return true;
 		}
 		else {
@@ -89,48 +93,46 @@ public abstract class PersonalGoalCard {
 		PersonalGoalCard card = null;
 		switch(n) {
 		case 1:
-			card=new PersonalGoalCard1(b);
+			card=new PersonalGoalCard1();
 			break;
 		case 2:
-			card=new PersonalGoalCard2(b);
+			card=new PersonalGoalCard2();
 			break;
 		case 3:
-			card=new PersonalGoalCard3(b);
+			card=new PersonalGoalCard3();
 			break;
 		case 4:
-			card=new PersonalGoalCard4(b);
+			card=new PersonalGoalCard4();
 			break;
 		case 5:
-			card=new PersonalGoalCard5(b);
+			card=new PersonalGoalCard5();
 			break;
 		case 6:
-			card=new PersonalGoalCard6(b);
+			card=new PersonalGoalCard6();
 			break;
 		case 7:
-			card=new PersonalGoalCard7(b);
+			card=new PersonalGoalCard7();
 			break;
 		case 8:
-			card=new PersonalGoalCard8(b);
+			card=new PersonalGoalCard8();
 			break;
 		case 9:
-			card=new PersonalGoalCard9(b);
+			card=new PersonalGoalCard9();
 			break;
 		case 10:
-			card=new PersonalGoalCard10(b);
+			card=new PersonalGoalCard10();
 			break;
 		case 11:
-			card=new PersonalGoalCard11(b);
+			card=new PersonalGoalCard11();
 			break;
 		case 12:
-			card=new PersonalGoalCard12(b);
+			card=new PersonalGoalCard12();
 			break;
 			
 		}
 		return card;
 	}
-	public void setBookshelf(Bookshelf bookshelf) {
-		this.bookshelf = bookshelf;
-	}
+	
 
 	
 	

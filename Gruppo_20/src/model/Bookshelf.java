@@ -10,22 +10,26 @@ public class Bookshelf extends Grid {
 	public void addItemTiles(int column, ArrayList<ItemTile> tiles) {
 		int n = 0;
 		for (int i = 0; i < tiles.size(); i++) {
-			if (this.getTile(i, column) != null) {
+			if (!this.getSlot(i, column).isEmpty()) {
 				System.out.println("Not enough slots in the selected column");
 				return;
 			}
 		}
 
 		for (int i = 5; n < tiles.size(); i--) {
-			if (this.getTile(i, column) != null) {
+			if (this.getSlot(i, column).isEmpty()) {
 				this.setTile(i, column, tiles.get(n));
 				n++;
 			}
 		}
 	}
 
-	public ItemTile getTile(int row, int column) {
+	public ItemTile getTile(int row, int column) {		 		
+		if(this.matrGrid[row][column].getItemTile()== null) {
+			throw new NullPointerException();
+		}
 		return this.matrGrid[row][column].getItemTile();
+		
 	}
 
 	public void setTile(int row, int column, ItemTile tile) {
@@ -37,7 +41,7 @@ public class Bookshelf extends Grid {
 		for (int column = 0; column < this.columns; column++) {
 			maxNumberOfTiles = 0;
 			for (int row = 0; row < 3; row++) {
-				if (this.getSlot(row, column).getItemTile() == null) {
+				if (this.getSlot(row, column).isEmpty()) {
 					maxNumberOfTiles++;
 				}
 				/*if(this.getSlot(row, column).getItemTile() != null) {
@@ -53,7 +57,7 @@ public class Bookshelf extends Grid {
 
 	public boolean isComplete() {
 		for (int i = 0; i < 5; i++) {
-			if (this.matrGrid[0][i].getItemTile() == null) {
+			if (this.matrGrid[0][i].isEmpty()) {
 				return false;
 			}
 		}
@@ -64,15 +68,17 @@ public class Bookshelf extends Grid {
 	private boolean visited[][];
 
 	public int numberOfGroups() {
+		int numberOfElements=0;
+		ArrayList<Integer> elementsPerGroup= new ArrayList<>();
 		if (this == null || this.rows == 0)
 			return 0;
-		int m = this.rows;
-		int n = this.columns;
+		int rows = this.rows;
+		int columns = this.columns;
 		int count = 0;
-		visited = new boolean[m][n];
+		visited = new boolean[rows][columns];
 
-		for (int i = 0; i < m; i++) {
-			for (int j = 0; j < n; j++) {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
 				if (this.getMatrGrid()[i][j].getItemTile().getColor() == "COLORE" && !visited[i][j]) {
 					visited[i][j] = true;
 					this.search(i + 1, j);

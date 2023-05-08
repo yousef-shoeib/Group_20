@@ -31,8 +31,9 @@ public class Slot {
 	public ItemTile getItemTile() {
 		if(this.itemTile == null)
 			throw new NullPointerException("no tile in slot");
-		
+			
 		return itemTile;
+		
 	}
 
 	public void setItemTile(ItemTile itemTile) {
