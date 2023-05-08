@@ -14,17 +14,25 @@ public class Game {
 	{	
 		listPlayer = new ArrayList<>();
 	}
-	public void start(int numberOfPlayers)
+	public void start(int numberOfPlayers,List<String> namePlayers)
 	{
 		livingRoomBoard = new LivingRoomBoard(numberOfPlayers);
 		bag = new Bag();
 		livingRoomBoard.putItemTiles(bag.getListItemTile());
+		addPlayers(numberOfPlayers,namePlayers);
 	}
 	
 	public LivingRoomBoard getLivingRoomBoard() {
 		return livingRoomBoard;
 	}
-	
+	private void addPlayers(int numberOfPlayers,List<String> namePlayers)
+	{
+		for(int i = 0; i < numberOfPlayers; i++)
+		{
+			Player player = new Player(namePlayers.get(i));
+			listPlayer.add(player);
+		}
+	}
 	
 	/*int numberOfPlayers=0;
 	
