@@ -7,14 +7,15 @@ import model.Bookshelf;
 
 public abstract class PersonalGoalCard {
 	private int points;
-	private Match match1;
-	private Match match2;
-	private Match match3;
-	private Match match4;
-	private Match match5;
-	private Match match6;
+	private boolean match1;
+	private boolean match2;
+	private boolean match3;
+	private boolean match4;
+	private boolean match5;
+	private boolean match6;
 	private String path;
-	private ArrayList<Match> matches= new ArrayList<>();
+	private Bookshelf bookshelf;
+	private ArrayList<Boolean> matches= new ArrayList<Boolean>();
 	public void fillMatches() {
 		matches.add(match1);
 		matches.add(match2);
@@ -28,61 +29,63 @@ public abstract class PersonalGoalCard {
 		
 	}
 	
-	public String getType(int row, int column) {
+	public String getColor(int row, int column) {
 		return "";
 		//return this.getItemTile(row, column).getColor();
 	}
-	public boolean isColorMatching(Bookshelf bookshelf, Match m) {// cambiare in bookshelf.getTile(row, column).getColor()
-		if(bookshelf.getSlot(m.getRow(), m.getColumn()).isEmpty()) {
+	public boolean isColorMatching(int row, int column, String color,Bookshelf bookshelf) {// cambiare in bookshelf.getTile(row, column).getColor()
+		if(bookshelf.getSlot(row, column).isEmpty()) {
 			return false;
 		}
-		/*if(bookshelf.getTile(m.getRow(), m.getColumn()).getType()==m.getType()) {
+		if(bookshelf.getTile(row, column).getColor()==color) {
 			return true;
-		}*/
+		}
 		else {
 			return false;
 		}
 	}
-	/////////////////////
-	public int countMatches(Bookshelf b) {
+	
+	public int countMatches() {
 		this.fillMatches();
 		int counter=0;
-		for(Match match: matches) {
-			if(isColorMatching(b, match)) {
+		for(boolean match: matches) {
+			if(match) {
 				counter++;
 			}
 		}
 		return counter;
 	}
 	
-	public int getPoints() {
-		int matches=0;//this.countMatches();
-		int points=0;
+	public void setPoints() {
+		int matches=this.countMatches();
 		if(matches==1||matches==2) {
-			points=matches;
+			this.points=matches;
 		}
 		if(matches==3) {
-			points=4;
+			this.points=4;
 		}
 		if(matches==4) {
-			points=6;
+			this.points=6;
 		}
 		if(matches==5) {
-			points=9;
+			this.points=9;
 		}
 		if(matches==6) {
-			points=12;
+			this.points=12;
 		}
+	}
+	public int getPoints() {
 		return points;
 	}
-	
 
 	public String getPath() {
 		return path;
 	}
 
 
-	
+	public Bookshelf getBookshelf() {
+		return bookshelf;
+	}
 
 	public static PersonalGoalCard assignPersonalGoalCard(Bookshelf b) {
 		Random r = new Random();
