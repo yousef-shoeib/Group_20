@@ -12,7 +12,7 @@ public class Test {
 		
 		int numberOfPlayers = 3;
 		//commit di prova name
-		
+		//Check GIT
 		ArrayList<ItemTile> listItemTile = new ArrayList<ItemTile>();
 		
 		LivingRoomBoard leavingRoomBoard = new LivingRoomBoard(numberOfPlayers);
