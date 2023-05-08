@@ -39,9 +39,9 @@ public abstract class PersonalGoalCard {
 		if(bookshelf.getSlot(m.getRow(), m.getColumn()).isEmpty()) {
 			return false;
 		}
-		/*if(bookshelf.getTile(m.getRow(), m.getColumn()).getType()==m.getType()) {
+		if(bookshelf.getTile(m.getRow(), m.getColumn()).getType()==m.getType()) {
 			return true;
-		}*/
+		}
 		else {
 			return false;
 		}

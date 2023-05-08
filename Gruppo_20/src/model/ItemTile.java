@@ -5,6 +5,7 @@ public class ItemTile {
 		private int x;
 		private int y;
 		private int id;
+		private ItemTileType type;
 		public int getId() {
 			return id;
 		}
@@ -54,5 +55,9 @@ public class ItemTile {
 			if(this.id == item.getId())
 				return true;
 		return false;
+		}
+
+		public ItemTileType getType() {
+			return type;
 		}
 }
