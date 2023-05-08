@@ -147,6 +147,7 @@ public class LivingRoomBoard extends Grid {
 		
 		return false;
 	}
+	
 	private boolean tileIsInline(ItemTile currentSelectedTile, ItemTile lastSelectedTile, ItemTile firstSelectedTile)
 	{
 		if(currentSelectedTile.getX() == lastSelectedTile.getX() && currentSelectedTile.getX() == firstSelectedTile.getX())
@@ -180,8 +181,9 @@ public class LivingRoomBoard extends Grid {
 	public ItemTile getTile(ItemTile currentSelectedTile, ItemTile lastSelectedTile,ItemTile firstSelectedTile,int maxNumberGettable) throws Exception
 	{
 		if(maxNumberGettable == 0)
+		{
 			throw new IllegalArgumentException("you have already selected the maximum number of tiles");
-		
+		}
 		if(currentSelectedTile == null)
 		{
 			throw new NullPointerException("no tile selected");
