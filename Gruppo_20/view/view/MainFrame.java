@@ -1,15 +1,8 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,18 +13,9 @@ import javax.swing.border.LineBorder;
 import model.ItemTile;
 import model.Slot;
 
-import javax.swing.JSpinner;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.GridBagLayout;
-import javax.swing.JLayeredPane;
-import javax.swing.SwingConstants;
 
 public class MainFrame extends JFrame {
 
@@ -82,8 +66,6 @@ public class MainFrame extends JFrame {
 		resetTileButton.setBounds(67, 93, 77, 41);
 		contentPane.add(resetTileButton);
 		
-		
-
 	}
 	
 	public void fillLeavingRoomBoard(Slot[][] matrGrid)
@@ -120,21 +102,11 @@ public class MainFrame extends JFrame {
 				}
 				else
 				{
-					//itemTileLabel = new JLabel("New label");
-					//background.add(itemTileLabel);
-					
-					//tempIcon = new ImageIcon("./Gruppo_20/resources/Assets/itemTiles/vuoto.jpg");
-					//icon = new ImageIcon(tempIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH));
-					//itemTileLabel.setIcon(icon);
-					//itemTileLabel.setBounds(first, second, 65, 65);
 					first+= 70;
-					//itemTileLabel.setName(String.valueOf(-1));
-					//itemTileLabel.setVisible(true);
-					//itemTileLabel.setText("");
 				}
 				
-				//listTileLabel.add(itemTileLabel);	
 			}
+			
 			first = 34;
 			if(x>2)
 				second = second + 71;
@@ -142,7 +114,6 @@ public class MainFrame extends JFrame {
 				second = second + 70;
 	
 		}
-		//repaint();
 	}
 
 	public JLabel getItemTileLabel() {
