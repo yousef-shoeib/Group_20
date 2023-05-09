@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import utility.ConfigPath;
+
 public class Bag {
 private List<ItemTile>listItemTile;
 	
@@ -23,8 +25,8 @@ private List<ItemTile>listItemTile;
 		/**
 		 * Carica ItemTiles da File
 		 */
-		//File file = new File(".\\Gruppo_20\\resources\\item.txt");
-		File file = new File(".\\resources\\item.txt");
+		
+		File file = new File(ConfigPath.getItemFilePath());
 		try
 		{
 			Scanner scanner = new Scanner(file);
