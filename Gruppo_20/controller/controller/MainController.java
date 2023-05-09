@@ -148,7 +148,7 @@ public class MainController {
 				
 				maxNumberGettableTile = 3;
 
-				int i = 5;
+				int i = game.getListPlayer().get(0).getBookshelf().freeSlotsInColumn(selectedBookShelfColumn)-1;
 				for(ItemTile item : listToRemoveTile)
 				{
 					for(JLabel label : mainFrame.getListTileLabel())

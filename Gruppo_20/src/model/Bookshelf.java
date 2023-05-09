@@ -20,7 +20,7 @@ public class Bookshelf extends Grid {
 				return;
 			}
 		}
-
+		
 		for (int i = 5; n < tiles.size(); i--) {
 			if (this.getSlot(i, column).isEmpty()) {
 				this.setTile(i, column, tiles.get(n));
@@ -68,7 +68,17 @@ public class Bookshelf extends Grid {
 		}
 		return true;
 	}
-
+	////////////////////soluzione temporanea
+	public int freeSlotsInColumn(int column) {
+		int rows=this.getRows();
+		int freeSlots=0;
+		for (int i=0;i<rows;i++) {
+			if(this.getSlot(i, column).isEmpty()) {
+				freeSlots++;
+			}
+		}
+		return freeSlots;
+	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private boolean visited[][];
 
