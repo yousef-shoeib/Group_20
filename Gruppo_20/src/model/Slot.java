@@ -62,7 +62,7 @@ public class Slot {
 	 */
 	public Slot()
 	{
-		this.state = false;
+		this.state = true;
 		this.itemTile = null;
 	}
 	

@@ -16,14 +16,14 @@ public class LivingRoomBoard extends Grid {
 											{0,0,0,0,0,0,0,0,0}};
 	
 	private int[][] configMatrThreePlayer = {	{0,0,0,1,0,0,0,0,0}, 
-											{0,0,0,1,1,0,0,0,0},
-											{0,0,1,1,1,1,1,0,0},
-											{0,0,1,1,1,1,1,1,1},
-											{0,1,1,1,1,1,1,1,0},
-											{1,1,1,1,1,1,1,0,0},
-											{0,0,1,1,1,1,1,0,0},
-											{0,0,0,0,1,1,0,0,0},
-											{0,0,0,0,0,1,0,0,0}};
+												{0,0,0,1,1,0,0,0,0},
+												{0,0,1,1,1,1,1,0,0},
+												{0,0,1,1,1,1,1,1,1},
+												{0,1,1,1,1,1,1,1,0},
+												{1,1,1,1,1,1,1,0,0},
+												{0,0,1,1,1,1,1,0,0},
+												{0,0,0,0,1,1,0,0,0},
+												{0,0,0,0,0,1,0,0,0}};
 	
 	private int[][] configMatrFourPlayer = {	{0,0,0,1,1,0,0,0,0}, 
 												{0,0,0,1,1,1,0,0,0},
@@ -62,11 +62,8 @@ public class LivingRoomBoard extends Grid {
 		{
 			for(int y = 0; y < this.columns; y++)
 			{
-				Slot slot = new Slot();
-				if(tempConfigMatr[x][y] == 1)
-					slot.setState(true);
-				
-				matrGrid[x][y] = slot;
+				if(tempConfigMatr[x][y] == 0)
+					matrGrid[x][y].setState(false);
 			}
 		}
 	}

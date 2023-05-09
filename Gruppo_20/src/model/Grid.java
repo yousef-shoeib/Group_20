@@ -22,6 +22,19 @@ public abstract class Grid {
 		this.rows=rows;
 		this.columns=columns;
 		this.matrGrid= new Slot[rows][columns];
+		fillGridWithSlots();
+	}
+	
+	private void fillGridWithSlots()
+	{	
+		for(int x = 0; x < this.rows; x++)
+		{
+			for(int y = 0; y < this.columns; y++)
+			{
+				Slot slot = new Slot();
+				matrGrid[x][y] = slot;
+			}
+		}
 	}
 	
 	public int getRows() {
