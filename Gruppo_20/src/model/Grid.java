@@ -82,6 +82,24 @@ public abstract class Grid {
 		}
 		return null;
 	}
+	
+	public int numberOfEmptySlot(int column)
+	{
+		if(column < 0 || column >= this.columns) {
+			throw new IndexOutOfBoundsException("This column doesn't exit");
+		}
+		
+		int count = 0;
+		for(int i =0; i < this.rows; i++)
+		{
+			if(matrGrid[i][column].isEmpty()) {
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	
 	/*public Grid[][] createPersonalGoalCard() {
 		Grid[][] personalObjectiveCard= new Grid[6][5];
 		this.rows=6;
