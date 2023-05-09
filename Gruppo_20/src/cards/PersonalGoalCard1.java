@@ -22,6 +22,7 @@ public class PersonalGoalCard1 extends PersonalGoalCard {
 	private Match match4=new Match(2,3, ItemTileType.BOOK );
 	private Match match5=new Match(3,1, ItemTileType.GAME );
 	private Match match6=new Match(5,2, ItemTileType.TROPHY );
+	private String path="./resources/Assets/personalGoalCards/Personal_Goals1.png";
 	@Override
 	public int getCardNumber() {
 		return this.number;
@@ -48,8 +49,30 @@ public class PersonalGoalCard1 extends PersonalGoalCard {
 		}
 		return counter;
 	}
-	private String path="./resources/Assets/personalGoalCards/Personal_Goals1.png";
 	
+	public int getPoints(Bookshelf b) {
+		int numberOfMatches=this.countMatches(b);
+		int points=0;
+		if(numberOfMatches==1||numberOfMatches==2) {
+			points=numberOfMatches;
+		}
+		if(numberOfMatches==3) {
+			points=4;
+		}
+		if(numberOfMatches==4) {
+			points=6;
+		}
+		if(numberOfMatches==5) {
+			points=9;
+		}
+		if(numberOfMatches==6) {
+			points=12;
+		}
+		return points;
+	}
+	public String getPath() {
+		return path;
+	}
 	
 	
 }

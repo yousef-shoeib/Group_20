@@ -51,4 +51,27 @@ public class PersonalGoalCard5 extends PersonalGoalCard {
 		}
 		return counter;
 	}
+	public int getPoints(Bookshelf b) {
+		int numberOfMatches=this.countMatches(b);
+		int points=0;
+		if(numberOfMatches==1||numberOfMatches==2) {
+			points=numberOfMatches;
+		}
+		if(numberOfMatches==3) {
+			points=4;
+		}
+		if(numberOfMatches==4) {
+			points=6;
+		}
+		if(numberOfMatches==5) {
+			points=9;
+		}
+		if(numberOfMatches==6) {
+			points=12;
+		}
+		return points;
+	}
+	public String getPath() {
+		return path;
+	}
 }

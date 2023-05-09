@@ -14,6 +14,7 @@ public class Test {
 		System.out.println(number);
 		number=p.getPersonalGoalCard().countMatches(p.getBookshelf());
 		System.out.println(number);
+		System.out.println(p.getPersonalGoalCard().getPath());
 		/*
 		int numberOfPlayers = 3;
 		//commit di prova name
