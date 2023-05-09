@@ -17,6 +17,7 @@ public class ItemTile {
 			this.color = color;
 			id = cont;
 			cont = cont +1;
+			this.type=ItemTileType.assignType(color);
 		}
 		
 		public String getPathImg(){ 

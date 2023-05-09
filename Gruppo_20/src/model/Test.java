@@ -9,7 +9,12 @@ import java.util.Scanner;
 public class Test {
 
 	public static void main(String[] args) {
-		
+		Player p = new Player("test");
+		int number=p.getPersonalGoalCard().getCardNumber();
+		System.out.println(number);
+		number=p.getPersonalGoalCard().countMatches(p.getBookshelf());
+		System.out.println(number);
+		/*
 		int numberOfPlayers = 3;
 		//commit di prova name
 		//Check GIT

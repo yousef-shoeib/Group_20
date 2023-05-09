@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class Bookshelf extends Grid {
 	public Bookshelf() {
 		super(6, 5);
+		/*for(int i=0;i<6;i++) {
+			for(int j=0;j<5;j++) {
+				this.matrGrid[i][j]=new Slot();
+			}
+		}*/
 	}
 	private String path="./resources/Assets/boards/bookshelf_orth.png";
 	public void addItemTiles(int column, ArrayList<ItemTile> tiles) {

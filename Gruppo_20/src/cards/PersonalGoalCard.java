@@ -8,6 +8,7 @@ import model.Bookshelf;
 
 public abstract class PersonalGoalCard {
 	private int points;
+	private int number;
 	private Match match1;
 	private Match match2;
 	private Match match3;
@@ -16,7 +17,7 @@ public abstract class PersonalGoalCard {
 	private Match match6;
 	private String path;
 	private ArrayList<Match> matches=null;
-	public ArrayList<Match> fillMatches() {
+	protected ArrayList<Match> fillMatches() {
 		ArrayList<Match> matches= new ArrayList<>();
 		matches.add(match1);
 		matches.add(match2);
@@ -30,23 +31,21 @@ public abstract class PersonalGoalCard {
 	public PersonalGoalCard() {
 		
 	}
-	
-	public String getType(int row, int column) {
-		return "";
-		//return this.getItemTile(row, column).getColor();
+	public int getCardNumber() {
+		return this.number;
 	}
-	public boolean isColorMatching(Bookshelf bookshelf, Match m) {// cambiare in bookshelf.getTile(row, column).getColor()
-		if(bookshelf.getSlot(m.getRow(), m.getColumn()).isEmpty()) {
-			return false;
-		}
-		if(bookshelf.getTile(m.getRow(), m.getColumn()).getType()==m.getType()) {
+	
+	public boolean isColorMatching(Bookshelf bookshelf, Match m) {
+		if(!bookshelf.getSlot(m.getRow(), m.getColumn()).isEmpty() && 
+				bookshelf.getTile(m.getRow(), m.getColumn()).getType()==m.getType()) {
 			return true;
 		}
+		
 		else {
 			return false;
 		}
 	}
-	/////////////////////
+	
 	public int countMatches(Bookshelf b) {
 		this.fillMatches();
 		int counter=0;
@@ -58,8 +57,8 @@ public abstract class PersonalGoalCard {
 		return counter;
 	}
 	
-	public int getPoints(int numberOfMatches) {
-		//this.countMatches();
+	public int getPoints(Bookshelf b) {
+		int numberOfMatches=this.countMatches(b);
 		int points=0;
 		if(numberOfMatches==1||numberOfMatches==2) {
 			points=numberOfMatches;
@@ -132,6 +131,8 @@ public abstract class PersonalGoalCard {
 		}
 		return card;
 	}
+
+	
 	
 
 	
