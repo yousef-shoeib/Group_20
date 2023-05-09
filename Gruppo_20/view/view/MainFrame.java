@@ -28,11 +28,10 @@ public class MainFrame extends JFrame {
 	private JLabel commonGoalCard1Label;
 	private JLabel commonGoalCard2Label;
 	private JLabel itemTileLabel;
-	private JLabel bookShelfSlotLabel;
 	private JButton removeTileButton;
 	private List<JLabel> listTileLabel;
 	private JButton resetTileButton;
-
+	private List<JLabel> listBookShelfTileLabel;
 	
 
 	/**
@@ -112,6 +111,7 @@ public class MainFrame extends JFrame {
 		contentPane.add(resetTileButton);
 		
 		listTileLabel = new ArrayList<>();
+		listBookShelfTileLabel = new ArrayList<>();
 		
 		fillBookShelf();
 	}
@@ -167,27 +167,31 @@ public class MainFrame extends JFrame {
 	{
 		int first = 57;
 		int second = 35;
+		JLabel bookShelfSlotLabel = null;
+		
 		for(int x = 0; x < 6; x++)
 		{			
 			for(int y = 0; y < 5; y++)
 			{	
 				bookShelfSlotLabel = new JLabel("New label");
-				ImageIcon tempIcon =new ImageIcon("./Gruppo_20/resources/Assets/itemTiles/Cornici1.1.png");
-				ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
-				//itemTileLabel.setName(String.valueOf(itemTile.getId()));
-				bookShelfSlotLabel.setIcon(icon);
-					//bookShelfSlotLabel.setText("");
+				//ImageIcon tempIcon =new ImageIcon("./Gruppo_20/resources/Assets/itemTiles/Cornici1.1.png");
+				//ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
+				bookShelfSlotLabel.setName(y+"_"+x); 
+				//bookShelfSlotLabel.setIcon(icon);
+				bookShelfSlotLabel.setText("");
+				
 				bookShelfSlotLabel.setBounds(first, second, 55, 55);
 				bookShelfSlotLabel.setBorder(new LineBorder(new Color(101,67,53), 3));
-				bookShelfLabel.add(bookShelfSlotLabel);
 				bookShelfSlotLabel.setVisible(true);
+				
+				bookShelfLabel.add(bookShelfSlotLabel);
 					
 					if(x<3)
 						first+= 72;
 					else
 						first+= 71;
 						
-					//listTileLabel.add(itemTileLabel);	
+					listBookShelfTileLabel.add(bookShelfSlotLabel);	
 			}
 			
 			first = 58;
@@ -208,5 +212,9 @@ public class MainFrame extends JFrame {
 
 	public JButton getResetTileButton() {
 		return resetTileButton;
+	}
+
+	public List<JLabel> getListBookShelfTileLabel() {
+		return listBookShelfTileLabel;
 	}
 }

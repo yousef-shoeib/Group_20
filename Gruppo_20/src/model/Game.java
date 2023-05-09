@@ -33,6 +33,9 @@ public class Game {
 			listPlayer.add(player);
 		}
 	}
+	public List<Player> getListPlayer() {
+		return listPlayer;
+	}
 	
 	/*int numberOfPlayers=0;
 	

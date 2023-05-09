@@ -1,12 +1,15 @@
 package controller;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
@@ -14,6 +17,7 @@ import model.Game;
 import model.ItemTile;
 import model.Player;
 import model.SameTileSelectedException;
+import utility.ConfigPath;
 import view.MainFrame;
 
 public class MainController {
@@ -23,6 +27,7 @@ public class MainController {
 	private List<ItemTile> listToRemoveTile;
 	int maxNumberGettableTile = 0;
 	int check = 0;
+	int selectedBookShelfColumn = -1;
 	
 	public MainController(Game game, MainFrame mainFrame)
 	{
@@ -31,6 +36,7 @@ public class MainController {
 		listToRemoveTile = new ArrayList<>();
 		
 		assignLblNewLabelController();
+		assignBookShelfTileLabelController();
 		assignRemoveTileButtonController();
 		assignResetTileButtonController();
 		
@@ -141,17 +147,30 @@ public class MainController {
 			public void actionPerformed(ActionEvent e) {
 				
 				maxNumberGettableTile = 3;
-				
+
+				int i = 5;
 				for(ItemTile item : listToRemoveTile)
 				{
-					game.getLivingRoomBoard().removeTile(item);
 					for(JLabel label : mainFrame.getListTileLabel())
 					{
 						if(label.getName().equals(String.valueOf(item.getId())))
 							{
 								label.setVisible(false);
+								game.getListPlayer().get(0).getBookshelf().setTile(i, selectedBookShelfColumn,item);
+								ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
+								ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
+								for(JLabel label1 : mainFrame.getListBookShelfTileLabel())
+								{
+									if(label1.getName().equals((selectedBookShelfColumn+"_"+i)))
+									{
+										label1.setIcon(icon);
+									}
+
+								}
+								i--;
 							}
-					}		
+						game.getLivingRoomBoard().removeTile(item);
+					}	
 				}
 				listToRemoveTile = null;
 				listToRemoveTile = new ArrayList<>();
@@ -184,6 +203,88 @@ public class MainController {
 
 			}
 		} );
+	}
+	private void assignBookShelfTileLabelController()
+	{
+
+		for(JLabel label : mainFrame.getListBookShelfTileLabel())
+		{
+				
+				label.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+				}
+				
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+				}
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					if(check == 1)
+					{
+					   label.setBorder(new LineBorder(new Color(101,67,53), 3));
+					   check = 0;
+					}
+					/*if(check == 2)
+					{
+					   label.setBorder(new LineBorder(new Color(50,205,50), 3));
+					   check = 0;
+					}*/
+					
+				}
+				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+
+					   String[] slotCoordinate;
+					   slotCoordinate = label.getName().split("_");
+
+					   selectedBookShelfColumn = Integer.parseInt(slotCoordinate[0]);
+					   String row = slotCoordinate[1];
+						
+					   int freeSlot = game.getListPlayer().get(0).getBookshelf().numberOfEmptySlot(selectedBookShelfColumn);
+					   if(freeSlot > 0)
+						{
+							label.setBorder(new LineBorder(new Color(50,205,50), 3));
+							selectAllFreeSlot(selectedBookShelfColumn,freeSlot);
+						}
+					   else
+					   {
+						   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
+						   check = 1;
+					   }
+					   
+				}
+			});
+		}
+	}
+	private void selectAllFreeSlot(int column,int freeSlot)
+	{
+		for(JLabel label : mainFrame.getListBookShelfTileLabel())
+		{
+			label.setBorder(new LineBorder(new Color(101,67,53), 3));	
+		}
+		for(int i = 0; i < freeSlot; i++)
+		{
+			for(JLabel label : mainFrame.getListBookShelfTileLabel())
+			{
+				if(label.getName().equals(column+"_"+i) )
+				{
+					label.setBorder(new LineBorder(new Color(50,205,50), 3));
+				}			
+			}
+		}
 	}
 	private void deselectItemTile(JLabel lblNewLabel)
 	{
