@@ -21,7 +21,7 @@ import java.awt.Image;
 
 public class MainFrame extends JFrame {
 
-	private JPanel contentPane;//
+	private JPanel contentPane;
 	private JLabel background;
 	private JLabel bookShelfLabel;
 	private JLabel personalGoalCardLabel;
@@ -52,7 +52,6 @@ public class MainFrame extends JFrame {
 		
 		//LivingRoomBoard
 		background = new JLabel();
-		background.setBackground(new Color(255, 128, 0));
 		contentPane.setLayout(null);		
 		contentPane.add(background);
 		//int x = (getWidth()/2)-350;
@@ -64,8 +63,7 @@ public class MainFrame extends JFrame {
 		background.setIcon(backgroundIcon);
 
 		//Bookshelf
-		bookShelfLabel = new JLabel();
-		//bookShelfLabel.setBackground(new Color(255, 128, 0));		
+		bookShelfLabel = new JLabel();	
 		bookShelfLabel.setBounds(850, 305, 455, 466);
 		bookShelfLabel.setLayout(null);
 		
@@ -135,8 +133,7 @@ public class MainFrame extends JFrame {
 				{	
 					itemTile = matrGrid[x][y].getItemTile();
 					itemTileLabel = new JLabel("New label");
-					//tempIcon = new ImageIcon("./resources/Assets/itemTiles/"+ itemTile.getPathImg()+".png");
-					tempIcon = new ImageIcon("./Gruppo_20/resources/Assets/itemTiles/"+ itemTile.getPathImg()+".png");
+					tempIcon = new ImageIcon(ConfigPath.getItemTilePath()+ itemTile.getPathImg()+".png");
 					icon = new ImageIcon(tempIcon.getImage().getScaledInstance(65,65, Image.SCALE_SMOOTH));
 					itemTileLabel.setName(String.valueOf(itemTile.getId()));
 					itemTileLabel.setIcon(icon);
