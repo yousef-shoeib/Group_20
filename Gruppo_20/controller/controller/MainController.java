@@ -7,7 +7,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -28,16 +31,20 @@ public class MainController {
 	int maxNumberGettableTile = 0;
 	int check = 0;
 	int selectedBookShelfColumn = -1;
+	private Map<String,JLabel> labelToRemove;
 	
 	public MainController(Game game, MainFrame mainFrame)
 	{
 		this.game = game;
 		this.mainFrame = mainFrame;
 		listToRemoveTile = new ArrayList<>();
+		labelToRemove = new HashMap<>();
 		
 		assignLblNewLabelController();
 		assignBookShelfTileLabelController();
-		assignRemoveTileButtonController();
+		assignboxedGettedTileLabelController();
+		assignTakeTileButtonController();
+		assignAddBookShelfTileButtonController();
 		assignResetTileButtonController();
 		
 		Player player1 = new Player("pippo");
@@ -115,6 +122,7 @@ public class MainController {
 						   lblNewLabel.setBorder(new LineBorder(new Color(50,205,50), 3));
 						   System.out.println("allow to take");
 						   listToRemoveTile.add(itemTile);
+						   labelToRemove.put(String.valueOf(itemTile.getId()), lblNewLabel);
 						   maxNumberGettableTile--;
 						   
 					   }catch (SameTileSelectedException e2) 
@@ -139,48 +147,81 @@ public class MainController {
 		}
 	}
 	
-	private void assignRemoveTileButtonController()
+	private void assignTakeTileButtonController()
 	{
 		mainFrame.getRemoveTileButton().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				maxNumberGettableTile = 3;
-
-				int i = game.getListPlayer().get(0).getBookshelf().freeSlotsInColumn(selectedBookShelfColumn)-1;
+					
+				int i = 0;
 				for(ItemTile item : listToRemoveTile)
 				{
-					for(JLabel label : mainFrame.getListTileLabel())
-					{
-						if(label.getName().equals(String.valueOf(item.getId())))
-							{
-								label.setVisible(false);
-								game.getListPlayer().get(0).getBookshelf().setTile(i, selectedBookShelfColumn,item);
-								ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
-								ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
-								for(JLabel label1 : mainFrame.getListBookShelfTileLabel())
-								{
-									if(label1.getName().equals((selectedBookShelfColumn+"_"+i)))
-									{
-										label1.setIcon(icon);
-									}
+					JLabel tempLabel = labelToRemove.get(String.valueOf(item.getId()));
+					ImageIcon tempIcon = new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
+					ImageIcon icon = new ImageIcon(tempIcon.getImage().getScaledInstance(75,75, Image.SCALE_SMOOTH));
+					mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setIcon(icon);
+					
+					tempLabel.setVisible(false);
+					mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setVisible(true);
 
-								}
-								i--;
-							}
-						game.getLivingRoomBoard().removeTile(item);
-					}	
+					i++;
 				}
+				
+				maxNumberGettableTile = 0;
+			}
+		});
+	}
+	
+	private void assignAddBookShelfTileButtonController()
+	{
+		mainFrame.getAddTileButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				int i = game.getListPlayer().get(0).getBookshelf().freeSlotsInColumn(selectedBookShelfColumn)-1;
+				
+				for(ItemTile item : listToRemoveTile)
+				{
+					game.getListPlayer().get(0).getBookshelf().setTile(i, selectedBookShelfColumn,item);
+					
+					ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
+					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
+					
+					for(JLabel label1 : mainFrame.getListBookShelfTileLabel())
+					{
+						if(label1.getName().equals((selectedBookShelfColumn+"_"+i)))
+						{
+							label1.setIcon(icon);
+						}
+
+					}
+					i--;
+
+					game.getLivingRoomBoard().removeTile(item);
+				}	
+				
+				
 				deselectSlot();
+				svuotaBoxedGettedTileLabel();
 				selectedBookShelfColumn = -1;
 				listToRemoveTile = null;
 				listToRemoveTile = new ArrayList<>();
-
+				
+				maxNumberGettableTile = 3;
 			}
-		} );
+		});
 	}
-	
+	private void svuotaBoxedGettedTileLabel()
+	{
+		for(int i = 0; i < 3; i++)
+		{
+			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setIcon(null);
+			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setVisible(false);
+			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setBorder(new LineBorder(new Color(255,255,255), 3));
+		}
+	}
 	private void assignResetTileButtonController()
 	{
 		mainFrame.getResetTileButton().addActionListener(new ActionListener() {
@@ -271,6 +312,56 @@ public class MainController {
 			});
 		}
 	}
+	private void assignboxedGettedTileLabelController()
+	{
+		
+		for(Entry<String, JLabel> set : mainFrame.getBoxedGettedTileLabel().entrySet())
+		{
+				JLabel label = set.getValue();
+
+				label.addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+				}
+				
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+				}
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					if(check == 1)
+					{
+						label.setBorder(new LineBorder(new Color(255,255,255), 3));
+					   check = 0;
+					}	
+				}
+				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+						
+					   //String keyTile = label.getName();
+					   /*ItemTile checkItemTile = game.getLivingRoomBoard().checkTile(Integer.parseInt(keyTile));
+					   ItemTile itemTile = null;*/
+					   
+					   label.setBorder(new LineBorder(new Color(50,205,50), 3));
+					   //listToRemoveTile.add(itemTile);	   
+				}
+			});
+		}
+	}
+	
+	
 	private void deselectSlot()
 	{
 		for(JLabel label : mainFrame.getListBookShelfTileLabel())
