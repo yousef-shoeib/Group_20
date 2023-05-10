@@ -172,6 +172,8 @@ public class MainController {
 						game.getLivingRoomBoard().removeTile(item);
 					}	
 				}
+				deselectSlot();
+				selectedBookShelfColumn = -1;
 				listToRemoveTile = null;
 				listToRemoveTile = new ArrayList<>();
 
@@ -269,12 +271,17 @@ public class MainController {
 			});
 		}
 	}
-	private void selectAllFreeSlot(int column,int freeSlot)
+	private void deselectSlot()
 	{
 		for(JLabel label : mainFrame.getListBookShelfTileLabel())
 		{
 			label.setBorder(new LineBorder(new Color(101,67,53), 3));	
 		}
+	}
+	private void selectAllFreeSlot(int column,int freeSlot)
+	{
+		deselectSlot();
+		
 		for(int i = 0; i < freeSlot; i++)
 		{
 			for(JLabel label : mainFrame.getListBookShelfTileLabel())
