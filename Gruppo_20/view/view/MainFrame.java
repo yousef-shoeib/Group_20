@@ -3,7 +3,9 @@ package view;
 import java.awt.Color;
 import java.awt.Frame;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,100 +24,160 @@ import java.awt.Image;
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
+	private JPanel livingPane;
+	private JPanel bookShelfPane;
+	private JPanel commonGoalCardsPane;
 	private JLabel background;
 	private JLabel bookShelfLabel;
 	private JLabel personalGoalCardLabel;
 	private JLabel commonGoalCard1Label;
 	private JLabel commonGoalCard2Label;
 	private JLabel itemTileLabel;
+	private JLabel boxGettedTileLabel;
 	private JButton removeTileButton;
+	private JButton addTileButton;
 	private List<JLabel> listTileLabel;
 	private JButton resetTileButton;
 	private List<JLabel> listBookShelfTileLabel;
+	private Map<String,JLabel> boxedGettedTileLabel;
 	
 
 	/**
 	 * Create the frame.
 	 */
 	public MainFrame() {
+		
+		//JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100, 40, 1280, 780); //Set JFrame Size
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
 		
+		//Master Panel
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setBounds(0, 0, 1500, 920);
 		contentPane.setLayout(null);
 		
-		//LivingRoomBoard
-		background = new JLabel();
-		contentPane.setLayout(null);		
-		contentPane.add(background);
+		//LivingRoomBoard Panel
+		livingPane = new JPanel();
+		livingPane.setBorder(new LineBorder(new Color(0,0,0), 3));
+		livingPane.setBounds(10, 0, 850, 780);
+		livingPane.setLayout(null);
+		contentPane.add(livingPane);
+		
+		//BookShelf Panel
+		bookShelfPane = new JPanel();
+		bookShelfPane.setBorder(new LineBorder(new Color(0,0,0), 3));
+		bookShelfPane.setBounds(850, 180, 680, 600);
+		bookShelfPane.setLayout(null);
+		contentPane.add(bookShelfPane);
+		
+		//CommonGoalCards Panel
+		commonGoalCardsPane = new JPanel();
+		commonGoalCardsPane.setBorder(new LineBorder(new Color(0,0,0), 3));
+		commonGoalCardsPane.setBounds(850,0, 680, 180);
+		commonGoalCardsPane.setLayout(null);
+		contentPane.add(commonGoalCardsPane);
+		
+		//LivingRoomBoard Label
+		background = new JLabel();		
 		//int x = (getWidth()/2)-350;
 		background.setBounds(20, 50, 700, 700);
 		background.setLayout(null);
-
 		ImageIcon tempBackground =new ImageIcon(ConfigPath.getLivingRoomBoardPath());
 		ImageIcon backgroundIcon=new ImageIcon(tempBackground.getImage().getScaledInstance(700, 700,Image.SCALE_SMOOTH));
 		background.setIcon(backgroundIcon);
-
-		//Bookshelf
-		bookShelfLabel = new JLabel();	
-		bookShelfLabel.setBounds(850, 305, 455, 466);
-		bookShelfLabel.setLayout(null);
+		livingPane.add(background);
 		
+		
+		//boxGettedTileLabel
+		boxGettedTileLabel = new JLabel("");		
+		boxGettedTileLabel.setBounds(100, 10, 228, 77);
+		boxGettedTileLabel.setBorder(new LineBorder(new Color(0,0,0), 3));
+		boxGettedTileLabel.setLayout(null);
+		boxGettedTileLabel.setVisible(true);
+		bookShelfPane.add(boxGettedTileLabel);
+				
+		//bookShelfLabel
+		bookShelfLabel = new JLabel();	
+		bookShelfLabel.setBounds(20, 105, 455, 466);
+		bookShelfLabel.setLayout(null);
 		ImageIcon tempbookShelfBackGround =new ImageIcon(ConfigPath.getBookshelfPath());
 		ImageIcon tempbookShelfBackGroundIcon=new ImageIcon(tempbookShelfBackGround.getImage().getScaledInstance(455, 465,Image.SCALE_SMOOTH));
 		bookShelfLabel.setIcon(tempbookShelfBackGroundIcon);
-		contentPane.add(bookShelfLabel);
+		bookShelfPane.add(bookShelfLabel);
 		
-		//Bookshelf
+		//personalGoalCardLabel
 		personalGoalCardLabel = new JLabel();	
-		personalGoalCardLabel.setBounds(1350, 400, 150, 250);
+		personalGoalCardLabel.setBounds(470, 200, 150, 250);
 		personalGoalCardLabel.setLayout(null);
 		//ImageIcon tempBackground =new ImageIcon("./resources/Assets/personalGoalCards/Personal_Goals1.png");
 		ImageIcon tempPersonalGoalCard =new ImageIcon(".\\Gruppo_20\\resources\\Assets\\personalGoalCards\\Personal_Goals1.png");
 		ImageIcon tempPersonalGoalCardIcon=new ImageIcon(tempPersonalGoalCard.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
 		personalGoalCardLabel.setIcon(tempPersonalGoalCardIcon);
-		contentPane.add(personalGoalCardLabel);
+		bookShelfPane.add(personalGoalCardLabel);
 		
-		//Bookshelf
+		//commonGoalCard1Label
 		commonGoalCard1Label = new JLabel();	
-		commonGoalCard1Label.setBounds(850, 50, 200, 150);
+		commonGoalCard1Label.setBounds(70, 40, 170, 120);
 		commonGoalCard1Label.setLayout(null);
 		//ImageIcon tempBackground =new ImageIcon("./resources/Assets/commonGoalCards\\1.jpg");
 		ImageIcon tempCommonGoalCard1 =new ImageIcon(".\\Gruppo_20\\resources\\Assets\\commonGoalCards\\1.jpg");
-		ImageIcon tempCommonGoalCard1Icon=new ImageIcon(tempCommonGoalCard1.getImage().getScaledInstance(200, 150,Image.SCALE_SMOOTH));
+		ImageIcon tempCommonGoalCard1Icon=new ImageIcon(tempCommonGoalCard1.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
 		commonGoalCard1Label.setIcon(tempCommonGoalCard1Icon);
-		contentPane.add(commonGoalCard1Label);
+		commonGoalCardsPane.add(commonGoalCard1Label);
 		
-		//Bookshelf
+		//commonGoalCard2Label
 		commonGoalCard2Label = new JLabel();	
-		commonGoalCard2Label.setBounds(1150, 50, 200, 150);
+		commonGoalCard2Label.setBounds(300, 40, 170, 120);
 		commonGoalCard2Label.setLayout(null);
 		//ImageIcon tempBackground =new ImageIcon("./resources/Assets/commonGoalCards\\2.jpg");
 		ImageIcon tempCommonGoalCard2 =new ImageIcon(".\\Gruppo_20\\resources\\Assets\\commonGoalCards\\2.jpg");
-		ImageIcon tempCommonGoalCard2Icon=new ImageIcon(tempCommonGoalCard2.getImage().getScaledInstance(200, 150,Image.SCALE_SMOOTH));
+		ImageIcon tempCommonGoalCard2Icon=new ImageIcon(tempCommonGoalCard2.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
 		commonGoalCard2Label.setIcon(tempCommonGoalCard2Icon);
-		contentPane.add(commonGoalCard2Label);
-		
+		commonGoalCardsPane.add(commonGoalCard2Label);
 		
 		removeTileButton = new JButton("Take");
-		removeTileButton.setBounds(763, 65, 77, 41);
-		contentPane.add(removeTileButton);
-		
+		removeTileButton.setBounds(743, 150, 77, 41);
+		livingPane.add(removeTileButton);
+	
 		resetTileButton = new JButton("Reset");
-		resetTileButton.setBounds(763, 150, 77, 41);
-		contentPane.add(resetTileButton);
+		resetTileButton.setBounds(743, 230, 77, 41);
+		livingPane.add(resetTileButton);
+		
+		addTileButton = new JButton("Add");
+		addTileButton.setBounds(350, 30, 77, 41);
+		bookShelfPane.add(addTileButton);
+		
 		
 		listTileLabel = new ArrayList<>();
 		listBookShelfTileLabel = new ArrayList<>();
+		boxedGettedTileLabel = new HashMap<>();
 		
 		fillBookShelf();
+		createBoxedLabel();
 	}
 	
+	//Create boxedGettedTileLabel
+	private void createBoxedLabel()
+	{
+		int x = 1;
+		for(int i = 0; i < 3; i++)
+		{
+			JLabel label = new JLabel("");
+			label.setName("boxedGettedTileLabel"+i);
+			label.setBounds(x, 1, 75, 75);
+			label.setBorder(new LineBorder(new Color(255,255,255), 3));
+			label.setLayout(null);
+			label.setVisible(false);
+			boxGettedTileLabel.add(label);
+			boxedGettedTileLabel.put(label.getName(), label);
+			x+= 75;
+		}
+	}
+	//Fill LivingRoomBoard with Tiles Label
 	public void fillLeavingRoomBoard(Slot[][] matrGrid)
 	{
 		int first = 34;
@@ -163,6 +225,7 @@ public class MainFrame extends JFrame {
 		}
 	}
 	
+	//Fill BookShelf with Tiles Label
 	public void fillBookShelf()
 	{
 		int first = 57;
@@ -198,6 +261,8 @@ public class MainFrame extends JFrame {
 			second = second + 62;
 		}
 	}
+	
+	//Getters
 	public JLabel getItemTileLabel() {
 		return itemTileLabel;
 	}
@@ -216,5 +281,13 @@ public class MainFrame extends JFrame {
 
 	public List<JLabel> getListBookShelfTileLabel() {
 		return listBookShelfTileLabel;
+	}
+
+	public Map<String, JLabel> getBoxedGettedTileLabel() {
+		return boxedGettedTileLabel;
+	}
+
+	public JButton getAddTileButton() {
+		return addTileButton;
 	}
 }
