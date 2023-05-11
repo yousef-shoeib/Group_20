@@ -88,8 +88,8 @@ public class LivingRoomBoard extends Grid {
 				if(matrGrid[x][y].State() && matrGrid[x][y].isEmpty())
 				{
 					ItemTile itemTile = listItemTile.remove(random.nextInt(listItemTile.size()));
-					itemTile.setX(x);
-					itemTile.setY(y);
+					/*itemTile.setX(x);
+					itemTile.setY(y);*/
 					matrGrid[x][y].setItemTile(itemTile);
 				}
 
@@ -99,9 +99,10 @@ public class LivingRoomBoard extends Grid {
 	
 	//Check has free side
 	private boolean tileHasFreeSide(ItemTile currentSelectedTile)
-	{			
-		int x = currentSelectedTile.getX();
-		int y = currentSelectedTile.getY();
+	{
+		Slot currentSlot = this.getSlotFromTile(currentSelectedTile);
+		int x = currentSlot.getX();
+		int y = currentSlot.getY();
 		
 		if(x == 0 || y == 0 || x == 8 || y == 8)
 			return true;
@@ -125,12 +126,11 @@ public class LivingRoomBoard extends Grid {
 	
 	public boolean tilesAreAdjacent(ItemTile currentSelectedTile, ItemTile lastSelectedTile)
 	{
-		
-		Slot currentSelectedSlot = matrGrid[currentSelectedTile.getX()][currentSelectedTile.getY()];
-		Slot lastSelectedSlot = matrGrid[lastSelectedTile.getX()][lastSelectedTile.getY()];
+		Slot currentSelectedSlot = this.getSlotFromTile(currentSelectedTile);
+		Slot lastSelectedSlot = this.getSlotFromTile(lastSelectedTile);
 		
 		//Check its adjacent
-		if(currentSelectedTile.getX() == lastSelectedTile.getX())
+		if(currentSelectedSlot.getX() == lastSelectedSlot.getX())
 		{	
 			if(currentSelectedSlot.getY() - 1 == lastSelectedSlot.getY() || currentSelectedSlot.getY() + 1 == lastSelectedSlot.getY())
 				return true;
@@ -146,9 +146,13 @@ public class LivingRoomBoard extends Grid {
 	
 	private boolean tileIsInline(ItemTile currentSelectedTile, ItemTile lastSelectedTile, ItemTile firstSelectedTile)
 	{
-		if(currentSelectedTile.getX() == lastSelectedTile.getX() && currentSelectedTile.getX() == firstSelectedTile.getX())
+		Slot currentSelectedSlot = this.getSlotFromTile(currentSelectedTile);
+		Slot lastSelectedSlot = this.getSlotFromTile(lastSelectedTile);
+		Slot firstSelectedSlot = this.getSlotFromTile(firstSelectedTile);
+		
+		if(currentSelectedSlot.getX() == lastSelectedSlot.getX() && currentSelectedSlot.getX() == firstSelectedSlot.getX())
 			return true;
-		if(currentSelectedTile.getY() == lastSelectedTile.getY() && currentSelectedTile.getY() == firstSelectedTile.getY())
+		if(currentSelectedSlot.getY() == lastSelectedSlot.getY() && currentSelectedSlot.getY() == firstSelectedSlot.getY())
 			return true;
 
 		return false;
@@ -176,47 +180,38 @@ public class LivingRoomBoard extends Grid {
 	
 	public ItemTile getTile(ItemTile currentSelectedTile, ItemTile lastSelectedTile,ItemTile firstSelectedTile,int maxNumberGettable) throws Exception
 	{
-		if(maxNumberGettable == 0)
-		{
+		if(maxNumberGettable == 0){
 			throw new IllegalArgumentException("you have already selected the maximum number of tiles");
 		}
-		if(currentSelectedTile == null)
-		{
+		if(currentSelectedTile == null){
 			throw new NullPointerException("no tile selected");
 		}
 		
-		if(tilesAlreadySelected(currentSelectedTile,lastSelectedTile,firstSelectedTile))
-		{
+		if(tilesAlreadySelected(currentSelectedTile,lastSelectedTile,firstSelectedTile)){
 			throw new SameTileSelectedException("Tile already selected. Select another tile");
 		}
-		if (!tileHasFreeSide(currentSelectedTile))
-		{
+		if (!tileHasFreeSide(currentSelectedTile)){
 			throw new Exception("tile has not free side");
 		}
 		
-		if(lastSelectedTile == null)
-		{
+		if(lastSelectedTile == null){
 			return currentSelectedTile;
 		}
 		
-		if(!tilesAreAdjacent(currentSelectedTile,lastSelectedTile))
-		{
+		if(!tilesAreAdjacent(currentSelectedTile,lastSelectedTile)){
 			if(firstSelectedTile == null)
 				throw new Exception("tile are not adjacent");
 			else
-				if(!tilesAreAdjacent(currentSelectedTile,firstSelectedTile))
-				{
+				if(!tilesAreAdjacent(currentSelectedTile,firstSelectedTile)){
 					throw new Exception("tile are not adjacent");
 				}
 		}
 		
-		if(firstSelectedTile == null)
-		{
+		if(firstSelectedTile == null){
 			return currentSelectedTile;
 		}
 		
-		if(!tileIsInline(currentSelectedTile,lastSelectedTile,firstSelectedTile))
-		{
+		if(!tileIsInline(currentSelectedTile,lastSelectedTile,firstSelectedTile)){
 			throw new Exception("tile are not inline");
 		}
 		
