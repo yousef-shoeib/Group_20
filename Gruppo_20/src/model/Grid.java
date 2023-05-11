@@ -32,6 +32,8 @@ public abstract class Grid {
 			for(int y = 0; y < this.columns; y++)
 			{
 				Slot slot = new Slot();
+				slot.setX(x);
+				slot.setY(y);
 				matrGrid[x][y] = slot;
 			}
 		}
