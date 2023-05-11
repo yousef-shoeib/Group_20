@@ -35,10 +35,11 @@ public class MainFrame extends JFrame {
 	private JLabel itemTileLabel;
 	private JLabel boxGettedTileLabel;
 	private JButton removeTileButton;
+	private JButton endRoundButton;
 	private JButton addTileButton;
 	private List<JLabel> listTileLabel;
 	private JButton resetTileButton;
-	private List<JLabel> listBookShelfTileLabel;
+	private Map<String,JLabel> mapBookShelfTileLabel;
 	private Map<String,JLabel> boxedGettedTileLabel;
 	
 
@@ -148,9 +149,12 @@ public class MainFrame extends JFrame {
 		addTileButton.setBounds(350, 30, 77, 41);
 		bookShelfPane.add(addTileButton);
 		
+		endRoundButton = new JButton("End Round");
+		endRoundButton.setBounds(500, 530, 100, 41);
+		bookShelfPane.add(endRoundButton);
 		
 		listTileLabel = new ArrayList<>();
-		listBookShelfTileLabel = new ArrayList<>();
+		mapBookShelfTileLabel = new HashMap<>();
 		boxedGettedTileLabel = new HashMap<>();
 		
 		fillBookShelf();
@@ -229,14 +233,14 @@ public class MainFrame extends JFrame {
 		int second = 34;
 		JLabel bookShelfSlotLabel = null;
 		
-		for(int x = 0; x < 6; x++)
+		for(int row = 0; row < 6; row++)
 		{			
-			for(int y = 0; y < 5; y++)
+			for(int column = 0; column < 5; column++)
 			{	
 				bookShelfSlotLabel = new JLabel("New label");
 				//ImageIcon tempIcon =new ImageIcon("./Gruppo_20/resources/Assets/itemTiles/Cornici1.1.png");
 				//ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
-				bookShelfSlotLabel.setName(y+"_"+x); 
+				bookShelfSlotLabel.setName(column+"_"+row); 
 				//bookShelfSlotLabel.setIcon(icon);
 				bookShelfSlotLabel.setText("");
 				
@@ -251,7 +255,7 @@ public class MainFrame extends JFrame {
 					else*/
 						first+= 61;
 						
-					listBookShelfTileLabel.add(bookShelfSlotLabel);	
+					mapBookShelfTileLabel.put(bookShelfSlotLabel.getName(),bookShelfSlotLabel);	
 			}
 			
 			first = 57;
@@ -276,8 +280,8 @@ public class MainFrame extends JFrame {
 		return resetTileButton;
 	}
 
-	public List<JLabel> getListBookShelfTileLabel() {
-		return listBookShelfTileLabel;
+	public Map<String,JLabel> getMapBookShelfTileLabel() {
+		return mapBookShelfTileLabel;
 	}
 
 	public Map<String, JLabel> getBoxedGettedTileLabel() {
@@ -286,5 +290,9 @@ public class MainFrame extends JFrame {
 
 	public JButton getAddTileButton() {
 		return addTileButton;
+	}
+
+	public JButton getEndRoundButton() {
+		return endRoundButton;
 	}
 }

@@ -16,10 +16,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
+import model.Bookshelf;
 import model.Game;
 import model.ItemTile;
 import model.Player;
 import model.SameTileSelectedException;
+import model.Slot;
 import utility.ConfigPath;
 import view.MainFrame;
 
@@ -32,6 +34,7 @@ public class MainController {
 	int check = 0;
 	int selectedBookShelfColumn = -1;
 	private Map<String,JLabel> labelToRemove;
+	private int currentPlayer = 0;
 	
 	public MainController(Game game, MainFrame mainFrame)
 	{
@@ -40,22 +43,18 @@ public class MainController {
 		listToRemoveTile = new ArrayList<>();
 		labelToRemove = new HashMap<>();
 		
+
+		
 		assignLblNewLabelController();
 		assignBookShelfTileLabelController();
 		assignboxedGettedTileLabelController();
 		assignTakeTileButtonController();
 		assignAddBookShelfTileButtonController();
+		assignEndRoundButtonController();
 		assignResetTileButtonController();
 		
-		Player player1 = new Player("pippo");
-		//int emptySlot = player1.getBookshelf().maxDrawableTiles();
-		int emptySlot = 5;
-		if(emptySlot > 2)
-			maxNumberGettableTile = 3;
-		else
-			maxNumberGettableTile = emptySlot;
+		maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
 	}
-	
 	private void assignLblNewLabelController()
 	{
 
@@ -180,17 +179,19 @@ public class MainController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				int i = game.getListPlayer().get(0).getBookshelf().freeSlotsInColumn(selectedBookShelfColumn)-1;
+				int i = game.getListPlayer().get(currentPlayer).getBookshelf().freeSlotsInColumn(selectedBookShelfColumn)-1;
 				
 				for(ItemTile item : listToRemoveTile)
 				{
-					game.getListPlayer().get(0).getBookshelf().setTile(i, selectedBookShelfColumn,item);
+					game.getListPlayer().get(currentPlayer).getBookshelf().setTile(i, selectedBookShelfColumn,item);
 					
 					ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
 					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
 					
-					for(JLabel label1 : mainFrame.getListBookShelfTileLabel())
+					for(Entry<String, JLabel> set : mainFrame.getMapBookShelfTileLabel().entrySet())
 					{
+							JLabel label1 = set.getValue();
+							
 						if(label1.getName().equals((selectedBookShelfColumn+"_"+i)))
 						{
 							label1.setIcon(icon);
@@ -208,10 +209,31 @@ public class MainController {
 				selectedBookShelfColumn = -1;
 				listToRemoveTile = null;
 				listToRemoveTile = new ArrayList<>();
-				
-				maxNumberGettableTile = 3;
+
 			}
 		});
+	}
+	private void assignEndRoundButtonController()
+	{
+		mainFrame.getEndRoundButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				increaseCurrentPlayer();
+				loadBookshelf();
+				maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
+			}
+		});
+	}
+	private void increaseCurrentPlayer()
+	{
+		if(currentPlayer == game.getListPlayer().size()-1){
+			currentPlayer = 0;
+		}
+			else{
+				currentPlayer++;
+			}
 	}
 	private void svuotaBoxedGettedTileLabel()
 	{
@@ -249,10 +271,10 @@ public class MainController {
 	}
 	private void assignBookShelfTileLabelController()
 	{
-
-		for(JLabel label : mainFrame.getListBookShelfTileLabel())
+		for(Entry<String, JLabel> set : mainFrame.getMapBookShelfTileLabel().entrySet())
 		{
-				
+				JLabel label = set.getValue();
+		
 				label.addMouseListener(new MouseListener() {
 				
 				@Override
@@ -296,7 +318,7 @@ public class MainController {
 					   selectedBookShelfColumn = Integer.parseInt(slotCoordinate[0]);
 					   String row = slotCoordinate[1];
 						
-					   int freeSlot = game.getListPlayer().get(0).getBookshelf().numberOfEmptySlot(selectedBookShelfColumn);
+					   int freeSlot = game.getListPlayer().get(currentPlayer).getBookshelf().numberOfEmptySlot(selectedBookShelfColumn);
 					   if(freeSlot > 0)
 						{
 							label.setBorder(new LineBorder(new Color(50,205,50), 3));
@@ -360,12 +382,34 @@ public class MainController {
 			});
 		}
 	}
-	
+	private void loadBookshelf()
+	{
+		Bookshelf bookshelf = game.getListPlayer().get(currentPlayer).getBookshelf();
+		int numRows = bookshelf.getRows();
+		int numColumns = bookshelf.getColumns();
+		
+		for(int row = 0; row < numRows; row++ )
+		{
+			for(int column = 0; column < numColumns; column++ )
+			{
+				if(!bookshelf.getSlot(row, column).isEmpty())
+				{
+					ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+bookshelf.getSlot(row, column).getItemTile().getPathImg()+".png");
+					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
+					mainFrame.getMapBookShelfTileLabel().get(column+"_"+row).setIcon(icon);
+				}
+				else{
+					mainFrame.getMapBookShelfTileLabel().get(column+"_"+row).setIcon(null);
+				}
+			}
+		}
+	}
 	
 	private void deselectSlot()
 	{
-		for(JLabel label : mainFrame.getListBookShelfTileLabel())
+		for(Entry<String, JLabel> set : mainFrame.getMapBookShelfTileLabel().entrySet())
 		{
+			JLabel label = set.getValue();
 			label.setBorder(new LineBorder(new Color(101,67,53), 3));	
 		}
 	}
@@ -375,8 +419,9 @@ public class MainController {
 		
 		for(int i = 0; i < freeSlot; i++)
 		{
-			for(JLabel label : mainFrame.getListBookShelfTileLabel())
+			for(Entry<String, JLabel> set : mainFrame.getMapBookShelfTileLabel().entrySet())
 			{
+				JLabel label = set.getValue();
 				if(label.getName().equals(column+"_"+i) )
 				{
 					label.setBorder(new LineBorder(new Color(50,205,50), 3));
