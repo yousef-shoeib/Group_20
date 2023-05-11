@@ -102,10 +102,10 @@ public class MainFrame extends JFrame {
 				
 		//bookShelfLabel
 		bookShelfLabel = new JLabel();	
-		bookShelfLabel.setBounds(20, 105, 455, 466);
+		bookShelfLabel.setBounds(20, 105, 405, 416);
 		bookShelfLabel.setLayout(null);
 		ImageIcon tempbookShelfBackGround =new ImageIcon(ConfigPath.getBookshelfPath());
-		ImageIcon tempbookShelfBackGroundIcon=new ImageIcon(tempbookShelfBackGround.getImage().getScaledInstance(455, 465,Image.SCALE_SMOOTH));
+		ImageIcon tempbookShelfBackGroundIcon=new ImageIcon(tempbookShelfBackGround.getImage().getScaledInstance(405, 416,Image.SCALE_SMOOTH));
 		bookShelfLabel.setIcon(tempbookShelfBackGroundIcon);
 		bookShelfPane.add(bookShelfLabel);
 		
@@ -113,8 +113,7 @@ public class MainFrame extends JFrame {
 		personalGoalCardLabel = new JLabel();	
 		personalGoalCardLabel.setBounds(470, 200, 150, 250);
 		personalGoalCardLabel.setLayout(null);
-		//ImageIcon tempBackground =new ImageIcon("./resources/Assets/personalGoalCards/Personal_Goals1.png");
-		ImageIcon tempPersonalGoalCard =new ImageIcon(".\\Gruppo_20\\resources\\Assets\\personalGoalCards\\Personal_Goals1.png");
+		ImageIcon tempPersonalGoalCard =new ImageIcon(".\\resources\\Assets\\personalGoalCards\\Personal_Goals1.png");
 		ImageIcon tempPersonalGoalCardIcon=new ImageIcon(tempPersonalGoalCard.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
 		personalGoalCardLabel.setIcon(tempPersonalGoalCardIcon);
 		bookShelfPane.add(personalGoalCardLabel);
@@ -123,8 +122,7 @@ public class MainFrame extends JFrame {
 		commonGoalCard1Label = new JLabel();	
 		commonGoalCard1Label.setBounds(70, 40, 170, 120);
 		commonGoalCard1Label.setLayout(null);
-		//ImageIcon tempBackground =new ImageIcon("./resources/Assets/commonGoalCards\\1.jpg");
-		ImageIcon tempCommonGoalCard1 =new ImageIcon(".\\Gruppo_20\\resources\\Assets\\commonGoalCards\\1.jpg");
+		ImageIcon tempCommonGoalCard1 =new ImageIcon(".\\resources\\Assets\\commonGoalCards\\1.jpg");
 		ImageIcon tempCommonGoalCard1Icon=new ImageIcon(tempCommonGoalCard1.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
 		commonGoalCard1Label.setIcon(tempCommonGoalCard1Icon);
 		commonGoalCardsPane.add(commonGoalCard1Label);
@@ -133,8 +131,7 @@ public class MainFrame extends JFrame {
 		commonGoalCard2Label = new JLabel();	
 		commonGoalCard2Label.setBounds(300, 40, 170, 120);
 		commonGoalCard2Label.setLayout(null);
-		//ImageIcon tempBackground =new ImageIcon("./resources/Assets/commonGoalCards\\2.jpg");
-		ImageIcon tempCommonGoalCard2 =new ImageIcon(".\\Gruppo_20\\resources\\Assets\\commonGoalCards\\2.jpg");
+		ImageIcon tempCommonGoalCard2 =new ImageIcon(".\\resources\\Assets\\commonGoalCards\\2.jpg");
 		ImageIcon tempCommonGoalCard2Icon=new ImageIcon(tempCommonGoalCard2.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
 		commonGoalCard2Label.setIcon(tempCommonGoalCard2Icon);
 		commonGoalCardsPane.add(commonGoalCard2Label);
@@ -229,7 +226,7 @@ public class MainFrame extends JFrame {
 	public void fillBookShelf()
 	{
 		int first = 57;
-		int second = 35;
+		int second = 34;
 		JLabel bookShelfSlotLabel = null;
 		
 		for(int x = 0; x < 6; x++)
@@ -249,16 +246,16 @@ public class MainFrame extends JFrame {
 				
 				bookShelfLabel.add(bookShelfSlotLabel);
 					
-					if(x<3)
+					/*if(x<3)
 						first+= 72;
-					else
-						first+= 71;
+					else*/
+						first+= 61;
 						
 					listBookShelfTileLabel.add(bookShelfSlotLabel);	
 			}
 			
-			first = 58;
-			second = second + 62;
+			first = 57;
+			second = second + 52;
 		}
 	}
 	

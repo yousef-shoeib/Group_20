@@ -1,12 +1,7 @@
 package utility;
 
 public class ConfigPath {
-	
-	/*private final static String livingRoomBoardPath = ".\\Gruppo_20\\resources\\Assets\\boards\\livingroom.png";
-	private final static String bookshelfPath = ".\\Gruppo_20\\resources\\Assets\\boards\\bookshelf.png";
-	private final static String itemFilePath = ".\\Gruppo_20\\resources\\item.txt";
-	private final static String itemTilePath = ".\\Gruppo_20\\resources\\Assets\\itemTiles\\";*/
-	
+		
 	private final static String livingRoomBoardPath = ".\\resources\\Assets\\boards\\livingroom.png";
 	private final static String bookshelfPath = "./resources/Assets/boards/bookshelf_orth.png";
 	private final static String itemFilePath = ".\\resources\\item.txt";
