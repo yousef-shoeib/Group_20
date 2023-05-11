@@ -16,8 +16,8 @@ public class Bookshelf extends Grid {
 		int n = 0;
 		for (int i = 0; i < tiles.size(); i++) {
 			if (!this.getSlot(i, column).isEmpty()) {
-				System.out.println("Not enough slots in the selected column");
-				return;
+				throw new IllegalArgumentException("Not enough slots in the selected column");
+				//System.out.println("Not enough slots in the selected column");
 			}
 		}
 		
@@ -30,15 +30,15 @@ public class Bookshelf extends Grid {
 	}
 
 	public ItemTile getTile(int row, int column) {		 		
-		if(this.matrGrid[row][column].getItemTile()== null) {
+		if(this.getSlot(row, column).getItemTile()== null) {
 			throw new NullPointerException();
 		}
-		return this.matrGrid[row][column].getItemTile();
+		return this.getSlot(row, column).getItemTile();
 		
 	}
 
 	public void setTile(int row, int column, ItemTile tile) {
-		this.matrGrid[row][column].setItemTile(tile);
+		this.getSlot(row, column).setItemTile(tile);
 	}
 
 	public int maxDrawableTiles() {
@@ -62,7 +62,7 @@ public class Bookshelf extends Grid {
 
 	public boolean isComplete() {
 		for (int i = 0; i < 5; i++) {
-			if (this.matrGrid[0][i].isEmpty()) {
+			if (this.getSlot(0, i).isEmpty()) {
 				return false;
 			}
 		}
@@ -75,6 +75,9 @@ public class Bookshelf extends Grid {
 		for (int i=0;i<rows;i++) {
 			if(this.getSlot(i, column).isEmpty()) {
 				freeSlots++;
+			}
+			else {
+				return freeSlots;
 			}
 		}
 		return freeSlots;
