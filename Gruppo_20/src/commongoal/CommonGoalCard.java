@@ -11,7 +11,7 @@ public abstract class CommonGoalCard {
 	public CommonGoalCard() { 
 	}
 	
-	abstract boolean CheckTarget(Bookshelf b);
+	abstract boolean CheckTarget();
 	
 	
 	/*

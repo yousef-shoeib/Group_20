@@ -6,15 +6,15 @@ public class CommonGoalCard8 extends CommonGoalCard{
 		this.bookshelf = bookshelf;
 	}
 	@Override
-	boolean CheckTarget(Bookshelf bookshelf) {
+	boolean CheckTarget() {
 		boolean check = false;
-		if(bookshelf.getSlot(0, 0).isEmpty()==false && 
-		   bookshelf.getSlot(0, 4).isEmpty()==false &&
-		   bookshelf.getSlot(5, 4).isEmpty()==false &&
-		   bookshelf.getSlot(5, 0).isEmpty()==false) {
-					if(bookshelf.getTile(0, 0)==bookshelf.getTile(0, 4) &&
-				       bookshelf.getTile(0, 4)==bookshelf.getTile(5, 4) &&
-					   bookshelf.getTile(5, 4)==bookshelf.getTile(5, 0)) {
+		if(this.bookshelf.getSlot(0, 0).isEmpty()==false && 
+		   this.bookshelf.getSlot(0, 4).isEmpty()==false &&
+		   this.bookshelf.getSlot(5, 4).isEmpty()==false &&
+		   this.bookshelf.getSlot(5, 0).isEmpty()==false) {
+					if(this.bookshelf.getTile(0, 0)==this.bookshelf.getTile(0, 4) &&
+				       this.bookshelf.getTile(0, 4)==this.bookshelf.getTile(5, 4) &&
+					   this.bookshelf.getTile(5, 4)==this.bookshelf.getTile(5, 0)) {
 			                             check = true;
 					}
 		}

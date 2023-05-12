@@ -8,7 +8,7 @@ public class CommonGoalCard1 extends CommonGoalCard{
 		this.bookshelf = bookshelf;
 	}
 	@Override
-	boolean CheckTarget(Bookshelf bookshelf) {
+	boolean CheckTarget() {
 		int count = 0;
 		for(int i=0; i<this.bookshelf.getRows()-1;i++) {
 			for(int j=0; j<this.bookshelf.getColumns()-1;j++) {
