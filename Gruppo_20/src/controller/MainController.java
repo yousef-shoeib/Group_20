@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
+import cards.PersonalGoalCard;
 import model.Bookshelf;
 import model.Game;
 import model.ItemTile;
@@ -223,6 +224,7 @@ public class MainController {
 
 				increaseCurrentPlayer();
 				loadBookshelf();
+				loadPersonalGoalCard();
 				maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
 				mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
 			}
@@ -381,6 +383,16 @@ public class MainController {
 			}
 		}
 	}
+	private void loadPersonalGoalCard()
+	{
+		PersonalGoalCard personalGoal = game.getListPlayer().get(currentPlayer).getPersonalGoalCard();
+		
+					ImageIcon tempIcon =new ImageIcon(game.getListPlayer().get(currentPlayer).getPersonalGoalCard().getPath());
+					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
+					mainFrame.getPersonalGoalCardLabel().setIcon(icon);
+	}
+				
+		
 	
 	private void deselectSlot()
 	{

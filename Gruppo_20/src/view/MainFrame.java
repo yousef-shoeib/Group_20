@@ -165,6 +165,10 @@ public class MainFrame extends JFrame {
 		createBoxedLabel();
 	}
 	
+	public JLabel getPersonalGoalCardLabel() {
+		return personalGoalCardLabel;
+	}
+
 	//Create boxedGettedTileLabel
 	private void createBoxedLabel()
 	{
