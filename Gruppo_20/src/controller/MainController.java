@@ -51,9 +51,10 @@ public class MainController {
 		assignTakeTileButtonController();
 		assignAddBookShelfTileButtonController();
 		assignEndRoundButtonController();
-		assignResetTileButtonController();
+
 		
 		maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
+		mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
 	}
 	private void assignLblNewLabelController()
 	{
@@ -223,6 +224,7 @@ public class MainController {
 				increaseCurrentPlayer();
 				loadBookshelf();
 				maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
+				mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
 			}
 		});
 	}
@@ -243,31 +245,6 @@ public class MainController {
 			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setVisible(false);
 			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setBorder(new LineBorder(new Color(255,255,255), 3));
 		}
-	}
-	private void assignResetTileButtonController()
-	{
-		mainFrame.getResetTileButton().addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				maxNumberGettableTile = 3;
-				
-				for(ItemTile item : listToRemoveTile)
-				{
-					for(JLabel label : mainFrame.getListTileLabel())
-					{
-						if(label.getName().equals(String.valueOf(item.getId())))
-							{	
-								label.setBorder(new LineBorder(new Color(255,255,255), 3));
-							}
-					}		
-				}
-				listToRemoveTile = null;
-				listToRemoveTile = new ArrayList<>();
-
-			}
-		} );
 	}
 	private void assignBookShelfTileLabelController()
 	{

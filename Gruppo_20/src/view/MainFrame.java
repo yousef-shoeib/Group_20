@@ -20,6 +20,7 @@ import utility.ConfigPath;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Image;
+import java.awt.Font;
 
 public class MainFrame extends JFrame {
 
@@ -34,6 +35,7 @@ public class MainFrame extends JFrame {
 	private JLabel commonGoalCard2Label;
 	private JLabel itemTileLabel;
 	private JLabel boxGettedTileLabel;
+	private JLabel playerNameLabel;
 	private JButton removeTileButton;
 	private JButton endRoundButton;
 	private JButton addTileButton;
@@ -135,6 +137,13 @@ public class MainFrame extends JFrame {
 		ImageIcon tempCommonGoalCard2Icon=new ImageIcon(tempCommonGoalCard2.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
 		commonGoalCard2Label.setIcon(tempCommonGoalCard2Icon);
 		commonGoalCardsPane.add(commonGoalCard2Label);
+		
+		//Player Name Label
+		playerNameLabel = new JLabel("");	
+		playerNameLabel.setBounds(100, 100, 250, 50);
+		playerNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		playerNameLabel.setLayout(null);
+		bookShelfPane.add(playerNameLabel);
 		
 		removeTileButton = new JButton("Take");
 		removeTileButton.setBounds(743, 150, 77, 41);
@@ -282,5 +291,9 @@ public class MainFrame extends JFrame {
 
 	public JButton getEndRoundButton() {
 		return endRoundButton;
+	}
+
+	public JLabel getPlayerNameLabel() {
+		return playerNameLabel;
 	}
 }
