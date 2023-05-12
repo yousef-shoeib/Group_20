@@ -20,6 +20,7 @@ import utility.ConfigPath;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.Font;
 
 public class MainFrame extends JFrame {
@@ -48,10 +49,13 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainFrame() {
+		//getting screen resolution
+		int width=Toolkit.getDefaultToolkit().getScreenSize().width;
+		int height=Toolkit.getDefaultToolkit().getScreenSize().height;
 		
 		//JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setBounds(100, 40, 1280, 780); //Set JFrame Size
+		setBounds(0, 0, width, height); //Set JFrame Size
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
 		
@@ -59,6 +63,7 @@ public class MainFrame extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		
 		contentPane.setBounds(0, 0, 1500, 920);
 		contentPane.setLayout(null);
 		
@@ -115,7 +120,7 @@ public class MainFrame extends JFrame {
 		personalGoalCardLabel = new JLabel();	
 		personalGoalCardLabel.setBounds(470, 200, 150, 250);
 		personalGoalCardLabel.setLayout(null);
-		ImageIcon tempPersonalGoalCard =new ImageIcon(".\\resources\\Assets\\personalGoalCards\\Personal_Goals1.png");
+		ImageIcon tempPersonalGoalCard =new ImageIcon("./resources/Assets/personalGoalCards/back.jpg");
 		ImageIcon tempPersonalGoalCardIcon=new ImageIcon(tempPersonalGoalCard.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
 		personalGoalCardLabel.setIcon(tempPersonalGoalCardIcon);
 		bookShelfPane.add(personalGoalCardLabel);

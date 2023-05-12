@@ -52,6 +52,7 @@ public class MainController {
 		assignTakeTileButtonController();
 		assignAddBookShelfTileButtonController();
 		assignEndRoundButtonController();
+		loadPersonalGoalCard();
 
 		
 		maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
@@ -387,7 +388,7 @@ public class MainController {
 	{
 		PersonalGoalCard personalGoal = game.getListPlayer().get(currentPlayer).getPersonalGoalCard();
 		
-					ImageIcon tempIcon =new ImageIcon(game.getListPlayer().get(currentPlayer).getPersonalGoalCard().getPath());
+					ImageIcon tempIcon =new ImageIcon(personalGoal.getPath());
 					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
 					mainFrame.getPersonalGoalCardLabel().setIcon(icon);
 	}
