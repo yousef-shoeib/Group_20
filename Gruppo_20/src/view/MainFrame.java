@@ -57,6 +57,9 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, width, height); //Set JFrame Size
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setTitle("My Shelfie");
+		ImageIcon frameIcon= new ImageIcon("./resources/Assets/PublisherMaterial/Icon 50x50px.png");
+		setIconImage(frameIcon.getImage());
 		setVisible(true);
 		
 		//Master Panel
