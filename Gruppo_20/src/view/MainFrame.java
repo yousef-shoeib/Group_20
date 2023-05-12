@@ -38,7 +38,6 @@ public class MainFrame extends JFrame {
 	private JButton endRoundButton;
 	private JButton addTileButton;
 	private List<JLabel> listTileLabel;
-	private JButton resetTileButton;
 	private Map<String,JLabel> mapBookShelfTileLabel;
 	private Map<String,JLabel> boxedGettedTileLabel;
 	
@@ -95,15 +94,15 @@ public class MainFrame extends JFrame {
 		
 		//boxGettedTileLabel
 		boxGettedTileLabel = new JLabel("");		
-		boxGettedTileLabel.setBounds(100, 10, 228, 77);
+		boxGettedTileLabel.setBounds(743, 300, 77, 228);
 		boxGettedTileLabel.setBorder(new LineBorder(new Color(0,0,0), 3));
 		boxGettedTileLabel.setLayout(null);
 		boxGettedTileLabel.setVisible(true);
-		bookShelfPane.add(boxGettedTileLabel);
+		livingPane.add(boxGettedTileLabel);
 				
 		//bookShelfLabel
 		bookShelfLabel = new JLabel();	
-		bookShelfLabel.setBounds(20, 105, 405, 416);
+		bookShelfLabel.setBounds(20, 165, 405, 416);
 		bookShelfLabel.setLayout(null);
 		ImageIcon tempbookShelfBackGround =new ImageIcon(ConfigPath.getBookshelfPath());
 		ImageIcon tempbookShelfBackGroundIcon=new ImageIcon(tempbookShelfBackGround.getImage().getScaledInstance(405, 416,Image.SCALE_SMOOTH));
@@ -140,14 +139,10 @@ public class MainFrame extends JFrame {
 		removeTileButton = new JButton("Take");
 		removeTileButton.setBounds(743, 150, 77, 41);
 		livingPane.add(removeTileButton);
-	
-		resetTileButton = new JButton("Reset");
-		resetTileButton.setBounds(743, 230, 77, 41);
-		livingPane.add(resetTileButton);
 		
-		addTileButton = new JButton("Add");
-		addTileButton.setBounds(350, 30, 77, 41);
-		bookShelfPane.add(addTileButton);
+		addTileButton = new JButton("Add =>");
+		addTileButton.setBounds(743, 550, 77, 41);
+		livingPane.add(addTileButton);
 		
 		endRoundButton = new JButton("End Round");
 		endRoundButton.setBounds(500, 530, 100, 41);
@@ -164,18 +159,18 @@ public class MainFrame extends JFrame {
 	//Create boxedGettedTileLabel
 	private void createBoxedLabel()
 	{
-		int x = 1;
+		int y = 1;
 		for(int i = 0; i < 3; i++)
 		{
 			JLabel label = new JLabel("");
 			label.setName("boxedGettedTileLabel"+i);
-			label.setBounds(x, 1, 75, 75);
+			label.setBounds(1, y, 75, 75);
 			label.setBorder(new LineBorder(new Color(255,255,255), 3));
 			label.setLayout(null);
 			label.setVisible(false);
 			boxGettedTileLabel.add(label);
 			boxedGettedTileLabel.put(label.getName(), label);
-			x+= 75;
+			y+= 75;
 		}
 	}
 	//Fill LivingRoomBoard with Tiles Label
@@ -229,8 +224,8 @@ public class MainFrame extends JFrame {
 	//Fill BookShelf with Tiles Label
 	public void fillBookShelf()
 	{
-		int first = 57;
-		int second = 34;
+		int first = 49;
+		int second = 28;
 		JLabel bookShelfSlotLabel = null;
 		
 		for(int row = 0; row < 6; row++)
@@ -238,28 +233,25 @@ public class MainFrame extends JFrame {
 			for(int column = 0; column < 5; column++)
 			{	
 				bookShelfSlotLabel = new JLabel("New label");
-				//ImageIcon tempIcon =new ImageIcon("./Gruppo_20/resources/Assets/itemTiles/Cornici1.1.png");
-				//ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
 				bookShelfSlotLabel.setName(column+"_"+row); 
-				//bookShelfSlotLabel.setIcon(icon);
 				bookShelfSlotLabel.setText("");
-				
-				bookShelfSlotLabel.setBounds(first, second, 55, 55);
+				bookShelfSlotLabel.setBounds(first, second, 50, 50);
 				bookShelfSlotLabel.setBorder(new LineBorder(new Color(101,67,53), 3));
 				bookShelfSlotLabel.setVisible(true);
-				
 				bookShelfLabel.add(bookShelfSlotLabel);
-					
-					/*if(x<3)
-						first+= 72;
-					else*/
-						first+= 61;
-						
-					mapBookShelfTileLabel.put(bookShelfSlotLabel.getName(),bookShelfSlotLabel);	
+	
+				mapBookShelfTileLabel.put(bookShelfSlotLabel.getName(),bookShelfSlotLabel);	
+				
+				first+= 65;
 			}
 			
-			first = 57;
-			second = second + 52;
+			first = 49;
+			if(row > 1){
+				second = second + 57;
+			}
+			else{
+				second = second + 58;
+			}
 		}
 	}
 	
@@ -274,10 +266,6 @@ public class MainFrame extends JFrame {
 
 	public JButton getRemoveTileButton() {
 		return removeTileButton;
-	}
-
-	public JButton getResetTileButton() {
-		return resetTileButton;
 	}
 
 	public Map<String,JLabel> getMapBookShelfTileLabel() {
