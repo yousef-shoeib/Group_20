@@ -11,7 +11,7 @@ public class Player {
 	private int points;
 	private Bookshelf bookshelf;
 	private PersonalGoalCard personalGoalCard;
-
+	private boolean firstPlayerSeat=false;
     /*private int IDGenerator() 
     {
         return PLAYERCOUNTER++;
@@ -74,6 +74,14 @@ public class Player {
 
 	public void setPersonalGoalCard(PersonalGoalCard personalGoalCard) {
 		this.personalGoalCard = personalGoalCard;
+	}
+
+	public boolean isFirstPlayer() {
+		return firstPlayerSeat;
+	}
+
+	public void setFirstPlayerSeat(boolean firstPlayerSeat) {
+		this.firstPlayerSeat = firstPlayerSeat;
 	}
 
 	

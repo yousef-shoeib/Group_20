@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class Game {
 
@@ -20,6 +21,7 @@ public class Game {
 		bag = new Bag();
 		livingRoomBoard.putItemTiles(bag.getListItemTile());
 		addPlayers(numberOfPlayers,namePlayers);
+		assignFirstPlayerSeat(numberOfPlayers);
 	}
 	
 	public LivingRoomBoard getLivingRoomBoard() {
@@ -36,7 +38,11 @@ public class Game {
 	public List<Player> getListPlayer() {
 		return listPlayer;
 	}
-	
+	private void assignFirstPlayerSeat(int numberOfPlayers) {
+		Random r= new Random();
+		int i= r.nextInt(numberOfPlayers);
+		listPlayer.get(i).setFirstPlayerSeat(true);
+	}
 	/*int numberOfPlayers=0;
 	
 	String name=new String();

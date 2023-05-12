@@ -35,7 +35,7 @@ public class MainController {
 	int check = 0;
 	int selectedBookShelfColumn = -1;
 	private Map<String,JLabel> labelToRemove;
-	private int currentPlayer = 0;
+	private static int currentPlayer=0;
 	
 	public MainController(Game game, MainFrame mainFrame)
 	{
@@ -45,15 +45,15 @@ public class MainController {
 		labelToRemove = new HashMap<>();
 		
 
-		
+		setCurrentPlayer(game);
 		assignLblNewLabelController();
 		assignBookShelfTileLabelController();
 		assignboxedGettedTileLabelController();
 		assignTakeTileButtonController();
 		assignAddBookShelfTileButtonController();
-		assignEndRoundButtonController();
+		assignEndRoundButtonController();	
 		loadPersonalGoalCard();
-
+		
 		
 		maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
 		mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
@@ -487,5 +487,13 @@ public class MainController {
 			   lblNewLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
 			   maxNumberGettableTile++;
 		   }
+	}
+	public void setCurrentPlayer(Game game) {
+		int size=game.getListPlayer().size();
+		for(int i=0; i<size;i++ ) {
+			if(game.getListPlayer().get(i).isFirstPlayer()) {
+				currentPlayer=i;
+			}
+		}
 	}
 }
