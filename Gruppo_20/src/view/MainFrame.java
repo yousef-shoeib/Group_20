@@ -168,7 +168,7 @@ public class MainFrame extends JFrame {
 	//Create boxedGettedTileLabel
 	private void createBoxedLabel()
 	{
-		int y = 1;
+		int y = 151;
 		for(int i = 0; i < 3; i++)
 		{
 			JLabel label = new JLabel("");
@@ -179,7 +179,7 @@ public class MainFrame extends JFrame {
 			label.setVisible(false);
 			boxGettedTileLabel.add(label);
 			boxedGettedTileLabel.put(label.getName(), label);
-			y+= 75;
+			y-= 75;
 		}
 	}
 	//Fill LivingRoomBoard with Tiles Label
