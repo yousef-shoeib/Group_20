@@ -11,6 +11,7 @@ public class Game {
 	private LivingRoomBoard livingRoomBoard;
 	private List<Player> listPlayer;
 	private Bag bag;
+	private int firstPlayer;
 	public Game()
 	{	
 		listPlayer = new ArrayList<>();
@@ -42,6 +43,10 @@ public class Game {
 		Random r= new Random();
 		int i= r.nextInt(numberOfPlayers);
 		listPlayer.get(i).setFirstPlayerSeat(true);
+		this.firstPlayer=i;
+	}
+	public int getFirstPlayer() {
+		return firstPlayer;
 	}
 	/*int numberOfPlayers=0;
 	

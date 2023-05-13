@@ -167,6 +167,7 @@ public class MainController {
 					i++;
 				}
 				maxNumberGettableTile = 0;
+				mainFrame.getAddTileButton().setEnabled(true);////
 			}
 		});
 	}
@@ -197,6 +198,7 @@ public class MainController {
 				selectedBookShelfColumn = -1;
 				listToRemoveTile = null;
 				listToRemoveTile = new ArrayList<>();
+				mainFrame.getAddTileButton().setEnabled(false);/////
 			}
 		});
 	}
