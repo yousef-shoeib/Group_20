@@ -301,7 +301,7 @@ public class MainController {
 					   int freeSlot = game.getListPlayer().get(currentPlayer).getBookshelf().numberOfEmptySlot(selectedBookShelfColumn);
 					   if(freeSlot > 0)
 						{
-							label.setBorder(new LineBorder(new Color(50,205,50), 3));
+							deselectSlot();
 							selectAllFreeSlot(selectedBookShelfColumn,freeSlot);
 						}
 					   else
@@ -404,19 +404,10 @@ public class MainController {
 		}
 	}
 	private void selectAllFreeSlot(int column,int freeSlot)
-	{
-		deselectSlot();
-		
+	{	
 		for(int i = 0; i < freeSlot; i++)
 		{
-			for(Entry<String, JLabel> set : mainFrame.getMapBookShelfTileLabel().entrySet())
-			{
-				JLabel label = set.getValue();
-				if(label.getName().equals(column+"_"+i) )
-				{
-					label.setBorder(new LineBorder(new Color(50,205,50), 3));
-				}			
-			}
+			mainFrame.getMapBookShelfTileLabel().get(column+"_"+i).setBorder(new LineBorder(new Color(50,205,50), 3));
 		}
 	}
 	private void deselectItemTile(JLabel lblNewLabel)
