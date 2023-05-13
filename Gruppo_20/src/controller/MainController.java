@@ -102,7 +102,7 @@ public class MainController {
 				public void mouseClicked(MouseEvent e) {
 						
 					   String keyTile = lblNewLabel.getName();
-					   ItemTile checkItemTile = game.getLivingRoomBoard().checkTile(Integer.parseInt(keyTile));
+					   ItemTile checkItemTile = game.getLivingRoomBoard().contains(Integer.parseInt(keyTile));
 					   ItemTile itemTile = null;
 
 					   try 
