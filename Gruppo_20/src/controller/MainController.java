@@ -30,12 +30,15 @@ public class MainController {
 
 	private Game game;
 	private MainFrame mainFrame;
-	private List<ItemTile> listToRemoveTile;
-	int maxNumberGettableTile = 0;
-	int check = 0;
-	int selectedBookShelfColumn = -1;
-	private Map<String,JLabel> labelToRemove;
+	
 	private static int currentPlayer=0;
+	int maxNumberGettableTile = 0;
+	int selectedBookShelfColumn = -1;
+	int check = 0;
+	
+	private List<ItemTile> listToRemoveTile;
+	private Map<String,JLabel> labelToRemove;
+
 	
 	public MainController(Game game, MainFrame mainFrame)
 	{
@@ -48,23 +51,21 @@ public class MainController {
 		setCurrentPlayer(game);
 		assignLblNewLabelController();
 		assignBookShelfTileLabelController();
-		assignboxedGettedTileLabelController();
+		assignBoxedGettedTileLabelController();
 		assignTakeTileButtonController();
 		assignAddBookShelfTileButtonController();
 		assignEndRoundButtonController();	
 		loadPersonalGoalCard();
-		
 		
 		maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
 		mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
 	}
 	private void assignLblNewLabelController()
 	{
-
-		for(JLabel lblNewLabel : mainFrame.getListTileLabel())
+		for(JLabel label : mainFrame.getListTileLabel())
 		{
-				
-				lblNewLabel.addMouseListener(new MouseListener() {
+			
+				label.addMouseListener(new MouseListener() {
 				
 				@Override
 				public void mouseReleased(MouseEvent e) {
@@ -81,15 +82,14 @@ public class MainController {
 					// TODO Auto-generated method stub
 					if(check == 1)
 					{
-					   lblNewLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
+					   label.setBorder(new LineBorder(new Color(255,255,255), 3));
 					   check = 0;
 					}
 					if(check == 2)
 					{
-					   lblNewLabel.setBorder(new LineBorder(new Color(50,205,50), 3));
+					   label.setBorder(new LineBorder(new Color(50,205,50), 3));
 					   check = 0;
-					}
-					
+					}	
 				}
 				
 				@Override
@@ -101,7 +101,7 @@ public class MainController {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 						
-					   String keyTile = lblNewLabel.getName();
+					   String keyTile = label.getName();
 					   ItemTile checkItemTile = game.getLivingRoomBoard().contains(Integer.parseInt(keyTile));
 					   ItemTile itemTile = null;
 
@@ -121,34 +121,32 @@ public class MainController {
 							   itemTile = game.getLivingRoomBoard().getTile(checkItemTile,listToRemoveTile.get(1),listToRemoveTile.get(0),maxNumberGettableTile);
 						   }
 							   
-						   lblNewLabel.setBorder(new LineBorder(new Color(50,205,50), 3));
+						   label.setBorder(new LineBorder(new Color(50,205,50), 3));
 						   System.out.println("allow to take");
 						   listToRemoveTile.add(itemTile);
-						   labelToRemove.put(String.valueOf(itemTile.getId()), lblNewLabel);
+						   labelToRemove.put(String.valueOf(itemTile.getId()), label);
 						   maxNumberGettableTile--;
 						   
 					   }catch (SameTileSelectedException e2) 
 					   {
 						   System.out.println(e2.getMessage());
-						   deselectItemTile(lblNewLabel);
+						   deselectItemTile(label);
 					   }
 					   catch(IllegalArgumentException e3)
 					   {
 						   System.out.println(e3.getMessage());
-						   deselectItemTile(lblNewLabel);
+						   deselectItemTile(label);
 					   }
 					   catch (Exception e4) 
 					   {
 						   System.out.println(e4.getMessage());
-						   lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 3));
+						   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
 						   check = 1;
-					   }
-					   
+					   }   
 				}
 			});
 		}
-	}
-	
+	}	
 	private void assignTakeTileButtonController()
 	{
 		mainFrame.getRemoveTileButton().addActionListener(new ActionListener() {
@@ -163,18 +161,15 @@ public class MainController {
 					ImageIcon tempIcon = new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
 					ImageIcon icon = new ImageIcon(tempIcon.getImage().getScaledInstance(75,75, Image.SCALE_SMOOTH));
 					mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setIcon(icon);
-					
-					tempLabel.setVisible(false);
 					mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setVisible(true);
+					tempLabel.setVisible(false);
 
 					i++;
 				}
-				
 				maxNumberGettableTile = 0;
 			}
 		});
 	}
-	
 	private void assignAddBookShelfTileButtonController()
 	{
 		mainFrame.getAddTileButton().addActionListener(new ActionListener() {
@@ -190,29 +185,18 @@ public class MainController {
 					
 					ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
 					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
-					
-					for(Entry<String, JLabel> set : mainFrame.getMapBookShelfTileLabel().entrySet())
-					{
-							JLabel label1 = set.getValue();
-							
-						if(label1.getName().equals((selectedBookShelfColumn+"_"+i)))
-						{
-							label1.setIcon(icon);
-						}
-
-					}
-					i--;
+					mainFrame.getMapBookShelfTileLabel().get(selectedBookShelfColumn+"_"+i).setIcon(icon);
 
 					game.getLivingRoomBoard().removeTile(item);
+					
+					i--;
 				}	
 				
-				
-				deselectSlot();
-				svuotaBoxedGettedTileLabel();
+				deselectAllSlot();
+				hideBoxedGettedTileLabels();
 				selectedBookShelfColumn = -1;
 				listToRemoveTile = null;
 				listToRemoveTile = new ArrayList<>();
-
 			}
 		});
 	}
@@ -230,24 +214,6 @@ public class MainController {
 				mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
 			}
 		});
-	}
-	private void increaseCurrentPlayer()
-	{
-		if(currentPlayer == game.getListPlayer().size()-1){
-			currentPlayer = 0;
-		}
-			else{
-				currentPlayer++;
-			}
-	}
-	private void svuotaBoxedGettedTileLabel()
-	{
-		for(int i = 0; i < 3; i++)
-		{
-			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setIcon(null);
-			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setVisible(false);
-			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setBorder(new LineBorder(new Color(255,255,255), 3));
-		}
 	}
 	private void assignBookShelfTileLabelController()
 	{
@@ -275,12 +241,6 @@ public class MainController {
 					   label.setBorder(new LineBorder(new Color(101,67,53), 3));
 					   check = 0;
 					}
-					/*if(check == 2)
-					{
-					   label.setBorder(new LineBorder(new Color(50,205,50), 3));
-					   check = 0;
-					}*/
-					
 				}
 				
 				@Override
@@ -296,27 +256,24 @@ public class MainController {
 					   slotCoordinate = label.getName().split("_");
 
 					   selectedBookShelfColumn = Integer.parseInt(slotCoordinate[0]);
-					   String row = slotCoordinate[1];
 						
 					   int freeSlot = game.getListPlayer().get(currentPlayer).getBookshelf().numberOfEmptySlot(selectedBookShelfColumn);
 					   if(freeSlot > 0)
 						{
-							deselectSlot();
+							deselectAllSlot();
 							selectAllFreeSlot(selectedBookShelfColumn,freeSlot);
 						}
 					   else
 					   {
 						   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
 						   check = 1;
-					   }
-					   
+					   }	   
 				}
 			});
 		}
 	}
-	private void assignboxedGettedTileLabelController()
+	private void assignBoxedGettedTileLabelController()
 	{
-		
 		for(Entry<String, JLabel> set : mainFrame.getBoxedGettedTileLabel().entrySet())
 		{
 				JLabel label = set.getValue();
@@ -339,7 +296,7 @@ public class MainController {
 					if(check == 1)
 					{
 						label.setBorder(new LineBorder(new Color(255,255,255), 3));
-					   check = 0;
+						check = 0;
 					}	
 				}
 				
@@ -351,13 +308,7 @@ public class MainController {
 				
 				@Override
 				public void mouseClicked(MouseEvent e) {
-						
-					   //String keyTile = label.getName();
-					   /*ItemTile checkItemTile = game.getLivingRoomBoard().checkTile(Integer.parseInt(keyTile));
-					   ItemTile itemTile = null;*/
-					   
-					   label.setBorder(new LineBorder(new Color(50,205,50), 3));
-					   //listToRemoveTile.add(itemTile);	   
+   
 				}
 			});
 		}
@@ -392,10 +343,7 @@ public class MainController {
 					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
 					mainFrame.getPersonalGoalCardLabel().setIcon(icon);
 	}
-				
-		
-	
-	private void deselectSlot()
+	private void deselectAllSlot()
 	{
 		for(Entry<String, JLabel> set : mainFrame.getMapBookShelfTileLabel().entrySet())
 		{
@@ -448,6 +396,15 @@ public class MainController {
 		   check = 2;
 		}
 	}
+	private void hideBoxedGettedTileLabels()
+	{
+		for(int i = 0; i < 3; i++)
+		{
+			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setIcon(null);
+			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setVisible(false);
+			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setBorder(new LineBorder(new Color(255,255,255), 3));
+		}
+	}
 	public void setCurrentPlayer(Game game) {
 		int size=game.getListPlayer().size();
 		for(int i=0; i<size;i++ ) {
@@ -455,5 +412,14 @@ public class MainController {
 				currentPlayer=i;
 			}
 		}
+	}
+	private void increaseCurrentPlayer()
+	{
+		if(currentPlayer == game.getListPlayer().size()-1){
+			currentPlayer = 0;
+		}
+			else{
+				currentPlayer++;
+			}
 	}
 }
