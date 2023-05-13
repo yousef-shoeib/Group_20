@@ -10,7 +10,7 @@ public class CommonGoalCard3 extends CommonGoalCard {
 	
 	public int countVertical(int nTiles) {
 		int count=0;
-		for(int i=0; i<bookshelf.getRows()-3; i++) {
+		for(int i=0; i<bookshelf.getRows()-nTiles+1; i++) {
 			for(int j=0; j<bookshelf.getColumns(); j++) {
 				boolean found = true;
 				for(int k=1; k<nTiles; k++) {
@@ -30,7 +30,7 @@ public class CommonGoalCard3 extends CommonGoalCard {
 	
 	public int countHorizontal(int nTiles) {
 		int count=0;
-		for(int j=0; j<bookshelf.getColumns()-3; j++) {
+		for(int j=0; j<bookshelf.getColumns()-nTiles+1; j++) {
 			for(int i=0; i<bookshelf.getColumns(); i++) {
 				boolean found = true;
 				for(int k=1; k<nTiles; k++) {
