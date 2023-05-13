@@ -69,7 +69,7 @@ public abstract class Grid {
 		}
 		return null;
 	}
-	public ItemTile checkTile(int tileId)
+	public ItemTile contains(int tileId)
 	{
 		for(int x = 0; x < this.rows; x++)
 		{	

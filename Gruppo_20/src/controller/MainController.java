@@ -410,14 +410,14 @@ public class MainController {
 			mainFrame.getMapBookShelfTileLabel().get(column+"_"+i).setBorder(new LineBorder(new Color(50,205,50), 3));
 		}
 	}
-	private void deselectItemTile(JLabel lblNewLabel)
+	private void deselectItemTile(JLabel label)
 	{
-		ItemTile item = game.getLivingRoomBoard().checkTile(Integer.parseInt(lblNewLabel.getName()));
-		   int index = listToRemoveTile.indexOf(item);
+		ItemTile item = game.getLivingRoomBoard().contains(Integer.parseInt(label.getName()));
+		int index = listToRemoveTile.indexOf(item);
 		   
 		   if(index == -1)
 		   {
-			   lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 3));
+			   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
 			   check = 1;
 		   }
 		   
@@ -429,13 +429,13 @@ public class MainController {
 						   && game.getLivingRoomBoard().tilesAreAdjacent(listToRemoveTile.get(0), listToRemoveTile.get(2)))
 				   {
 					   System.out.println("can't deselect this tile");
-					   lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 3));
+					   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
 					   check = 2;
 				   }
 				   else
 				   {
 					   listToRemoveTile.remove(index);
-					   lblNewLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
+					   label.setBorder(new LineBorder(new Color(255,255,255), 3));
 					   maxNumberGettableTile++;
 				   }
 			   }
@@ -445,13 +445,13 @@ public class MainController {
 						   && game.getLivingRoomBoard().tilesAreAdjacent(listToRemoveTile.get(1), listToRemoveTile.get(2)))
 				   {
 					   System.out.println("can't deselect this tile");
-					   lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 3));
+					   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
 					   check = 2;
 				   }
 				   else
 				   {
 					   listToRemoveTile.remove(index);
-					   lblNewLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
+					   label.setBorder(new LineBorder(new Color(255,255,255), 3));
 					   maxNumberGettableTile++;
 				   }
 			   }
@@ -461,13 +461,13 @@ public class MainController {
 						   && game.getLivingRoomBoard().tilesAreAdjacent(listToRemoveTile.get(2), listToRemoveTile.get(1)))
 				   {
 					   System.out.println("can't deselect this tile"); 
-					   lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 3));
+					   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
 					   check = 2;
 				   }
 				   else
 				   {
 					   listToRemoveTile.remove(index);
-					   lblNewLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
+					   label.setBorder(new LineBorder(new Color(255,255,255), 3));
 					   maxNumberGettableTile++;
 				   }
 			   }
@@ -475,7 +475,7 @@ public class MainController {
 		   else
 		   {
 			   ItemTile item1 = listToRemoveTile.remove(index);
-			   lblNewLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
+			   label.setBorder(new LineBorder(new Color(255,255,255), 3));
 			   maxNumberGettableTile++;
 		   }
 	}
