@@ -62,8 +62,9 @@ public class MainController {
 	}
 	private void assignLblNewLabelController()
 	{
-		for(JLabel label : mainFrame.getListTileLabel())
+		for(Entry<String, JLabel> set : mainFrame.getMapLivingTileLabel().entrySet())
 		{
+				JLabel label = set.getValue();
 			
 				label.addMouseListener(new MouseListener() {
 				
@@ -101,8 +102,15 @@ public class MainController {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 						
-					   String keyTile = label.getName();
-					   ItemTile checkItemTile = game.getLivingRoomBoard().contains(Integer.parseInt(keyTile));
+					   String[] coordinates = label.getName().split("_");
+					   int row = Integer.parseInt(coordinates[0]);
+					   int column = Integer.parseInt(coordinates[1]);
+					   Slot currentSlot = game.getLivingRoomBoard().getSlot(row, column);
+					   ItemTile checkItemTile = null;
+					   if(!currentSlot.isEmpty()) {
+						   checkItemTile = currentSlot.getItemTile();
+					   }
+
 					   ItemTile itemTile = null;
 
 					   try 
@@ -214,6 +222,11 @@ public class MainController {
 				loadPersonalGoalCard();
 				maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
 				mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
+				if(!game.getLivingRoomBoard().hasAdjacentTiles())
+				{
+					game.getLivingRoomBoard().putItemTiles(game.getBag().getListItemTile());
+					mainFrame.fillLeavingRoomBoard(game.getLivingRoomBoard().getMatrGrid(),game.getLivingRoomBoard().getRows(),game.getLivingRoomBoard().getColumns());
+				}
 			}
 		});
 	}
@@ -362,7 +375,16 @@ public class MainController {
 	}
 	private void deselectItemTile(JLabel label)
 	{
-		ItemTile item = game.getLivingRoomBoard().contains(Integer.parseInt(label.getName()));
+		String[] coordinates = label.getName().split("_");
+		int row = Integer.parseInt(coordinates[0]);
+		int column = Integer.parseInt(coordinates[1]);
+		Slot currentSlot = game.getLivingRoomBoard().getSlot(row, column);
+		ItemTile item = null;
+		
+		if(!currentSlot.isEmpty()) {
+		   item = currentSlot.getItemTile();
+		}
+		
 		int index = listToRemoveTile.indexOf(item);
 		   
 		boolean deselect = true;

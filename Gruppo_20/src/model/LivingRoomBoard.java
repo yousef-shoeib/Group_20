@@ -235,6 +235,4 @@ public class LivingRoomBoard extends Grid {
 		}
 		return -1;
 	}
-	
-	
 }
