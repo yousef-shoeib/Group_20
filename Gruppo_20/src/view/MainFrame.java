@@ -242,11 +242,12 @@ public class MainFrame extends JFrame {
 		{			
 			for(int y = 0; y < columns; y++)
 			{
-				if(matrGrindLiving[x][y].State() && matrGrindLiving[x][y].isEmpty())
+				if(matrGrindLiving[x][y].State() && !matrGrindLiving[x][y].isEmpty())
 				{	
 					ItemTile itemTile = matrGrindLiving[x][y].getItemTile();
 					ImageIcon tempIcon = new ImageIcon(ConfigPath.getItemTilePath()+ itemTile.getPathImg()+".png");
 					ImageIcon icon = new ImageIcon(tempIcon.getImage().getScaledInstance(65,65, Image.SCALE_SMOOTH));
+					mapLivingTileLabel.get(x+"_"+y).setBorder(new LineBorder(new Color(255,255,255), 3));
 					mapLivingTileLabel.get(x+"_"+y).setIcon(icon);
 					mapLivingTileLabel.get(x+"_"+y).setVisible(true);
 				}
