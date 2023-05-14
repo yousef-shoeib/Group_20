@@ -74,6 +74,9 @@ public class Game {
 	for(int i =0;i<numberOfPlayers;i++) {
 	players[i].print();
 	}*/
+	public Bag getBag() {
+		return bag;
+	}
 	
 	/*
 	//System.out.println(players[0].getBookshelfSlot(2,3).getNumber());
