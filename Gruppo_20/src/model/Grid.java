@@ -7,10 +7,6 @@ public abstract class Grid {
 	protected Slot[][] matrGrid;
 	
 
-	public Slot[][] getMatrGrid() {
-		return matrGrid;
-	}
-
 	public Grid(int rows, int columns) {
 		
 		if(rows < 0)
@@ -38,19 +34,20 @@ public abstract class Grid {
 			}
 		}
 	}
-	
+
 	public int getRows() {
 		return this.rows;
 	}
 	public int getColumns() {
 		return this.columns;
 	}
-	
+	public Slot[][] getMatrGrid() {
+		return matrGrid;
+	}
 	public Slot getSlot(int x,int y)
 	{
 		return matrGrid[x][y];
 	}
-	
 	public Slot getSlotFromTile(ItemTile itemTile)
 	{
 		if(itemTile == null)
@@ -100,56 +97,60 @@ public abstract class Grid {
 		}
 		return count;
 	}
-	
-	
-	/*public Grid[][] createPersonalGoalCard() {
-		Grid[][] personalObjectiveCard= new Grid[6][5];
-		this.rows=6;
-		this.columns=5;
-		this.setSlots();
-		return personalObjectiveCard;		
-	}*/
-	
-	/*public void setSlots() {
-		int number =1;
-		for(int row=0;row<rows;row++) {
-			for(int column=0;column<columns;column++) {
-				//this.slots[row][column]=new Slot(number,row,column);
-			//	this.slots[row][column].setId(0);
-				number++;
-			}
-		}
-	}
-
-/*	public void printGridNumber() {
-		for(int i =1;i<=this.rows;i++) {
-			System.out.println("");
-			for(int j =1;j<=this.columns;j++) {
-				System.out.print(this.getSlot(i,j).getNumber()+"\t");
-			}
-		}
-	}*/
-	
-	public void printGrid() {
-		for(int x = 0; x < this.rows; x++)
-		{
-			System.out.println("\n");
-			System.out.println("------------------------------------------------------------------------");
-			
-			for(int y = 0; y < this.columns ; y++)
-			{
-				if(matrGrid[x][y].State())
-				{
-					System.out.print( "  ("+ x + "," + y + ")" ) ;
-					//System.out.print( " " + matrGrid[x][y].getItemTile().getPathImg() + 
-							//" lb" + matrGrid[x][y].getItemTile().getId()) ;
-				}
-				else
-					System.out.print(" - ");
+	/**
+	 * Check if the currentItem has adjacentTile
+	 * @param currentItem
+	 * @return true if currentItem has an adjacent tile
+	 */
+	public boolean hasAdjacentTile(ItemTile currentItem)
+	{
+		if(currentItem ==  null)
+			throw new NullPointerException("itemTile is null");
 		
+		Slot currentSlot = this.getSlotFromTile(currentItem);
+		int x = currentSlot.getX();
+		int y = currentSlot.getY();
+		
+		if(x > 0) {
+			if(this.matrGrid[(x-1)][y].State() && !this.matrGrid[(x-1)][y].isEmpty()) {
+				return true;
 			}
 		}
-		System.out.println("\n");
+		if(x < (this.rows-1)) {
+			if(this.matrGrid[(x+1)][y].State() && !this.matrGrid[(x+1)][y].isEmpty()) {
+				return true;
+			}
+		}
+		if(y > 0) {
+			if(this.matrGrid[x][(y-1)].State() && !this.matrGrid[x][(y-1)].isEmpty()) {
+				return true;
+			}
+		}
+		if(y < (this.columns-1)) {
+			if(this.matrGrid[x][(y+1)].State() && !this.matrGrid[x][(y+1)].isEmpty()) {
+				return true;
+			}
+		}
+		return false;
 	}
-
+	/**
+	 * Check if there are any adjacent tiles
+	 * @returns true if there are two adjacent tiles
+	 */
+	public boolean hasAdjacentTiles()
+	{
+		for(int row = 0; row < this.rows; row ++)
+		{
+			for(int column = 0; column < this.columns; column ++)
+			{
+				if(matrGrid[row][column].State() && !matrGrid[row][column].isEmpty())
+				{
+					 if(hasAdjacentTile(matrGrid[row][column].getItemTile())){
+						 return true;
+					 }
+				}
+			}
+		}
+		return false;
+	}
 }
