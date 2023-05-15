@@ -12,7 +12,7 @@ public class Bookshelf extends Grid {
 		 */
 	}
 
-	private static ItemTileType types[] = { ItemTileType.CAT, ItemTileType.BOOK, ItemTileType.FRAME,
+	private static final ItemTileType types[] = { ItemTileType.CAT, ItemTileType.BOOK, ItemTileType.FRAME,
 			ItemTileType.TROPHY, ItemTileType.PLANT, ItemTileType.GAME };
 	private List<Integer> adjacentTiles = new ArrayList<>();;
 	private String path = "./resources/Assets/boards/bookshelf_orth.png";
