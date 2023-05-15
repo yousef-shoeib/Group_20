@@ -4,17 +4,78 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Test {
 
 	public static void main(String[] args) {
-		Player p = new Player("test");
-		int number=p.getPersonalGoalCard().getCardNumber();
-		System.out.println(number);
-		number=p.getPersonalGoalCard().countMatches(p.getBookshelf());
-		System.out.println(number);
-		System.out.println(p.getPersonalGoalCard().getPath());
+		Player p1 = new Player("test1");
+		Player p2= new Player("test2");
+		
+		//int number=p.getPersonalGoalCard().getCardNumber();
+		//System.out.println(number);
+		ItemTile tile1=new ItemTile("blu", "blu");
+		ItemTile tile2=new ItemTile("verde", "verde");
+		ItemTile tile3=new ItemTile("bianco", "bianco");
+		ItemTile tile4=new ItemTile("azzurro", "azzurro");
+		ArrayList<ItemTile> tiles=new ArrayList<>();
+		tiles.add(tile4);
+		tiles.add(tile1);
+		tiles.add(tile3);
+		ArrayList<ItemTile> tiles2=new ArrayList<>();
+		tiles2.add(tile4);
+		tiles2.add(tile2);
+		tiles2.add(tile3);
+		ArrayList<ItemTile> tiles3=new ArrayList<>();
+		tiles3.add(tile4);
+		tiles3.add(tile1);
+		tiles3.add(tile2);
+		//p1.getBookshelf().addItemTiles(0, tiles);
+		//p1.getBookshelf().addItemTiles(1, tiles2);
+		//p1.getBookshelf().addItemTiles(2, tiles3);
+		
+		
+		//number=p.getPersonalGoalCard().countMatches(p.getBookshelf());
+		for(int i=0;i<5;i++) {
+		p1.getBookshelf().setTile(5, i, tile1);
+		}
+		for(int i=0;i<5;i++) {
+			p1.getBookshelf().setTile(4, i, tile2);
+			}
+		for(int i=0;i<5;i++) {
+			p1.getBookshelf().setTile(3, i, tile3);
+			}
+		for(int i=0;i<5;i++) {
+			p1.getBookshelf().setTile(2, i, tile3);
+			}
+		for(int i=0;i<5;i++) {
+			p1.getBookshelf().setTile(1, i, tile3);
+			}
+		for(int i=0;i<5;i++) {
+			p1.getBookshelf().setTile(0, i, tile3);
+			}
+		for(int i=0;i<4;i++) {
+			p2.getBookshelf().setTile(1, i, tile4);
+			}
+		//p.getBookshelf().setTile(4, 0, new ItemTile("blu", "blu"));
+		//p.getBookshelf().setTile(3, 0, new ItemTile("blu", "blu"));
+		
+		/*p1.getBookshelf().countGroups();
+		p2.getBookshelf().countGroups();
+		List <Integer> test= p1.getBookshelf().getAdjacentTiles();
+		for(int i=0;i<test.size();i++) {
+			System.out.println(test.get(i));
+		}
+		List <Integer> test2= p2.getBookshelf().getAdjacentTiles();
+		for(int i=0;i<test2.size();i++) {
+			System.out.println(test2.get(i));
+		}*/
+		System.out.println(p2.getBookshelf().isComplete());
+		System.out.println(p1.getBookshelf().adjacentTilesPoints());
+		System.out.println(p2.getBookshelf().adjacentTilesPoints());
+		//System.out.println(number);
+		//System.out.println(p.getPersonalGoalCard().getPath());
 		/*
 		int numberOfPlayers = 3;
 		//commit di prova name
