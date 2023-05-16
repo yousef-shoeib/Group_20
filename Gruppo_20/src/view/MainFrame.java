@@ -171,7 +171,7 @@ public class MainFrame extends JFrame {
 		boxedGettedTileLabel = new HashMap<>();
 		
 		createLeavingTilesLabels(matrGrindLiving,rows,columns);
-		fillBookShelf();
+		createBookShelf();
 		createBoxedLabel();
 	}
 	
@@ -254,8 +254,8 @@ public class MainFrame extends JFrame {
 			}
 		}
 	}
-	//Fill BookShelf with Tiles Label
-	public void fillBookShelf()
+	//Create BookShelf
+	private void createBookShelf()
 	{
 		int first = 49;
 		int second = 28;
@@ -266,7 +266,7 @@ public class MainFrame extends JFrame {
 			for(int column = 0; column < 5; column++)
 			{	
 				bookShelfSlotLabel = new JLabel("");
-				bookShelfSlotLabel.setName(column+"_"+row); 
+				bookShelfSlotLabel.setName(row+"_"+column); 
 				bookShelfSlotLabel.setBounds(first, second, 50, 50);
 				bookShelfSlotLabel.setBorder(new LineBorder(new Color(101,67,53), 3));
 				bookShelfSlotLabel.setVisible(true);
@@ -286,7 +286,38 @@ public class MainFrame extends JFrame {
 			}
 		}
 	}
-
+	//Fill BookShelf with Tiles Label
+	public void fillBookShelf()
+	{
+		int first = 49;
+		int second = 28;
+		JLabel bookShelfSlotLabel = null;
+		
+		for(int row = 0; row < 6; row++)
+		{			
+			for(int column = 0; column < 5; column++)
+			{	
+				bookShelfSlotLabel = new JLabel("");
+				bookShelfSlotLabel.setName(row+"_"+column); 
+				bookShelfSlotLabel.setBounds(first, second, 50, 50);
+				bookShelfSlotLabel.setBorder(new LineBorder(new Color(101,67,53), 3));
+				bookShelfSlotLabel.setVisible(true);
+				bookShelfLabel.add(bookShelfSlotLabel);
+	
+				mapBookShelfTileLabel.put(bookShelfSlotLabel.getName(),bookShelfSlotLabel);	
+				
+				first+= 65;
+			}
+			
+			first = 49;
+			if(row > 1){
+				second = second + 57;
+			}
+			else{
+				second = second + 58;
+			}
+		}
+	}
 	public JButton getRemoveTileButton() {
 		return removeTileButton;
 	}

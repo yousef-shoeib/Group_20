@@ -194,7 +194,7 @@ public class MainController {
 					
 					ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
 					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
-					mainFrame.getMapBookShelfTileLabel().get(selectedBookShelfColumn+"_"+i).setIcon(icon);
+					mainFrame.getMapBookShelfTileLabel().get(i+"_"+selectedBookShelfColumn).setIcon(icon);
 
 					game.getLivingRoomBoard().removeTile(item);
 					
@@ -270,7 +270,7 @@ public class MainController {
 					   String[] slotCoordinate;
 					   slotCoordinate = label.getName().split("_");
 
-					   selectedBookShelfColumn = Integer.parseInt(slotCoordinate[0]);
+					   selectedBookShelfColumn = Integer.parseInt(slotCoordinate[1]);
 						
 					   int freeSlot = game.getListPlayer().get(currentPlayer).getBookshelf().numberOfEmptySlot(selectedBookShelfColumn);
 					   if(freeSlot > 0)
@@ -342,10 +342,10 @@ public class MainController {
 				{
 					ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+bookshelf.getSlot(row, column).getItemTile().getPathImg()+".png");
 					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
-					mainFrame.getMapBookShelfTileLabel().get(column+"_"+row).setIcon(icon);
+					mainFrame.getMapBookShelfTileLabel().get(row+"_"+column).setIcon(icon);
 				}
 				else{
-					mainFrame.getMapBookShelfTileLabel().get(column+"_"+row).setIcon(null);
+					mainFrame.getMapBookShelfTileLabel().get(row+"_"+column).setIcon(null);
 				}
 			}
 		}
@@ -370,7 +370,7 @@ public class MainController {
 	{	
 		for(int i = 0; i < freeSlot; i++)
 		{
-			mainFrame.getMapBookShelfTileLabel().get(column+"_"+i).setBorder(new LineBorder(new Color(50,205,50), 3));
+			mainFrame.getMapBookShelfTileLabel().get(i+"_"+column).setBorder(new LineBorder(new Color(50,205,50), 3));
 		}
 	}
 	private void deselectItemTile(JLabel label)
