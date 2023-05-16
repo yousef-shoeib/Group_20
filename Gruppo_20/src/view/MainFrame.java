@@ -254,7 +254,7 @@ public class MainFrame extends JFrame {
 			}
 		}
 	}
-	//Create BookShelf
+	//Create BookShelf Label
 	private void createBookShelf()
 	{
 		int first = 49;
@@ -286,35 +286,29 @@ public class MainFrame extends JFrame {
 			}
 		}
 	}
-	//Fill BookShelf with Tiles Label
-	public void fillBookShelf()
+	//Fill BookShelf Label
+	public void fillBookShelf(Slot[][] matrGridBookShelf, int rows, int columns)
 	{
-		int first = 49;
-		int second = 28;
 		JLabel bookShelfSlotLabel = null;
 		
-		for(int row = 0; row < 6; row++)
+		for(int row = 0; row < rows; row++)
 		{			
-			for(int column = 0; column < 5; column++)
+			for(int column = 0; column < columns; column++)
 			{	
-				bookShelfSlotLabel = new JLabel("");
-				bookShelfSlotLabel.setName(row+"_"+column); 
-				bookShelfSlotLabel.setBounds(first, second, 50, 50);
-				bookShelfSlotLabel.setBorder(new LineBorder(new Color(101,67,53), 3));
-				bookShelfSlotLabel.setVisible(true);
-				bookShelfLabel.add(bookShelfSlotLabel);
-	
-				mapBookShelfTileLabel.put(bookShelfSlotLabel.getName(),bookShelfSlotLabel);	
+				bookShelfSlotLabel = mapBookShelfTileLabel.get(row+"_"+column);
 				
-				first+= 65;
-			}
-			
-			first = 49;
-			if(row > 1){
-				second = second + 57;
-			}
-			else{
-				second = second + 58;
+				if(!matrGridBookShelf[row][column].isEmpty())
+				{
+					ItemTile itemTile = matrGridBookShelf[row][column].getItemTile();
+					ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+itemTile.getPathImg()+".png");
+					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
+					bookShelfSlotLabel.setIcon(icon);
+				}
+				else{
+					bookShelfSlotLabel.setIcon(null);
+				}
+				
+				bookShelfSlotLabel.setVisible(true);
 			}
 		}
 	}

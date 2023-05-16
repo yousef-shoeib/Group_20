@@ -334,21 +334,7 @@ public class MainController {
 		int numRows = bookshelf.getRows();
 		int numColumns = bookshelf.getColumns();
 		
-		for(int row = 0; row < numRows; row++ )
-		{
-			for(int column = 0; column < numColumns; column++ )
-			{
-				if(!bookshelf.getSlot(row, column).isEmpty())
-				{
-					ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+bookshelf.getSlot(row, column).getItemTile().getPathImg()+".png");
-					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
-					mainFrame.getMapBookShelfTileLabel().get(row+"_"+column).setIcon(icon);
-				}
-				else{
-					mainFrame.getMapBookShelfTileLabel().get(row+"_"+column).setIcon(null);
-				}
-			}
-		}
+		mainFrame.fillBookShelf(bookshelf.getMatrGrid(), numRows, numColumns);
 	}
 	private void loadPersonalGoalCard()
 	{
