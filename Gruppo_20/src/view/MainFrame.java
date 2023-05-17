@@ -37,7 +37,7 @@ public class MainFrame extends JFrame {
 	private JLabel commonGoalCard2Label;
 	private JLabel boxGettedTileLabel;
 	private JLabel playerNameLabel;
-	private JButton removeTileButton;
+	private JButton takeTileButton;
 	private JButton endRoundButton;
 	private JButton addTileButton;
 	private Map<String,JLabel> mapLivingTileLabel;
@@ -153,9 +153,10 @@ public class MainFrame extends JFrame {
 		playerNameLabel.setLayout(null);
 		bookShelfPane.add(playerNameLabel);
 		
-		removeTileButton = new JButton("Take");
-		removeTileButton.setBounds(743, 150, 77, 41);
-		livingPane.add(removeTileButton);
+		takeTileButton = new JButton("Take");
+		takeTileButton.setBounds(743, 150, 77, 41);
+		takeTileButton.setEnabled(false);///
+		livingPane.add(takeTileButton);
 		
 		addTileButton = new JButton("Add =>");
 		addTileButton.setBounds(743, 550, 77, 41);
@@ -312,8 +313,8 @@ public class MainFrame extends JFrame {
 			}
 		}
 	}
-	public JButton getRemoveTileButton() {
-		return removeTileButton;
+	public JButton getTakeTileButton() {
+		return takeTileButton;
 	}
 
 	public Map<String,JLabel> getMapBookShelfTileLabel() {

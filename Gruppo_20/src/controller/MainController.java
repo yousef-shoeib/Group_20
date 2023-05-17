@@ -136,7 +136,7 @@ public class MainController {
 						   listToRemoveTile.add(itemTile);
 						   labelToRemove.put(String.valueOf(itemTile.getId()), label);
 						   maxNumberGettableTile--;
-						   
+									   
 					   }catch (SameTileSelectedException e2) 
 					   {
 						   System.out.println(e2.getMessage());
@@ -152,14 +152,21 @@ public class MainController {
 						   System.out.println(e4.getMessage());
 						   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
 						   check = 1;
-					   }   
+					   }
+						
+					  if(listToRemoveTile.size() > 0) {
+							mainFrame.getTakeTileButton().setEnabled(true);
+					  }
+					  else {
+						  mainFrame.getTakeTileButton().setEnabled(false);
+					  }
 				}
 			});
 		}
 	}	
 	private void assignTakeTileButtonController()
 	{
-		mainFrame.getRemoveTileButton().addActionListener(new ActionListener() {
+		mainFrame.getTakeTileButton().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -179,7 +186,8 @@ public class MainController {
 				maxNumberGettableTile = 0;
 				
 				if(listToRemoveTile.size() > 0) {
-				mainFrame.getAddTileButton().setEnabled(true);
+					mainFrame.getTakeTileButton().setEnabled(false);
+					mainFrame.getAddTileButton().setEnabled(true);
 				}
 			}
 		});
