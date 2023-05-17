@@ -177,7 +177,10 @@ public class MainController {
 					i++;
 				}
 				maxNumberGettableTile = 0;
-				mainFrame.getAddTileButton().setEnabled(true);////
+				
+				if(listToRemoveTile.size() > 0) {
+				mainFrame.getAddTileButton().setEnabled(true);
+				}
 			}
 		});
 	}
