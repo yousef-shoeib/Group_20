@@ -150,6 +150,8 @@ public class MainFrame extends JFrame {
 		playerNameLabel = new JLabel("");	
 		playerNameLabel.setBounds(100, 100, 250, 50);
 		playerNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		playerNameLabel.setBackground(new Color(0, 127, 255));
+		playerNameLabel.setOpaque(true);
 		playerNameLabel.setLayout(null);
 		bookShelfPane.add(playerNameLabel);
 		

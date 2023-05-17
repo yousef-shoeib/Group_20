@@ -60,7 +60,7 @@ public class MainController {
 		loadPersonalGoalCard();
 		
 		maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
-		mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
+		mainFrame.getPlayerNameLabel().setText("      Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
 	}
 	private void assignLblNewLabelController()
 	{
@@ -234,7 +234,7 @@ public class MainController {
 				loadBookshelf();
 				loadPersonalGoalCard();
 				maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
-				mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
+				mainFrame.getPlayerNameLabel().setText("      Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
 				if(!game.getLivingRoomBoard().hasAdjacentTiles())
 				{
 					game.getLivingRoomBoard().putItemTiles(game.getBag().getListItemTile());
