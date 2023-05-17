@@ -186,7 +186,7 @@ public class MainFrame extends JFrame {
 		for(int i = 0; i < 3; i++)
 		{
 			JLabel label = new JLabel("");
-			label.setName("boxedGettedTileLabel"+i);
+			label.setName("boxedGettedTileLabel_"+i);
 			label.setBounds(1, y, 75, 75);
 			label.setBorder(new LineBorder(new Color(255,255,255), 3));
 			label.setLayout(null);

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +36,8 @@ public class MainController {
 	int maxNumberGettableTile = 0;
 	int selectedBookShelfColumn = -1;
 	int check = 0;
-	
+	boolean placing=false;
+	int positionToSwap=0; //to order box getted tiles
 	private List<ItemTile> listToRemoveTile;
 	private Map<String,JLabel> labelToRemove;
 
@@ -168,8 +170,8 @@ public class MainController {
 					JLabel tempLabel = labelToRemove.get(String.valueOf(item.getId()));
 					ImageIcon tempIcon = new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
 					ImageIcon icon = new ImageIcon(tempIcon.getImage().getScaledInstance(75,75, Image.SCALE_SMOOTH));
-					mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setIcon(icon);
-					mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setVisible(true);
+					mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+i).setIcon(icon);
+					mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+i).setVisible(true);
 					tempLabel.setVisible(false);
 
 					i++;
@@ -186,7 +188,7 @@ public class MainController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				int i = game.getListPlayer().get(currentPlayer).getBookshelf().freeSlotsInColumn(selectedBookShelfColumn)-1;
+				int i = game.getListPlayer().get(currentPlayer).getBookshelf().freeSlotsInColumn(selectedBookShelfColumn)-1;//
 				
 				for(ItemTile item : listToRemoveTile)
 				{
@@ -289,20 +291,42 @@ public class MainController {
 	}
 	private void assignBoxedGettedTileLabelController()
 	{
+		
 		for(Entry<String, JLabel> set : mainFrame.getBoxedGettedTileLabel().entrySet())
 		{
 				JLabel label = set.getValue();
-
 				label.addMouseListener(new MouseListener() {
 				
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
+					label.setBorder(new LineBorder(new Color(255, 255, 255), 3));
 				}
 				
 				@Override
-				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
+				public void mousePressed(MouseEvent e) {//////////////////////////////////////////////////////////////////////////////
+					String[] index = label.getName().split("_");
+					int i= Integer.parseInt(index[1]);
+					if(!placing) {
+						
+						positionToSwap=i;
+						label.setBorder(new LineBorder(new Color(0, 150, 255), 3));
+						placing=true;
+					}
+					else {
+						Collections.swap(listToRemoveTile, positionToSwap, i);
+						int n = 0;
+						for(ItemTile item : listToRemoveTile)
+						{
+							ImageIcon tempIcon = new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
+							ImageIcon icon = new ImageIcon(tempIcon.getImage().getScaledInstance(75,75, Image.SCALE_SMOOTH));
+							mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+n).setIcon(icon);
+							label.setBorder(new LineBorder(new Color(255, 255, 255), 3));
+							mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+n).setVisible(true);
+
+							n++;
+						}
+						placing=false;
+					}
 				}
 				
 				@Override
@@ -323,7 +347,7 @@ public class MainController {
 				
 				@Override
 				public void mouseClicked(MouseEvent e) {
-   
+					
 				}
 			});
 		}
@@ -410,9 +434,9 @@ public class MainController {
 	{
 		for(int i = 0; i < 3; i++)
 		{
-			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setIcon(null);
-			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setVisible(false);
-			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel"+i).setBorder(new LineBorder(new Color(255,255,255), 3));
+			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+i).setIcon(null);
+			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+i).setVisible(false);
+			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+i).setBorder(new LineBorder(new Color(255,255,255), 3));
 		}
 	}
 	public void setCurrentPlayer(Game game) {
