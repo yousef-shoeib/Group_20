@@ -14,13 +14,13 @@ public class CommonGoalCard12 extends CommonGoalCard{
 		
 		for(int i=1; i<this.bookshelf.getRows(); i++) {
 			for(int j=0; j<i; j++) {
-				if(this.bookshelf.getSlot(i, j).isEmpty()) count1++;
+				if(this.bookshelf.getSlot(i, j).isEmpty()==false) count1++;
 			}
 		}
 		
 		for(int i=1; i<this.bookshelf.getRows(); i++) {
 			for(int j=i;j<this.bookshelf.getColumns();j++) {
-				if(this.bookshelf.getSlot(i, j).isEmpty()) count2++; 
+				if(this.bookshelf.getSlot(i, j).isEmpty()==false) count2++; 
 			}
 		}
 		if((count1+count2)==25) return true;
@@ -33,13 +33,13 @@ public class CommonGoalCard12 extends CommonGoalCard{
 		
 		for(int i=1; i<this.bookshelf.getRows(); i++) {
 			for(int j=0; j<this.bookshelf.getRows()-i-1; j++) {
-				if(this.bookshelf.getSlot(i, j).isEmpty()) count1++;
+				if(this.bookshelf.getSlot(i, j).isEmpty()==false) count1++;
 			}
 		}
 		for(int i=1; i<this.bookshelf.getRows(); i++) {
 			for(int j=0; j<this.bookshelf.getColumns(); j++) {
 				if(j>=this.bookshelf.getRows()-i-1) {
-					if(this.bookshelf.getSlot(i, j).isEmpty()) count2++;
+					if(this.bookshelf.getSlot(i, j).isEmpty()==false) count2++;
 				}
 			}
 		}
