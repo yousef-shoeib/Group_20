@@ -303,7 +303,7 @@ public class MainController {
 				}
 				
 				@Override
-				public void mousePressed(MouseEvent e) {//////////////////////////////////////////////////////////////////////////////
+				public void mousePressed(MouseEvent e) {///////////
 					String[] index = label.getName().split("_");
 					int i= Integer.parseInt(index[1]);
 					if(!placing) {
