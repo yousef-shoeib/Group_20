@@ -3,6 +3,8 @@ package model;
 import java.util.List;
 import java.util.Random;
 
+import exception.SameTileSelectedException;
+
 public class LivingRoomBoard extends Grid {
 
 	private int[][] configMatrTwoPlayer = {	{0,0,0,0,0,0,0,0,0}, 
