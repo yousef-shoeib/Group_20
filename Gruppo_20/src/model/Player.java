@@ -83,8 +83,21 @@ public class Player {
 	public void setFirstPlayerSeat(boolean firstPlayerSeat) {
 		this.firstPlayerSeat = firstPlayerSeat;
 	}
-
+	private void countPersonalGoalPoionts() {
+		int points=this.getPersonalGoalCard().countMatches(this.bookshelf);
+		this.addPoints(points);
+	}	
+	private void countAdjacentTilesPoionts() {
+		int points=this.getBookshelf().adjacentTilesPoints();
+		this.addPoints(points);
+	}	
 	
-	
+	public void countPoints() {
+		this.countPersonalGoalPoionts();
+		this.countAdjacentTilesPoionts();
+		if(this.getBookshelf().isComplete()) {
+			this.addPoints(1);
+		}
+	}
 
 }
