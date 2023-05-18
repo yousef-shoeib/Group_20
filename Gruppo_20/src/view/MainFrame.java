@@ -106,7 +106,7 @@ public class MainFrame extends JFrame {
 		
 		//boxGettedTileLabel
 		boxGettedTileLabel = new JLabel("");		
-		boxGettedTileLabel.setBounds(743, 300, 77, 228);
+		boxGettedTileLabel.setBounds(743, 250, 77, 228);
 		boxGettedTileLabel.setBorder(new LineBorder(new Color(0,0,0), 3));
 		boxGettedTileLabel.setLayout(null);
 		boxGettedTileLabel.setVisible(true);
@@ -172,19 +172,19 @@ public class MainFrame extends JFrame {
 		playerInfoPane.add(playerPointsLabel);
 		
 		takeTileButton = new JButton("Take");
-		takeTileButton.setBounds(743, 150, 77, 41);
+		takeTileButton.setBounds(743, 200, 77, 41);
 		takeTileButton.setEnabled(false);///
 		livingPane.add(takeTileButton);
 		
 		addTileButton = new JButton("Add");
-		addTileButton.setBounds(743, 550, 77, 41);
+		addTileButton.setBounds(743, 490, 77, 41);
 		addTileButton.setEnabled(false);///
 		livingPane.add(addTileButton);
 		
-		endRoundButton = new JButton("End Round");
-		endRoundButton.setBounds(500, 530, 100, 41);
+		endRoundButton = new JButton("End");
+		endRoundButton.setBounds(743, 540, 77, 41);
 		endRoundButton.setEnabled(false);
-		bookShelfPane.add(endRoundButton);
+		livingPane.add(endRoundButton);
 		
 		mapLivingTileLabel = new HashMap<>();
 		mapBookShelfTileLabel = new HashMap<>();
