@@ -18,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
 import cards.PersonalGoalCard;
-import exception.NoTileTakenException;
 import exception.SameTileSelectedException;
 import model.Bookshelf;
 import model.Game;
@@ -53,7 +52,7 @@ public class MainController {
 		
 
 		setCurrentPlayer(game);
-		assignLblNewLabelController();
+		assignLivingTileLabelController();
 		assignBookShelfTileLabelController();
 		assignBoxedGettedTileLabelController();
 		assignTakeTileButtonController();
@@ -66,7 +65,7 @@ public class MainController {
 		mainFrame.getPlayerPointsLabel().setText("Points: "+ game.getListPlayer().get(currentPlayer).getPoints());
 
 	}
-	private void assignLblNewLabelController()
+	private void assignLivingTileLabelController()
 	{
 		for(Entry<String, JLabel> set : mainFrame.getMapLivingTileLabel().entrySet())
 		{
@@ -82,36 +81,12 @@ public class MainController {
 				@Override
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
-				}
-				
-				@Override
-				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
-					if(check == 1)
-					{
-					   label.setBorder(new LineBorder(new Color(255,255,255), 3));
-					   check = 0;
-					}
-					if(check == 2)
-					{
-					   label.setBorder(new LineBorder(new Color(50,205,50), 3));
-					   check = 0;
-					}	
-				}
-				
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					// TODO Auto-generated method stub
 					
-				}
-				
-				@Override
-				public void mouseClicked(MouseEvent e) {
-						
 					   String[] coordinates = label.getName().split("_");
 					   int row = Integer.parseInt(coordinates[0]);
 					   int column = Integer.parseInt(coordinates[1]);
 					   Slot currentSlot = game.getLivingRoomBoard().getSlot(row, column);
+					   
 					   ItemTile checkItemTile = null;
 					   if(!currentSlot.isEmpty()) {
 						   checkItemTile = currentSlot.getItemTile();
@@ -164,6 +139,32 @@ public class MainController {
 					  else {
 						  mainFrame.getTakeTileButton().setEnabled(false);
 					  }
+				}
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					if(check == 1)
+					{
+					   label.setBorder(new LineBorder(new Color(255,255,255), 3));
+					   check = 0;
+					}
+					if(check == 2)
+					{
+					   label.setBorder(new LineBorder(new Color(50,205,50), 3));
+					   check = 0;
+					}	
+				}
+				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub	
 				}
 			});
 		}
@@ -268,7 +269,28 @@ public class MainController {
 				
 				@Override
 				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
+					
+					if(taken) {
+
+						   String[] slotCoordinate;
+						   slotCoordinate = label.getName().split("_");
+
+						   int tempColumn = Integer.parseInt(slotCoordinate[1]);
+						   
+						   int freeSlot = game.getListPlayer().get(currentPlayer).getBookshelf().numberOfEmptySlot(tempColumn);
+						   if(freeSlot > 0 && freeSlot >= listToRemoveTile.size())
+							{
+								deselectAllSlot();
+								selectedBookShelfColumn = tempColumn;
+								selectAllFreeSlot(selectedBookShelfColumn,freeSlot);
+								mainFrame.getAddTileButton().setEnabled(true);
+							}
+						   else
+						   {
+							   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
+							   check = 1;
+						   }
+						}
 				}
 				
 				@Override
@@ -289,28 +311,7 @@ public class MainController {
 				
 				@Override
 				public void mouseClicked(MouseEvent e){
-
-					if(taken) {
-
-					   String[] slotCoordinate;
-					   slotCoordinate = label.getName().split("_");
-
-					   int tempColumn = Integer.parseInt(slotCoordinate[1]);
-					   
-					   int freeSlot = game.getListPlayer().get(currentPlayer).getBookshelf().numberOfEmptySlot(tempColumn);
-					   if(freeSlot > 0 && freeSlot >= listToRemoveTile.size())
-						{
-							deselectAllSlot();
-							selectedBookShelfColumn = tempColumn;
-							selectAllFreeSlot(selectedBookShelfColumn,freeSlot);
-							mainFrame.getAddTileButton().setEnabled(true);
-						}
-					   else
-					   {
-						   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
-						   check = 1;
-					   }
-					}
+					// TODO Auto-generated method stub
 				}
 			});
 		}
