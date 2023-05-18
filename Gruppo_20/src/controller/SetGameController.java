@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.NoTileTakenException;
 import model.Game;
 import view.MainFrame;
 import view.SetGameFrame;
@@ -17,12 +18,10 @@ public class SetGameController {
 	private Game game;
 	private List<String> namePlayers;
 	
-	public SetGameController(SetGameFrame setGameFrame,MainFrame mainFrame,Game game, MainController mainController)
+	public SetGameController(SetGameFrame setGameFrame,Game game)
 	{
 		this.game = game;
 		this.setGameFrame = setGameFrame;
-		this.mainFrame = mainFrame;
-		this.mainController = mainController;
 		namePlayers = new ArrayList<>();
 
 		assignNodeFieldController();
@@ -42,7 +41,6 @@ public class SetGameController {
 				game.start(numberOfPlayers,namePlayers);
 				mainFrame = new MainFrame(game.getLivingRoomBoard().getMatrGrid(),game.getLivingRoomBoard().getRows(),game.getLivingRoomBoard().getColumns());
 				mainController = new MainController(game,mainFrame);
-				
 				setGameFrame.setVisible(false);
 			}
 		} );

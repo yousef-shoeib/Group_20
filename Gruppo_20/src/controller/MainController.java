@@ -18,11 +18,12 @@ import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
 import cards.PersonalGoalCard;
+import exception.NoTileTakenException;
+import exception.SameTileSelectedException;
 import model.Bookshelf;
 import model.Game;
 import model.ItemTile;
 import model.Player;
-import model.SameTileSelectedException;
 import model.Slot;
 import utility.ConfigPath;
 import view.MainFrame;
@@ -37,6 +38,7 @@ public class MainController {
 	int selectedBookShelfColumn = -1;
 	int check = 0;
 	boolean placing=false;
+	boolean taken = false;
 	int positionToSwap=0; //to order box getted tiles
 	private List<ItemTile> listToRemoveTile;
 	private Map<String,JLabel> labelToRemove;
@@ -60,7 +62,9 @@ public class MainController {
 		loadPersonalGoalCard();
 		
 		maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
-		mainFrame.getPlayerNameLabel().setText("      Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
+		mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
+		mainFrame.getPlayerPointsLabel().setText("Points: "+ game.getListPlayer().get(currentPlayer).getPoints());
+
 	}
 	private void assignLblNewLabelController()
 	{
@@ -180,6 +184,7 @@ public class MainController {
 					mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+i).setIcon(icon);
 					mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+i).setVisible(true);
 					tempLabel.setVisible(false);
+					taken = true;
 
 					i++;
 				}
@@ -187,7 +192,7 @@ public class MainController {
 				
 				if(listToRemoveTile.size() > 0) {
 					mainFrame.getTakeTileButton().setEnabled(false);
-					mainFrame.getAddTileButton().setEnabled(true);
+					//mainFrame.getAddTileButton().setEnabled(true);
 				}
 			}
 		});
@@ -217,6 +222,7 @@ public class MainController {
 				deselectAllSlot();
 				hideBoxedGettedTileLabels();
 				selectedBookShelfColumn = -1;
+				taken = false;
 				listToRemoveTile = null;
 				listToRemoveTile = new ArrayList<>();
 				mainFrame.getAddTileButton().setEnabled(false);/////
@@ -230,12 +236,14 @@ public class MainController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				deselectAllSlot();
+				selectedBookShelfColumn = -1;
 				increaseCurrentPlayer();
 				loadBookshelf();
 				loadPersonalGoalCard();
 				maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
-				mainFrame.getPlayerNameLabel().setText("      Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
+				mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
+				mainFrame.getPlayerPointsLabel().setText("Points: " + game.getListPlayer().get(currentPlayer).getPoints());
 				if(!game.getLivingRoomBoard().hasAdjacentTiles())
 				{
 					game.getLivingRoomBoard().putItemTiles(game.getBag().getListItemTile());
@@ -280,24 +288,29 @@ public class MainController {
 				}
 				
 				@Override
-				public void mouseClicked(MouseEvent e) {
+				public void mouseClicked(MouseEvent e){
+
+					if(taken) {
 
 					   String[] slotCoordinate;
 					   slotCoordinate = label.getName().split("_");
 
-					   selectedBookShelfColumn = Integer.parseInt(slotCoordinate[1]);
-						
-					   int freeSlot = game.getListPlayer().get(currentPlayer).getBookshelf().numberOfEmptySlot(selectedBookShelfColumn);
-					   if(freeSlot > 0)
+					   int tempColumn = Integer.parseInt(slotCoordinate[1]);
+					   
+					   int freeSlot = game.getListPlayer().get(currentPlayer).getBookshelf().numberOfEmptySlot(tempColumn);
+					   if(freeSlot > 0 && freeSlot >= listToRemoveTile.size())
 						{
 							deselectAllSlot();
+							selectedBookShelfColumn = tempColumn;
 							selectAllFreeSlot(selectedBookShelfColumn,freeSlot);
+							mainFrame.getAddTileButton().setEnabled(true);
 						}
 					   else
 					   {
 						   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
 						   check = 1;
-					   }	   
+					   }
+					}
 				}
 			});
 		}
