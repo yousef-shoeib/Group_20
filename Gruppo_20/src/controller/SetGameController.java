@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.NoTileTakenException;
 import model.Game;
 import view.MainFrame;
 import view.SetGameFrame;
@@ -40,7 +41,6 @@ public class SetGameController {
 				game.start(numberOfPlayers,namePlayers);
 				mainFrame = new MainFrame(game.getLivingRoomBoard().getMatrGrid(),game.getLivingRoomBoard().getRows(),game.getLivingRoomBoard().getColumns());
 				mainController = new MainController(game,mainFrame);
-				
 				setGameFrame.setVisible(false);
 			}
 		} );
