@@ -49,14 +49,14 @@ public class Bookshelf extends Grid {
 	public int maxDrawableTiles() {
 		int maxNumberOfTiles = 0;
 		for (int column = 0; column < this.columns; column++) {
-			maxNumberOfTiles = 0;
+			int freeSlots = 0;
 			for (int row = 0; row < 3; row++) {
 				if (this.getSlot(row, column).isEmpty()) {
-					maxNumberOfTiles++;
+					freeSlots++;
 				}
-				/*
-				 * if(this.getSlot(row, column).getItemTile() != null) { break; }
-				 */
+				if(freeSlots>maxNumberOfTiles) {
+					maxNumberOfTiles=freeSlots;
+				}
 				if (maxNumberOfTiles == 3) {
 					return maxNumberOfTiles;
 				}
