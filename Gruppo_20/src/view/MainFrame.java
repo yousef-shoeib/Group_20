@@ -30,6 +30,7 @@ public class MainFrame extends JFrame {
 	private JPanel livingPane;
 	private JPanel bookShelfPane;
 	private JPanel commonGoalCardsPane;
+	private JPanel playerInfoPane;
 	private JLabel background;
 	private JLabel bookShelfLabel;
 	private JLabel personalGoalCardLabel;
@@ -37,6 +38,7 @@ public class MainFrame extends JFrame {
 	private JLabel commonGoalCard2Label;
 	private JLabel boxGettedTileLabel;
 	private JLabel playerNameLabel;
+	private JLabel playerPointsLabel;
 	private JButton takeTileButton;
 	private JButton endRoundButton;
 	private JButton addTileButton;
@@ -146,14 +148,28 @@ public class MainFrame extends JFrame {
 		commonGoalCard2Label.setIcon(tempCommonGoalCard2Icon);
 		commonGoalCardsPane.add(commonGoalCard2Label);
 		
+		//playerInfoPane
+		playerInfoPane = new JPanel();		
+		playerInfoPane.setBounds(100, 50, 250, 100);
+		playerInfoPane.setBorder(new LineBorder(new Color(0,0,0), 3));
+		playerInfoPane.setBackground(new Color(0, 127, 255));
+		playerInfoPane.setLayout(null);
+		playerInfoPane.setVisible(true);
+		bookShelfPane.add(playerInfoPane);
+		
 		//Player Name Label
 		playerNameLabel = new JLabel("");	
-		playerNameLabel.setBounds(100, 100, 250, 50);
+		playerNameLabel.setBounds(20, 0, 250, 50);
 		playerNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		playerNameLabel.setBackground(new Color(0, 127, 255));
-		playerNameLabel.setOpaque(true);
 		playerNameLabel.setLayout(null);
-		bookShelfPane.add(playerNameLabel);
+		playerInfoPane.add(playerNameLabel);
+		
+		//Player Points Label
+		playerPointsLabel = new JLabel("");	
+		playerPointsLabel.setBounds(20, 40, 250, 50);
+		playerPointsLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		playerPointsLabel.setLayout(null);
+		playerInfoPane.add(playerPointsLabel);
 		
 		takeTileButton = new JButton("Take");
 		takeTileButton.setBounds(743, 150, 77, 41);
@@ -342,5 +358,9 @@ public class MainFrame extends JFrame {
 
 	public Map<String, JLabel> getMapLivingTileLabel() {
 		return mapLivingTileLabel;
+	}
+
+	public JLabel getPlayerPointsLabel() {
+		return playerPointsLabel;
 	}
 }
