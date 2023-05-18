@@ -14,11 +14,9 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainFrame mainFrame = null;
-					MainController mainController = null;
-					SetGameFrame setGameFrame = new SetGameFrame();
-					Game game = new Game();
-					SetGameController setGameController = new SetGameController(setGameFrame,mainFrame,game,mainController);
+						SetGameFrame setGameFrame = new SetGameFrame();
+						Game game = new Game();
+						SetGameController setGameController = new SetGameController(setGameFrame,game);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

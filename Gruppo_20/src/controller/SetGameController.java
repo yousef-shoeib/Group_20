@@ -17,12 +17,10 @@ public class SetGameController {
 	private Game game;
 	private List<String> namePlayers;
 	
-	public SetGameController(SetGameFrame setGameFrame,MainFrame mainFrame,Game game, MainController mainController)
+	public SetGameController(SetGameFrame setGameFrame,Game game)
 	{
 		this.game = game;
 		this.setGameFrame = setGameFrame;
-		this.mainFrame = mainFrame;
-		this.mainController = mainController;
 		namePlayers = new ArrayList<>();
 
 		assignNodeFieldController();

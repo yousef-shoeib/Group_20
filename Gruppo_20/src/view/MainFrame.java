@@ -160,7 +160,7 @@ public class MainFrame extends JFrame {
 		takeTileButton.setEnabled(false);///
 		livingPane.add(takeTileButton);
 		
-		addTileButton = new JButton("Add =>");
+		addTileButton = new JButton("Add");
 		addTileButton.setBounds(743, 550, 77, 41);
 		addTileButton.setEnabled(false);///
 		livingPane.add(addTileButton);
