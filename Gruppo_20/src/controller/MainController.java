@@ -60,6 +60,8 @@ public class MainController {
 		assignAddBookShelfTileButtonController();
 		assignEndRoundButtonController();	
 		loadPersonalGoalCard();
+		loadCommonGoalCard();
+		flipPersonalGoalCard();
 		
 		maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
 		mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
@@ -377,6 +379,52 @@ public class MainController {
 			});
 		}
 	}
+	private void flipPersonalGoalCard()
+	{	
+		JLabel label=mainFrame.getPersonalGoalCardLabel();
+		ImageIcon tempFaceDownIcon= new ImageIcon("./resources/Assets/personalGoalCards/back.jpg");
+		ImageIcon FaceDownIcon= new ImageIcon(tempFaceDownIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
+		
+				mainFrame.getPersonalGoalCardLabel().addMouseListener(new MouseListener() {
+				
+				
+				
+				@Override
+				public void mouseExited(MouseEvent e) {
+					label.setIcon(FaceDownIcon);
+				}
+				
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					PersonalGoalCard personalGoal = game.getListPlayer().get(currentPlayer).getPersonalGoalCard();	
+					ImageIcon tempIcon =new ImageIcon(personalGoal.getPath());
+					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
+					label.setIcon(icon);
+					
+				}
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				
+			});
+		
+	}
 	private void loadBookshelf()
 	{
 		Bookshelf bookshelf = game.getListPlayer().get(currentPlayer).getBookshelf();
@@ -388,9 +436,9 @@ public class MainController {
 	private void loadPersonalGoalCard()
 	{
 		PersonalGoalCard personalGoal = game.getListPlayer().get(currentPlayer).getPersonalGoalCard();	
-		ImageIcon tempIcon =new ImageIcon(personalGoal.getPath());
-		ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
-		mainFrame.getPersonalGoalCardLabel().setIcon(icon);
+		//ImageIcon tempIcon =new ImageIcon(personalGoal.getPath());
+		//ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
+		//mainFrame.getPersonalGoalCardLabel().setIcon(icon);
 	}
 	private void loadCommonGoalCard()
 	{
