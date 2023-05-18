@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import exception.NoTileTakenException;
 import model.Game;
 import view.MainFrame;
 import view.SetGameFrame;
