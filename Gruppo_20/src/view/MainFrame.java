@@ -134,7 +134,7 @@ public class MainFrame extends JFrame {
 		commonGoalCard1Label = new JLabel();	
 		commonGoalCard1Label.setBounds(70, 40, 170, 120);
 		commonGoalCard1Label.setLayout(null);
-		ImageIcon tempCommonGoalCard1 =new ImageIcon(".\\resources\\Assets\\commonGoalCards\\1.jpg");
+		ImageIcon tempCommonGoalCard1 =new ImageIcon("./resources/Assets/commonGoalCards/back.jpg");
 		ImageIcon tempCommonGoalCard1Icon=new ImageIcon(tempCommonGoalCard1.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
 		commonGoalCard1Label.setIcon(tempCommonGoalCard1Icon);
 		commonGoalCardsPane.add(commonGoalCard1Label);
@@ -143,7 +143,7 @@ public class MainFrame extends JFrame {
 		commonGoalCard2Label = new JLabel();	
 		commonGoalCard2Label.setBounds(300, 40, 170, 120);
 		commonGoalCard2Label.setLayout(null);
-		ImageIcon tempCommonGoalCard2 =new ImageIcon(".\\resources\\Assets\\commonGoalCards\\2.jpg");
+		ImageIcon tempCommonGoalCard2 =new ImageIcon("./resources/Assets/commonGoalCards/back.jpg");
 		ImageIcon tempCommonGoalCard2Icon=new ImageIcon(tempCommonGoalCard2.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
 		commonGoalCard2Label.setIcon(tempCommonGoalCard2Icon);
 		commonGoalCardsPane.add(commonGoalCard2Label);
@@ -363,4 +363,12 @@ public class MainFrame extends JFrame {
 	public JLabel getPlayerPointsLabel() {
 		return playerPointsLabel;
 	}
+	public JLabel getCommonGoalCard1Label() {
+		return commonGoalCard1Label;
+	}
+
+	public JLabel getCommonGoalCard2Label() {
+		return commonGoalCard2Label;
+	}
+
 }

@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
 import cards.PersonalGoalCard;
+import commongoal.CommonGoalCard;
 import exception.SameTileSelectedException;
 import model.Bookshelf;
 import model.Game;
@@ -386,11 +387,17 @@ public class MainController {
 	}
 	private void loadPersonalGoalCard()
 	{
-		PersonalGoalCard personalGoal = game.getListPlayer().get(currentPlayer).getPersonalGoalCard();
-		
-					ImageIcon tempIcon =new ImageIcon(personalGoal.getPath());
-					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
-					mainFrame.getPersonalGoalCardLabel().setIcon(icon);
+		PersonalGoalCard personalGoal = game.getListPlayer().get(currentPlayer).getPersonalGoalCard();	
+		ImageIcon tempIcon =new ImageIcon(personalGoal.getPath());
+		ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
+		mainFrame.getPersonalGoalCardLabel().setIcon(icon);
+	}
+	private void loadCommonGoalCard()
+	{
+		CommonGoalCard commonGoal = game.getCommonGoal();
+		/*ImageIcon tempIcon =new ImageIcon(commonGoal.getPath()); //metodo da creare in commongoal card
+		ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
+		mainFrame.getCommonGoalCard1Label().setIcon(icon);*/	
 	}
 	private void deselectAllSlot()
 	{

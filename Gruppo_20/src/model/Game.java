@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import commongoal.CommonGoalCard;
+
 public class Game {
 
 	private LivingRoomBoard livingRoomBoard;
@@ -13,6 +15,7 @@ public class Game {
 	private Bag bag;
 	private int firstPlayer;
 	private GameState state= GameState.NEW_GAME;
+	private CommonGoalCard commonGoal;
 	public Game()
 	{	
 		listPlayer = new ArrayList<>();
@@ -24,6 +27,7 @@ public class Game {
 		livingRoomBoard.putItemTiles(bag.getListItemTile());
 		addPlayers(numberOfPlayers,namePlayers);
 		assignFirstPlayerSeat(numberOfPlayers);
+		commonGoal=CommonGoalCard.assignCommonGoalCard(null);
 	}
 	
 	public LivingRoomBoard getLivingRoomBoard() {
@@ -63,6 +67,10 @@ public class Game {
 		for(Player p: listPlayer) {
 			p.countPoints();
 		}
+	}
+	
+	public CommonGoalCard getCommonGoal() {
+		return commonGoal;
 	}
 	
 	

@@ -37,7 +37,7 @@ public abstract class PersonalGoalCard {
 	
 	public boolean isColorMatching(Bookshelf bookshelf, Match m) {
 		if(!bookshelf.getSlot(m.getRow(), m.getColumn()).isEmpty() && 
-				bookshelf.getTile(m.getRow(), m.getColumn()).getType()==m.getType()) {
+				bookshelf.getTile(m.getRow(), m.getColumn()).getType().equals(m.getType())) {
 			return true;
 		}
 		
