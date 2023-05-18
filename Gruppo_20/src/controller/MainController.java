@@ -220,6 +220,7 @@ public class MainController {
 				listToRemoveTile = null;
 				listToRemoveTile = new ArrayList<>();
 				mainFrame.getAddTileButton().setEnabled(false);/////
+				mainFrame.getEndRoundButton().setEnabled(true);
 			}
 		});
 	}
@@ -240,6 +241,7 @@ public class MainController {
 					game.getLivingRoomBoard().putItemTiles(game.getBag().getListItemTile());
 					mainFrame.fillLeavingRoomBoard(game.getLivingRoomBoard().getMatrGrid(),game.getLivingRoomBoard().getRows(),game.getLivingRoomBoard().getColumns());
 				}
+				mainFrame.getEndRoundButton().setEnabled(false);
 			}
 		});
 	}
@@ -310,7 +312,7 @@ public class MainController {
 				
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					label.setBorder(new LineBorder(new Color(255, 255, 255), 3));
+					//label.setBorder(new LineBorder(new Color(255, 255, 255), 3));
 				}
 				
 				@Override
@@ -320,10 +322,11 @@ public class MainController {
 					if(!placing) {
 						
 						positionToSwap=i;
-						label.setBorder(new LineBorder(new Color(0, 150, 255), 3));
+						label.setBorder(new LineBorder(new Color(50,205,50), 3));
 						placing=true;
 					}
 					else {
+						mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+positionToSwap).setBorder(new LineBorder(new Color(255, 255, 255), 3));
 						Collections.swap(listToRemoveTile, positionToSwap, i);
 						int n = 0;
 						for(ItemTile item : listToRemoveTile)
@@ -343,11 +346,7 @@ public class MainController {
 				@Override
 				public void mouseExited(MouseEvent e) {
 					// TODO Auto-generated method stub
-					if(check == 1)
-					{
-						label.setBorder(new LineBorder(new Color(255,255,255), 3));
-						check = 0;
-					}	
+					//label.setBorder(new LineBorder(new Color(255, 255, 255), 3));
 				}
 				
 				@Override

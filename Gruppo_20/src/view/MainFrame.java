@@ -167,6 +167,7 @@ public class MainFrame extends JFrame {
 		
 		endRoundButton = new JButton("End Round");
 		endRoundButton.setBounds(500, 530, 100, 41);
+		endRoundButton.setEnabled(false);
 		bookShelfPane.add(endRoundButton);
 		
 		mapLivingTileLabel = new HashMap<>();
