@@ -1,6 +1,7 @@
 package cards;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import cards.Match;
@@ -16,6 +17,7 @@ public abstract class PersonalGoalCard {
 	private Match match5;
 	private Match match6;
 	private String path;
+	private static List<Integer> assignedCards=new ArrayList<>();
 	private ArrayList<Match> matches=null;
 	protected ArrayList<Match> fillMatches() {
 		ArrayList<Match> matches= new ArrayList<>();
@@ -86,10 +88,16 @@ public abstract class PersonalGoalCard {
 
 	
 
-	public static PersonalGoalCard assignPersonalGoalCard(Bookshelf b) {
+	public static PersonalGoalCard assignPersonalGoalCard() {
+		PersonalGoalCard card = null;
 		Random r = new Random();
 		int n=r.nextInt(12)+1;
-		PersonalGoalCard card = null;
+		for(int i :assignedCards) {
+		if(n==i){
+		 n=r.nextInt(12)+1;		 
+		}
+		}
+		assignedCards.add(n);
 		switch(n) {
 		case 1:
 			card=new PersonalGoalCard1();

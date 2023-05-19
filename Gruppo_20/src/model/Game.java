@@ -14,11 +14,12 @@ public class Game {
 	private List<Player> listPlayer;
 	private Bag bag;
 	private int firstPlayer;
-	private GameState state= GameState.NEW_GAME;
+	private GameState state;
 	private CommonGoalCard commonGoal;
 	public Game()
 	{	
 		listPlayer = new ArrayList<>();
+		this.state=GameState.NEW_GAME;
 	}
 	public void start(int numberOfPlayers,List<String> namePlayers)
 	{

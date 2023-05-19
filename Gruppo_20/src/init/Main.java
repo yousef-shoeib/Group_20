@@ -1,10 +1,11 @@
-package view;
+package init;
 
 import java.awt.EventQueue;
 
 import controller.MainController;
 import controller.SetGameController;
 import model.Game;
+import view.SetGameFrame;
 
 public class Main {
 	/**
@@ -23,4 +24,5 @@ public class Main {
 			}
 		});
 	}
+	
 }
