@@ -16,6 +16,7 @@ public class Game {
 	private int firstPlayer;
 	private GameState state;
 	private CommonGoalCard commonGoal;
+	private static int currentPlayer;
 	public Game()
 	{	
 		listPlayer = new ArrayList<>();
@@ -45,12 +46,19 @@ public class Game {
 	public List<Player> getListPlayer() {
 		return listPlayer;
 	}
+	
 	private void assignFirstPlayerSeat(int numberOfPlayers) {
 		Random r= new Random();
 		int i= r.nextInt(numberOfPlayers);
 		listPlayer.get(i).setFirstPlayerSeat(true);
 		this.firstPlayer=i;
+		currentPlayer=i;
 	}
+	
+	public void nextPlayer() {
+		currentPlayer++;
+	}
+	
 	public int getFirstPlayer() {
 		return firstPlayer;
 	}
@@ -69,9 +77,14 @@ public class Game {
 			p.countPoints();
 		}
 	}
-	
+	public void controlCommonGoal() {
+		
+	}
 	public CommonGoalCard getCommonGoal() {
 		return commonGoal;
+	}
+	public static int getCurrentPlayer() {
+		return currentPlayer;
 	}
 	
 	

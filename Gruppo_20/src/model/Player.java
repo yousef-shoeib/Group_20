@@ -84,7 +84,7 @@ public class Player {
 		this.firstPlayerSeat = firstPlayerSeat;
 	}
 	private void countPersonalGoalPoionts() {
-		int points=this.getPersonalGoalCard().countMatches(this.bookshelf);
+		int points=this.getPersonalGoalCard().getPoints(this.bookshelf);
 		this.addPoints(points);
 	}	
 	private void countAdjacentTilesPoionts() {

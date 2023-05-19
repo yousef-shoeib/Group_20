@@ -51,7 +51,7 @@ public class MainController {
 		listToRemoveTile = new ArrayList<>();
 		labelToRemove = new HashMap<>();
 		
-
+		game.getFirstPlayer();
 		setCurrentPlayer(game);
 		assignLivingTileLabelController();
 		assignBookShelfTileLabelController();
