@@ -93,6 +93,15 @@ public class MainFrame extends JFrame {
 		commonGoalCardsPane.setLayout(null);
 		contentPane.add(commonGoalCardsPane);
 		
+		//scoring tokens label////////////////////////////////////////////////
+		JLabel scoringTokensLabel = new JLabel();		
+		scoringTokensLabel.setBounds(585, 535, 75, 75);
+		ImageIcon tempTokenIcon =new ImageIcon("./resources/Assets/scoringTokens/scoring_2.png");
+		ImageIcon tokenIcon=new ImageIcon(tempTokenIcon.getImage().getScaledInstance(75, 75,Image.SCALE_SMOOTH));
+		scoringTokensLabel.setIcon(tokenIcon);
+		scoringTokensLabel.setVisible(true);
+		livingPane.add(scoringTokensLabel);
+		
 		//LivingRoomBoard Label
 		background = new JLabel();		
 		//int x = (getWidth()/2)-350;
@@ -102,6 +111,7 @@ public class MainFrame extends JFrame {
 		ImageIcon backgroundIcon=new ImageIcon(tempBackground.getImage().getScaledInstance(700, 700,Image.SCALE_SMOOTH));
 		background.setIcon(backgroundIcon);
 		livingPane.add(background);
+		
 		
 		
 		//boxGettedTileLabel
@@ -193,6 +203,7 @@ public class MainFrame extends JFrame {
 		createLeavingTilesLabels(matrGrindLiving,rows,columns);
 		createBookShelf();
 		createBoxedLabel();
+		
 	}
 	
 	public JLabel getPersonalGoalCardLabel() {

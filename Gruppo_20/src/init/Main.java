@@ -14,19 +14,27 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Game game = new Game();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-						SetGameFrame setGameFrame = new SetGameFrame();
-						SetGameController setGameController = new SetGameController(setGameFrame,game);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	while(game.getState().equals(GameState.NEW_GAME)) {
-		
-	}
-	}
+		SetGameFrame setGameFrame;
+		SetGameController setGameController;
 	
+	do {
+		if(game.getState().equals(GameState.NEW_GAME)) {
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+							SetGameFrame setGameFrame = new SetGameFrame();
+							SetGameController setGameController = new SetGameController(setGameFrame,game);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			game.setState(GameState.PLAY);
+		}
+	//while(game.getState().equals(GameState.PLAY)) {
+		
+	//}
+	
+	}while(!game.getState().equals(GameState.CLOSE));
+}
 }
