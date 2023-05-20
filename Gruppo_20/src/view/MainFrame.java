@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Frame;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class MainFrame extends JFrame {
 	private Map<String,JLabel> mapBookShelfTileLabel;
 	private Map<String,JLabel> boxedGettedTileLabel;
 	private JButton quitGameButton;
-	
+	private GameOverPanel gameOverPanel;
 
 	/**
 	 * Create the frame.
@@ -63,6 +64,7 @@ public class MainFrame extends JFrame {
 		setTitle("My Shelfie");
 		ImageIcon frameIcon= new ImageIcon("./resources/Assets/PublisherMaterial/Icon 50x50px.png");
 		setIconImage(frameIcon.getImage());
+		//setUndecorated(true); //questo metodo toglie la barra sopra quindi non togliere se non vedi il pulsante quit
 		setVisible(true);
 		
 		//Master Panel
@@ -392,5 +394,15 @@ public class MainFrame extends JFrame {
 
 	public JLabel getCommonGoalCard2Label() {
 		return commonGoalCard2Label;
+	}
+
+	public GameOverPanel getGameOverPanel() {
+		return gameOverPanel;
+	}
+	public void createGameOverPanel() {
+		gameOverPanel=new GameOverPanel();
+		gameOverPanel.setBounds(780, 200, 600,400 );
+		gameOverPanel.setVisible(true);		
+		contentPane.add(gameOverPanel,BorderLayout.CENTER);
 	}
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +29,7 @@ import model.Player;
 import model.Slot;
 import utility.ConfigPath;
 import view.MainFrame;
+import view.SetGameFrame;
 
 public class MainController {
 
@@ -233,6 +235,7 @@ public class MainController {
 				listToRemoveTile = new ArrayList<>();
 				mainFrame.getAddTileButton().setEnabled(false);/////
 				if(game.currentPlayer().getBookshelf().isComplete()) {
+					createGameOverPanel();
 					game.setState(GameState.GAME_OVER);
 				}
 				mainFrame.getEndRoundButton().setEnabled(true);
@@ -546,6 +549,61 @@ public class MainController {
 			}
 		});
 	}
+	private void createGameOverPanel() {
+		mainFrame.createGameOverPanel();
+		assignQuitGameOverButtonController();
+		assignNewGameButtonController();
+		assignWinner();
+		assignPlayersList();
+	}
+	private void assignWinner() {
+		mainFrame.getGameOverPanel().getWinnerNameLabel().setText(game.getWinner().getName());
+	}
+	private void assignPlayersList() {
+		for(int i=0; i<game.getListPlayer().size();i++) {
+			JLabel playerLabel=mainFrame.getGameOverPanel().getPlayersLabels().get(i);
+			String playerName=game.getListPlayer().get(i).getName();
+			int points=game.getListPlayer().get(i).getPoints();
+			playerLabel.setText("Player"+ (i+1)+ ": "+playerName+" Points: "+points);
+		}
+	}
+	
+	private void assignQuitGameOverButtonController()
+	{
+		mainFrame.getGameOverPanel().getQuitGameButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				game.setState(GameState.QUIT);
+				mainFrame.dispose();
+			}
+		});
+	}
+	private void assignNewGameButtonController()
+	{
+		mainFrame.getGameOverPanel().getNewGameButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//mainFrame.getGameOverPanel().setVisible(false);
+				//mainFrame.remove(mainFrame.getGameOverPanel());
+				mainFrame.dispose();
+				game.setState(GameState.NEW_GAME);//////////////////
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {	
+								Game game=new Game();
+								SetGameFrame setGameFrame = new SetGameFrame();
+								SetGameController setGameController = new SetGameController(setGameFrame,game);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+	}
+	
 	/*private void increaseCurrentPlayer()
 	{
 		if(currentPlayer == game.getListPlayer().size()-1){

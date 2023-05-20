@@ -18,7 +18,7 @@ public class Main {
 		SetGameFrame setGameFrame;
 		SetGameController setGameController;
 	
-	do {
+	do {// il ciclo non controlla ancora il gioco
 		if(game.getState().equals(GameState.NEW_GAME)) {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
@@ -41,6 +41,7 @@ public class Main {
 	if(game.getState().equals(GameState.GAME_OVER)) {
 		game.finalPointsCount();
 		Player winner = game.getWinner();
+		System.out.println(winner.toString());
 	}
 	
 	}while(!game.getState().equals(GameState.QUIT));
