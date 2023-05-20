@@ -22,6 +22,7 @@ import commongoal.CommonGoalCard;
 import exception.SameTileSelectedException;
 import model.Bookshelf;
 import model.Game;
+import model.GameState;
 import model.ItemTile;
 import model.Player;
 import model.Slot;
@@ -51,6 +52,7 @@ public class MainController {
 		listToRemoveTile = new ArrayList<>();
 		labelToRemove = new HashMap<>();
 		
+		assignQuitGameButtonController();
 		game.getFirstPlayer();
 		setCurrentPlayer(game);
 		assignLivingTileLabelController();
@@ -63,9 +65,9 @@ public class MainController {
 		loadCommonGoalCard();
 		flipPersonalGoalCard();
 		
-		maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
-		mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
-		mainFrame.getPlayerPointsLabel().setText("Points: "+ game.getListPlayer().get(currentPlayer).getPoints());
+		maxNumberGettableTile = game.currentPlayer().getBookshelf().maxDrawableTiles();
+		mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.currentPlayer().getName());
+		mainFrame.getPlayerPointsLabel().setText("Points: "+ game.currentPlayer().getPoints());
 
 	}
 	private void assignLivingTileLabelController()
@@ -230,6 +232,9 @@ public class MainController {
 				listToRemoveTile = null;
 				listToRemoveTile = new ArrayList<>();
 				mainFrame.getAddTileButton().setEnabled(false);/////
+				if(game.currentPlayer().getBookshelf().isComplete()) {
+					game.setState(GameState.GAME_OVER);
+				}
 				mainFrame.getEndRoundButton().setEnabled(true);
 			}
 		});
@@ -242,10 +247,11 @@ public class MainController {
 			public void actionPerformed(ActionEvent e) {
 				deselectAllSlot();
 				selectedBookShelfColumn = -1;
-				increaseCurrentPlayer();
+				game.nextPlayer();
+				currentPlayer=Game.getCurrentPlayerNumber();
 				loadBookshelf();
 				loadPersonalGoalCard();
-				maxNumberGettableTile = game.getListPlayer().get(currentPlayer).getBookshelf().maxDrawableTiles();
+				maxNumberGettableTile = game.currentPlayer().getBookshelf().maxDrawableTiles();
 				mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
 				mainFrame.getPlayerPointsLabel().setText("Points: " + game.getListPlayer().get(currentPlayer).getPoints());
 				if(!game.getLivingRoomBoard().hasAdjacentTiles())
@@ -280,7 +286,7 @@ public class MainController {
 
 						   int tempColumn = Integer.parseInt(slotCoordinate[1]);
 						   
-						   int freeSlot = game.getListPlayer().get(currentPlayer).getBookshelf().numberOfEmptySlot(tempColumn);
+						   int freeSlot = game.currentPlayer().getBookshelf().numberOfEmptySlot(tempColumn);
 						   if(freeSlot > 0 && freeSlot >= listToRemoveTile.size())
 							{
 								deselectAllSlot();
@@ -427,7 +433,7 @@ public class MainController {
 	}
 	private void loadBookshelf()
 	{
-		Bookshelf bookshelf = game.getListPlayer().get(currentPlayer).getBookshelf();
+		Bookshelf bookshelf = game.currentPlayer().getBookshelf();
 		int numRows = bookshelf.getRows();
 		int numColumns = bookshelf.getColumns();
 		
@@ -435,7 +441,7 @@ public class MainController {
 	}
 	private void loadPersonalGoalCard()
 	{
-		PersonalGoalCard personalGoal = game.getListPlayer().get(currentPlayer).getPersonalGoalCard();	
+		PersonalGoalCard personalGoal = game.currentPlayer().getPersonalGoalCard();	
 		//ImageIcon tempIcon =new ImageIcon(personalGoal.getPath());
 		//ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
 		//mainFrame.getPersonalGoalCardLabel().setIcon(icon);
@@ -529,7 +535,18 @@ public class MainController {
 			}
 		}
 	}
-	private void increaseCurrentPlayer()
+	private void assignQuitGameButtonController()
+	{
+		mainFrame.getQuitGameButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				game.setState(GameState.QUIT);
+				mainFrame.dispose();
+			}
+		});
+	}
+	/*private void increaseCurrentPlayer()
 	{
 		if(currentPlayer == game.getListPlayer().size()-1){
 			currentPlayer = 0;
@@ -537,5 +554,5 @@ public class MainController {
 			else{
 				currentPlayer++;
 			}
-	}
+	}*/
 }

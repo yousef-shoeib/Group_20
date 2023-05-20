@@ -56,7 +56,12 @@ public class Game {
 	}
 	
 	public void nextPlayer() {
+		if(currentPlayer < listPlayer.size()-1) {
 		currentPlayer++;
+		}
+		else {
+			currentPlayer=0;
+		}
 	}
 	
 	public int getFirstPlayer() {
@@ -83,9 +88,27 @@ public class Game {
 	public CommonGoalCard getCommonGoal() {
 		return commonGoal;
 	}
-	public static int getCurrentPlayer() {
+	public Player currentPlayer() {
+		return listPlayer.get(currentPlayer);
+	}
+	public static int getCurrentPlayerNumber() {
 		return currentPlayer;
 	}
 	
+	public void checkCommonGoal() {
+		//if(commonGoal.CheckTarget()) {
+			int points= commonGoal.ReturnPoints(currentPlayer, listPlayer.size());
+			listPlayer.get(currentPlayer).addPoints(points);
+		//}
+	}
+	public Player getWinner() {
+		Player winner=listPlayer.get(0);
+		for(Player p: listPlayer) {
+			if(p.getPoints()>winner.getPoints()) {
+				winner=p;
+			}
+		}
+		return winner;
+	}
 	
 }

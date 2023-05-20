@@ -6,6 +6,7 @@ import controller.MainController;
 import controller.SetGameController;
 import model.Game;
 import model.GameState;
+import model.Player;
 import view.SetGameFrame;
 
 public class Main {
@@ -31,10 +32,17 @@ public class Main {
 			});
 			game.setState(GameState.PLAY);
 		}
-	//while(game.getState().equals(GameState.PLAY)) {
-		
-	//}
+	if(game.getState().equals(GameState.PLAY)) {
+		game.checkCommonGoal();
+		if(game.currentPlayer().getBookshelf().isComplete()) {
+			game.setState(GameState.GAME_OVER);
+		}
+	}
+	if(game.getState().equals(GameState.GAME_OVER)) {
+		game.finalPointsCount();
+		Player winner = game.getWinner();
+	}
 	
-	}while(!game.getState().equals(GameState.CLOSE));
+	}while(!game.getState().equals(GameState.QUIT));
 }
 }

@@ -45,6 +45,7 @@ public class MainFrame extends JFrame {
 	private Map<String,JLabel> mapLivingTileLabel;
 	private Map<String,JLabel> mapBookShelfTileLabel;
 	private Map<String,JLabel> boxedGettedTileLabel;
+	private JButton quitGameButton;
 	
 
 	/**
@@ -191,10 +192,17 @@ public class MainFrame extends JFrame {
 		addTileButton.setEnabled(false);///
 		livingPane.add(addTileButton);
 		
-		endRoundButton = new JButton("End");
+		String endTurn = "End \nTurn";
+		endRoundButton = new JButton("<html>"+endTurn.replaceAll("\\n", "<br>")+"</html>");
 		endRoundButton.setBounds(743, 540, 77, 41);
 		endRoundButton.setEnabled(false);
 		livingPane.add(endRoundButton);
+		
+		String quitGame = " Quit \nGame";
+		quitGameButton = new JButton("<html>"+quitGame.replaceAll("\\n", "<br>")+"</html>");
+		quitGameButton.setBounds(743, 673, 77, 41);
+		quitGameButton.setFocusable(false);
+		livingPane.add(quitGameButton);
 		
 		mapLivingTileLabel = new HashMap<>();
 		mapBookShelfTileLabel = new HashMap<>();
@@ -206,6 +214,10 @@ public class MainFrame extends JFrame {
 		
 	}
 	
+	public JButton getQuitGameButton() {
+		return quitGameButton;
+	}
+
 	public JLabel getPersonalGoalCardLabel() {
 		return personalGoalCardLabel;
 	}
@@ -381,5 +393,4 @@ public class MainFrame extends JFrame {
 	public JLabel getCommonGoalCard2Label() {
 		return commonGoalCard2Label;
 	}
-
 }
