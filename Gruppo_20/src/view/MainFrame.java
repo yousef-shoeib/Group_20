@@ -2,7 +2,11 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dialog;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +14,7 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -21,6 +26,9 @@ import utility.ConfigPath;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Font;
@@ -405,10 +413,24 @@ public class MainFrame extends JFrame {
 		return gameOverPanel;
 	}
 	public void createGameOverPanel() {
+		JDialog resultsPane=new JDialog();
+		
+		resultsPane.setModal(true);
 		gameOverPanel=new GameOverPanel();
 		gameOverPanel.setBounds(780, 200, 600,400 );
-		gameOverPanel.setVisible(true);		
-		contentPane.add(gameOverPanel,BorderLayout.CENTER);
+		gameOverPanel.setVisible(true);	
+		gameOverPanel.setModal(true);
+		gameOverPanel.setAlwaysOnTop(true);
+		setGlassPane(new JComponent() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				g.setColor(new Color(0, 0 , 0,150));
+				g.fillRect(0, 0, getWidth(), getHeight());
+			}
+		});
+		Container glassPane=(Container)getGlassPane();
+		glassPane.setVisible(true);
+		//contentPane.add((Component)gameOverPanel,BorderLayout.CENTER);
 	}
 
 	public JLabel getFirstPlayerTokenLabel() {

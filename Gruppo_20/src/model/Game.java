@@ -17,7 +17,7 @@ public class Game {
 	private List<Player> listPlayer;
 	private Bag bag;
 	private int firstPlayer;
-	private GameState state;
+	private static GameState state= GameState.NEW_GAME;
 	private CommonGoalCard commonGoal;
 	private static int currentPlayer;
 	private List<ItemTile> selectedTiles;
@@ -26,7 +26,7 @@ public class Game {
 	{	
 		listPlayer = new ArrayList<>();
 		selectedTiles = new ArrayList<>();
-		this.state=GameState.NEW_GAME;
+		//state=GameState.NEW_GAME;
 	}
 	public void start(int numberOfPlayers,List<String> namePlayers)
 	{
@@ -238,11 +238,11 @@ public class Game {
 	public Bag getBag() {
 		return bag;
 	}
-	public GameState getState() {
+	public static GameState getState() {
 		return state;
 	}
-	public void setState(GameState state) {
-		this.state = state;
+	public static void setState(GameState new_state) {
+		state = new_state;
 	}
 	public void finalPointsCount() {
 		for(Player p: listPlayer) {
@@ -263,10 +263,10 @@ public class Game {
 	}
 	
 	public void checkCommonGoal() {
-		//if(commonGoal.CheckTarget()) {
+		if(commonGoal.CheckTarget(currentPlayer().getBookshelf())) {
 			int points= commonGoal.ReturnPoints(listPlayer.size());
 			listPlayer.get(currentPlayer).addPoints(points);
-		//}
+		}
 	}
 	public Player getWinner() {
 		Player winner=listPlayer.get(0);
