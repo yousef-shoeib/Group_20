@@ -146,6 +146,15 @@ public class Game {
 	
 		this.maxNumberGettableTile = 0;
 	}
+	public ArrayList<ItemTile> moveTilesToBookshelf(int column)
+	{
+		ArrayList<ItemTile> tempSelectedTiles = (ArrayList<ItemTile>) getCopyOfTilesList();
+		this.listPlayer.get(currentPlayer).getBookshelf().addItemTiles(column, tempSelectedTiles);
+		this.livingRoomBoard.removeTile(selectedTiles);
+		selectedTiles = new ArrayList<>();
+
+		return tempSelectedTiles;
+	}
 	public LivingRoomBoard getLivingRoomBoard() {
 		return livingRoomBoard;
 	}
