@@ -6,7 +6,7 @@ import model.Slot;
 
 public class CommonGoalCard10 extends CommonGoalCard{
 	
-	private String path = "./resources/Assets/commonGoalCard/10.png";
+	private String path = "./resources/Assets/commonGoalCard/10.png"; //percorso
 	
 	public CommonGoalCard10() {}
 	
