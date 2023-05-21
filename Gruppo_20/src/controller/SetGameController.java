@@ -15,11 +15,12 @@ public class SetGameController {
 	private MainController mainController;
 	private SetGameFrame setGameFrame;
 	private Game game;
+	
 	private List<String> namePlayers;
 	
 	public SetGameController(SetGameFrame setGameFrame,Game game)
 	{
-		this.game = game;
+		this.game = new Game();
 		this.setGameFrame = setGameFrame;
 		namePlayers = new ArrayList<>();
 
@@ -71,5 +72,8 @@ public class SetGameController {
 	private void assignNodeFieldController() {
 		setGameFrame.getPlayer1TextField().getDocument()
 				.addDocumentListener(new JButtonStateController(setGameFrame.getAddPlayerButton()));
+	}
+	public Game getGame() {
+		return game;
 	}
 }

@@ -74,7 +74,6 @@ public class MainFrame extends JFrame {
 		
 		contentPane.setBounds(0, 0, 1500, 920);
 		contentPane.setLayout(null);
-		
 		//LivingRoomBoard Panel
 		livingPane = new JPanel();
 		livingPane.setBorder(new LineBorder(new Color(0,0,0), 3));
@@ -213,7 +212,6 @@ public class MainFrame extends JFrame {
 		createLeavingTilesLabels(matrGrindLiving,rows,columns);
 		createBookShelf();
 		createBoxedLabel();
-		
 	}
 	
 	public JButton getQuitGameButton() {
