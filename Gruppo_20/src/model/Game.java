@@ -173,9 +173,6 @@ public class Game {
 	{
 		Collections.swap(selectedTiles, positionToSwap, i);
 	}
-	public LivingRoomBoard getLivingRoomBoard() {
-		return livingRoomBoard;
-	}
 	public boolean endRound()
 	{
 		increaseCurrentPlayer();
@@ -187,6 +184,23 @@ public class Game {
 		}
 		return false;
 	}
+	private void setCurrentPlayer() {
+		int size=this.listPlayer.size();
+		for(int i=0; i<size;i++ ) {
+			if(this.listPlayer.get(i).isFirstPlayer()) {
+				currentPlayer=i;
+			}
+		}
+	}
+	private void increaseCurrentPlayer()
+	{
+		if(currentPlayer == this.listPlayer.size()-1){
+			currentPlayer = 0;
+		}
+			else{
+				currentPlayer++;
+			}
+	}
 	private void addPlayers(int numberOfPlayers,List<String> namePlayers)
 	{
 		for(int i = 0; i < numberOfPlayers; i++)
@@ -195,10 +209,6 @@ public class Game {
 			listPlayer.add(player);
 		}
 	}
-	public List<Player> getListPlayer() {
-		return listPlayer;
-	}
-	
 	private void assignFirstPlayerSeat(int numberOfPlayers) {
 		Random r= new Random();
 		int i= r.nextInt(numberOfPlayers);
@@ -274,5 +284,35 @@ public class Game {
 			   }
 		}
 		return false;
+	}
+	public int getCurrentPlayer() {
+		return currentPlayer;
+	}
+	public String getCurrentPlayerName()
+	{
+		return listPlayer.get(currentPlayer).getName();
+	}
+	public int getCurrentPlayerPoints()
+	{
+		return listPlayer.get(currentPlayer).getPoints();
+	}
+	public String getCurrentPlayerPersonalGoalCardPath()
+	{
+		return 	this.listPlayer.get(currentPlayer).getPersonalGoalCard().getPath();
+	}
+	public Slot[][] getCurrentPlayerBookShelf()
+	{
+		return this.listPlayer.get(currentPlayer).getBookshelf().getMatrGrid();
+	}
+	public Slot[][] getLivingRoomBoard()
+	{
+		return this.livingRoomBoard.getMatrGrid();
+	}
+	public int getMaxNumberGettableTile() {
+		return maxNumberGettableTile;
+	}
+	public int numberOfSelectedTile()
+	{
+		return selectedTiles.size();
 	}
 }
