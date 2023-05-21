@@ -48,7 +48,7 @@ public class CommonGoalCard12 extends CommonGoalCard{
 	}
 
 	@Override
-	boolean CheckTarget(Bookshelf bookshelf) {
+	public boolean CheckTarget(Bookshelf bookshelf) {
 		boolean checkGoal;
 		checkGoal = isTriangularSX_DX(bookshelf) || isTriangularDX_SX(bookshelf);
 		if(checkGoal) return true;

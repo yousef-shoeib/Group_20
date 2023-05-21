@@ -10,7 +10,7 @@ public abstract class CommonGoalCard {
 	
 	public CommonGoalCard() {}
 	
-	abstract boolean CheckTarget(Bookshelf bookshelf);
+	abstract public boolean CheckTarget(Bookshelf bookshelf);
 	
 	public static CommonGoalCard assignCommonGoalCard() {
 		Random random = new Random();

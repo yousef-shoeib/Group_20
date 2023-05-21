@@ -12,7 +12,7 @@ public class CommonGoalCard2 extends CommonGoalCard{
 	public CommonGoalCard2() {}
 	
 	@Override
-	boolean CheckTarget(Bookshelf bookshelf) {
+	public boolean CheckTarget(Bookshelf bookshelf) {
 		int unique_columns=0;
 		for(int column1=0; column1<bookshelf.getColumns(); column1++) {
 			for(int column2=column1+1; column2<bookshelf.getColumns(); column2++) {

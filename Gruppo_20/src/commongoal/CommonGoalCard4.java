@@ -21,7 +21,7 @@ public class CommonGoalCard4 extends CommonGoalCard3{
 	}
 
 	@Override
-	boolean CheckTarget(Bookshelf bookshelf) {
+	public boolean CheckTarget(Bookshelf bookshelf) {
 		int countVertical = countVertical(bookshelf ,2);
 		int countHorizontal = countHorizontal(bookshelf ,2);
 		if((countVertical+countHorizontal)>=6) return true;

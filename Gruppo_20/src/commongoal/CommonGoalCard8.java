@@ -7,7 +7,7 @@ public class CommonGoalCard8 extends CommonGoalCard{
 	public CommonGoalCard8() {}
 	
 	@Override
-	boolean CheckTarget(Bookshelf bookshelf) {
+	public boolean CheckTarget(Bookshelf bookshelf) {
 		boolean check = false;
 		if(bookshelf.getSlot(0, 0).isEmpty()==false && 
 		   bookshelf.getSlot(0, 4).isEmpty()==false &&

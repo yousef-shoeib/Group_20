@@ -30,7 +30,7 @@ public class CommonGoalCard7 extends CommonGoalCard{
 		else return false;
 	}
 	@Override
-	boolean CheckTarget(Bookshelf bookshelf) {
+	public boolean CheckTarget(Bookshelf bookshelf) {
 		boolean check;
 		check = searchRows(bookshelf);
 		if(check) return true;
