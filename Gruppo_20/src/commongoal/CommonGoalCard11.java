@@ -4,6 +4,7 @@ import model.Bookshelf;
 
 public class CommonGoalCard11 extends CommonGoalCard {
 	Bookshelf bookshelf;
+	private String path = "./resources/Assets/commonGoalCard/11.png";
 	public CommonGoalCard11(Bookshelf bookshelf) {
 		this.bookshelf = bookshelf;
 	}

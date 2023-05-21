@@ -2,6 +2,7 @@ package commongoal;
 import model.Bookshelf;
 public class CommonGoalCard8 extends CommonGoalCard{
 	Bookshelf bookshelf;
+	private String path = "./resources/Assets/commonGoalCard/8.png";
 	public CommonGoalCard8(Bookshelf bookshelf) {
 		this.bookshelf = bookshelf;
 	}

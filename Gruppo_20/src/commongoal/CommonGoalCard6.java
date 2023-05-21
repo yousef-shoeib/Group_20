@@ -8,6 +8,7 @@ import model.ItemTile;
 
 public class CommonGoalCard6 extends CommonGoalCard {
 	Bookshelf bookshelf;
+	private String path = "./resources/Assets/commonGoalCard/6.png";
 	public CommonGoalCard6(Bookshelf bookshelf) {
 		this.bookshelf = bookshelf;
 	}

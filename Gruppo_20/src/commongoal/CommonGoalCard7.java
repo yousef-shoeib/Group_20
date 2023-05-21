@@ -8,6 +8,7 @@ import java.util.HashSet;
 
 public class CommonGoalCard7 extends CommonGoalCard{
 	Bookshelf bookshelf;
+	private String path = "./resources/Assets/commonGoalCard/7.png";
 	public CommonGoalCard7(Bookshelf bookshelf) {
 		this.bookshelf = bookshelf;
 	}

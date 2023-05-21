@@ -3,7 +3,7 @@ import model.Slot;
 import model.Bookshelf;
 
 public class CommonGoalCard4 extends CommonGoalCard3{
-
+	private String path = "./resources/Assets/commonGoalCard/4.png";
 	public CommonGoalCard4(Bookshelf bookshelf) {
 		super(bookshelf);
 	}
