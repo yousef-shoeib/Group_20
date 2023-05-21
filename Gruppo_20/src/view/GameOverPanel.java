@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -106,6 +107,7 @@ public class GameOverPanel extends JDialog {
 		
 	
 	}
+	
 	public JLabel getTitleLabel() {
 		return titleLabel;
 	}

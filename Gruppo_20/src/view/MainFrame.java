@@ -419,7 +419,7 @@ public class MainFrame extends JFrame {
 		gameOverPanel=new GameOverPanel();
 		gameOverPanel.setBounds(780, 200, 600,400 );
 		gameOverPanel.setVisible(true);	
-		gameOverPanel.setModal(true);
+		gameOverPanel.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		gameOverPanel.setAlwaysOnTop(true);
 		setGlassPane(new JComponent() {
 			@Override

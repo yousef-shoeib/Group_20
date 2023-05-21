@@ -10,8 +10,8 @@ public class CommonGoalCard11 extends CommonGoalCard {
 	
 	@Override
 	public boolean CheckTarget(Bookshelf bookshelf) {
-		for(int i=0; i<bookshelf.getRows(); i++) {
-			for(int j=0; j<bookshelf.getColumns();j++) {
+		for(int i=0; i<bookshelf.getRows()-1; i++) {
+			for(int j=0; j<bookshelf.getColumns()-1;j++) {
 				int count=1;
 				
 				for(int k=1; k<5 && i+k < bookshelf.getColumns() && j+k <bookshelf.getRows(); k++) {
