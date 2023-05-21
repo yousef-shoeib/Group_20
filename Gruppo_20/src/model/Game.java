@@ -138,6 +138,14 @@ public class Game {
 		//}
 		return false;
 	}
+	public void takeTiles()
+	{
+		if(selectedTiles.size() == 0) {
+			throw new NullPointerException("No tile to take");
+		}
+	
+		this.maxNumberGettableTile = 0;
+	}
 	public LivingRoomBoard getLivingRoomBoard() {
 		return livingRoomBoard;
 	}
