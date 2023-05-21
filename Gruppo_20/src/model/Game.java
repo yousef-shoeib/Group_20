@@ -176,6 +176,17 @@ public class Game {
 	public LivingRoomBoard getLivingRoomBoard() {
 		return livingRoomBoard;
 	}
+	public boolean endRound()
+	{
+		increaseCurrentPlayer();
+		this.maxNumberGettableTile = this.listPlayer.get(currentPlayer).getBookshelf().maxDrawableTiles();
+		if(!this.livingRoomBoard.hasAdjacentTiles())
+		{
+			this.livingRoomBoard.putItemTiles(this.getBag().getListItemTile());
+			return true;
+		}
+		return false;
+	}
 	private void addPlayers(int numberOfPlayers,List<String> namePlayers)
 	{
 		for(int i = 0; i < numberOfPlayers; i++)
