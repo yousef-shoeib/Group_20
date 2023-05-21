@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Random;
 
 import commongoal.CommonGoalCard;
+import exception.MaxSelectedItemTileException;
+import exception.SameTileSelectedException;
 
 public class Game {
 
@@ -17,9 +19,12 @@ public class Game {
 	private GameState state;
 	private CommonGoalCard commonGoal;
 	private static int currentPlayer;
+	private List<ItemTile> selectedTiles;
+	private int maxNumberGettableTile;
 	public Game()
 	{	
 		listPlayer = new ArrayList<>();
+		selectedTiles = new ArrayList<>();
 		this.state=GameState.NEW_GAME;
 	}
 	public void start(int numberOfPlayers,List<String> namePlayers)
@@ -30,8 +35,54 @@ public class Game {
 		addPlayers(numberOfPlayers,namePlayers);
 		assignFirstPlayerSeat(numberOfPlayers);
 		commonGoal=CommonGoalCard.assignCommonGoalCard(null);
+		this.maxNumberGettableTile = this.listPlayer.get(currentPlayer).getBookshelf().maxDrawableTiles();
 	}
-	
+	public ItemTile addToSelectedTileList(int row,int column) throws Exception
+	{
+			if(this.maxNumberGettableTile == 0){
+				throw new MaxSelectedItemTileException("you have already selected the maximum number of tiles");
+			}
+			if(row >= this.livingRoomBoard.rows) {
+				throw new IllegalArgumentException("row is not a valid number");
+			}
+			if(column >= this.livingRoomBoard.columns) {
+				throw new IllegalArgumentException("column is not a valid number");
+			}
+			Slot currentSlot = this.livingRoomBoard.getSlot(row,column);
+			ItemTile checkItemTile = null;
+			
+			if(!currentSlot.isEmpty()) {
+				   checkItemTile = currentSlot.getItemTile();
+			}
+			
+			if(checkItemTile == null){
+				throw new NullPointerException("Slot is empty");
+			}
+			
+			if(selectedTiles.contains(checkItemTile))
+				throw new SameTileSelectedException("list already contains tile");
+			
+		   ItemTile itemTile = null;
+
+			   if(selectedTiles.size()== 0)  
+			   {
+				   itemTile = this.livingRoomBoard.getTile(checkItemTile,null,null);
+			   }
+			   else if(selectedTiles.size() == 1)
+			   {
+				   itemTile = this.livingRoomBoard.getTile(checkItemTile,selectedTiles.get(0),null); 
+			   }
+
+			   else if(selectedTiles.size() >= 2)
+			   {
+				   itemTile = this.livingRoomBoard.getTile(checkItemTile,selectedTiles.get(1),selectedTiles.get(0));
+			   }
+			   
+			   selectedTiles.add(itemTile);
+			   this.maxNumberGettableTile--;
+			   
+			   return itemTile;
+	}
 	public LivingRoomBoard getLivingRoomBoard() {
 		return livingRoomBoard;
 	}
