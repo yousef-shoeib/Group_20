@@ -2,8 +2,6 @@ package model;
 
 public class ItemTile {
 		private String pathImg;
-		private int x;
-		private int y;
 		private int id;
 		private ItemTileType type;
 		public int getId() {
@@ -19,7 +17,12 @@ public class ItemTile {
 			cont = cont +1;
 			this.type=ItemTileType.assignType(color);
 		}
-		
+		public ItemTile (ItemTile item) {
+			this.pathImg = item.pathImg;
+			this.color = item.color;
+			id = item.id;
+			this.type=item.type;
+		}
 		public String getPathImg(){ 
 			return pathImg;
 		}
@@ -28,18 +31,6 @@ public class ItemTile {
 		}
 		public void setId(int id) {
 			this.id = id;
-		}
-		public int getX() {
-			return x;
-		}
-		public void setX(int x) {
-			this.x = x;
-		}
-		public int getY() {
-			return y;
-		}
-		public void setY(int y) {
-			this.y = y;
 		}
 		public String getColor() {
 			return color;
