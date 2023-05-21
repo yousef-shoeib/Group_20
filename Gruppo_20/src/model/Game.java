@@ -148,6 +148,10 @@ public class Game {
 	
 		this.maxNumberGettableTile = 0;
 	}
+	public int currentPlayerFreeSlot(int column)
+	{		
+		return this.listPlayer.get(currentPlayer).getBookshelf().freeSlotsInColumn(column);
+	}
 	public ArrayList<ItemTile> moveTilesToBookshelf(int column)
 	{
 		ArrayList<ItemTile> tempSelectedTiles = (ArrayList<ItemTile>) getCopyOfTilesList();

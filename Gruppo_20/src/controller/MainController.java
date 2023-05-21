@@ -197,17 +197,13 @@ public class MainController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				int i = game.getListPlayer().get(currentPlayer).getBookshelf().freeSlotsInColumn(selectedBookShelfColumn)-1;//
-				
-				for(ItemTile item : listToRemoveTile)
-				{
-					game.getListPlayer().get(currentPlayer).getBookshelf().setTile(i, selectedBookShelfColumn,item);
-					
+				int i = game.currentPlayerFreeSlot(selectedBookShelfColumn)-1;
+				ArrayList<ItemTile> takenTilesList = game.moveTilesToBookshelf(selectedBookShelfColumn);
+				for(ItemTile item : takenTilesList)
+				{	
 					ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
 					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
 					mainFrame.getMapBookShelfTileLabel().get(i+"_"+selectedBookShelfColumn).setIcon(icon);
-
-					game.getLivingRoomBoard().removeTile(item);
 					
 					i--;
 				}	
@@ -216,9 +212,9 @@ public class MainController {
 				hideBoxedGettedTileLabels();
 				selectedBookShelfColumn = -1;
 				taken = false;
-				listToRemoveTile = null;
-				listToRemoveTile = new ArrayList<>();
 				mainFrame.getAddTileButton().setEnabled(false);/////
+				mainFrame.getEndRoundButton().setEnabled(true);
+				
 				if(game.currentPlayer().getBookshelf().isComplete()) {
 					createGameOverPanel();
 					game.setState(GameState.GAME_OVER);
