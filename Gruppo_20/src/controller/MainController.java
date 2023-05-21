@@ -269,8 +269,8 @@ public class MainController {
 
 						   int tempColumn = Integer.parseInt(slotCoordinate[1]);
 						   
-						   int freeSlot = game.currentPlayer().getBookshelf().numberOfEmptySlot(tempColumn);
-						   if(freeSlot > 0 && freeSlot >= listToRemoveTile.size())
+						   int freeSlot = game.currentPlayerFreeSlot(tempColumn);
+						   if(freeSlot > 0 && freeSlot >= game.numberOfSelectedTile())
 							{
 								deselectAllSlot();
 								selectedBookShelfColumn = tempColumn;
