@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -154,6 +155,23 @@ public class Game {
 		selectedTiles = new ArrayList<>();
 
 		return tempSelectedTiles;
+	}
+	public List<ItemTile> getCopyOfTilesList()
+	{
+		if(selectedTiles.size() == 0) {
+			throw new NullPointerException("No tile taken");
+		}
+		List<ItemTile> tempList = new ArrayList<>();
+		for(ItemTile item : selectedTiles)
+		{
+			ItemTile cloneTile = new ItemTile(item);
+			tempList.add(cloneTile);
+		}
+		return tempList;
+	}
+	public void swapTiles(int positionToSwap,int i)
+	{
+		Collections.swap(selectedTiles, positionToSwap, i);
 	}
 	public LivingRoomBoard getLivingRoomBoard() {
 		return livingRoomBoard;
