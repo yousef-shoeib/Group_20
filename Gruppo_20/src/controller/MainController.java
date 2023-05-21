@@ -333,9 +333,10 @@ public class MainController {
 					}
 					else {
 						mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+positionToSwap).setBorder(new LineBorder(new Color(255, 255, 255), 3));
-						Collections.swap(listToRemoveTile, positionToSwap, i);
+						game.swapTiles(positionToSwap, i);
+						List<ItemTile> takenTilesList = game.getCopyOfTilesList();
 						int n = 0;
-						for(ItemTile item : listToRemoveTile)
+						for(ItemTile item : takenTilesList)
 						{
 							ImageIcon tempIcon = new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
 							ImageIcon icon = new ImageIcon(tempIcon.getImage().getScaledInstance(75,75, Image.SCALE_SMOOTH));
