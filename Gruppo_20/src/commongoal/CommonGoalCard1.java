@@ -28,4 +28,7 @@ public class CommonGoalCard1 extends CommonGoalCard{
 	    if(count>=2) return true;
 	    else return false;
 	}
+	public String getPath() {
+		return path;
+	}
 }

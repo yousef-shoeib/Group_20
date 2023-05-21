@@ -38,5 +38,9 @@ public class CommonGoalCard7 extends CommonGoalCard{
 		else return false;
 		
 	}
+	
+	public String getPath() {
+		return path;
+	}
 
 }

@@ -40,4 +40,8 @@ public class CommonGoalCard6 extends CommonGoalCard {
 	    }
 	 return false;
   }
+	
+	public String getPath() {
+		return path;
+	}
 }
