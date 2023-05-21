@@ -385,9 +385,8 @@ public class MainController {
 				}
 				
 				@Override
-				public void mouseEntered(MouseEvent e) {
-					PersonalGoalCard personalGoal = game.getListPlayer().get(currentPlayer).getPersonalGoalCard();	
-					ImageIcon tempIcon =new ImageIcon(personalGoal.getPath());
+				public void mouseEntered(MouseEvent e) {	
+					ImageIcon tempIcon =new ImageIcon(game.getCurrentPlayerPersonalGoalCardPath());
 					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
 					label.setIcon(icon);
 					
@@ -473,19 +472,19 @@ public class MainController {
 		assignQuitGameOverButtonController();
 		assignNewGameButtonController();
 		assignWinner();
-		assignPlayersList();
+		//assignPlayersList();
 	}
 	private void assignWinner() {
 		mainFrame.getGameOverPanel().getWinnerNameLabel().setText(game.getWinner().getName());
 	}
-	private void assignPlayersList() {
+	/*private void assignPlayersList() {
 		for(int i=0; i<game.getListPlayer().size();i++) {
 			JLabel playerLabel=mainFrame.getGameOverPanel().getPlayersLabels().get(i);
 			String playerName=game.getListPlayer().get(i).getName();
 			int points=game.getListPlayer().get(i).getPoints();
 			playerLabel.setText("Player"+ (i+1)+ ": "+playerName+" Points: "+points);
 		}
-	}
+	}*/
 	
 	private void assignQuitGameOverButtonController()
 	{
@@ -530,14 +529,4 @@ public class MainController {
 			mainFrame.getFirstPlayerTokenLabel().setVisible(false);
 		}
 	}
-	
-	/*private void increaseCurrentPlayer()
-	{
-		if(currentPlayer == game.getListPlayer().size()-1){
-			currentPlayer = 0;
-		}
-			else{
-				currentPlayer++;
-			}
-	}*/
 }
