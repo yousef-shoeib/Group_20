@@ -83,6 +83,61 @@ public class Game {
 			   
 			   return itemTile;
 	}
+	public boolean deselectFromTakenList(int row,int column)
+	{
+		if(row >= this.livingRoomBoard.rows) {
+			throw new IllegalArgumentException("row is not a valid number");
+		}
+		if(column >= this.livingRoomBoard.columns) {
+			throw new IllegalArgumentException("column is not a valid number");
+		}
+
+		Slot currentSlot = this.livingRoomBoard.getSlot(row,column);
+		ItemTile item = null;
+		
+		if(!currentSlot.isEmpty()) {
+			item = currentSlot.getItemTile();
+		}
+		
+		if(item == null){
+			throw new NullPointerException("Slot is empty");
+		}
+		if(!selectedTiles.contains(item))
+			throw new NullPointerException("tiles in not in the list");
+		
+		//if(selectedTiles.contains(item)) {
+			int index = selectedTiles.indexOf(item);
+	
+			boolean deselect = true;
+			if(selectedTiles.size() == 3)
+			{
+			   if(index == 0){
+				   if(this.livingRoomBoard.tilesAreAdjacent(selectedTiles.get(0), selectedTiles.get(1)) 
+						   && this.livingRoomBoard.tilesAreAdjacent(selectedTiles.get(0), selectedTiles.get(2))){
+					   deselect = false;
+				   }
+			   }
+			   else if(index == 1){
+				   if(this.livingRoomBoard.tilesAreAdjacent(selectedTiles.get(1), selectedTiles.get(0)) 
+						   && this.livingRoomBoard.tilesAreAdjacent(selectedTiles.get(1), selectedTiles.get(2))){
+					   deselect = false;
+				   }
+			   }
+			   else if(index == 2){
+				   if(this.livingRoomBoard.tilesAreAdjacent(selectedTiles.get(2), selectedTiles.get(0)) 
+						   && this.livingRoomBoard.tilesAreAdjacent(selectedTiles.get(2), selectedTiles.get(1))){
+					   deselect = false;
+				   }
+			   }
+			}
+			if(deselect) {
+				selectedTiles.remove(index);
+				maxNumberGettableTile++;
+				return true;
+			}
+		//}
+		return false;
+	}
 	public LivingRoomBoard getLivingRoomBoard() {
 		return livingRoomBoard;
 	}
