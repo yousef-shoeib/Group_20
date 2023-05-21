@@ -39,7 +39,7 @@ public class SetGameController {
 				
 				
 				game.start(numberOfPlayers,namePlayers);
-				mainFrame = new MainFrame(game.getLivingRoomBoard().getMatrGrid(),game.getLivingRoomBoard().getRows(),game.getLivingRoomBoard().getColumns());
+				mainFrame = new MainFrame(game.getLivingRoomBoard(),9,9);
 				mainController = new MainController(game,mainFrame);
 				setGameFrame.setVisible(false);
 			}
