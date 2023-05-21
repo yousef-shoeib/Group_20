@@ -320,4 +320,7 @@ public class Game {
 	{
 		return selectedTiles.size();
 	}
+	public List<Player> getListPlayer() {
+		return listPlayer;
+	}
 }
