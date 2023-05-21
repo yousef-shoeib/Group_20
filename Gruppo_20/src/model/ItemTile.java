@@ -42,11 +42,11 @@ public class ItemTile {
 		
 		@Override
 		public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-			ItemTile item = (ItemTile) obj;
-			if(this.id == item.getId())
-				return true;
-		return false;
+			if(obj instanceof ItemTile){
+				ItemTile item = (ItemTile) obj;
+				return this.id == item.getId();
+			}
+			return false;
 		}
 
 		public ItemTileType getType() {
