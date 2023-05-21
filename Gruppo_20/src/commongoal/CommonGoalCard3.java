@@ -3,13 +3,11 @@ package commongoal;
 import model.Bookshelf;
 
 public class CommonGoalCard3 extends CommonGoalCard {
-	Bookshelf bookshelf;
 	private String path = "./resources/Assets/commonGoalCard/3.png";
-	public CommonGoalCard3(Bookshelf bookshelf) {
-		this.bookshelf = bookshelf;
-	}
 	
-	public int countVertical(int nTiles) {
+	public CommonGoalCard3() {}
+	
+	public int countVertical(Bookshelf bookshelf, int nTiles) {
 		int count=0;
 		for(int i=0; i<bookshelf.getRows()-nTiles+1; i++) {
 			for(int j=0; j<bookshelf.getColumns(); j++) {
@@ -29,7 +27,7 @@ public class CommonGoalCard3 extends CommonGoalCard {
 	   return count;
 	}
 	
-	public int countHorizontal(int nTiles) {
+	public int countHorizontal(Bookshelf bookshelf ,int nTiles) {
 		int count=0;
 		for(int j=0; j<bookshelf.getColumns()-nTiles+1; j++) {
 			for(int i=0; i<bookshelf.getColumns(); i++) {
@@ -50,10 +48,10 @@ public class CommonGoalCard3 extends CommonGoalCard {
 	}
 	
 	@Override
-	boolean CheckTarget() {
+	boolean CheckTarget(Bookshelf bookshelf) {
 		int countVertical, countHorizontal;
-		countVertical = countVertical(4);
-		countHorizontal = countHorizontal(4);
+		countVertical = countVertical(bookshelf,4);
+		countHorizontal = countHorizontal(bookshelf,4);
 		if((countVertical+countHorizontal) >= 4) return true;
 		else return false;
 	}

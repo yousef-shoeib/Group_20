@@ -5,25 +5,25 @@ import model.ItemTile;
 import model.Slot;
 
 public class CommonGoalCard10 extends CommonGoalCard{
-	Bookshelf bookshelf;
+	
 	private String path = "./resources/Assets/commonGoalCard/10.png";
-	public CommonGoalCard10(Bookshelf bookshelf) {
-		this.bookshelf = bookshelf;
-	}
+	
+	public CommonGoalCard10() {}
+	
 	@Override
-	boolean CheckTarget() {
-		for(int i=1; i<this.bookshelf.getRows()-1; i++) {
-			for(int j=1; j<this.bookshelf.getColumns()-1; j++) {
-				if(this.bookshelf.getSlot(i, j).isEmpty() == false &&
-				   this.bookshelf.getSlot(i-1, j-1).isEmpty() == false &&
-				   this.bookshelf.getSlot(i+1, j-1).isEmpty() == false &&
-				   this.bookshelf.getSlot(i-1, j+1).isEmpty() == false &&
-				   this.bookshelf.getSlot(i+1, j+1).isEmpty() == false){
+	boolean CheckTarget(Bookshelf bookshelf) {
+		for(int i=1; i<bookshelf.getRows()-1; i++) {
+			for(int j=1; j<bookshelf.getColumns()-1; j++) {
+				if(bookshelf.getSlot(i, j).isEmpty() == false &&
+				   bookshelf.getSlot(i-1, j-1).isEmpty() == false &&
+				   bookshelf.getSlot(i+1, j-1).isEmpty() == false &&
+				   bookshelf.getSlot(i-1, j+1).isEmpty() == false &&
+				   bookshelf.getSlot(i+1, j+1).isEmpty() == false){
 					
-					if(this.bookshelf.getTile(i-1, j-1)==this.bookshelf.getTile(i,j) &&
-					   this.bookshelf.getTile(i+1, j-1)==this.bookshelf.getTile(i,j) &&
-					   this.bookshelf.getTile(i-1, j+1)==this.bookshelf.getTile(i,j) &&
-					   this.bookshelf.getTile(i+1, j+1)==this.bookshelf.getTile(i,j)) {
+					if(bookshelf.getTile(i-1, j-1)==bookshelf.getTile(i,j) &&
+					   bookshelf.getTile(i+1, j-1)==bookshelf.getTile(i,j) &&
+					   bookshelf.getTile(i-1, j+1)==bookshelf.getTile(i,j) &&
+					   bookshelf.getTile(i+1, j+1)==bookshelf.getTile(i,j)) {
 						return true;
 					}
 				 }

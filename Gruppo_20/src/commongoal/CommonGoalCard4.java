@@ -3,25 +3,27 @@ import model.Slot;
 import model.Bookshelf;
 
 public class CommonGoalCard4 extends CommonGoalCard3{
+	
 	private String path = "./resources/Assets/commonGoalCard/4.png";
-	public CommonGoalCard4(Bookshelf bookshelf) {
-		super(bookshelf);
+	
+	public CommonGoalCard4() {
+		super();
 	}
 
 	@Override
-	public int countVertical(int nTiles) {
-		return super.countVertical(nTiles);
+	public int countVertical(Bookshelf bookshelf ,int nTiles) {
+		return super.countVertical(bookshelf ,nTiles);
 	}
 
 	@Override
-	public int countHorizontal(int nTiles) {
-		return super.countHorizontal(nTiles);
+	public int countHorizontal(Bookshelf bookshelf ,int nTiles) {
+		return super.countHorizontal(bookshelf ,nTiles);
 	}
 
 	@Override
-	boolean CheckTarget() {
-		int countVertical = countVertical(2);
-		int countHorizontal = countHorizontal(2);
+	boolean CheckTarget(Bookshelf bookshelf) {
+		int countVertical = countVertical(bookshelf ,2);
+		int countHorizontal = countHorizontal(bookshelf ,2);
 		if((countVertical+countHorizontal)>=6) return true;
 		else return false;
 	}

@@ -8,19 +8,18 @@ import java.util.Set;
 import java.util.HashSet;
 
 public class CommonGoalCard5 extends CommonGoalCard{
-	Bookshelf bookshelf;
-	private String path = "./resources/Assets/commonGoalCard/5.png";
-	public CommonGoalCard5(Bookshelf bookshelf) {
-		this.bookshelf = bookshelf;
-	}
 	
-	private boolean searchColumns() {
+	private String path = "./resources/Assets/commonGoalCard/5.png";
+	
+	public CommonGoalCard5() {}
+	
+	private boolean searchColumns(Bookshelf bookshelf) {
 		int countColumns=0;
-		for(int j=0; j<this.bookshelf.getColumns(); j++) {
+		for(int j=0; j<bookshelf.getColumns(); j++) {
 			Set<ItemTileType> differentTypes = new HashSet<>();
-			for(int i=0; i<this.bookshelf.getRows(); i++) {
-				if(this.bookshelf.getSlot(i, j).isEmpty() == false) {
-					differentTypes.add(this.bookshelf.getItemTileType(i,j));
+			for(int i=0; i<bookshelf.getRows(); i++) {
+				if(bookshelf.getSlot(i, j).isEmpty() == false) {
+					differentTypes.add(bookshelf.getItemTileType(i,j));
 					if(differentTypes.size()>3) {
 						break;
 					}
@@ -33,9 +32,9 @@ public class CommonGoalCard5 extends CommonGoalCard{
 	}
 	
 	@Override
-	boolean CheckTarget() {
+	boolean CheckTarget(Bookshelf bookshelf) {
 		boolean check;
-		check = searchColumns();
+		check = searchColumns(bookshelf);
 		if(check) return true;
 		else return false;
 	}
