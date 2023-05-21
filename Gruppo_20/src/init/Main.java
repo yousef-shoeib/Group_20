@@ -32,12 +32,6 @@ public class Main {
 			});
 			Game.setState(GameState.PLAY);
 		}
-	if(Game.getState().equals(GameState.PLAY)) {
-		game.checkCommonGoal();
-		if(game.currentPlayer().getBookshelf().isComplete()) {
-			Game.setState(GameState.GAME_OVER);
-		}
-	}
 	if(Game.getState().equals(GameState.GAME_OVER)) {
 		game.finalPointsCount();
 		Player winner = game.getWinner();

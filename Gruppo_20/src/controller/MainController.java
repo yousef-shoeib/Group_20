@@ -216,7 +216,9 @@ public class MainController {
 				taken = false;
 				mainFrame.getAddTileButton().setEnabled(false);/////
 				mainFrame.getEndRoundButton().setEnabled(true);
+				game.checkCommonGoal();
 				if(game.currentPlayer().getBookshelf().isComplete()) {
+					game.finalPointsCount();
 					createGameOverPanel();
 					Game.setState(GameState.GAME_OVER);
 				}
@@ -429,9 +431,9 @@ public class MainController {
 	private void loadCommonGoalCard()
 	{
 		CommonGoalCard commonGoal = game.getCommonGoal();
-		/*ImageIcon tempIcon =new ImageIcon(commonGoal.getPath()); //metodo da creare in commongoal card
+		ImageIcon tempIcon =new ImageIcon(commonGoal.getPath()); //metodo da creare in commongoal card
 		ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
-		mainFrame.getCommonGoalCard1Label().setIcon(icon);*/	
+		mainFrame.getCommonGoalCard1Label().setIcon(icon);
 	}
 	private void deselectAllSlot()
 	{
