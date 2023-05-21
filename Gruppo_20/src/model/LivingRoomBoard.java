@@ -217,8 +217,13 @@ public class LivingRoomBoard extends Grid {
 		
 		return currentSelectedTile;
 	}
-
-	public int removeTile(ItemTile item) {
+	public void removeTile(List<ItemTile> selectedTiles) {
+		for(ItemTile item : selectedTiles)
+		{
+			this.removeTile(item);
+		}
+	}
+	private int removeTile(ItemTile item) {
 		
 		for(int x = 0; x < this.rows; x++)
 		{	
