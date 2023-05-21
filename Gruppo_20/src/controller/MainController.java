@@ -417,11 +417,7 @@ public class MainController {
 	}
 	private void loadBookshelf()
 	{
-		Bookshelf bookshelf = game.currentPlayer().getBookshelf();
-		int numRows = bookshelf.getRows();
-		int numColumns = bookshelf.getColumns();
-		
-		mainFrame.fillBookShelf(bookshelf.getMatrGrid(), numRows, numColumns);
+		mainFrame.fillBookShelf(game.getCurrentPlayerBookShelf(), 6, 5);
 	}
 	private void loadPersonalGoalCard()
 	{
