@@ -63,7 +63,7 @@ public class MainController {
 		assignAddBookShelfTileButtonController();
 		assignEndRoundButtonController();	
 		loadPersonalGoalCard();
-		loadCommonGoalCard();
+		loadCommonGoalCards();
 		flipPersonalGoalCard();
 		mainFrame.getPlayerNameLabel().setText("Player " + (game.getCurrentPlayer()+1) +": "+ game.getCurrentPlayerName());
 		mainFrame.getPlayerPointsLabel().setText("Points: "+ game.getCurrentPlayerPoints());
@@ -428,12 +428,16 @@ public class MainController {
 		//ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
 		//mainFrame.getPersonalGoalCardLabel().setIcon(icon);
 	}
-	private void loadCommonGoalCard()
+	private void loadCommonGoalCards()
 	{
-		CommonGoalCard commonGoal = game.getCommonGoal();
-		ImageIcon tempIcon =new ImageIcon(commonGoal.getPath()); //metodo da creare in commongoal card
-		ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
-		mainFrame.getCommonGoalCard1Label().setIcon(icon);
+		CommonGoalCard commonGoal1 = game.getCommonGoal1();
+		ImageIcon tempIcon1 =new ImageIcon(commonGoal1.getPath()); //metodo da creare in commongoal card
+		ImageIcon icon1= new ImageIcon(tempIcon1.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
+		mainFrame.getCommonGoalCard1Label().setIcon(icon1);
+		CommonGoalCard commonGoal2 = game.getCommonGoal2();
+		ImageIcon tempIcon2 =new ImageIcon(commonGoal2.getPath()); //metodo da creare in commongoal card
+		ImageIcon icon2= new ImageIcon(tempIcon2.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
+		mainFrame.getCommonGoalCard2Label().setIcon(icon2);
 	}
 	private void deselectAllSlot()
 	{

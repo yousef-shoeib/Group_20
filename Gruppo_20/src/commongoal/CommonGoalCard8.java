@@ -2,7 +2,7 @@ package commongoal;
 import model.Bookshelf;
 public class CommonGoalCard8 extends CommonGoalCard{
 	
-	private String path = "./resources/Assets/commonGoalCard/8.png";
+	private String path = "./resources/Assets/commonGoalCards/8.jpg";
 	
 	public CommonGoalCard8() {}
 	

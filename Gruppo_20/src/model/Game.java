@@ -18,7 +18,8 @@ public class Game {
 	private Bag bag;
 	private int firstPlayer;
 	private static GameState state= GameState.NEW_GAME;
-	private CommonGoalCard commonGoal;
+	private CommonGoalCard commonGoal1;
+	private CommonGoalCard commonGoal2;
 	private static int currentPlayer;
 	private List<ItemTile> selectedTiles;
 	private int maxNumberGettableTile;
@@ -36,7 +37,8 @@ public class Game {
 		addPlayers(numberOfPlayers,namePlayers);
 		assignFirstPlayerSeat(numberOfPlayers);
 		setCurrentPlayer();
-		commonGoal=CommonGoalCard.assignCommonGoalCard();
+		commonGoal1=CommonGoalCard.assignCommonGoalCard();
+		commonGoal2=CommonGoalCard.assignCommonGoalCard();
 		this.maxNumberGettableTile = this.listPlayer.get(currentPlayer).getBookshelf().maxDrawableTiles();
 	}
 	public ItemTile addToSelectedTileList(int row,int column) throws Exception
@@ -252,8 +254,8 @@ public class Game {
 	public void controlCommonGoal() {
 		
 	}
-	public CommonGoalCard getCommonGoal() {
-		return commonGoal;
+	public CommonGoalCard getCommonGoal1() {
+		return commonGoal1;
 	}
 	public Player currentPlayer() {
 		return listPlayer.get(currentPlayer);
@@ -263,8 +265,8 @@ public class Game {
 	}
 	
 	public void checkCommonGoal() {
-		if(commonGoal.CheckTarget(currentPlayer().getBookshelf())) {
-			int points= commonGoal.ReturnPoints(listPlayer.size());
+		if(commonGoal1.CheckTarget(currentPlayer().getBookshelf())) {
+			int points= commonGoal1.ReturnPoints(listPlayer.size());
 			listPlayer.get(currentPlayer).addPoints(points);
 		}
 	}
@@ -322,5 +324,8 @@ public class Game {
 	}
 	public List<Player> getListPlayer() {
 		return listPlayer;
+	}
+	public CommonGoalCard getCommonGoal2() {
+		return commonGoal2;
 	}
 }

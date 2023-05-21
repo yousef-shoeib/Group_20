@@ -8,7 +8,7 @@ import model.ItemTile;
 
 public class CommonGoalCard6 extends CommonGoalCard {
 	
-	private String path = "./resources/Assets/commonGoalCard/6.png";
+	private String path = "./resources/Assets/commonGoalCards/6.jpg";
 	
 	public CommonGoalCard6() {}
 	

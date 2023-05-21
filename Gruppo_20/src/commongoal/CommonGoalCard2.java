@@ -7,7 +7,7 @@ import java.util.Set;
 import model.Bookshelf;
 
 public class CommonGoalCard2 extends CommonGoalCard{
-	private String path = "./resources/Assets/commonGoalCard/2.png";
+	private String path = "./resources/Assets/commonGoalCards/2.jpg";
 	
 	public CommonGoalCard2() {}
 	
