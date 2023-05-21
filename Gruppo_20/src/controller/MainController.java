@@ -457,14 +457,6 @@ public class MainController {
 			mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+i).setBorder(new LineBorder(new Color(255,255,255), 3));
 		}
 	}
-	public void setCurrentPlayer(Game game) {
-		int size=game.getListPlayer().size();
-		for(int i=0; i<size;i++ ) {
-			if(game.getListPlayer().get(i).isFirstPlayer()) {
-				currentPlayer=i;
-			}
-		}
-	}
 	private void assignQuitGameButtonController()
 	{
 		mainFrame.getQuitGameButton().addActionListener(new ActionListener() {
