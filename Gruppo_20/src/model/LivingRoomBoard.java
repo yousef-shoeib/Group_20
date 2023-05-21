@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 import exception.SameTileSelectedException;
+import exception.TileHasNotFreeSideException;
+import exception.TilesAreNotAdjacentException;
+import exception.TilesAreNotInlineException;
 
 public class LivingRoomBoard extends Grid {
 
@@ -178,20 +181,17 @@ public class LivingRoomBoard extends Grid {
 		return false;
 	}
 	
-	public ItemTile getTile(ItemTile currentSelectedTile, ItemTile lastSelectedTile,ItemTile firstSelectedTile,int maxNumberGettable) throws Exception
+	public ItemTile getTile(ItemTile currentSelectedTile, ItemTile lastSelectedTile,ItemTile firstSelectedTile) throws Exception
 	{
-		if(maxNumberGettable == 0){
-			throw new IllegalArgumentException("you have already selected the maximum number of tiles");
-		}
 		if(currentSelectedTile == null){
 			throw new NullPointerException("no tile selected");
 		}
 		
 		if(tilesAlreadySelected(currentSelectedTile,lastSelectedTile,firstSelectedTile)){
-			throw new SameTileSelectedException("Tile already selected. Select another tile");
+			throw new SameTileSelectedException("Tile already Getted");
 		}
 		if (!tileHasFreeSide(currentSelectedTile)){
-			throw new Exception("tile has not free side");
+			throw new TileHasNotFreeSideException("tile has not free side");
 		}
 		
 		if(lastSelectedTile == null){
@@ -200,10 +200,10 @@ public class LivingRoomBoard extends Grid {
 		
 		if(!tilesAreAdjacent(currentSelectedTile,lastSelectedTile)){
 			if(firstSelectedTile == null)
-				throw new Exception("tile are not adjacent");
+				throw new TilesAreNotAdjacentException("tile are not adjacent");
 			else
 				if(!tilesAreAdjacent(currentSelectedTile,firstSelectedTile)){
-					throw new Exception("tile are not adjacent");
+					throw new TilesAreNotAdjacentException("tile are not adjacent");
 				}
 		}
 		
@@ -212,7 +212,7 @@ public class LivingRoomBoard extends Grid {
 		}
 		
 		if(!tileIsInline(currentSelectedTile,lastSelectedTile,firstSelectedTile)){
-			throw new Exception("tile are not inline");
+			throw new TilesAreNotInlineException("tile are not inline");
 		}
 		
 		return currentSelectedTile;
