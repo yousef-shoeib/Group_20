@@ -20,6 +20,7 @@ import javax.swing.border.LineBorder;
 
 import cards.PersonalGoalCard;
 import commongoal.CommonGoalCard;
+import exception.MaxSelectedItemTileException;
 import exception.SameTileSelectedException;
 import model.Bookshelf;
 import model.Game;
@@ -36,14 +37,11 @@ public class MainController {
 	private Game game;
 	private MainFrame mainFrame;
 	
-	private static int currentPlayer=0;
-	int maxNumberGettableTile = 0;
 	int selectedBookShelfColumn = -1;
 	int check = 0;
 	boolean placing=false;
 	boolean taken = false;
 	int positionToSwap=0; //to order box getted tiles
-	private List<ItemTile> listToRemoveTile;
 	private Map<String,JLabel> labelToRemove;
 
 	
@@ -51,12 +49,10 @@ public class MainController {
 	{
 		this.game = game;
 		this.mainFrame = mainFrame;
-		listToRemoveTile = new ArrayList<>();
 		labelToRemove = new HashMap<>();
 		
 		assignQuitGameButtonController();
 		game.getFirstPlayer();
-		setCurrentPlayer(game);
 		assignLivingTileLabelController();
 		assignBookShelfTileLabelController();
 		assignBoxedGettedTileLabelController();
@@ -67,9 +63,8 @@ public class MainController {
 		loadCommonGoalCard();
 		flipPersonalGoalCard();
 		
-		maxNumberGettableTile = game.currentPlayer().getBookshelf().maxDrawableTiles();
-		mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.currentPlayer().getName());
-		mainFrame.getPlayerPointsLabel().setText("Points: "+ game.currentPlayer().getPoints());
+		mainFrame.getPlayerNameLabel().setText("Player " + (game.getCurrentPlayer()+1) +": "+ game.getCurrentPlayerName());
+		mainFrame.getPlayerPointsLabel().setText("Points: "+ game.getCurrentPlayerPoints());
 
 	}
 	private void assignLivingTileLabelController()
@@ -89,68 +84,58 @@ public class MainController {
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
 					
-					   String[] coordinates = label.getName().split("_");
-					   int row = Integer.parseInt(coordinates[0]);
-					   int column = Integer.parseInt(coordinates[1]);
-					   Slot currentSlot = game.getLivingRoomBoard().getSlot(row, column);
+					if(!taken) {
+						String[] coordinates = label.getName().split("_");
+						int row = Integer.parseInt(coordinates[0]);
+						int column = Integer.parseInt(coordinates[1]);
 					   
-					   ItemTile checkItemTile = null;
-					   if(!currentSlot.isEmpty()) {
-						   checkItemTile = currentSlot.getItemTile();
-					   }
-
-					   ItemTile itemTile = null;
-
-					   try 
-					   {
-						   if(listToRemoveTile.size()== 0)  
-						   {
-							   itemTile = game.getLivingRoomBoard().getTile(checkItemTile,null,null,maxNumberGettableTile);
-						   }
-						   else if(listToRemoveTile.size() == 1)
-						   {
-							   itemTile = game.getLivingRoomBoard().getTile(checkItemTile,listToRemoveTile.get(0),null,maxNumberGettableTile); 
-						   }
-
-						   else if(listToRemoveTile.size() >= 2)
-						   {
-							   itemTile = game.getLivingRoomBoard().getTile(checkItemTile,listToRemoveTile.get(1),listToRemoveTile.get(0),maxNumberGettableTile);
-						   }
-							   
-						   label.setBorder(new LineBorder(new Color(50,205,50), 3));
-						   System.out.println("allow to take");
-						   listToRemoveTile.add(itemTile);
-						   labelToRemove.put(String.valueOf(itemTile.getId()), label);
-						   maxNumberGettableTile--;
-									   
-					   }catch (SameTileSelectedException e2) 
-					   {
-						   System.out.println(e2.getMessage());
-						   deselectItemTile(label);
-					   }
-					   catch(IllegalArgumentException e3)
-					   {
-						   System.out.println(e3.getMessage());
-						   deselectItemTile(label);
-					   }
-					   catch (Exception e4) 
-					   {
-						   System.out.println(e4.getMessage());
-						   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
-						   check = 1;
-					   }
-						
-					  if(listToRemoveTile.size() > 0) {
-							mainFrame.getTakeTileButton().setEnabled(true);
-					  }
-					  else {
-						  mainFrame.getTakeTileButton().setEnabled(false);
-					  }
+						ItemTile checkItemTile = null;
+						try{
+							checkItemTile = game.addToSelectedTileList(row,column);
+							label.setBorder(new LineBorder(new Color(50,205,50), 3));
+							labelToRemove.put(String.valueOf(checkItemTile.getId()), label);
+							System.out.println("allow to take");
+						}
+						catch(MaxSelectedItemTileException ex2){
+							System.out.println(ex2.getMessage());
+							if(game.selectedtTileContains(row, column))
+							{
+								if(game.deselectFromTakenList(row,column)){
+								label.setBorder(new LineBorder(new Color(255,255,255), 3));
+								}
+							else{
+								label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
+								check = 2;
+								}
+							}
+						}
+						catch(SameTileSelectedException ex1){
+							System.out.println(ex1.getMessage());
+							if(game.deselectFromTakenList(row,column)){
+								label.setBorder(new LineBorder(new Color(255,255,255), 3));
+							}
+							else{
+								label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
+								check = 2;
+							}
+						}
+						catch (Exception e1) {
+							System.out.println(e1.getMessage());
+							label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
+							check = 1;
+						}
+	
+						  if(game.numberOfSelectedTile() > 0) {
+								mainFrame.getTakeTileButton().setEnabled(true);
+						  }
+						  else {
+							  mainFrame.getTakeTileButton().setEnabled(false);
+						  }
+					}
 				}
 				
 				@Override
 				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
 					if(check == 1)
 					{
 					   label.setBorder(new LineBorder(new Color(255,255,255), 3));
