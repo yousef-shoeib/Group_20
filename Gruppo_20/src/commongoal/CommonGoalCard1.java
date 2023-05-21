@@ -9,7 +9,7 @@ public class CommonGoalCard1 extends CommonGoalCard{
 	
 	@Override
 	boolean CheckTarget(Bookshelf bookshelf) {
-		int count = 0;
+		int count = 0; //conta
 		for(int i=0; i<bookshelf.getRows()-1;i++) {
 			for(int j=0; j<bookshelf.getColumns()-1;j++) {
 				if(bookshelf.getSlot(i, j).isEmpty() == false &&
