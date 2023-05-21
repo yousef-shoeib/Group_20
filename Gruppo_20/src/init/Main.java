@@ -19,7 +19,7 @@ public class Main {
 		SetGameController setGameController;
 	
 	do {// il ciclo non controlla ancora il gioco
-		if(game.getState().equals(GameState.NEW_GAME)) {
+		if(Game.getState().equals(GameState.NEW_GAME)) {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -30,20 +30,20 @@ public class Main {
 					}
 				}
 			});
-			game.setState(GameState.PLAY);
+			Game.setState(GameState.PLAY);
 		}
-	if(game.getState().equals(GameState.PLAY)) {
+	if(Game.getState().equals(GameState.PLAY)) {
 		game.checkCommonGoal();
 		if(game.currentPlayer().getBookshelf().isComplete()) {
-			game.setState(GameState.GAME_OVER);
+			Game.setState(GameState.GAME_OVER);
 		}
 	}
-	if(game.getState().equals(GameState.GAME_OVER)) {
+	if(Game.getState().equals(GameState.GAME_OVER)) {
 		game.finalPointsCount();
 		Player winner = game.getWinner();
 		System.out.println(winner.toString());
 	}
 	
-	}while(!game.getState().equals(GameState.QUIT));
+	}while(!Game.getState().equals(GameState.QUIT));
 }
 }

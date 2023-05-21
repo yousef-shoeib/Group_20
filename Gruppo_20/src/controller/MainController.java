@@ -3,6 +3,7 @@ package controller;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -15,7 +16,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
 import cards.PersonalGoalCard;
@@ -62,7 +65,6 @@ public class MainController {
 		loadPersonalGoalCard();
 		loadCommonGoalCard();
 		flipPersonalGoalCard();
-		
 		mainFrame.getPlayerNameLabel().setText("Player " + (game.getCurrentPlayer()+1) +": "+ game.getCurrentPlayerName());
 		mainFrame.getPlayerPointsLabel().setText("Points: "+ game.getCurrentPlayerPoints());
 
@@ -214,10 +216,9 @@ public class MainController {
 				taken = false;
 				mainFrame.getAddTileButton().setEnabled(false);/////
 				mainFrame.getEndRoundButton().setEnabled(true);
-				
 				if(game.currentPlayer().getBookshelf().isComplete()) {
 					createGameOverPanel();
-					game.setState(GameState.GAME_OVER);
+					Game.setState(GameState.GAME_OVER);
 				}
 				mainFrame.getEndRoundButton().setEnabled(true);
 			}
@@ -462,8 +463,10 @@ public class MainController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				game.setState(GameState.QUIT);
-				mainFrame.dispose();
+				JFrame confirmFrame= new JFrame("");
+				if(JOptionPane.showConfirmDialog(confirmFrame, "Do you want to quit the game?","",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION) {
+					System.exit(0);
+				}
 			}
 		});
 	}
@@ -489,13 +492,15 @@ public class MainController {
 	private void assignQuitGameOverButtonController()
 	{
 		mainFrame.getGameOverPanel().getQuitGameButton().addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				game.setState(GameState.QUIT);
-				mainFrame.dispose();
+				JFrame confirmFrame= new JFrame("");
+				if(JOptionPane.showConfirmDialog(confirmFrame, "Do you want to quit the game?","",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION) {
+					System.exit(0);
+				}
 			}
 		});
+		
 	}
 	private void assignNewGameButtonController()
 	{
@@ -506,7 +511,9 @@ public class MainController {
 				//mainFrame.getGameOverPanel().setVisible(false);
 				//mainFrame.remove(mainFrame.getGameOverPanel());
 				mainFrame.dispose();
-				game.setState(GameState.NEW_GAME);//////////////////
+				mainFrame.getGameOverPanel().dispose();
+				mainFrame.getGlassPane().setVisible(false);
+				Game.setState(GameState.NEW_GAME);//////////////////
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {	

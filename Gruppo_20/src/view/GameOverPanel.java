@@ -3,6 +3,7 @@ package view;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
@@ -12,6 +13,10 @@ import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +25,10 @@ import java.util.Map;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class GameOverPanel extends JLayeredPane {
+public class GameOverPanel extends JDialog {
 
 	private JLabel titleLabel;
 	private JPanel buttonsPanel;
@@ -38,29 +45,31 @@ public class GameOverPanel extends JLayeredPane {
 	
 	
 	public GameOverPanel() {
+		setUndecorated(true);
 		playersLabels=new ArrayList<>();
 		//setBorder(BorderFactory.createEtchedBorder(500,Color.BLACK, Color.BLACK));
-		setLayout(new BorderLayout(0, 0));
+		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		titleLabel = new JLabel("Game-Over");
 		titleLabel.setForeground(Color.RED);
 		titleLabel.setFont(new Font("Snap ITC", Font.PLAIN, 20));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		add(titleLabel,BorderLayout.NORTH);
+		getContentPane().add(titleLabel,BorderLayout.NORTH);
 		
 		buttonsPanel = new JPanel();
 		buttonsPanel.setPreferredSize(new Dimension(150,40));
-		add(buttonsPanel, BorderLayout.SOUTH);
+		getContentPane().add(buttonsPanel, BorderLayout.SOUTH);
 		buttonsPanel.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		newGameButton = new JButton("New Game");
 		buttonsPanel.add(newGameButton);
 		
 		quitGameButton = new JButton("Quit Game");
+		
 		buttonsPanel.add(quitGameButton);
 		
 		panel = new JPanel();
-		add(panel, BorderLayout.CENTER);
+		getContentPane().add(panel, BorderLayout.CENTER);
 		
 		winnerNameLabel = new JLabel("");
 		winnerNameLabel.setFont(new Font("Snap ITC", Font.PLAIN, 15));
