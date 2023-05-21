@@ -264,7 +264,7 @@ public class Game {
 	
 	public void checkCommonGoal() {
 		//if(commonGoal.CheckTarget()) {
-			int points= commonGoal.ReturnPoints(currentPlayer, listPlayer.size());
+			int points= commonGoal.ReturnPoints(listPlayer.size());
 			listPlayer.get(currentPlayer).addPoints(points);
 		//}
 	}
