@@ -229,20 +229,18 @@ public class MainController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				boolean fill = game.endRound();
+				if(fill)
+				{
+					mainFrame.fillLeavingRoomBoard(game.getLivingRoomBoard(),9,9);
+				}
 				deselectAllSlot();
 				selectedBookShelfColumn = -1;
-				game.nextPlayer();
-				currentPlayer=Game.getCurrentPlayerNumber();
 				loadBookshelf();
 				loadPersonalGoalCard();
-				maxNumberGettableTile = game.currentPlayer().getBookshelf().maxDrawableTiles();
-				mainFrame.getPlayerNameLabel().setText("Player " + (currentPlayer+1) +": "+ game.getListPlayer().get(currentPlayer).getName());
-				mainFrame.getPlayerPointsLabel().setText("Points: " + game.getListPlayer().get(currentPlayer).getPoints());
-				if(!game.getLivingRoomBoard().hasAdjacentTiles())
-				{
-					game.getLivingRoomBoard().putItemTiles(game.getBag().getListItemTile());
-					mainFrame.fillLeavingRoomBoard(game.getLivingRoomBoard().getMatrGrid(),game.getLivingRoomBoard().getRows(),game.getLivingRoomBoard().getColumns());
-				}
+				mainFrame.getPlayerNameLabel().setText("Player " + (game.getCurrentPlayer()+1) +": "+ game.getCurrentPlayerName());
+				mainFrame.getPlayerPointsLabel().setText("Points: " + game.getCurrentPlayerPoints());
+
 				mainFrame.getEndRoundButton().setEnabled(false);
 				assignFirstPlayerTokenLabel();
 			}
