@@ -168,8 +168,10 @@ public class MainController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 					
+				game.takeTiles();
+				List<ItemTile> takenTilesList = game.getCopyOfTilesList();
 				int i = 0;
-				for(ItemTile item : listToRemoveTile)
+				for(ItemTile item : takenTilesList)
 				{
 					JLabel tempLabel = labelToRemove.get(String.valueOf(item.getId()));
 					ImageIcon tempIcon = new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
@@ -181,11 +183,9 @@ public class MainController {
 
 					i++;
 				}
-				maxNumberGettableTile = 0;
 				
-				if(listToRemoveTile.size() > 0) {
+				if(takenTilesList.size() > 0) {
 					mainFrame.getTakeTileButton().setEnabled(false);
-					//mainFrame.getAddTileButton().setEnabled(true);
 				}
 			}
 		});
