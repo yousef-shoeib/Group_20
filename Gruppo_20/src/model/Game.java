@@ -262,5 +262,17 @@ public class Game {
 		}
 		return winner;
 	}
-	
+	public boolean selectedtTileContains(int row,int column)
+	{
+		Slot currentSlot = this.livingRoomBoard.getSlot(row,column);
+		ItemTile checkItemTile = null;
+		
+		if(!currentSlot.isEmpty()) {
+			   checkItemTile = currentSlot.getItemTile();
+			   if(selectedTiles.contains(checkItemTile)) {
+				   return true;
+			   }
+		}
+		return false;
+	}
 }
