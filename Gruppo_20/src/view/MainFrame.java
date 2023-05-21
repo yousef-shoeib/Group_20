@@ -48,7 +48,7 @@ public class MainFrame extends JFrame {
 	private Map<String,JLabel> boxedGettedTileLabel;
 	private JButton quitGameButton;
 	private GameOverPanel gameOverPanel;
-
+	private JLabel firstPlayerTokenLabel;
 	/**
 	 * Create the frame.
 	 */
@@ -162,7 +162,7 @@ public class MainFrame extends JFrame {
 		
 		//playerInfoPane
 		playerInfoPane = new JPanel();		
-		playerInfoPane.setBounds(100, 50, 250, 100);
+		playerInfoPane.setBounds(75, 50, 300, 100);
 		playerInfoPane.setBorder(new LineBorder(new Color(0,0,0), 3));
 		playerInfoPane.setBackground(new Color(0, 127, 255));
 		playerInfoPane.setLayout(null);
@@ -182,6 +182,13 @@ public class MainFrame extends JFrame {
 		playerPointsLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		playerPointsLabel.setLayout(null);
 		playerInfoPane.add(playerPointsLabel);
+		
+		firstPlayerTokenLabel = new JLabel("");
+		firstPlayerTokenLabel.setBounds(245, 11, 50, 50);
+		ImageIcon tempFirstPlayerTokenIcon=new ImageIcon("./resources/Assets/misc/firstplayertoken.png");
+		ImageIcon FirstPlayerTokenIcon=new ImageIcon(tempFirstPlayerTokenIcon.getImage().getScaledInstance(50, 50,Image.SCALE_SMOOTH));
+		firstPlayerTokenLabel.setIcon(FirstPlayerTokenIcon);
+		playerInfoPane.add(firstPlayerTokenLabel);
 		
 		takeTileButton = new JButton("Take");
 		takeTileButton.setBounds(743, 200, 77, 41);
@@ -402,5 +409,9 @@ public class MainFrame extends JFrame {
 		gameOverPanel.setBounds(780, 200, 600,400 );
 		gameOverPanel.setVisible(true);		
 		contentPane.add(gameOverPanel,BorderLayout.CENTER);
+	}
+
+	public JLabel getFirstPlayerTokenLabel() {
+		return firstPlayerTokenLabel;
 	}
 }

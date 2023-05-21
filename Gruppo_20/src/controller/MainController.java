@@ -263,6 +263,7 @@ public class MainController {
 					mainFrame.fillLeavingRoomBoard(game.getLivingRoomBoard().getMatrGrid(),game.getLivingRoomBoard().getRows(),game.getLivingRoomBoard().getColumns());
 				}
 				mainFrame.getEndRoundButton().setEnabled(false);
+				assignFirstPlayerTokenLabel();
 			}
 		});
 	}
@@ -602,6 +603,14 @@ public class MainController {
 				});
 			}
 		});
+	}
+	private void assignFirstPlayerTokenLabel() {
+		if(game.currentPlayer().isFirstPlayer()) {
+		mainFrame.getFirstPlayerTokenLabel().setVisible(true);		
+		}
+		else {
+			mainFrame.getFirstPlayerTokenLabel().setVisible(false);
+		}
 	}
 	
 	/*private void increaseCurrentPlayer()
