@@ -385,9 +385,8 @@ public class MainController {
 				}
 				
 				@Override
-				public void mouseEntered(MouseEvent e) {
-					PersonalGoalCard personalGoal = game.getListPlayer().get(currentPlayer).getPersonalGoalCard();	
-					ImageIcon tempIcon =new ImageIcon(personalGoal.getPath());
+				public void mouseEntered(MouseEvent e) {	
+					ImageIcon tempIcon =new ImageIcon(game.getCurrentPlayerPersonalGoalCardPath());
 					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
 					label.setIcon(icon);
 					
