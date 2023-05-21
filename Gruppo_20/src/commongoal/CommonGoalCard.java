@@ -7,6 +7,7 @@ import model.Bookshelf;
 
 public abstract class CommonGoalCard {
 	static int count=0; //variable that counts the number of times a goal has been achieved
+	private String path;
 	
 	public CommonGoalCard() {}
 	
@@ -110,5 +111,9 @@ public abstract class CommonGoalCard {
 	
 		return points;
 	}	
+	
+	public String getPath() {
+		return path;
+	}
 	
 }
