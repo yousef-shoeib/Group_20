@@ -67,7 +67,7 @@ public abstract class CommonGoalCard {
 	
 	
 	
-	public int ReturnPoints( int giocatori) {
+	public int ReturnPoints( int giocatore,int giocatori) {
 		int points=0;
 		switch(giocatori) {
 			case 2:

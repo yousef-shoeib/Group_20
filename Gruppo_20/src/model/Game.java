@@ -36,7 +36,7 @@ public class Game {
 		addPlayers(numberOfPlayers,namePlayers);
 		assignFirstPlayerSeat(numberOfPlayers);
 		setCurrentPlayer();
-		commonGoal=CommonGoalCard.assignCommonGoalCard(null);
+		commonGoal=CommonGoalCard.assignCommonGoalCard();
 		this.maxNumberGettableTile = this.listPlayer.get(currentPlayer).getBookshelf().maxDrawableTiles();
 	}
 	public ItemTile addToSelectedTileList(int row,int column) throws Exception
