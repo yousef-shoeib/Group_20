@@ -35,6 +35,7 @@ public class Game {
 		livingRoomBoard.putItemTiles(bag.getListItemTile());
 		addPlayers(numberOfPlayers,namePlayers);
 		assignFirstPlayerSeat(numberOfPlayers);
+		setCurrentPlayer();
 		commonGoal=CommonGoalCard.assignCommonGoalCard(null);
 		this.maxNumberGettableTile = this.listPlayer.get(currentPlayer).getBookshelf().maxDrawableTiles();
 	}
