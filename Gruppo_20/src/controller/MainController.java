@@ -475,19 +475,19 @@ public class MainController {
 		assignQuitGameOverButtonController();
 		assignNewGameButtonController();
 		assignWinner();
-		//assignPlayersList();
+		assignPlayersList();
 	}
 	private void assignWinner() {
 		mainFrame.getGameOverPanel().getWinnerNameLabel().setText(game.getWinner().getName());
 	}
-	/*private void assignPlayersList() {
+	private void assignPlayersList() { 
 		for(int i=0; i<game.getListPlayer().size();i++) {
 			JLabel playerLabel=mainFrame.getGameOverPanel().getPlayersLabels().get(i);
 			String playerName=game.getListPlayer().get(i).getName();
 			int points=game.getListPlayer().get(i).getPoints();
 			playerLabel.setText("Player"+ (i+1)+ ": "+playerName+" Points: "+points);
 		}
-	}*/
+	}
 	
 	private void assignQuitGameOverButtonController()
 	{
