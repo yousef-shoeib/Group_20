@@ -265,8 +265,18 @@ public class Game {
 	}
 	
 	public void checkCommonGoal() {
+		checkCommonGoal1();
+		checkCommonGoal2();
+	}
+	private void checkCommonGoal1() {
 		if(commonGoal1.CheckTarget(currentPlayer().getBookshelf())) {
 			int points= commonGoal1.ReturnPoints(listPlayer.size());
+			listPlayer.get(currentPlayer).addPoints(points);
+		}
+	}
+	private void checkCommonGoal2() {
+		if(commonGoal2.CheckTarget(currentPlayer().getBookshelf())) {
+			int points= commonGoal2.ReturnPoints(listPlayer.size());
 			listPlayer.get(currentPlayer).addPoints(points);
 		}
 	}
