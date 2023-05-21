@@ -2,6 +2,7 @@ package commongoal;
 
 import model.Bookshelf;
 import model.ItemTile;
+import model.ItemTileType;
 import model.Slot;
 
 public class CommonGoalCard10 extends CommonGoalCard{
@@ -19,11 +20,11 @@ public class CommonGoalCard10 extends CommonGoalCard{
 				   bookshelf.getSlot(i+1, j-1).isEmpty() == false &&
 				   bookshelf.getSlot(i-1, j+1).isEmpty() == false &&
 				   bookshelf.getSlot(i+1, j+1).isEmpty() == false){
-					
-					if(bookshelf.getTile(i-1, j-1)==bookshelf.getTile(i,j) &&
-					   bookshelf.getTile(i+1, j-1)==bookshelf.getTile(i,j) &&
-					   bookshelf.getTile(i-1, j+1)==bookshelf.getTile(i,j) &&
-					   bookshelf.getTile(i+1, j+1)==bookshelf.getTile(i,j)) {
+					ItemTileType type=bookshelf.getTile(i,j).getType();
+					if(bookshelf.getTile(i-1, j-1).getType().equals(type) &&
+					   bookshelf.getTile(i+1, j-1).getType().equals(type) &&
+					   bookshelf.getTile(i-1, j+1).getType().equals(type) &&
+					   bookshelf.getTile(i+1, j+1).getType().equals(type)) {
 						return true;
 					}
 				 }

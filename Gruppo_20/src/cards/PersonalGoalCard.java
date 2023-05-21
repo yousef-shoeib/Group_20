@@ -82,7 +82,7 @@ public abstract class PersonalGoalCard {
 	
 
 	public String getPath() {
-		return path;
+		return this.path;
 	}
 
 
