@@ -199,7 +199,7 @@ public class MainController {
 			public void actionPerformed(ActionEvent e) {
 
 				int i = game.currentPlayerFreeSlot(selectedBookShelfColumn)-1;
-				ArrayList<ItemTile> takenTilesList = game.moveTilesToBookshelf(selectedBookShelfColumn);
+				List<ItemTile> takenTilesList = game.moveTilesToBookshelf(selectedBookShelfColumn);
 				for(ItemTile item : takenTilesList)
 				{	
 					ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");

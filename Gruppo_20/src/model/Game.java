@@ -155,9 +155,9 @@ public class Game {
 	{		
 		return this.listPlayer.get(currentPlayer).getBookshelf().freeSlotsInColumn(column);
 	}
-	public ArrayList<ItemTile> moveTilesToBookshelf(int column)
+	public List<ItemTile> moveTilesToBookshelf(int column)
 	{
-		ArrayList<ItemTile> tempSelectedTiles = (ArrayList<ItemTile>) getTilesList();
+		List<ItemTile> tempSelectedTiles = this.getTilesList();
 		this.listPlayer.get(currentPlayer).getBookshelf().addItemTiles(column, tempSelectedTiles);
 		this.livingRoomBoard.removeTile(selectedTiles);
 		selectedTiles = new ArrayList<>();
