@@ -417,7 +417,7 @@ public class MainFrame extends JFrame {
 		
 		resultsPane.setModal(true);
 		gameOverPanel=new GameOverPanel();
-		gameOverPanel.setBounds(780, 200, 600,400 );
+		gameOverPanel.setBounds(480, 235, 600,400);
 		gameOverPanel.setVisible(true);	
 		gameOverPanel.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		gameOverPanel.setAlwaysOnTop(true);

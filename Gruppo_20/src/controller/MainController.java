@@ -481,6 +481,7 @@ public class MainController {
 		assignNewGameButtonController();
 		assignWinner();
 		assignPlayersList();
+		mainFrame.getQuitGameButton().setEnabled(false);
 	}
 	private void assignWinner() {
 		mainFrame.getGameOverPanel().getWinnerNameLabel().setText(game.getWinner().getName());
