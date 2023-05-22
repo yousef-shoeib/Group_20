@@ -13,9 +13,9 @@ public class CommonGoalCard3 extends CommonGoalCard {
 			for(int j=0; j<bookshelf.getColumns(); j++) {
 				boolean found = true;
 				for(int k=1; k<nTiles; k++) {
-					if(bookshelf.getSlot(i, j).isEmpty()==false &&
-					   bookshelf.getSlot(i+k,j).isEmpty()==false) {
-								if(bookshelf.getTile(i, j) != bookshelf.getTile(i+k,j)) {
+					if(!bookshelf.getSlot(i, j).isEmpty() &&
+					   !bookshelf.getSlot(i+k,j).isEmpty()) {
+								if(!bookshelf.getTile(i, j).equals(bookshelf.getTile(i+k,j))) {
 									found = false;
 									break;
 								}
@@ -33,9 +33,9 @@ public class CommonGoalCard3 extends CommonGoalCard {
 			for(int i=0; i<bookshelf.getColumns(); i++) {
 				boolean found = true;
 				for(int k=1; k<nTiles; k++) {
-				if(bookshelf.getSlot(i, j).isEmpty() == false &&
-				   bookshelf.getSlot(i,j+k).isEmpty() == false) {
-						if(bookshelf.getTile(i, j) != bookshelf.getTile(i,j+k)) {
+				if(!bookshelf.getSlot(i, j).isEmpty() &&
+				   !bookshelf.getSlot(i,j+k).isEmpty()) {
+						if(!bookshelf.getTile(i, j).equals(bookshelf.getTile(i,j+k))) {
 							found = false;
 							break;
 						}
