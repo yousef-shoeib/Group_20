@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -333,7 +334,7 @@ public class Game {
 		return selectedTiles.size();
 	}
 	public List<Player> getListPlayer() {
-		return listPlayer;
+		return Collections.unmodifiableList(listPlayer);
 	}
 	public CommonGoalCard getCommonGoal2() {
 		return commonGoal2;

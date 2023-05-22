@@ -67,7 +67,6 @@ public class MainController {
 		flipPersonalGoalCard();
 		mainFrame.getPlayerNameLabel().setText("Player " + (game.getCurrentPlayer()+1) +": "+ game.getCurrentPlayerName());
 		mainFrame.getPlayerPointsLabel().setText("Points: "+ game.getCurrentPlayerPoints());
-
 	}
 	private void assignLivingTileLabelController()
 	{
