@@ -15,8 +15,8 @@ public class CommonGoalCard11 extends CommonGoalCard {
 				int count=1;
 				
 				for(int k=1; k<5 && i+k < bookshelf.getColumns() && j+k <bookshelf.getRows(); k++) {
-					if(bookshelf.getSlot(i+k, j+k).isEmpty() == false && bookshelf.getSlot(i, j).isEmpty()==false) {
-							if(bookshelf.getTile(i+k, j+k) == bookshelf.getTile(i, j)){
+					if(!bookshelf.getSlot(i+k, j+k).isEmpty()  && !bookshelf.getSlot(i, j).isEmpty()) {
+							if(bookshelf.getTile(i+k, j+k).equals(bookshelf.getTile(i, j))){
 								count++;
 									if(count==5) return true;
 									else break;

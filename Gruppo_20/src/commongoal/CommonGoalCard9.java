@@ -13,13 +13,13 @@ public class CommonGoalCard9 extends CommonGoalCard{
 		int count=0;
 		for(int i=0; i<bookshelf.getRows();i++) {
 			for(int j=0; j<bookshelf.getColumns();j++) {
-				if(bookshelf.getSlot(i, j).isEmpty()==false) {
+				if(!bookshelf.getSlot(i, j).isEmpty()) {
 					int matchCount = 1;
 					for(int k=i; k<bookshelf.getRows(); k++) {
 						for(int l=0; l<bookshelf.getColumns(); l++) {
 							if(k==i && l<=j) continue;
-							if(bookshelf.getSlot(k, l).isEmpty()==false) {
-								if(bookshelf.getTile(k, l)==bookshelf.getTile(i, j)) {
+							if(!bookshelf.getSlot(k, l).isEmpty()) {
+								if(bookshelf.getTile(k, l).equals(bookshelf.getTile(i, j))) {
 									matchCount++;
 									if(matchCount==8) {
 										count=1;
