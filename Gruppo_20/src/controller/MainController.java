@@ -500,6 +500,7 @@ public class MainController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFrame confirmFrame= new JFrame("");
+				confirmFrame.setAlwaysOnTop(true);
 				if(JOptionPane.showConfirmDialog(confirmFrame, "Do you want to quit the game?","",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION) {
 					System.exit(0);
 				}
