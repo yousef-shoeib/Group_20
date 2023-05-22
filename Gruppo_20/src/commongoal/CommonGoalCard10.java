@@ -15,11 +15,11 @@ public class CommonGoalCard10 extends CommonGoalCard{
 	public boolean CheckTarget(Bookshelf bookshelf) {
 		for(int i=1; i<bookshelf.getRows()-1; i++) {
 			for(int j=1; j<bookshelf.getColumns()-1; j++) {
-				if(bookshelf.getSlot(i, j).isEmpty() == false &&
-				   bookshelf.getSlot(i-1, j-1).isEmpty() == false &&
-				   bookshelf.getSlot(i+1, j-1).isEmpty() == false &&
-				   bookshelf.getSlot(i-1, j+1).isEmpty() == false &&
-				   bookshelf.getSlot(i+1, j+1).isEmpty() == false){
+				if(!bookshelf.getSlot(i, j).isEmpty()  &&
+				   !bookshelf.getSlot(i-1, j-1).isEmpty()  &&
+				   !bookshelf.getSlot(i+1, j-1).isEmpty()  &&
+				   !bookshelf.getSlot(i-1, j+1).isEmpty()  &&
+				   !bookshelf.getSlot(i+1, j+1).isEmpty() ){
 					ItemTileType type=bookshelf.getTile(i,j).getType();
 					if(bookshelf.getTile(i-1, j-1).getType().equals(type) &&
 					   bookshelf.getTile(i+1, j-1).getType().equals(type) &&
