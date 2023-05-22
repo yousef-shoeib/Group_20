@@ -157,25 +157,19 @@ public class Game {
 	}
 	public ArrayList<ItemTile> moveTilesToBookshelf(int column)
 	{
-		ArrayList<ItemTile> tempSelectedTiles = (ArrayList<ItemTile>) getCopyOfTilesList();
+		ArrayList<ItemTile> tempSelectedTiles = (ArrayList<ItemTile>) getTilesList();
 		this.listPlayer.get(currentPlayer).getBookshelf().addItemTiles(column, tempSelectedTiles);
 		this.livingRoomBoard.removeTile(selectedTiles);
 		selectedTiles = new ArrayList<>();
 
 		return tempSelectedTiles;
 	}
-	public List<ItemTile> getCopyOfTilesList()
+	public List<ItemTile> getTilesList()
 	{
 		if(selectedTiles.size() == 0) {
 			throw new NullPointerException("No tile taken");
 		}
-		List<ItemTile> tempList = new ArrayList<>();
-		for(ItemTile item : selectedTiles)
-		{
-			ItemTile cloneTile = new ItemTile(item);
-			tempList.add(cloneTile);
-		}
-		return tempList;
+		return Collections.unmodifiableList(selectedTiles);
 	}
 	public void swapTiles(int positionToSwap,int i)
 	{

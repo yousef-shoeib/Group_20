@@ -170,7 +170,7 @@ public class MainController {
 			public void actionPerformed(ActionEvent e) {
 					
 				game.takeTiles();
-				List<ItemTile> takenTilesList = game.getCopyOfTilesList();
+				List<ItemTile> takenTilesList = game.getTilesList();
 				int i = 0;
 				for(ItemTile item : takenTilesList)
 				{
@@ -336,7 +336,7 @@ public class MainController {
 					else {
 						mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+positionToSwap).setBorder(new LineBorder(new Color(255, 255, 255), 3));
 						game.swapTiles(positionToSwap, i);
-						List<ItemTile> takenTilesList = game.getCopyOfTilesList();
+						List<ItemTile> takenTilesList = game.getTilesList();
 						int n = 0;
 						for(ItemTile item : takenTilesList)
 						{
