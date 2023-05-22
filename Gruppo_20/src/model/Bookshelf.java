@@ -17,7 +17,7 @@ public class Bookshelf extends Grid {
 	private List<Integer> adjacentTiles = new ArrayList<>();;
 	private String path = "./resources/Assets/boards/bookshelf_orth.png";
 
-	public void addItemTiles(int column, ArrayList<ItemTile> tiles) {
+	public void addItemTiles(int column, List<ItemTile> tiles) {
 		int n = 0;
 		for (int i = 0; i < tiles.size(); i++) {
 			if (!this.getSlot(i, column).isEmpty()) {
