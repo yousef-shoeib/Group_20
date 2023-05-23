@@ -16,7 +16,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
 import model.ItemTile;
@@ -132,7 +134,7 @@ public class MainFrame extends JFrame {
 		//boxGettedTileLabel
 		boxGettedTileLabel = new JLabel("");		
 		boxGettedTileLabel.setBounds(743, 250, 77, 228);
-		boxGettedTileLabel.setBorder(new LineBorder(new Color(0,0,0), 3));
+		boxGettedTileLabel.setBorder(new LineBorder(new Color(255,255,255), 3));
 		boxGettedTileLabel.setLayout(null);
 		boxGettedTileLabel.setVisible(true);
 		livingPane.add(boxGettedTileLabel);
@@ -209,11 +211,14 @@ public class MainFrame extends JFrame {
 		takeTileButton = new JButton("Take");
 		takeTileButton.setBounds(743, 200, 77, 41);
 		takeTileButton.setEnabled(false);///
+		takeTileButton.setFocusable(false);
 		livingPane.add(takeTileButton);
 		
 		addTileButton = new JButton("Add");
 		addTileButton.setBounds(743, 490, 77, 41);
 		addTileButton.setEnabled(false);///
+		addTileButton.setFocusable(false);
+		
 		livingPane.add(addTileButton);
 		
 		String endTurn = "End \nTurn";

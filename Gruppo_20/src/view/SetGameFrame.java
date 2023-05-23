@@ -70,6 +70,7 @@ public class SetGameFrame extends JFrame {
 		playerTextField = new JTextField();
 		playerTextField.setToolTipText("Enter player' name");
 		playerTextField.setBounds(192, 163, 159, 26);
+		playerTextField.setBorder(new LineBorder(Color.DARK_GRAY));
 		contentPane.add(playerTextField);
 		playerTextField.setColumns(10);
 		
@@ -80,8 +81,11 @@ public class SetGameFrame extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		addPlayerButton = new JButton("Add Player");
+		addPlayerButton.setForeground(Color.WHITE);
 		addPlayerButton.setEnabled(false);
 		addPlayerButton.setBounds(384, 158, 100, 35);
+		addPlayerButton.setBackground(Color.DARK_GRAY);
+		addPlayerButton.setBorder(new LineBorder((Color.white),1));
 		contentPane.add(addPlayerButton);
 	}
 
