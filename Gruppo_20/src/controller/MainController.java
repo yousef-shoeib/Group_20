@@ -41,6 +41,7 @@ public class MainController {
 	private MainFrame mainFrame;
 	
 	int selectedBookShelfColumn = -1;
+	int checkBookshelf = 0;
 	int check = 0;
 	boolean placing=false;
 	boolean taken = false;
@@ -327,17 +328,17 @@ public class MainController {
 						   {
 							   selectAllFreeSlot(tempColumn,freeSlot,new Color(255,0,0));
 						   }
-						   check = 1;
+						   checkBookshelf = 1;
 						}
 				}
 				
 				@Override
 				public void mouseExited(MouseEvent e) {
 					// TODO Auto-generated method stub
-					if(check == 1)
+					if(checkBookshelf == 1)
 					{
 						deselectAllSlot();
-						check = 0;
+						checkBookshelf = 0;
 					}
 				}
 				
