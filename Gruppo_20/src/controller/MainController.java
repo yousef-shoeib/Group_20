@@ -260,14 +260,13 @@ public class MainController {
 								hideBoxedGettedTileLabels();
 								selectedBookShelfColumn = -1;
 								taken = false;
-
+								mainFrame.getEndRoundButton().setEnabled(true);
 								game.checkCommonGoal();
 								if(game.currentPlayer().getBookshelf().isComplete()) {
 									game.finalPointsCount();
 									createGameOverPanel();
 									Game.setState(GameState.GAME_OVER);
 								}
-								mainFrame.getEndRoundButton().setEnabled(true);
 							}
 						   else
 						   {
