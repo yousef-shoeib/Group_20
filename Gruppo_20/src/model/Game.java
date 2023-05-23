@@ -28,7 +28,6 @@ public class Game {
 	{	
 		listPlayer = new ArrayList<>();
 		selectedTiles = new ArrayList<>();
-		//state=GameState.NEW_GAME;
 	}
 	public void start(int numberOfPlayers,List<String> namePlayers)
 	{
