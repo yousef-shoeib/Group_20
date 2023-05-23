@@ -60,7 +60,6 @@ public class MainController {
 		assignBookShelfTileLabelController();
 		assignBoxedGettedTileLabelController();
 		assignTakeTileButtonController();
-		assignAddBookShelfTileButtonController();
 		assignEndRoundButtonController();	
 		loadPersonalGoalCard();
 		loadCommonGoalCards();
@@ -191,40 +190,6 @@ public class MainController {
 			}
 		});
 	}
-	private void assignAddBookShelfTileButtonController()
-	{
-		mainFrame.getAddTileButton().addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				int i = game.currentPlayerFreeSlot(selectedBookShelfColumn)-1;
-				List<ItemTile> takenTilesList = game.moveTilesToBookshelf(selectedBookShelfColumn);
-				for(ItemTile item : takenTilesList)
-				{	
-					ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
-					ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
-					mainFrame.getMapBookShelfTileLabel().get(i+"_"+selectedBookShelfColumn).setIcon(icon);
-					
-					i--;
-				}	
-				
-				deselectAllSlot();
-				hideBoxedGettedTileLabels();
-				selectedBookShelfColumn = -1;
-				taken = false;
-				mainFrame.getAddTileButton().setEnabled(false);/////
-				mainFrame.getEndRoundButton().setEnabled(true);
-				game.checkCommonGoal();
-				if(game.currentPlayer().getBookshelf().isComplete()) {
-					game.finalPointsCount();
-					createGameOverPanel();
-					Game.setState(GameState.GAME_OVER);
-				}
-				mainFrame.getEndRoundButton().setEnabled(true);
-			}
-		});
-	}
 	private void assignEndRoundButtonController()
 	{
 		mainFrame.getEndRoundButton().addActionListener(new ActionListener() {
@@ -274,16 +239,41 @@ public class MainController {
 						   int freeSlot = game.currentPlayerFreeSlot(tempColumn);
 						   if(freeSlot > 0 && freeSlot >= game.numberOfSelectedTile())
 							{
-								deselectAllSlot();
+								/*deselectAllSlot();
 								selectedBookShelfColumn = tempColumn;
 								selectAllFreeSlot(selectedBookShelfColumn,freeSlot);
-								mainFrame.getAddTileButton().setEnabled(true);
+								mainFrame.getAddTileButton().setEnabled(true);*/
+							   	selectedBookShelfColumn = tempColumn;
+								selectAllFreeSlot(selectedBookShelfColumn,freeSlot,new Color(50,205,50));
+								int i = game.currentPlayerFreeSlot(selectedBookShelfColumn)-1;
+								List<ItemTile> takenTilesList = game.moveTilesToBookshelf(selectedBookShelfColumn);
+								for(ItemTile item : takenTilesList)
+								{	
+									ImageIcon tempIcon =new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
+									ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(55,55, Image.SCALE_SMOOTH));
+									mainFrame.getMapBookShelfTileLabel().get(i+"_"+selectedBookShelfColumn).setIcon(icon);
+									
+									i--;
+								}	
+								
+								//deselectAllSlot();
+								hideBoxedGettedTileLabels();
+								selectedBookShelfColumn = -1;
+								taken = false;
+
+								game.checkCommonGoal();
+								if(game.currentPlayer().getBookshelf().isComplete()) {
+									game.finalPointsCount();
+									createGameOverPanel();
+									Game.setState(GameState.GAME_OVER);
+								}
+								mainFrame.getEndRoundButton().setEnabled(true);
 							}
 						   else
 						   {
-							   label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
-							   check = 1;
+							   selectAllFreeSlot(tempColumn,freeSlot,new Color(255,0,0));
 						   }
+						   check = 1;
 						}
 				}
 				
@@ -292,8 +282,8 @@ public class MainController {
 					// TODO Auto-generated method stub
 					if(check == 1)
 					{
-					   label.setBorder(new LineBorder(new Color(101,67,53), 3));
-					   check = 0;
+						deselectAllSlot();
+						check = 0;
 					}
 				}
 				
@@ -446,11 +436,11 @@ public class MainController {
 			label.setBorder(new LineBorder(new Color(101,67,53), 3));	
 		}
 	}
-	private void selectAllFreeSlot(int column,int freeSlot)
+	private void selectAllFreeSlot(int column,int freeSlot,Color color)
 	{	
 		for(int i = 0; i < freeSlot; i++)
 		{
-			mainFrame.getMapBookShelfTileLabel().get(i+"_"+column).setBorder(new LineBorder(new Color(50,205,50), 3));
+			mainFrame.getMapBookShelfTileLabel().get(i+"_"+column).setBorder(new LineBorder(color,3));
 		}
 	}
 	private void hideBoxedGettedTileLabels()

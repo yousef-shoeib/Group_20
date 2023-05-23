@@ -52,7 +52,6 @@ public class MainFrame extends JFrame {
 	private JLabel playerPointsLabel;
 	private JButton takeTileButton;
 	private JButton endRoundButton;
-	private JButton addTileButton;
 	private Map<String,JLabel> mapLivingTileLabel;
 	private Map<String,JLabel> mapBookShelfTileLabel;
 	private Map<String,JLabel> boxedGettedTileLabel;
@@ -214,16 +213,10 @@ public class MainFrame extends JFrame {
 		takeTileButton.setFocusable(false);
 		livingPane.add(takeTileButton);
 		
-		addTileButton = new JButton("Add");
-		addTileButton.setBounds(743, 490, 77, 41);
-		addTileButton.setEnabled(false);///
-		addTileButton.setFocusable(false);
-		
-		livingPane.add(addTileButton);
-		
 		String endTurn = "End \nTurn";
 		endRoundButton = new JButton("<html>"+endTurn.replaceAll("\\n", "<br>")+"</html>");
 		endRoundButton.setBounds(743, 540, 77, 41);
+		//setBounds(743, 490, 77, 41);
 		endRoundButton.setEnabled(false);
 		livingPane.add(endRoundButton);
 		
@@ -393,10 +386,6 @@ public class MainFrame extends JFrame {
 
 	public Map<String, JLabel> getBoxedGettedTileLabel() {
 		return boxedGettedTileLabel;
-	}
-
-	public JButton getAddTileButton() {
-		return addTileButton;
 	}
 
 	public JButton getEndRoundButton() {
