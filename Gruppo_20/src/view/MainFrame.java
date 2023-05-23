@@ -438,4 +438,8 @@ public class MainFrame extends JFrame {
 	public JLabel getFirstPlayerTokenLabel() {
 		return firstPlayerTokenLabel;
 	}
+
+	public JLabel getBoxGettedTileLabel() {
+		return boxGettedTileLabel;
+	}
 }
