@@ -70,6 +70,7 @@ public class MainFrame extends JFrame {
 		setBounds(0, 0, width, height); //Set JFrame Size
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setTitle("My Shelfie");
+		setBackground(Color.gray);
 		ImageIcon frameIcon= new ImageIcon("./resources/Assets/PublisherMaterial/Icon 50x50px.png");
 		setIconImage(frameIcon.getImage());
 		//setUndecorated(true); //questo metodo toglie la barra sopra quindi non togliere se non vedi il pulsante quit
@@ -82,31 +83,35 @@ public class MainFrame extends JFrame {
 		
 		contentPane.setBounds(0, 0, 1500, 920);
 		contentPane.setLayout(null);
+		contentPane.setBackground(Color.DARK_GRAY);
 		//LivingRoomBoard Panel
 		livingPane = new JPanel();
-		livingPane.setBorder(new LineBorder(new Color(0,0,0), 3));
+		//livingPane.setBorder(new LineBorder(new Color(0,0,0), 3));
 		livingPane.setBounds(10, 0, 850, 780);
 		livingPane.setLayout(null);
+		livingPane.setBackground(Color.DARK_GRAY);
 		contentPane.add(livingPane);
 		
 		//BookShelf Panel
 		bookShelfPane = new JPanel();
-		bookShelfPane.setBorder(new LineBorder(new Color(0,0,0), 3));
+		//bookShelfPane.setBorder(new LineBorder(new Color(0,0,0), 3));
 		bookShelfPane.setBounds(850, 180, 680, 600);
 		bookShelfPane.setLayout(null);
+		bookShelfPane.setBackground(Color.DARK_GRAY);
 		contentPane.add(bookShelfPane);
 		
 		//CommonGoalCards Panel
 		commonGoalCardsPane = new JPanel();
-		commonGoalCardsPane.setBorder(new LineBorder(new Color(0,0,0), 3));
+		//commonGoalCardsPane.setBorder(new LineBorder(new Color(0,0,0), 3));
 		commonGoalCardsPane.setBounds(850,0, 680, 180);
 		commonGoalCardsPane.setLayout(null);
+		commonGoalCardsPane.setBackground(Color.DARK_GRAY);
 		contentPane.add(commonGoalCardsPane);
 		
 		//scoring tokens label////////////////////////////////////////////////
 		JLabel scoringTokensLabel = new JLabel();		
 		scoringTokensLabel.setBounds(585, 535, 75, 75);
-		ImageIcon tempTokenIcon =new ImageIcon("./resources/Assets/scoringTokens/scoring_2.png");
+		ImageIcon tempTokenIcon =new ImageIcon("./resources/Assets/scoringTokens/end game.png");
 		ImageIcon tokenIcon=new ImageIcon(tempTokenIcon.getImage().getScaledInstance(75, 75,Image.SCALE_SMOOTH));
 		scoringTokensLabel.setIcon(tokenIcon);
 		scoringTokensLabel.setVisible(true);
@@ -171,14 +176,16 @@ public class MainFrame extends JFrame {
 		//playerInfoPane
 		playerInfoPane = new JPanel();		
 		playerInfoPane.setBounds(75, 50, 300, 100);
-		playerInfoPane.setBorder(new LineBorder(new Color(0,0,0), 3));
+		//playerInfoPane.setBorder(new LineBorder(new Color(0,0,0), 3));
 		playerInfoPane.setBackground(new Color(0, 127, 255));
 		playerInfoPane.setLayout(null);
 		playerInfoPane.setVisible(true);
+		playerInfoPane.setBackground(Color.DARK_GRAY);
 		bookShelfPane.add(playerInfoPane);
 		
 		//Player Name Label
 		playerNameLabel = new JLabel("");	
+		playerNameLabel.setForeground(Color.WHITE);
 		playerNameLabel.setBounds(20, 0, 250, 50);
 		playerNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		playerNameLabel.setLayout(null);
@@ -186,6 +193,7 @@ public class MainFrame extends JFrame {
 		
 		//Player Points Label
 		playerPointsLabel = new JLabel("");	
+		playerPointsLabel.setForeground(Color.WHITE);
 		playerPointsLabel.setBounds(20, 40, 250, 50);
 		playerPointsLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		playerPointsLabel.setLayout(null);

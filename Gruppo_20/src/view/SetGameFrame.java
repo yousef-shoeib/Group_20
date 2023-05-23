@@ -31,6 +31,7 @@ public class SetGameFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public SetGameFrame() {
+		setBackground(Color.DARK_GRAY);
 		setTitle("My Shelfie - Set Players");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(".\\resources\\Assets\\PublisherMaterial\\Icon 50x50px.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,7 +43,7 @@ public class SetGameFrame extends JFrame {
 		setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-
+		contentPane.setBackground(Color.DARK_GRAY);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -57,10 +58,12 @@ public class SetGameFrame extends JFrame {
 		contentPane.add(nPlayersComboBox);
 		
 		JLabel numberOfPlayersLabel = new JLabel("Number Of Players");
+		numberOfPlayersLabel.setForeground(Color.WHITE);
 		numberOfPlayersLabel.setBounds(62, 112, 159, 13);
 		contentPane.add(numberOfPlayersLabel);
 		
 		playerLabel = new JLabel("Player 1");
+		playerLabel.setForeground(Color.WHITE);
 		playerLabel.setBounds(62, 169, 92, 13);
 		contentPane.add(playerLabel);
 		
@@ -71,6 +74,7 @@ public class SetGameFrame extends JFrame {
 		playerTextField.setColumns(10);
 		
 		lblNewLabel = new JLabel("SET PLAYERS");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel.setBounds(207, 34, 114, 35);
 		contentPane.add(lblNewLabel);
