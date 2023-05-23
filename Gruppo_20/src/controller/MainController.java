@@ -110,6 +110,10 @@ public class MainController {
 								check = 2;
 								}
 							}
+							else{
+								label.setBorder(new LineBorder(new Color(255, 0, 0), 3));
+								check = 1;
+								}
 						}
 						catch(SameTileSelectedException ex1){
 							System.out.println(ex1.getMessage());
