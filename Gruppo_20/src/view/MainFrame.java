@@ -129,9 +129,9 @@ public class MainFrame extends JFrame {
 			super.paintComponent(g);
 		    }
 		};		
-		scoringTokensLabel.setBounds(585, 535, 75, 75);
-		ImageIcon tempTokenIcon =new ImageIcon("./resources/Assets/scoringTokens/end game.png");
-		ImageIcon tokenIcon=new ImageIcon(tempTokenIcon.getImage().getScaledInstance(75, 75,Image.SCALE_SMOOTH));
+		scoringTokensLabel.setBounds(590, 540, 65, 65);
+		ImageIcon tempTokenIcon =new ImageIcon("./resources/Assets/scoringTokens/end game.jpg");
+		ImageIcon tokenIcon=new ImageIcon(tempTokenIcon.getImage().getScaledInstance(65, 65,Image.SCALE_SMOOTH));
 		scoringTokensLabel.setIcon(tokenIcon);
 		scoringTokensLabel.setVisible(true);
 		livingPane.add(scoringTokensLabel);
