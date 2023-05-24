@@ -13,6 +13,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Insets;
+
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 
@@ -85,6 +87,7 @@ public class SetGameFrame extends JFrame {
 		addPlayerButton.setEnabled(false);
 		addPlayerButton.setBounds(384, 158, 100, 35);
 		addPlayerButton.setBackground(Color.DARK_GRAY);
+		//addPlayerButton.setBorderPainted(false);
 		addPlayerButton.setBorder(new LineBorder((Color.white),1));
 		contentPane.add(addPlayerButton);
 	}

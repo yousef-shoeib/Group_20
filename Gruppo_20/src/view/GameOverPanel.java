@@ -47,6 +47,7 @@ public class GameOverPanel extends JDialog {
 	
 	public GameOverPanel() {
 		setUndecorated(true);
+		setBackground(Color.DARK_GRAY);
 		playersLabels=new ArrayList<>();
 		//setBorder(BorderFactory.createEtchedBorder(500,Color.BLACK, Color.BLACK));
 		getContentPane().setLayout(new BorderLayout(0, 0));
