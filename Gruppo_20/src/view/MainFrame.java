@@ -176,6 +176,49 @@ public class MainFrame extends JFrame {
 		personalGoalCardLabel.setIcon(tempPersonalGoalCardIcon);
 		bookShelfPane.add(personalGoalCardLabel);
 		
+		//scoring tokens on common goals
+		JLabel scoringTokenLabel1 = new JLabel() {
+			protected void paintComponent(Graphics g) {
+			Graphics2D g2 = (Graphics2D)g;
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+									RenderingHints.VALUE_ANTIALIAS_ON);
+			AffineTransform aT = g2.getTransform();
+			Shape oldshape = g2.getClip();
+			double x = getWidth()/2.0;
+			double y = getHeight()/2.0;
+			aT.rotate(Math.toRadians(-9), x, y);
+			g2.setTransform(aT);
+			g2.setClip(oldshape);
+			super.paintComponent(g);
+		    }
+		};		
+		scoringTokenLabel1.setBounds(170, 72, 45, 45);
+		ImageIcon tempScoringTokenIcon1 =new ImageIcon("./resources/Assets/scoringTokens/scoring.jpg");
+		ImageIcon scoringTokenIcon1=new ImageIcon(tempScoringTokenIcon1.getImage().getScaledInstance(45, 45,Image.SCALE_SMOOTH));
+		scoringTokenLabel1.setIcon(scoringTokenIcon1);
+		commonGoalCardsPane.add(scoringTokenLabel1);
+		
+		JLabel scoringTokenLabel2 = new JLabel() {
+			protected void paintComponent(Graphics g) {
+			Graphics2D g2 = (Graphics2D)g;
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+									RenderingHints.VALUE_ANTIALIAS_ON);
+			AffineTransform aT = g2.getTransform();
+			Shape oldshape = g2.getClip();
+			double x = getWidth()/2.0;
+			double y = getHeight()/2.0;
+			aT.rotate(Math.toRadians(-9), x, y);
+			g2.setTransform(aT);
+			g2.setClip(oldshape);
+			super.paintComponent(g);
+		    }
+		};		
+		scoringTokenLabel2.setBounds(400, 72, 45, 45);
+		ImageIcon tempScoringTokenIcon2 =new ImageIcon("./resources/Assets/scoringTokens/scoring.jpg");
+		ImageIcon scoringTokenIcon2=new ImageIcon(tempScoringTokenIcon2.getImage().getScaledInstance(45, 45,Image.SCALE_SMOOTH));
+		scoringTokenLabel2.setIcon(scoringTokenIcon2);
+		commonGoalCardsPane.add(scoringTokenLabel2);
+		
 		//commonGoalCard1Label
 		commonGoalCard1Label = new JLabel();	
 		commonGoalCard1Label.setBounds(70, 40, 170, 120);
@@ -193,6 +236,8 @@ public class MainFrame extends JFrame {
 		ImageIcon tempCommonGoalCard2Icon=new ImageIcon(tempCommonGoalCard2.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
 		commonGoalCard2Label.setIcon(tempCommonGoalCard2Icon);
 		commonGoalCardsPane.add(commonGoalCard2Label);
+		
+		
 		
 		//playerInfoPane
 		playerInfoPane = new JPanel();		
