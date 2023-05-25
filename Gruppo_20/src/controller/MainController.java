@@ -540,7 +540,7 @@ public class MainController {
 			JLabel playerLabel=mainFrame.getGameOverPanel().getPlayersLabels().get(i);
 			String playerName=game.getListPlayer().get(i).getName();
 			int points=game.getListPlayer().get(i).getPoints();
-			playerLabel.setText("Player"+ (i+1)+ ": "+playerName+" Points: "+points);
+			playerLabel.setText("Player"+ (i+1)+ ": "+playerName+"    Points: "+points);
 		}
 	}
 	
