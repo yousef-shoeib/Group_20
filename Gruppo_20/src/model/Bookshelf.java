@@ -2,27 +2,36 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Classe bookShelf per creare una libreria 
+ * estende la classe Grid
+ * @author youse
+ *
+ */
 public class Bookshelf extends Grid {
+	
+	/**
+	 * Costruttore per creare una libreria 
+	 * con 6 righe e 5 colonne
+	 */
 	public Bookshelf() {
 		super(6, 5);
-		/*
-		 * for(int i=0;i<6;i++) { for(int j=0;j<5;j++) { this.matrGrid[i][j]=new Slot();
-		 * } }
-		 */
 	}
 
 	private static final ItemTileType types[] = { ItemTileType.CAT, ItemTileType.BOOK, ItemTileType.FRAME,
 			ItemTileType.TROPHY, ItemTileType.PLANT, ItemTileType.GAME };
 	private List<Integer> adjacentTiles = new ArrayList<>();;
 	private String path = "./resources/Assets/boards/bookshelf_orth.png";
-
+	/**
+	 * metodo per mettere le tessere nella libreria
+	 * @param column la colonna nella quale si vuole inserire le tessere
+	 * @param tiles	una lista di tessere 
+	 */
 	public void addItemTiles(int column, List<ItemTile> tiles) {
 		int n = 0;
 		for (int i = 0; i < tiles.size(); i++) {
 			if (!this.getSlot(i, column).isEmpty()) {
 				throw new IllegalArgumentException("Not enough slots in the selected column");
-				// System.out.println("Not enough slots in the selected column");
 			}
 		}
 
@@ -33,7 +42,12 @@ public class Bookshelf extends Grid {
 			}
 		}
 	}
-
+	/**
+	 * metodo per ritornare la tessera nella casella alla riga e colonna scelta 
+	 * @param row riga della casella
+	 * @param column colonna della casella 
+	 * @return
+	 */
 	public ItemTile getTile(int row, int column) {
 		if (this.getSlot(row, column).getItemTile() == null) {
 			throw new NullPointerException();
@@ -41,11 +55,17 @@ public class Bookshelf extends Grid {
 		return this.getSlot(row, column).getItemTile();
 
 	}
-
+	//questo metodo resta "public" solo per la fase di test 
+	//usare il metodo addItemTiles per implementazioni permanenti
 	public void setTile(int row, int column, ItemTile tile) {
 		this.getSlot(row, column).setItemTile(tile);
 	}
-
+	/**
+	 * metodo per controllare il massimo numero di tessere che 
+	 * si possono pescare in base al numero di caselle libere 
+	 * in ogni colonna della libreria
+	 * @return numero massimo di caselle pescabili
+	 */
 	public int maxDrawableTiles() {
 		int maxNumberOfTiles = 0;
 		for (int column = 0; column < this.columns; column++) {
@@ -64,7 +84,10 @@ public class Bookshelf extends Grid {
 		}
 		return maxNumberOfTiles;
 	}
-
+	/**
+	 * metodo per controllare se la libreria è piena
+	 * @return true se la libreria è piena
+	 */
 	public boolean isComplete() {
 		for (int i = 0; i < 5; i++) {
 			if (this.getSlot(0, i).isEmpty()) {
@@ -74,7 +97,11 @@ public class Bookshelf extends Grid {
 		return true;
 	}
 
-	//////////////////// soluzione temporanea
+	/**
+	 * metodo per avere il numero di celle libere nella colonna scelta
+	 * @param column colonna da controllare 
+	 * @return numero delle caselle libere della colonna 
+	 */
 	public int freeSlotsInColumn(int column) {
 		int rows = this.getRows();
 		int freeSlots = 0;
@@ -88,7 +115,10 @@ public class Bookshelf extends Grid {
 		return freeSlots;
 	}
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * metodo per contare i punti per le tessere adiacenti 
+	 * @return il totale dei punti delle tessere adiacenti
+	 */
 	public int adjacentTilesPoints() {
 		int points=0;
 		this.countGroups();
@@ -111,33 +141,28 @@ public class Bookshelf extends Grid {
 	}
 
 	private int count(int row, int col, boolean visited[][], ItemTileType type) {
-		// numbers of 4 adjacent slots
 		int rowNumber[] = new int[] { -1, 0, 0, 1 };
 		int colNumber[] = new int[] { 0, -1, 1, 0 };
 		visited[row][col] = true;
-		int size = 1;// size of the tiles group
+		int size = 1;
 		for (int k = 0; k < 4; ++k)
 			if (isSafe(row + rowNumber[k], col + colNumber[k], visited, type))
 				size += count(row + rowNumber[k], col + colNumber[k], visited, type);
 		return size;
 	}
 
-	public void countGroups() {
-		// int count=0;
+	private void countGroups() {
 		for (ItemTileType type : types) {
 			boolean visited[][] = new boolean[rows][columns];
-			// adjacentTiles=new ArrayList<>();
 			for (int i = 0; i < this.rows; ++i)
 				for (int j = 0; j < this.columns; ++j)
 
 					if (!this.getSlot(i, j).isEmpty() && this.getItemTileType(i, j) == type && !visited[i][j]) {
 						int size = count(i, j, visited, type);
-						// ++count;
-						if (size > 1)
+						if (size > 2)
 							adjacentTiles.add(size);
 					}
 		}
-		// return count;
 	}
 
 	public String getPath() {
@@ -147,7 +172,12 @@ public class Bookshelf extends Grid {
 	public List<Integer> getAdjacentTiles() {
 		return this.adjacentTiles;
 	}
-
+	/**
+	 * metodo per avere il tipo della tessera in una data cella
+	 * @param row riga della cella 
+	 * @param column colonna della cella 
+	 * @return tipo della tessera
+	 */
 	public ItemTileType getItemTileType(int row, int column) {
 		return this.getSlot(row, column).getItemTile().getType();
 	}
