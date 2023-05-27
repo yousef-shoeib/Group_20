@@ -46,7 +46,7 @@ public class MainController {
 	boolean placing=false;
 	boolean taken = false;
 	int positionToSwap=0; //to order box getted tiles
-	private Map<String,JLabel> labelToRemove;
+	private Map<Integer,JLabel> labelToRemove;
 
 	
 	public MainController(Game game, MainFrame mainFrame)
@@ -90,11 +90,13 @@ public class MainController {
 						int row = Integer.parseInt(coordinates[0]);
 						int column = Integer.parseInt(coordinates[1]);
 					   
-						ItemTile checkItemTile = null;
+						//ItemTile checkItemTile = null;
+						int checkItemTileID = -1;
 						try{
-							checkItemTile = game.addToSelectedTileList(row,column);
+							checkItemTileID = game.addToSelectedTileList(row,column);
 							label.setBorder(new LineBorder(new Color(50,205,50), 3));
-							labelToRemove.put(String.valueOf(checkItemTile.getId()), label);
+							//labelToRemove.put(String.valueOf(checkItemTile.getId()), label);
+							labelToRemove.put(checkItemTileID, label);
 							System.out.println("allow to take");
 						}
 						catch(MaxSelectedItemTileException ex2){
@@ -178,7 +180,8 @@ public class MainController {
 				int i = 0;
 				for(ItemTile item : takenTilesList)
 				{
-					JLabel tempLabel = labelToRemove.get(String.valueOf(item.getId()));
+					//JLabel tempLabel = labelToRemove.get(String.valueOf(item.getId()));
+					JLabel tempLabel = labelToRemove.get(item.getId());
 					ImageIcon tempIcon = new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
 					ImageIcon icon = new ImageIcon(tempIcon.getImage().getScaledInstance(75,75, Image.SCALE_SMOOTH));
 					mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+i).setIcon(icon);

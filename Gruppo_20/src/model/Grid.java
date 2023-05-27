@@ -1,5 +1,13 @@
 package model;
 
+import java.util.List;
+
+/**
+ * Classe Grid
+ * Definisce metodi e attributi per la classe astratta Grid
+ * @author Marco
+ *
+ */
 public abstract class Grid {
 	
 	protected int rows;
@@ -152,5 +160,135 @@ public abstract class Grid {
 			}
 		}
 		return false;
+	}
+	/**
+	 * verifica se due tessere sono adiacenti
+	 * @param tile1
+	 * @param tile2
+	 * @return vero se le tessere sono adiacenti
+	 */
+	public boolean tilesAreAdjacent(ItemTile tile1, ItemTile tile2)
+	{
+		Slot slot1 = this.getSlotFromTile(tile1);
+		Slot slot2 = this.getSlotFromTile(tile2);
+		
+		if(slot1 == null)
+			throw new NullPointerException("Grid does not contain itemTile1");
+		if(slot2 == null)
+			throw new NullPointerException("Grid does not contain itemTile2");
+		
+		if(slot1.getX() == slot2.getX())
+		{	
+			if(slot1.getY() - 1 == slot2.getY() || slot1.getY() + 1 == slot2.getY())
+				return true;
+		}
+		if(slot1.getY() == slot2.getY())
+		{	
+			if(slot1.getX() - 1 == slot2.getX() || slot1.getX() + 1 == slot2.getX())
+				return true;
+		}
+		
+		return false;
+	}
+	public boolean tilesAreAdjacent(ItemTile tile1, ItemTile tile2,ItemTile tile3)
+	{
+		Slot slot1 = this.getSlotFromTile(tile1);
+		Slot slot2 = this.getSlotFromTile(tile2);
+		Slot slot3 = this.getSlotFromTile(tile2);
+		
+		if(slot1 == null)
+			throw new NullPointerException("Grid does not contain itemTile1");
+		if(slot2 == null)
+			throw new NullPointerException("Grid does not contain itemTile2");
+		if(slot3 == null)
+			throw new NullPointerException("Grid does not contain itemTile3");
+		
+		if(!tilesAreAdjacent(tile1,tile2) && !tilesAreAdjacent(tile1,tile3))
+			return false;
+		if(!tilesAreAdjacent(tile2,tile1) && !tilesAreAdjacent(tile2,tile3))
+			return false;
+		if(!tilesAreAdjacent(tile3,tile1) && !tilesAreAdjacent(tile3,tile2))
+			return false;
+		
+		return true;
+	}
+	protected boolean tileHasFreeSide(ItemTile tileToCheck)
+	{
+		Slot currentSlot = this.getSlotFromTile(tileToCheck);
+		
+		if(currentSlot == null)
+			throw new NullPointerException("Grid does not contain itemTile");
+		
+		int x = currentSlot.getX();
+		int y = currentSlot.getY();
+		
+		if(x == 0 || y == 0 || x == 8 || y == 8)
+			return true;
+		
+		Slot slot1 = matrGrid[(x-1)][y];
+		Slot slot2 = matrGrid[x][(y-1)];
+		Slot slot3 = matrGrid[(x+1)][y];
+		Slot slot4 = matrGrid[x][(y+1)];
+		
+		if(!slot1.State() || slot1.isEmpty())
+			return true;
+		if(!slot2.State() || slot2.isEmpty())
+			return true;
+		if(!slot3.State() || slot3.isEmpty())
+			return true;
+		if(!slot4.State() || slot4.isEmpty())
+			return true;
+		
+		return false;
+	}
+	protected boolean tileIsInline(ItemTile tile1, ItemTile tile2, ItemTile tile3)
+	{
+		Slot slot1 = this.getSlotFromTile(tile1);
+		Slot slot2 = this.getSlotFromTile(tile2);
+		Slot slot3 = this.getSlotFromTile(tile3);
+		
+		if(slot1 == null)
+			throw new NullPointerException("Grid does not contain itemTile1");
+		if(slot2 == null)
+			throw new NullPointerException("Grid does not contain itemTile2");
+		if(slot3 == null)
+			throw new NullPointerException("Grid does not contain itemTile3");
+
+		
+		if(slot1.getX() == slot2.getX() && slot1.getX() == slot3.getX())
+			return true;
+		if(slot1.getY() == slot2.getY() && slot1.getY() == slot3.getY())
+			return true;
+
+		return false;
+	}
+	/**
+	 * Rimuove le tessere dalla Griglia
+	 * @param selectedTiles
+	 */
+	public void removeTile(List<ItemTile> selectedTiles) {
+		for(ItemTile item : selectedTiles)
+		{
+			this.removeTile(item);
+		}
+	}
+	private int removeTile(ItemTile item) {
+		
+		for(int x = 0; x < this.rows; x++)
+		{	
+			for(int y = 0; y < this.columns ; y++)
+			{
+				if(matrGrid[x][y].State() && !matrGrid[x][y].isEmpty())
+				{
+					if(matrGrid[x][y].getItemTile().getId() == item.getId())
+					{
+						matrGrid[x][y].setItemTile(null);;
+						return 1;
+					}
+					
+				}
+			}
+		}
+		return -1;
 	}
 }
