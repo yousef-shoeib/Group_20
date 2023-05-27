@@ -60,7 +60,6 @@ public class MainController {
 		assignLivingTileLabelController();
 		assignBookShelfTileLabelController();
 		assignBoxedGettedTileLabelController();
-		assignGettedTilesBoxController();
 		assignTakeTileButtonController();
 		assignEndRoundButtonController();	
 		loadPersonalGoalCard();
@@ -193,60 +192,6 @@ public class MainController {
 				if(takenTilesList.size() > 0) {
 					mainFrame.getTakeTileButton().setEnabled(false);
 				}
-			}
-		});
-	}
-	private void assignGettedTilesBoxController()
-	{
-		mainFrame.getBoxGettedTileLabel().addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				if(game.numberOfSelectedTile() > 0) {
-					game.takeTiles();
-					List<ItemTile> takenTilesList = game.getTilesList();
-					int i = 0;
-					for(ItemTile item : takenTilesList)
-					{
-						JLabel tempLabel = labelToRemove.get(String.valueOf(item.getId()));
-						ImageIcon tempIcon = new ImageIcon(ConfigPath.getItemTilePath()+item.getPathImg()+".png");
-						ImageIcon icon = new ImageIcon(tempIcon.getImage().getScaledInstance(75,75, Image.SCALE_SMOOTH));
-						mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+i).setIcon(icon);
-						mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+i).setVisible(true);
-						tempLabel.setVisible(false);
-						taken = true;
-	
-						i++;
-					}
-					
-					if(takenTilesList.size() > 0) {
-						mainFrame.getTakeTileButton().setEnabled(false);
-					}
-				}
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 		});
 	}
