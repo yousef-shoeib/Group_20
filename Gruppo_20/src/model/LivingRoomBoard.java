@@ -3,11 +3,17 @@ package model;
 import java.util.List;
 import java.util.Random;
 
-import exception.SameTileSelectedException;
+import exception.TileAlreadySelectedException;
 import exception.TileHasNotFreeSideException;
 import exception.TilesAreNotAdjacentException;
 import exception.TilesAreNotInlineException;
-
+/**
+ * Classe LivingRoomBoard 
+ * definisce attributi e metodi per astrarre la Plancia Soggiorno del gioco MyShelfie
+ * Estende la classe (abstract) Grid
+ * @author Marco
+ *
+ */
 public class LivingRoomBoard extends Grid {
 
 	private int[][] configMatrTwoPlayer = {	{0,0,0,0,0,0,0,0,0}, 
@@ -41,17 +47,17 @@ public class LivingRoomBoard extends Grid {
 												{0,0,0,0,1,1,0,0,0}};
 	
 	private static final int DIM = 9;
-	
+	/**
+	 * crea una nuova istanza della Plancia Soggiorno.
+	 * Setta a false lo stato degli slot non utilizzabili (dipende dal numero di giocatori).
+	 * @param nPlayers
+	 */
 	public LivingRoomBoard(int nPlayers)
 	{
 		super(DIM,DIM);
 		init(nPlayers);
 	}
 
-	/**
-	 * Init the grid based on the number of players
-	 * @param nPlayer
-	 */
 	private void init(int  nPlayer)
 	{
 		int[][] tempConfigMatr = {};
@@ -75,10 +81,8 @@ public class LivingRoomBoard extends Grid {
 	}
 	
 	/**
-	 * Randomly assign tiles to the grid
+	 * Aggiunge in ordine casuale le tessere all'interno degli slot.
 	 * @param listItemTile
-	 * @param boardItemTile
-	 * @return matriGrid
 	 */
 	public void putItemTiles(List<ItemTile> listItemTile)
 	{
@@ -91,8 +95,6 @@ public class LivingRoomBoard extends Grid {
 				if(matrGrid[x][y].State() && matrGrid[x][y].isEmpty())
 				{
 					ItemTile itemTile = listItemTile.remove(random.nextInt(listItemTile.size()));
-					/*itemTile.setX(x);
-					itemTile.setY(y);*/
 					matrGrid[x][y].setItemTile(itemTile);
 				}
 
@@ -100,7 +102,6 @@ public class LivingRoomBoard extends Grid {
 		}
 	}
 	
-	//Check has free side
 	private boolean tileHasFreeSide(ItemTile currentSelectedTile)
 	{
 		Slot currentSlot = this.getSlotFromTile(currentSelectedTile);
@@ -126,13 +127,17 @@ public class LivingRoomBoard extends Grid {
 		
 		return false;
 	}
-	
+	/**
+	 * verifica se due tessere sono adiacenti
+	 * @param currentSelectedTile
+	 * @param lastSelectedTile
+	 * @return vero se le tessere sono adiacenti
+	 */
 	public boolean tilesAreAdjacent(ItemTile currentSelectedTile, ItemTile lastSelectedTile)
 	{
 		Slot currentSelectedSlot = this.getSlotFromTile(currentSelectedTile);
 		Slot lastSelectedSlot = this.getSlotFromTile(lastSelectedTile);
 		
-		//Check its adjacent
 		if(currentSelectedSlot.getX() == lastSelectedSlot.getX())
 		{	
 			if(currentSelectedSlot.getY() - 1 == lastSelectedSlot.getY() || currentSelectedSlot.getY() + 1 == lastSelectedSlot.getY())
@@ -146,7 +151,7 @@ public class LivingRoomBoard extends Grid {
 		
 		return false;
 	}
-	
+
 	private boolean tileIsInline(ItemTile currentSelectedTile, ItemTile lastSelectedTile, ItemTile firstSelectedTile)
 	{
 		Slot currentSelectedSlot = this.getSlotFromTile(currentSelectedTile);
@@ -160,7 +165,7 @@ public class LivingRoomBoard extends Grid {
 
 		return false;
 	}
-	
+
 	private boolean tilesAlreadySelected(ItemTile currentSelectedTile, ItemTile lastSelectedTile, ItemTile firstSelectedTile)
 	{
 		if(lastSelectedTile != null)
@@ -180,7 +185,7 @@ public class LivingRoomBoard extends Grid {
 		
 		return false;
 	}
-	
+
 	public ItemTile getTile(ItemTile currentSelectedTile, ItemTile lastSelectedTile,ItemTile firstSelectedTile) throws Exception
 	{
 		if(currentSelectedTile == null){
@@ -188,7 +193,7 @@ public class LivingRoomBoard extends Grid {
 		}
 		
 		if(tilesAlreadySelected(currentSelectedTile,lastSelectedTile,firstSelectedTile)){
-			throw new SameTileSelectedException("Tile already Getted");
+			throw new TileAlreadySelectedException("Tile already Getted");
 		}
 		if (!tileHasFreeSide(currentSelectedTile)){
 			throw new TileHasNotFreeSideException("tile has not free side");
@@ -217,6 +222,10 @@ public class LivingRoomBoard extends Grid {
 		
 		return currentSelectedTile;
 	}
+	/**
+	 * Rimuove le tessere dalla Plancia Soggiorno
+	 * @param selectedTiles
+	 */
 	public void removeTile(List<ItemTile> selectedTiles) {
 		for(ItemTile item : selectedTiles)
 		{

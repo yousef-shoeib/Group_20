@@ -24,7 +24,7 @@ import javax.swing.border.LineBorder;
 import cards.PersonalGoalCard;
 import commongoal.CommonGoalCard;
 import exception.MaxSelectedItemTileException;
-import exception.SameTileSelectedException;
+import exception.TileAlreadySelectedException;
 import model.Bookshelf;
 import model.Game;
 import model.GameState;
@@ -114,7 +114,7 @@ public class MainController {
 								check = 1;
 								}
 						}
-						catch(SameTileSelectedException ex1){
+						catch(TileAlreadySelectedException ex1){
 							System.out.println(ex1.getMessage());
 							if(game.deselectFromTakenList(row,column)){
 								label.setBorder(new LineBorder(new Color(255,255,255), 3));
