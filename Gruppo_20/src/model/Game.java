@@ -10,8 +10,13 @@ import java.util.Random;
 
 import commongoal.CommonGoalCard;
 import exception.MaxSelectedItemTileException;
-import exception.SameTileSelectedException;
-
+import exception.TileAlreadySelectedException;
+/**
+ * Classe Game
+ * Definisce attributi e metodi che implementano la logica del gioco.
+ * @author Marco
+ *
+ */
 public class Game {
 
 	private LivingRoomBoard livingRoomBoard;
@@ -41,7 +46,18 @@ public class Game {
 		commonGoal2=CommonGoalCard.assignCommonGoalCard();
 		this.maxNumberGettableTile = this.listPlayer.get(currentPlayer).getBookshelf().maxDrawableTiles();
 	}
-	public ItemTile addToSelectedTileList(int row,int column) throws Exception
+	/**
+	 * Aggiunge una tessera alla lista delle tessere prendibili
+	 * @param row riga in cui si trova la tessera
+	 * @param column colonna in cui si trova la tessera
+	 * @return la tessera se è stata aggiunta.
+	 * @throws @MaxSelectedItemTileException se già sono state aggiunte il numero massimo di tessere prendibili
+	 * @throws @TileAlreadySelectedException se già è stata aggiunta la tessera alla lista
+	 * @throws @throwsTileHasNotFreeSideException se la tessera non ha un lato libero
+	 * @throws @throwsTilesAreNotAdjacentException se la tessera non è adiacente alle tessere aggiunte precendentemente
+	 * @throws @throwsTilesAreNotInlineException se la tessera non è in linea con le tessere aggiunte precedentemente
+	 */
+	public int addToSelectedTileList(int row,int column) throws Exception   
 	{
 			if(this.maxNumberGettableTile == 0){
 				throw new MaxSelectedItemTileException("you have already selected the maximum number of tiles");
@@ -58,34 +74,35 @@ public class Game {
 			if(!currentSlot.isEmpty()) {
 				   checkItemTile = currentSlot.getItemTile();
 			}
-			
 			if(checkItemTile == null){
 				throw new NullPointerException("Slot is empty");
 			}
 			
 			if(selectedTiles.contains(checkItemTile))
-				throw new SameTileSelectedException("list already contains tile");
+				throw new TileAlreadySelectedException("list already contains tile");
 			
-		   ItemTile itemTile = null;
+			boolean result = false;
 
 			   if(selectedTiles.size()== 0)  
 			   {
-				   itemTile = this.livingRoomBoard.getTile(checkItemTile,null,null);
+				   result = this.livingRoomBoard.takeableTile(checkItemTile);
 			   }
 			   else if(selectedTiles.size() == 1)
 			   {
-				   itemTile = this.livingRoomBoard.getTile(checkItemTile,selectedTiles.get(0),null); 
+				   result = this.livingRoomBoard.takeableTile(checkItemTile,selectedTiles.get(0)); 
 			   }
 
 			   else if(selectedTiles.size() >= 2)
 			   {
-				   itemTile = this.livingRoomBoard.getTile(checkItemTile,selectedTiles.get(1),selectedTiles.get(0));
+				   result = this.livingRoomBoard.takeableTile(checkItemTile,selectedTiles.get(0),selectedTiles.get(1));
 			   }
-			   
-			   selectedTiles.add(itemTile);
-			   this.maxNumberGettableTile--;
-			   
-			   return itemTile;
+			  if(result)
+			  {
+				   selectedTiles.add(checkItemTile);
+				   this.maxNumberGettableTile--;
+				   return checkItemTile.getId();
+			  }
+			   return -1;
 	}
 	public boolean deselectFromTakenList(int row,int column)
 	{
