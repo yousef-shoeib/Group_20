@@ -10,8 +10,8 @@ import java.util.List;
  */
 public abstract class Grid {
 	
-	protected int rows;
-	protected int columns;
+	protected final int rows;
+	protected final int columns;
 	protected Slot[][] matrGrid;
 	
 
