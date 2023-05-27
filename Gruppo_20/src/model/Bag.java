@@ -8,25 +8,27 @@ import java.util.Scanner;
 
 import utility.ConfigPath;
 
+/**
+ * Classe Bag
+ * attributi e metodi che astraggono il sacchetto di Myshelfie
+ * @author Marco
+ *
+ */
 public class Bag {
-private List<ItemTile>listItemTile;
+private List<ItemTile>itemTileList;
 	
 	public Bag()
 	{
-		listItemTile = new ArrayList<>();
-		readFile();
-		
+		itemTileList = new ArrayList<>();
 	}
-	public List<ItemTile> getListItemTile() {
-		return listItemTile;
-	}
-	private void readFile()
+	/**
+	 * Riempie il sacchetto con le tessere.
+	 * Le informazioni delle tessere vengono lette dal file di testo il cuo percorso è passato come parametro.
+	 * @param path percorso del file di testo
+	 */
+	public void fill(String path)
 	{
-		/**
-		 * Carica ItemTiles da File
-		 */
-		
-		File file = new File(ConfigPath.getItemFilePath());
+		File file = new File(path);
 		try
 		{
 			Scanner scanner = new Scanner(file);
@@ -39,7 +41,7 @@ private List<ItemTile>listItemTile;
 					String color = components[1];
 	
 					ItemTile itemTile = new ItemTile(pathImg,color);
-					listItemTile.add(itemTile);
+					itemTileList.add(itemTile);
 			}
 			scanner.close();
 		}
@@ -47,7 +49,11 @@ private List<ItemTile>listItemTile;
 		{
 			System.out.println(e.getMessage());
 		}
-
-
+	}
+	/**
+	 * Restituisce una lista contenente le tessere presenti nel sacchetto
+	 */
+	public List<ItemTile> getItemTileList() {
+		return itemTileList;
 	}
 }

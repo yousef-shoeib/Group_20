@@ -11,6 +11,7 @@ import java.util.Random;
 import commongoal.CommonGoalCard;
 import exception.MaxSelectedItemTileException;
 import exception.TileAlreadySelectedException;
+import utility.ConfigPath;
 /**
  * Classe Game
  * Definisce attributi e metodi che implementano la logica del gioco.
@@ -38,7 +39,8 @@ public class Game {
 	{
 		livingRoomBoard = new LivingRoomBoard(numberOfPlayers);
 		bag = new Bag();
-		livingRoomBoard.putItemTiles(bag.getListItemTile());
+		bag.fill(ConfigPath.getItemFilePath());
+		livingRoomBoard.putItemTiles(bag.getItemTileList());
 		addPlayers(numberOfPlayers,namePlayers);
 		assignFirstPlayerSeat(numberOfPlayers);
 		setCurrentPlayer();
@@ -197,7 +199,7 @@ public class Game {
 		this.maxNumberGettableTile = this.listPlayer.get(currentPlayer).getBookshelf().maxDrawableTiles();
 		if(!this.livingRoomBoard.hasAdjacentTiles())
 		{
-			this.livingRoomBoard.putItemTiles(this.getBag().getListItemTile());
+			this.livingRoomBoard.putItemTiles(this.getBag().getItemTileList());
 			return true;
 		}
 		return false;
