@@ -57,10 +57,19 @@ public abstract class Grid {
 		return this.columns;
 	}
 	/**
-	 * Restituisce la matrice di Slot della Griglia
+	 * Restituisce una copia della matrice di Slot della Griglia
 	 */
 	public Slot[][] getMatrGrid() {
-		return matrGrid;
+		Slot[][] copyMatrGrid = new Slot[this.rows][this.columns];
+		for(int row = 0; row < this.rows;row++)
+		{
+			for(int column = 0; column < this.columns; column++)
+			{
+				Slot copySlot = new Slot(this.getSlot(row, column));
+				copyMatrGrid[row][column] = copySlot;
+			}
+		}
+		return copyMatrGrid;
 	}
 	/**
 	 * Restituisce lo slot avente le coordinate fornite come parametri
