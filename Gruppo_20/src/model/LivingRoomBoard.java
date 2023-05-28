@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Random;
 
 import exception.EqualsTilesException;
-import exception.TileAlreadySelectedException;
-import exception.TileHasNotFreeSideException;
-import exception.TilesAreNotAdjacentException;
-import exception.TilesAreNotInlineException;
+import exception.AlreadySelectedTileException;
+import exception.NoFreeSideTileException;
+import exception.NoAdjacentTilesException;
+import exception.NotInlineTilesException;
 /**
  * Classe LivingRoomBoard 
  * definisce attributi e metodi per astrarre la Plancia Soggiorno del gioco MyShelfie
@@ -114,7 +114,7 @@ public class LivingRoomBoard extends Grid {
 			throw new NullPointerException("tile is null");
 		}
 		if (!tileHasFreeSide(tileToCheck)){
-			throw new TileHasNotFreeSideException("tile has not free side");
+			throw new NoFreeSideTileException("tile has not free side");
 		}	
 		return true;
 	}
@@ -136,7 +136,7 @@ public class LivingRoomBoard extends Grid {
 			throw new EqualsTilesException("Tiles are equals");
 		}
 		if(!tilesAreAdjacent(tile1,tile2)){
-			throw new TilesAreNotAdjacentException("tiles are not adjacent");
+			throw new NoAdjacentTilesException("tiles are not adjacent");
 		}
 		return result;
 	}
@@ -161,10 +161,10 @@ public class LivingRoomBoard extends Grid {
 			throw new EqualsTilesException("Almost two Tiles are equals");
 		}
 		if(!tilesAreAdjacent(tile1,tile2,tile3)) {
-				throw new TilesAreNotAdjacentException("tiles are not adjacent");
+				throw new NoAdjacentTilesException("tiles are not adjacent");
 		}
 		if(!tileIsInline(tile1,tile2,tile3)){
-			throw new TilesAreNotInlineException("tiles are not inline");
+			throw new NotInlineTilesException("tiles are not inline");
 		}
 		return result;
 	}

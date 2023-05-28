@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.Random;
 
 import commongoal.CommonGoalCard;
-import exception.MaxSelectedItemTileException;
-import exception.TileAlreadySelectedException;
+import exception.MaxSelectedTileException;
+import exception.AlreadySelectedTileException;
 import utility.ConfigPath;
 /**
  * Classe Game
@@ -62,7 +62,7 @@ public class Game {
 	public int addToSelectedTileList(int row,int column) throws Exception   
 	{
 			if(this.maxNumberGettableTile == 0){
-				throw new MaxSelectedItemTileException("you have already selected the maximum number of tiles");
+				throw new MaxSelectedTileException("you have already selected the maximum number of tiles");
 			}
 			if(row >= this.livingRoomBoard.rows) {
 				throw new IllegalArgumentException("row is not a valid number");
@@ -81,7 +81,7 @@ public class Game {
 			}
 			
 			if(selectedTiles.contains(checkItemTile))
-				throw new TileAlreadySelectedException("list already contains tile");
+				throw new AlreadySelectedTileException("list already contains tile");
 			
 			boolean result = false;
 

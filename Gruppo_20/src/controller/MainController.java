@@ -23,8 +23,8 @@ import javax.swing.border.LineBorder;
 
 import cards.PersonalGoalCard;
 import commongoal.CommonGoalCard;
-import exception.MaxSelectedItemTileException;
-import exception.TileAlreadySelectedException;
+import exception.MaxSelectedTileException;
+import exception.AlreadySelectedTileException;
 import model.Bookshelf;
 import model.Game;
 import model.GameState;
@@ -99,7 +99,7 @@ public class MainController {
 							labelToRemove.put(checkItemTileID, label);
 							System.out.println("allow to take");
 						}
-						catch(MaxSelectedItemTileException ex2){
+						catch(MaxSelectedTileException ex2){
 							System.out.println(ex2.getMessage());
 							if(game.selectedtTileContains(row, column))
 							{
@@ -116,7 +116,7 @@ public class MainController {
 								check = 1;
 								}
 						}
-						catch(TileAlreadySelectedException ex1){
+						catch(AlreadySelectedTileException ex1){
 							System.out.println(ex1.getMessage());
 							if(game.deselectFromTakenList(row,column)){
 								label.setBorder(new LineBorder(new Color(255,255,255), 3));
