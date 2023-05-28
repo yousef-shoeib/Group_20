@@ -127,10 +127,8 @@ public class LivingRoomBoard extends Grid {
 	 */
 	public boolean takeableTile(ItemTile tile1, ItemTile tile2) throws Exception
 	{
-		boolean result = false;
-		
-		result = this.takeableTile(tile2);
-		result = this.takeableTile(tile1);
+		this.takeableTile(tile2);
+		this.takeableTile(tile1);
 		
 		if(tile1.equals(tile2)){
 			throw new EqualsTilesException("Tiles are equals");
@@ -138,7 +136,7 @@ public class LivingRoomBoard extends Grid {
 		if(!areAdjacent(tile1,tile2)){
 			throw new NoAdjacentTilesException("tiles are not adjacent");
 		}
-		return result;
+		return true;
 	}
 	/**
 	 * verifica se tre tessere sono prendibili.
@@ -151,11 +149,9 @@ public class LivingRoomBoard extends Grid {
 	 */
 	public boolean takeableTile(ItemTile tile1, ItemTile tile2,ItemTile tile3) throws Exception
 	{
-		boolean result = false;
-		
-		result = this.takeableTile(tile1);
-		result = this.takeableTile(tile2);
-		result = this.takeableTile(tile3);
+		this.takeableTile(tile1);
+		this.takeableTile(tile2);
+		this.takeableTile(tile3);
 		
 		if(tile1.equals(tile3) || tile1.equals(tile2) || tile3.equals(tile2)){
 			throw new EqualsTilesException("Almost two Tiles are equals");
@@ -166,6 +162,6 @@ public class LivingRoomBoard extends Grid {
 		if(!this.areInline(tile1,tile2,tile3)){
 			throw new NotInlineTilesException("tiles are not inline");
 		}
-		return result;
+		return true;
 	}
 }

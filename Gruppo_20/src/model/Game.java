@@ -20,28 +20,29 @@ import utility.ConfigPath;
 /**
  * Classe Game
  * Definisce attributi e metodi che implementano la logica del gioco.
- * @author Marco
+ * @author Marco, Yousef
  *
  */
 public class Game {
 
 	private LivingRoomBoard livingRoomBoard;
-	private List<Player> listPlayer;
+	private List<Player> playersList;
 	private Bag bag;
 	private int firstPlayer;
 	private static GameState state= GameState.NEW_GAME;
 	private CommonGoalCard commonGoal1;
 	private CommonGoalCard commonGoal2;
-	private static int currentPlayer;
+	private int currentPlayer;
 	private List<ItemTile> selectedTiles;
 	private int maxNumberGettableTile;
 	private List <TokenPoint> tokensList1;
 	private List <TokenPoint> tokensList2;
 	private int tokenCounter1;
 	private int tokenCounter2;
+	
 	public Game()
 	{	
-		listPlayer = new ArrayList<>();
+		playersList = new ArrayList<>();
 		selectedTiles = new ArrayList<>();
 		tokensList1 = new ArrayList<>();
 		tokensList2 = new ArrayList<>();
@@ -60,7 +61,7 @@ public class Game {
 		commonGoal1=CommonGoalCard.assignCommonGoalCard();
 		commonGoal2=CommonGoalCard.assignCommonGoalCard();
 		fillScoringTokens(numberOfPlayers);
-		this.maxNumberGettableTile = this.listPlayer.get(currentPlayer).getBookshelf().maxDrawableTiles();
+		this.maxNumberGettableTile = this.playersList.get(currentPlayer).getBookshelf().maxDrawableTiles();
 	}
 	/**
 	 * Aggiunge una tessera alla lista delle tessere prendibili
@@ -99,21 +100,16 @@ public class Game {
 			
 			boolean result = false;
 
-			   if(selectedTiles.size()== 0)  
-			   {
+			   if(selectedTiles.size()== 0){
 				   result = this.livingRoomBoard.takeableTile(checkItemTile);
 			   }
-			   else if(selectedTiles.size() == 1)
-			   {
+			   else if(selectedTiles.size() == 1){
 				   result = this.livingRoomBoard.takeableTile(checkItemTile,selectedTiles.get(0)); 
 			   }
-
-			   else if(selectedTiles.size() >= 2)
-			   {
+			   else if(selectedTiles.size() >= 2){
 				   result = this.livingRoomBoard.takeableTile(checkItemTile,selectedTiles.get(0),selectedTiles.get(1));
 			   }
-			  if(result)
-			  {
+			  if(result){
 				   selectedTiles.add(checkItemTile);
 				   this.maxNumberGettableTile--;
 				   return checkItemTile.getId();
@@ -139,40 +135,40 @@ public class Game {
 		if(item == null){
 			throw new NullPointerException("Slot is empty");
 		}
-		if(!selectedTiles.contains(item))
+		if(!selectedTiles.contains(item)) {
 			throw new NullPointerException("tiles in not in the list");
+		}
 		
-		//if(selectedTiles.contains(item)) {
-			int index = selectedTiles.indexOf(item);
-	
-			boolean deselect = true;
-			if(selectedTiles.size() == 3)
-			{
-			   if(index == 0){
-				   if(this.livingRoomBoard.areAdjacent(selectedTiles.get(0), selectedTiles.get(1)) 
-						   && this.livingRoomBoard.areAdjacent(selectedTiles.get(0), selectedTiles.get(2))){
-					   deselect = false;
-				   }
+		int index = selectedTiles.indexOf(item);
+
+		boolean deselect = true;
+		if(selectedTiles.size() == 3){
+			
+		   if(index == 0){
+			   if(this.livingRoomBoard.areAdjacent(selectedTiles.get(0), selectedTiles.get(1)) 
+					   && this.livingRoomBoard.areAdjacent(selectedTiles.get(0), selectedTiles.get(2))){
+				   deselect = false;
 			   }
-			   else if(index == 1){
-				   if(this.livingRoomBoard.areAdjacent(selectedTiles.get(1), selectedTiles.get(0)) 
-						   && this.livingRoomBoard.areAdjacent(selectedTiles.get(1), selectedTiles.get(2))){
-					   deselect = false;
-				   }
+		   }
+		   else if(index == 1){
+			   if(this.livingRoomBoard.areAdjacent(selectedTiles.get(1), selectedTiles.get(0)) 
+					   && this.livingRoomBoard.areAdjacent(selectedTiles.get(1), selectedTiles.get(2))){
+				   deselect = false;
 			   }
-			   else if(index == 2){
-				   if(this.livingRoomBoard.areAdjacent(selectedTiles.get(2), selectedTiles.get(0)) 
-						   && this.livingRoomBoard.areAdjacent(selectedTiles.get(2), selectedTiles.get(1))){
-					   deselect = false;
-				   }
+		   }
+		   else if(index == 2){
+			   if(this.livingRoomBoard.areAdjacent(selectedTiles.get(2), selectedTiles.get(0)) 
+					   && this.livingRoomBoard.areAdjacent(selectedTiles.get(2), selectedTiles.get(1))){
+				   deselect = false;
 			   }
-			}
-			if(deselect) {
-				selectedTiles.remove(index);
-				maxNumberGettableTile++;
-				return true;
-			}
-		//}
+		   }
+		}
+		if(deselect) {
+			selectedTiles.remove(index);
+			maxNumberGettableTile++;
+			return true;
+		}
+			
 		return false;
 	}
 	public void takeTiles()
@@ -185,12 +181,12 @@ public class Game {
 	}
 	public int currentPlayerFreeSlot(int column)
 	{		
-		return this.listPlayer.get(currentPlayer).getBookshelf().freeSlotsInColumn(column);
+		return this.playersList.get(currentPlayer).getBookshelf().freeSlotsInColumn(column);
 	}
 	public List<ItemTile> moveTilesToBookshelf(int column)
 	{
 		List<ItemTile> tempSelectedTiles = this.getTilesList();
-		this.listPlayer.get(currentPlayer).getBookshelf().addItemTiles(column, tempSelectedTiles);
+		this.playersList.get(currentPlayer).getBookshelf().addItemTiles(column, tempSelectedTiles);
 		this.livingRoomBoard.removeTile(selectedTiles);
 		selectedTiles = new ArrayList<>();
 
@@ -210,7 +206,7 @@ public class Game {
 	public boolean endRound()
 	{
 		increaseCurrentPlayer();
-		this.maxNumberGettableTile = this.listPlayer.get(currentPlayer).getBookshelf().maxDrawableTiles();
+		this.maxNumberGettableTile = this.playersList.get(currentPlayer).getBookshelf().maxDrawableTiles();
 		if(!this.livingRoomBoard.hasAdjacent())
 		{
 			this.livingRoomBoard.putItemTiles(this.getBag().getItemTileList());
@@ -219,16 +215,16 @@ public class Game {
 		return false;
 	}
 	private void setCurrentPlayer() {
-		int size=this.listPlayer.size();
+		int size=this.playersList.size();
 		for(int i=0; i<size;i++ ) {
-			if(this.listPlayer.get(i).isFirstPlayer()) {
+			if(this.playersList.get(i).isFirstPlayer()) {
 				currentPlayer=i;
 			}
 		}
 	}
 	private void increaseCurrentPlayer()
 	{
-		if(currentPlayer == this.listPlayer.size()-1){
+		if(currentPlayer == this.playersList.size()-1){
 			currentPlayer = 0;
 		}
 			else{
@@ -240,19 +236,19 @@ public class Game {
 		for(int i = 0; i < numberOfPlayers; i++)
 		{
 			Player player = new Player(namePlayers.get(i));
-			listPlayer.add(player);
+			playersList.add(player);
 		}
 	}
 	private void assignFirstPlayerSeat(int numberOfPlayers) {
 		Random r= new Random();
 		int i= r.nextInt(numberOfPlayers);
-		listPlayer.get(i).setFirstPlayerSeat(true);
+		playersList.get(i).setFirstPlayerSeat(true);
 		this.firstPlayer=i;
 		currentPlayer=i;
 	}
 	
 	public void nextPlayer() {
-		if(currentPlayer < listPlayer.size()-1) {
+		if(currentPlayer < playersList.size()-1) {
 		currentPlayer++;
 		}
 		else {
@@ -274,7 +270,7 @@ public class Game {
 		state = new_state;
 	}
 	public void finalPointsCount() {
-		for(Player p: listPlayer) {
+		for(Player p: playersList) {
 			p.countPoints();
 		}
 	}
@@ -285,9 +281,9 @@ public class Game {
 		return commonGoal1;
 	}
 	public Player currentPlayer() {
-		return listPlayer.get(currentPlayer);
+		return playersList.get(currentPlayer);
 	}
-	public static int getCurrentPlayerNumber() {
+	public int getCurrentPlayerNumber() {
 		return currentPlayer;
 	}
 	
@@ -296,22 +292,22 @@ public class Game {
 		checkCommonGoal2();
 	}
 	private void checkCommonGoal1() {
-		if(listPlayer.get(currentPlayer).getScoringToken1()== null 
+		if(playersList.get(currentPlayer).getScoringToken1()== null 
 				&&commonGoal1.CheckTarget(currentPlayer().getBookshelf())) {
-			listPlayer.get(currentPlayer).setScoringToken1(tokensList1.get(tokenCounter1));
-			listPlayer.get(currentPlayer).addPoints(getScoringToken1Points());
+			playersList.get(currentPlayer).setScoringToken1(tokensList1.get(tokenCounter1));
+			playersList.get(currentPlayer).addPoints(getScoringToken1Points());
 		}
 	}
 	private void checkCommonGoal2() {
-		if(listPlayer.get(currentPlayer).getScoringToken2()== null 
+		if(playersList.get(currentPlayer).getScoringToken2()== null 
 				&&commonGoal2.CheckTarget(currentPlayer().getBookshelf())) {
-			listPlayer.get(currentPlayer).setScoringToken2(tokensList2.get(tokenCounter2));
-			listPlayer.get(currentPlayer).addPoints(getScoringToken2Points());
+			playersList.get(currentPlayer).setScoringToken2(tokensList2.get(tokenCounter2));
+			playersList.get(currentPlayer).addPoints(getScoringToken2Points());
 		}
 	}
 	public Player getWinner() {
-		Player winner=listPlayer.get(0);
-		for(Player p: listPlayer) {
+		Player winner=playersList.get(0);
+		for(Player p: playersList) {
 			if(p.getPoints()>winner.getPoints()) {
 				winner=p;
 			}
@@ -377,19 +373,19 @@ public class Game {
 	}
 	public String getCurrentPlayerName()
 	{
-		return listPlayer.get(currentPlayer).getName();
+		return playersList.get(currentPlayer).getName();
 	}
 	public int getCurrentPlayerPoints()
 	{
-		return listPlayer.get(currentPlayer).getPoints();
+		return playersList.get(currentPlayer).getPoints();
 	}
 	public String getCurrentPlayerPersonalGoalCardPath()
 	{
-		return 	this.listPlayer.get(currentPlayer).getPersonalGoalCard().getPath();
+		return 	this.playersList.get(currentPlayer).getPersonalGoalCard().getPath();
 	}
 	public Slot[][] getCurrentPlayerBookShelf()
 	{
-		return this.listPlayer.get(currentPlayer).getBookshelf().getMatrGrid();
+		return this.playersList.get(currentPlayer).getBookshelf().getMatrGrid();
 	}
 	public Slot[][] getLivingRoomBoard()
 	{
@@ -403,7 +399,7 @@ public class Game {
 		return selectedTiles.size();
 	}
 	public List<Player> getListPlayer() {
-		return Collections.unmodifiableList(listPlayer);
+		return Collections.unmodifiableList(playersList);
 	}
 	public CommonGoalCard getCommonGoal2() {
 		return commonGoal2;
