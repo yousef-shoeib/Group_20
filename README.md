@@ -1,7 +1,7 @@
 
 [![Title-2000x618px.png](https://i.postimg.cc/qRzYVG68/Title-2000x618px.png)](https://postimg.cc/2bNTnhw6)
 
-## Progetto creato da "Group_24" per il corso di programmazione a oggetti anno 2022-2023.
+## Progetto creato da "Group_20" per il corso di programmazione a oggetti anno 2022-2023.
 
 ## 📖 Istruzioni 📖:
 
