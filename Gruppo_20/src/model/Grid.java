@@ -12,9 +12,13 @@ public abstract class Grid {
 	
 	protected final int rows;
 	protected final int columns;
-	protected Slot[][] matrGrid;
+	protected final Slot[][] matrGrid;
 	
-
+	/**
+	 * Crea una Griglia con righe e colonne specificate
+	 * @param rows
+	 * @param columns
+	 */
 	public Grid(int rows, int columns) {
 		
 		if(rows < 0)
@@ -40,21 +44,39 @@ public abstract class Grid {
 			}
 		}
 	}
-
+	/**
+	 * Restituisce il numero delle righe della Griglia
+	 */
 	public int getRows() {
 		return this.rows;
 	}
+	/**
+	 * Restituisce il numero delle colonne della Griglia
+	 */
 	public int getColumns() {
 		return this.columns;
 	}
+	/**
+	 * Restituisce la matrice di Slot della Griglia
+	 */
 	public Slot[][] getMatrGrid() {
 		return matrGrid;
 	}
+	/**
+	 * Restituisce lo slot avente le coordinate fornite come parametri
+	 * @param x
+	 * @param y
+	 */
 	public Slot getSlot(int x,int y)
 	{
 		return matrGrid[x][y];
 	}
-	public Slot getSlotFromTile(ItemTile itemTile)
+	/**
+	 * Restituisce lo slot in cui si trova una specifica tessera
+	 * @param itemTile
+	 * @return null se la tessera non si trova nella Griglia
+	 */
+	public Slot getSlot(ItemTile itemTile)
 	{
 		if(itemTile == null)
 			throw new NullPointerException("itemTile is null");
@@ -72,6 +94,9 @@ public abstract class Grid {
 		}
 		return null;
 	}
+	/**
+	 * Restituisce 
+	 */
 	public ItemTile contains(int tileId)
 	{
 		for(int x = 0; x < this.rows; x++)
@@ -113,7 +138,7 @@ public abstract class Grid {
 		if(currentItem ==  null)
 			throw new NullPointerException("itemTile is null");
 		
-		Slot currentSlot = this.getSlotFromTile(currentItem);
+		Slot currentSlot = this.getSlot(currentItem);
 		int x = currentSlot.getX();
 		int y = currentSlot.getY();
 		
@@ -167,8 +192,8 @@ public abstract class Grid {
 	 */
 	public boolean tilesAreAdjacent(ItemTile tile1, ItemTile tile2)
 	{
-		Slot slot1 = this.getSlotFromTile(tile1);
-		Slot slot2 = this.getSlotFromTile(tile2);
+		Slot slot1 = this.getSlot(tile1);
+		Slot slot2 = this.getSlot(tile2);
 		
 		if(slot1 == null)
 			throw new NullPointerException("Grid does not contain itemTile1");
@@ -190,9 +215,9 @@ public abstract class Grid {
 	}
 	public boolean tilesAreAdjacent(ItemTile tile1, ItemTile tile2,ItemTile tile3)
 	{
-		Slot slot1 = this.getSlotFromTile(tile1);
-		Slot slot2 = this.getSlotFromTile(tile2);
-		Slot slot3 = this.getSlotFromTile(tile2);
+		Slot slot1 = this.getSlot(tile1);
+		Slot slot2 = this.getSlot(tile2);
+		Slot slot3 = this.getSlot(tile2);
 		
 		if(slot1 == null)
 			throw new NullPointerException("Grid does not contain itemTile1");
@@ -212,7 +237,7 @@ public abstract class Grid {
 	}
 	protected boolean tileHasFreeSide(ItemTile tileToCheck)
 	{
-		Slot currentSlot = this.getSlotFromTile(tileToCheck);
+		Slot currentSlot = this.getSlot(tileToCheck);
 		
 		if(currentSlot == null)
 			throw new NullPointerException("Grid does not contain itemTile");
@@ -241,9 +266,9 @@ public abstract class Grid {
 	}
 	protected boolean tileIsInline(ItemTile tile1, ItemTile tile2, ItemTile tile3)
 	{
-		Slot slot1 = this.getSlotFromTile(tile1);
-		Slot slot2 = this.getSlotFromTile(tile2);
-		Slot slot3 = this.getSlotFromTile(tile3);
+		Slot slot1 = this.getSlot(tile1);
+		Slot slot2 = this.getSlot(tile2);
+		Slot slot3 = this.getSlot(tile3);
 		
 		if(slot1 == null)
 			throw new NullPointerException("Grid does not contain itemTile1");
