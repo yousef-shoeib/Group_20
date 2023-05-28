@@ -1,70 +1,111 @@
 package model;
 
+import exception.InactiveSlotException;
+/**
+ * Classe Slot
+ * Definisce attributi e metodi dello slot
+ * @author Marco
+ *
+ */
 public class Slot {
 	
-	private int id;
-	private int x;
-	private int y;
+	private final int x;
+	private final int y;
 	private boolean state;
 	private ItemTile itemTile;
 	
-	public int getId() {
-		return id;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-	
-	public ItemTile getItemTile() {
-		if(this.itemTile == null)
-			throw new NullPointerException("no tile in slot");
-			
-		return itemTile;
+	/**
+	 * Crea uno slot. 
+	 * @param x riga nella griglia
+	 * @param y colonna nella griglia
+	 */
+	public Slot(int x,int y)
+	{
+		if(x<0) {
+			throw new IllegalArgumentException("wrong coordinates: x coordinate is less than 0");
+		}
+		if(y<0) {
+			throw new IllegalArgumentException("wrong coordinates: y coordinate is less than 0");
+		}
 		
-	}
-
-	public void setItemTile(ItemTile itemTile) {
-		this.itemTile = itemTile;
-	}
-
-	public boolean State() {
-		return state;
-	}
-
-	public void setState(boolean state) {
-		this.state = state;
+		this.x = x;
+		this.y = y;
+		this.state = true;
+		this.itemTile = null;
 	}
 	
+	/**
+	 * Verifica se lo slot è vuoto.
+	 * @return vero se lo slot è vuoto
+	 */
 	public boolean isEmpty()
 	{
-		if(this.itemTile == null)
-		{
+		if(this.itemTile == null){
 			return true;
 		}
 		return false;
 	}
-
+	
 	/**
-	 * Default Constructor
+	 * Imposta lo stato dello slot.
+	 * @param state Vero per attivarlo.
 	 */
-	public Slot()
-	{
-		this.state = true;
-		this.itemTile = null;
+	public void setState(boolean state) {
+		this.state = state;
 	}
+	
+	/**
+	 * Se lo slot è attivo inserisce la tessera.
+	 * @param itemTile tessera da inserire all'interno dello slot.
+	 */
+	public void setItemTile(ItemTile itemTile) {
+		if(!this.getState()) {
+			throw new InactiveSlotException("Slot is not Active");
+		}
+		this.itemTile = itemTile;
+	}
+	
+	/**
+	 * Se lo slot è pieno restituisce la tessera in esso contenuta.
+	 */
+	public ItemTile getItemTile() {
+		if(this.isEmpty()) {
+			throw new NullPointerException("no tile in slot");
+		}
+		return itemTile;	
+	}
+	
+	/**
+	 * Restituisce lo stato dello slot.
+	 * @return vero se lo slot è utilizzabile
+	 */
+	public boolean getState() {
+		return state;
+	}
+	
+	/**
+	 * Restituisce la riga in cui è posizionato lo slot nella Griglia
+	 */
+	public int getX() {
+		return x;
+	}
+	
+	/**
+	 *	Restituisce la colonna in cui è posizionato lo slot nella Griglia 
+	 */
+	public int getY() {
+		return y;
+	}
+
+
+
+
+
+
+
+
+
+
 	
 	
 				
