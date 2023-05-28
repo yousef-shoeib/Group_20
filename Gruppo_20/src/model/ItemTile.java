@@ -17,6 +17,10 @@ public class ItemTile {
 			cont = cont +1;
 			this.type=ItemTileType.assignType(color);
 		}
+		/**
+		 * Costruttore Copia
+		 * @param item
+		 */
 		public ItemTile (ItemTile item) {
 			this.pathImg = item.pathImg;
 			this.color = item.color;

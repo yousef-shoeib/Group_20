@@ -33,7 +33,22 @@ public class Slot {
 		this.state = true;
 		this.itemTile = null;
 	}
-	
+	/**
+	 * Costruttore Copia
+	 * @param slot
+	 */
+	public Slot(Slot slot)
+	{	
+		this.x = slot.x;
+		this.y = slot.y;
+		this.state = slot.state;
+		if(!slot.isEmpty()){
+		this.itemTile = new ItemTile(slot.itemTile);
+		}
+		else {
+			this.itemTile = null;
+		}
+	}
 	/**
 	 * Verifica se lo slot è vuoto.
 	 * @return vero se lo slot è vuoto
