@@ -6,7 +6,11 @@ import java.util.Random;
 
 import cards.Match;
 import model.Bookshelf;
-
+/**
+ * classe astratta per creazione delle 12 carte obiettivo personale
+ * @author youse
+ *
+ */
 public abstract class PersonalGoalCard {
 	private int points;
 	private int number;
@@ -58,7 +62,12 @@ public abstract class PersonalGoalCard {
 		}
 		return counter;
 	}
-	
+	/**
+	 * metodo per ritornare i punti in base a quante celle hanno lo stesso tipo 
+	 * dettato della carta obiettivo personale
+	 * @param b libreria del giocatore 
+	 * @return i punti dell'obiettivo personale
+	 */
 	public int getPoints(Bookshelf b) {
 		int numberOfMatches=this.countMatches(b);
 		int points=0;
@@ -87,7 +96,10 @@ public abstract class PersonalGoalCard {
 
 
 	
-
+	/**
+	 * metodo per assegnare una carta obiettivo personale casuale
+	 * @return carta obiettivo personale
+	 */
 	public static PersonalGoalCard assignPersonalGoalCard() {
 		PersonalGoalCard card = null;
 		Random r = new Random();

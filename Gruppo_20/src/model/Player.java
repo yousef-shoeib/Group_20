@@ -2,7 +2,11 @@ package model;
 
 import cards.PersonalGoalCard;
 import scoringTokens.TokenPoint;
-
+/**
+ * classe per la creazione dei giocatori con la propria libreria e obiettivo personale
+ * @author youse
+ *
+ */
 public class Player {
 
 	private final int ID;
@@ -21,6 +25,10 @@ public class Player {
         return PLAYERCOUNTER++;
         
     }*/
+	/**
+	 * crea un giocatore con il nome inserito come parametro
+	 * @param name nome del giocatore 
+	 */
 	public Player (String name) {
 		this.name=name;
 		PLAYERCOUNTER++;
@@ -38,7 +46,9 @@ public class Player {
 		return name;
 	}
 
-	
+	/**
+	 * stampa nome e id del giocatore 
+	 */
 	public void print() {
 		if(this.ID!=0) {
 			System.out.println("Player"+ID+": ");
@@ -63,7 +73,10 @@ public class Player {
 	public int getPoints() {
 		return points;
 	}
-
+	/**
+	 * somma i punti inseriti ai punti che il giocatore ha
+	 * @param points punti da sommare 
+	 */
 	public void addPoints(int points) {
 		this.points += points;
 	}
@@ -95,7 +108,10 @@ public class Player {
 		int points=this.getBookshelf().adjacentTilesPoints();
 		this.addPoints(points);
 	}	
-	
+	/**
+	 * conta i punti delle tessere adiacenti nella libreria e 
+	 * i punti dell'obiettivo personale
+	 */
 	public void countPoints() {
 		this.countPersonalGoalPoionts();
 		this.countAdjacentTilesPoionts();
