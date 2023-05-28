@@ -49,8 +49,8 @@ public class Bookshelf extends Grid {
 	 * @return
 	 */
 	public ItemTile getTile(int row, int column) {
-		if (this.getSlot(row, column).getItemTile() == null) {
-			throw new NullPointerException();
+		if (this.getSlot(row, column).isEmpty()) {
+			throw new NullPointerException("This slot is Empty");
 		}
 		return this.getSlot(row, column).getItemTile();
 
