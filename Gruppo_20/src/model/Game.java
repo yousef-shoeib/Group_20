@@ -10,6 +10,11 @@ import java.util.Random;
 
 import commongoal.CommonGoalCard;
 import exception.MaxSelectedTileException;
+import scoringTokens.TokenPoint;
+import scoringTokens.TokenPoint2;
+import scoringTokens.TokenPoint4;
+import scoringTokens.TokenPoint6;
+import scoringTokens.TokenPoint8;
 import exception.AlreadySelectedTileException;
 import utility.ConfigPath;
 /**
@@ -30,10 +35,18 @@ public class Game {
 	private static int currentPlayer;
 	private List<ItemTile> selectedTiles;
 	private int maxNumberGettableTile;
+	private List <TokenPoint> tokensList1;
+	private List <TokenPoint> tokensList2;
+	private int tokenCounter1;
+	private int tokenCounter2;
 	public Game()
 	{	
 		listPlayer = new ArrayList<>();
 		selectedTiles = new ArrayList<>();
+		tokensList1 = new ArrayList<>();
+		tokensList2 = new ArrayList<>();
+		tokenCounter1=0;
+		tokenCounter2=0;
 	}
 	public void start(int numberOfPlayers,List<String> namePlayers)
 	{
@@ -46,6 +59,7 @@ public class Game {
 		setCurrentPlayer();
 		commonGoal1=CommonGoalCard.assignCommonGoalCard();
 		commonGoal2=CommonGoalCard.assignCommonGoalCard();
+		fillScoringTokens(numberOfPlayers);
 		this.maxNumberGettableTile = this.listPlayer.get(currentPlayer).getBookshelf().maxDrawableTiles();
 	}
 	/**
@@ -282,15 +296,17 @@ public class Game {
 		checkCommonGoal2();
 	}
 	private void checkCommonGoal1() {
-		if(commonGoal1.CheckTarget(currentPlayer().getBookshelf())) {
-			int points= commonGoal1.ReturnPoints(listPlayer.size());
-			listPlayer.get(currentPlayer).addPoints(points);
+		if(listPlayer.get(currentPlayer).getScoringToken1()== null 
+				&&commonGoal1.CheckTarget(currentPlayer().getBookshelf())) {
+			listPlayer.get(currentPlayer).setScoringToken1(tokensList1.get(tokenCounter1));
+			listPlayer.get(currentPlayer).addPoints(getScoringToken1Points());
 		}
 	}
 	private void checkCommonGoal2() {
-		if(commonGoal2.CheckTarget(currentPlayer().getBookshelf())) {
-			int points= commonGoal2.ReturnPoints(listPlayer.size());
-			listPlayer.get(currentPlayer).addPoints(points);
+		if(listPlayer.get(currentPlayer).getScoringToken2()== null 
+				&&commonGoal2.CheckTarget(currentPlayer().getBookshelf())) {
+			listPlayer.get(currentPlayer).setScoringToken2(tokensList2.get(tokenCounter2));
+			listPlayer.get(currentPlayer).addPoints(getScoringToken2Points());
 		}
 	}
 	public Player getWinner() {
@@ -314,6 +330,47 @@ public class Game {
 			   }
 		}
 		return false;
+	}
+	private void fillScoringTokens(int numberOfPlayers) {
+		switch(numberOfPlayers) {
+		case 2:
+			tokensList1.add(new TokenPoint8());
+			tokensList1.add(new TokenPoint4());
+
+			tokensList2.add(new TokenPoint8());
+			tokensList2.add(new TokenPoint4());	
+			break;
+		case 3:
+			tokensList1.add(new TokenPoint8());
+			tokensList1.add(new TokenPoint6());
+			tokensList1.add(new TokenPoint4());
+			
+			tokensList2.add(new TokenPoint8());
+			tokensList2.add(new TokenPoint6());
+			tokensList2.add(new TokenPoint4());	
+			break;
+		case 4:
+			tokensList1.add(new TokenPoint8());
+			tokensList1.add(new TokenPoint6());
+			tokensList1.add(new TokenPoint4());
+			tokensList1.add(new TokenPoint2());
+			
+			tokensList2.add(new TokenPoint8());
+			tokensList2.add(new TokenPoint6());
+			tokensList2.add(new TokenPoint4());	
+			tokensList2.add(new TokenPoint2());
+			break;
+		}
+	}
+	public int getScoringToken1Points() {
+		int points=tokensList1.get(tokenCounter1).getValue();
+		tokenCounter1++;
+		return points;
+	}
+	public int getScoringToken2Points() {
+		int points=tokensList2.get(tokenCounter2).getValue();
+		tokenCounter2++;
+		return points;
 	}
 	public int getCurrentPlayer() {
 		return currentPlayer;
@@ -350,5 +407,17 @@ public class Game {
 	}
 	public CommonGoalCard getCommonGoal2() {
 		return commonGoal2;
+	}
+	public List <TokenPoint> getTokensList1() {
+		return tokensList1;
+	}
+	public List <TokenPoint> getTokensList2() {
+		return tokensList2;
+	}
+	public int getTokenCounter1() {
+		return tokenCounter1;
+	}
+	public int getTokenCounter2() {
+		return tokenCounter2;
 	}
 }

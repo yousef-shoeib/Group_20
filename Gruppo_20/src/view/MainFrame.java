@@ -62,6 +62,10 @@ public class MainFrame extends JFrame {
 	private JButton quitGameButton;
 	private GameOverPanel gameOverPanel;
 	private JLabel firstPlayerTokenLabel;
+	private JLabel scoringTokenLabel1;
+	
+
+	private JLabel scoringTokenLabel2;
 	/**
 	 * Create the frame.
 	 */
@@ -176,8 +180,7 @@ public class MainFrame extends JFrame {
 		personalGoalCardLabel.setIcon(tempPersonalGoalCardIcon);
 		bookShelfPane.add(personalGoalCardLabel);
 		
-		//scoring tokens on common goals
-		JLabel scoringTokenLabel1 = new JLabel() {
+		scoringTokenLabel1 = new JLabel() {
 			protected void paintComponent(Graphics g) {
 			Graphics2D g2 = (Graphics2D)g;
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -198,7 +201,7 @@ public class MainFrame extends JFrame {
 		scoringTokenLabel1.setIcon(scoringTokenIcon1);
 		commonGoalCardsPane.add(scoringTokenLabel1);
 		
-		JLabel scoringTokenLabel2 = new JLabel() {
+		scoringTokenLabel2 = new JLabel() {
 			protected void paintComponent(Graphics g) {
 			Graphics2D g2 = (Graphics2D)g;
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -502,5 +505,12 @@ public class MainFrame extends JFrame {
 
 	public JLabel getFirstPlayerTokenLabel() {
 		return firstPlayerTokenLabel;
+	}
+	public JLabel getScoringTokenLabel1() {
+		return scoringTokenLabel1;
+	}
+
+	public JLabel getScoringTokenLabel2() {
+		return scoringTokenLabel2;
 	}
 }

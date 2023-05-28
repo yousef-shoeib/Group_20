@@ -1,6 +1,7 @@
 package model;
 
 import cards.PersonalGoalCard;
+import scoringTokens.TokenPoint;
 
 public class Player {
 
@@ -12,6 +13,9 @@ public class Player {
 	private Bookshelf bookshelf;
 	private PersonalGoalCard personalGoalCard;
 	private boolean firstPlayerSeat=false;
+	private TokenPoint scoringToken1;
+	private TokenPoint scoringToken2;
+	
     /*private int IDGenerator() 
     {
         return PLAYERCOUNTER++;
@@ -98,6 +102,22 @@ public class Player {
 		if(this.getBookshelf().isComplete()) {
 			this.addPoints(1);
 		}
+	}
+
+	public TokenPoint getScoringToken1() {
+		return scoringToken1;
+	}
+
+	public void setScoringToken1(TokenPoint scoringToken1) {
+		this.scoringToken1 = scoringToken1;
+	}
+
+	public TokenPoint getScoringToken2() {
+		return scoringToken2;
+	}
+
+	public void setScoringToken2(TokenPoint scoringToken2) {
+		this.scoringToken2 = scoringToken2;
 	}
 
 }

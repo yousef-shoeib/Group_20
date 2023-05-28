@@ -31,6 +31,7 @@ import model.GameState;
 import model.ItemTile;
 import model.Player;
 import model.Slot;
+import scoringTokens.TokenPoint;
 import utility.ConfigPath;
 import view.MainFrame;
 import view.SetGameFrame;
@@ -65,6 +66,7 @@ public class MainController {
 		loadPersonalGoalCard();
 		loadCommonGoalCards();
 		flipPersonalGoalCard();
+		loadScoringTokens();
 		mainFrame.getPlayerNameLabel().setText("Player " + (game.getCurrentPlayer()+1) +": "+ game.getCurrentPlayerName());
 		mainFrame.getPlayerPointsLabel().setText("Points: "+ game.getCurrentPlayerPoints());
 	}
@@ -213,6 +215,7 @@ public class MainController {
 				selectedBookShelfColumn = -1;
 				loadBookshelf();
 				loadPersonalGoalCard();
+				loadScoringTokens();
 				mainFrame.getPlayerNameLabel().setText("Player " + (game.getCurrentPlayer()+1) +": "+ game.getCurrentPlayerName());
 				mainFrame.getPlayerPointsLabel().setText("Points: " + game.getCurrentPlayerPoints());
 
@@ -434,6 +437,17 @@ public class MainController {
 		ImageIcon tempIcon2 =new ImageIcon(commonGoal2.getPath()); //metodo da creare in commongoal card
 		ImageIcon icon2= new ImageIcon(tempIcon2.getImage().getScaledInstance(170, 120,Image.SCALE_SMOOTH));
 		mainFrame.getCommonGoalCard2Label().setIcon(icon2);
+	}
+	private void loadScoringTokens()
+	{
+		TokenPoint scoringToken1 = game.getTokensList1().get(game.getTokenCounter1());
+		ImageIcon tempIcon1 =new ImageIcon(scoringToken1.getPathImg()); 
+		ImageIcon icon1= new ImageIcon(tempIcon1.getImage().getScaledInstance(45, 45,Image.SCALE_SMOOTH));
+		mainFrame.getScoringTokenLabel1().setIcon(icon1);
+		TokenPoint scoringToken2 = game.getTokensList2().get(game.getTokenCounter2());
+		ImageIcon tempIcon2 =new ImageIcon(scoringToken2.getPathImg());
+		ImageIcon icon2= new ImageIcon(tempIcon2.getImage().getScaledInstance(45, 45,Image.SCALE_SMOOTH));
+		mainFrame.getScoringTokenLabel2().setIcon(icon2);
 	}
 	private void deselectAllSlot()
 	{
