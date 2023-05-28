@@ -209,7 +209,7 @@ public class Game {
 		this.maxNumberGettableTile = this.playersList.get(currentPlayer).getBookshelf().maxDrawableTiles();
 		if(!this.livingRoomBoard.hasAdjacent())
 		{
-			this.livingRoomBoard.putItemTiles(this.getBag().getItemTileList());
+			this.livingRoomBoard.putItemTiles(this.bag.getItemTileList());
 			return true;
 		}
 		return false;
@@ -260,9 +260,7 @@ public class Game {
 		return firstPlayer;
 	}
 	
-	public Bag getBag() {
-		return bag;
-	}
+
 	public static GameState getState() {
 		return state;
 	}
