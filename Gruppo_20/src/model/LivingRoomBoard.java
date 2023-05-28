@@ -113,7 +113,7 @@ public class LivingRoomBoard extends Grid {
 		if(tileToCheck == null){
 			throw new NullPointerException("tile is null");
 		}
-		if (!tileHasFreeSide(tileToCheck)){
+		if (!hasFreeSide(tileToCheck)){
 			throw new NoFreeSideTileException("tile has not free side");
 		}	
 		return true;
@@ -135,7 +135,7 @@ public class LivingRoomBoard extends Grid {
 		if(tile1.equals(tile2)){
 			throw new EqualsTilesException("Tiles are equals");
 		}
-		if(!tilesAreAdjacent(tile1,tile2)){
+		if(!areAdjacent(tile1,tile2)){
 			throw new NoAdjacentTilesException("tiles are not adjacent");
 		}
 		return result;
@@ -160,10 +160,10 @@ public class LivingRoomBoard extends Grid {
 		if(tile1.equals(tile3) || tile1.equals(tile2) || tile3.equals(tile2)){
 			throw new EqualsTilesException("Almost two Tiles are equals");
 		}
-		if(!tilesAreAdjacent(tile1,tile2,tile3)) {
+		if(!this.areAdjacent(tile1,tile2,tile3)) {
 				throw new NoAdjacentTilesException("tiles are not adjacent");
 		}
-		if(!tileIsInline(tile1,tile2,tile3)){
+		if(!this.areInline(tile1,tile2,tile3)){
 			throw new NotInlineTilesException("tiles are not inline");
 		}
 		return result;

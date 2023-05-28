@@ -95,7 +95,9 @@ public abstract class Grid {
 		return null;
 	}
 	/**
-	 * Restituisce 
+	 * Restituisce la tessera se contenuta nella Griglia
+	 * @param tileId id della tessera
+	 * @return null se la tessera non è presente
 	 */
 	public ItemTile contains(int tileId)
 	{
@@ -112,7 +114,10 @@ public abstract class Grid {
 		}
 		return null;
 	}
-	
+	/**
+	 * Restituisce il numero di slot vuoti
+	 * @param column
+	 */
 	public int numberOfEmptySlot(int column)
 	{
 		if(column < 0 || column >= this.columns) {
@@ -133,7 +138,7 @@ public abstract class Grid {
 	 * @param currentItem
 	 * @return true if currentItem has an adjacent tile
 	 */
-	public boolean hasAdjacentTile(ItemTile currentItem)
+	public boolean hasAdjacent(ItemTile currentItem)
 	{
 		if(currentItem ==  null)
 			throw new NullPointerException("itemTile is null");
@@ -168,7 +173,7 @@ public abstract class Grid {
 	 * Check if there are any adjacent tiles
 	 * @returns true if there are two adjacent tiles
 	 */
-	public boolean hasAdjacentTiles()
+	public boolean hasAdjacent()
 	{
 		for(int row = 0; row < this.rows; row ++)
 		{
@@ -176,7 +181,7 @@ public abstract class Grid {
 			{
 				if(matrGrid[row][column].getState() && !matrGrid[row][column].isEmpty())
 				{
-					 if(hasAdjacentTile(matrGrid[row][column].getItemTile())){
+					 if(hasAdjacent(matrGrid[row][column].getItemTile())){
 						 return true;
 					 }
 				}
@@ -190,7 +195,7 @@ public abstract class Grid {
 	 * @param tile2
 	 * @return vero se le tessere sono adiacenti
 	 */
-	public boolean tilesAreAdjacent(ItemTile tile1, ItemTile tile2)
+	public boolean areAdjacent(ItemTile tile1, ItemTile tile2)
 	{
 		Slot slot1 = this.getSlot(tile1);
 		Slot slot2 = this.getSlot(tile2);
@@ -213,7 +218,14 @@ public abstract class Grid {
 		
 		return false;
 	}
-	public boolean tilesAreAdjacent(ItemTile tile1, ItemTile tile2,ItemTile tile3)
+	/**
+	 *  verifica se tre tessere sono adiacenti
+	 * @param tile1
+	 * @param tile2
+	 * @param tile3
+	 * @return vero se le tessere sono adiacenti
+	 */
+	public boolean areAdjacent(ItemTile tile1, ItemTile tile2,ItemTile tile3)
 	{
 		Slot slot1 = this.getSlot(tile1);
 		Slot slot2 = this.getSlot(tile2);
@@ -226,16 +238,21 @@ public abstract class Grid {
 		if(slot3 == null)
 			throw new NullPointerException("Grid does not contain itemTile3");
 		
-		if(!tilesAreAdjacent(tile1,tile2) && !tilesAreAdjacent(tile1,tile3))
+		if(!areAdjacent(tile1,tile2) && !areAdjacent(tile1,tile3))
 			return false;
-		if(!tilesAreAdjacent(tile2,tile1) && !tilesAreAdjacent(tile2,tile3))
+		if(!areAdjacent(tile2,tile1) && !areAdjacent(tile2,tile3))
 			return false;
-		if(!tilesAreAdjacent(tile3,tile1) && !tilesAreAdjacent(tile3,tile2))
+		if(!areAdjacent(tile3,tile1) && !areAdjacent(tile3,tile2))
 			return false;
 		
 		return true;
 	}
-	protected boolean tileHasFreeSide(ItemTile tileToCheck)
+	/**
+	 * Verifica se la tessera ha un lato libero
+	 * @param tileToCheck
+	 * @return true se ha almeno un lato libero
+	 */
+	protected boolean hasFreeSide(ItemTile tileToCheck)
 	{
 		Slot currentSlot = this.getSlot(tileToCheck);
 		
@@ -264,7 +281,14 @@ public abstract class Grid {
 		
 		return false;
 	}
-	protected boolean tileIsInline(ItemTile tile1, ItemTile tile2, ItemTile tile3)
+	/**
+	 * Verifica se tre tessere formano una linea retta
+	 * @param tile1
+	 * @param tile2
+	 * @param tile3
+	 * @return true se formanoo una linea retta
+	 */
+	protected boolean areInline(ItemTile tile1, ItemTile tile2, ItemTile tile3)
 	{
 		Slot slot1 = this.getSlot(tile1);
 		Slot slot2 = this.getSlot(tile2);
@@ -287,7 +311,7 @@ public abstract class Grid {
 	}
 	/**
 	 * Rimuove le tessere dalla Griglia
-	 * @param selectedTiles
+	 * @param selectedTiles lista di tessere
 	 */
 	public void removeTile(List<ItemTile> selectedTiles) {
 		for(ItemTile item : selectedTiles)
