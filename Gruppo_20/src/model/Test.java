@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import commongoal.CommonGoalCard;
+import commongoal.CommonGoalCard5;
+import commongoal.CommonGoalCard7;
+
 public class Test {
 
 	public static void main(String[] args) {
@@ -37,27 +41,28 @@ public class Test {
 		
 		
 		//number=p.getPersonalGoalCard().countMatches(p.getBookshelf());
-		for(int i=0;i<2;i++) {
-		p1.getBookshelf().setTile(5, i, tile1);
+		for(int i=0;i<3;i++) {
+		p1.getBookshelf().setTile(i, 0, tile1);
 		}
 		for(int i=0;i<3;i++) {
-			p1.getBookshelf().setTile(4, i, tile2);
+			p1.getBookshelf().setTile(i, 1, tile1);
 			}
 		for(int i=0;i<3;i++) {
-			p1.getBookshelf().setTile(3, i, tile1);
+			p1.getBookshelf().setTile(i, 2, tile3);
+			}
+		for(int i=0;i<5;i++) {
+			p1.getBookshelf().setTile(i, 3, tile2);
+			}
+		for(int i=0;i<5;i++) {
+			p1.getBookshelf().setTile(i, 4, tile2);
 			}
 		/*for(int i=0;i<5;i++) {
-			p1.getBookshelf().setTile(2, i, tile3);
-			}
-		for(int i=0;i<5;i++) {
-			p1.getBookshelf().setTile(1, i, tile3);
-			}
-		for(int i=0;i<5;i++) {
-			p1.getBookshelf().setTile(0, i, tile3);
-			}
-		for(int i=0;i<4;i++) {
-			p2.getBookshelf().setTile(1, i, tile4);
+			p1.getBookshelf().setTile(i, 5, tile3);
 			}*/
+		
+		CommonGoalCard commonGoal=new CommonGoalCard7();
+		System.out.println(commonGoal.CheckTarget(p1.getBookshelf()));
+		//commonGoal.CheckTarget(p1.getBookshelf());
 		//p.getBookshelf().setTile(4, 0, new ItemTile("blu", "blu"));
 		//p.getBookshelf().setTile(3, 0, new ItemTile("blu", "blu"));
 		

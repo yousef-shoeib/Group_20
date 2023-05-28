@@ -18,14 +18,17 @@ public class CommonGoalCard5 extends CommonGoalCard{
 		for(int j=0; j<bookshelf.getColumns(); j++) {
 			Set<ItemTileType> differentTypes = new HashSet<>();
 			for(int i=0; i<bookshelf.getRows(); i++) {
-				if(!bookshelf.getSlot(i, j).isEmpty()) {
+				if(bookshelf.getSlot(i, j).isEmpty()) {
+					break;
+				}
+				else {
 					differentTypes.add(bookshelf.getItemTileType(i,j));
 					if(differentTypes.size()>3) {
 						break;
 					}
 				}
+				if(differentTypes.size()<=3 && i== 5) countColumns++;
 			}
-			if(differentTypes.size()<=3) countColumns++;
 		}
 		if(countColumns>=3) return true;
 		else return false;
