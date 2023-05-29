@@ -16,6 +16,7 @@ public class CommonGoalCard1 extends CommonGoalCard{
 				   !bookshelf.getSlot(i, j+1).isEmpty() &&
 				   !bookshelf.getSlot(i+1, j).isEmpty() &&
 				   !bookshelf.getSlot(i+1,j+1).isEmpty()) {
+					//associo al variabile type il tipo di riferimento da controllare
 					ItemTileType type= bookshelf.getTile(i, j).getType();
 						if(type.equals(bookshelf.getTile(i, j+1).getType()) &&
 						   type.equals(bookshelf.getTile(i+1, j).getType()) &&
