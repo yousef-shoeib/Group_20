@@ -48,7 +48,8 @@ public class MainController {
 	boolean taken = false, enabledLivingRoomBoard = true;
 	int positionToSwap=0; //to order box getted tiles
 	private Map<Integer,JLabel> labelToRemove;
-
+	boolean tokensList1=true;
+	boolean tokensList2=true;
 	
 	public MainController(Game game, MainFrame mainFrame)
 	{
@@ -444,10 +445,22 @@ public class MainController {
 		ImageIcon tempIcon1 =new ImageIcon(scoringToken1.getPathImg()); 
 		ImageIcon icon1= new ImageIcon(tempIcon1.getImage().getScaledInstance(45, 45,Image.SCALE_SMOOTH));
 		mainFrame.getScoringTokenLabel1().setIcon(icon1);
+		tokensList1=false;
+		for(Player p: game.getListPlayer()) {
+			if(p.getScoringToken1()==null)
+				tokensList1=true;
+		}
+		mainFrame.getScoringTokenLabel1().setVisible(tokensList1);
 		TokenPoint scoringToken2 = game.getTokensList2().get(game.getTokenCounter2());
 		ImageIcon tempIcon2 =new ImageIcon(scoringToken2.getPathImg());
 		ImageIcon icon2= new ImageIcon(tempIcon2.getImage().getScaledInstance(45, 45,Image.SCALE_SMOOTH));
 		mainFrame.getScoringTokenLabel2().setIcon(icon2);
+		tokensList2=false;
+		for(Player p: game.getListPlayer()) {
+			if(p.getScoringToken2()==null)
+				tokensList2=true;
+		}
+		mainFrame.getScoringTokenLabel2().setVisible(tokensList2);
 	}
 	private void deselectAllSlot()
 	{

@@ -360,13 +360,13 @@ public class Game {
 	}
 	public int getScoringToken1Points() {
 		int points=tokensList1.get(tokenCounter1).getValue();
-		if(tokenCounter1<tokensList1.size())
+		if(tokenCounter1<tokensList1.size()-1)
 		tokenCounter1++;
 		return points;
 	}
 	public int getScoringToken2Points() {
 		int points=tokensList2.get(tokenCounter2).getValue();
-		if(tokenCounter2<tokensList2.size())
+		if(tokenCounter2<tokensList2.size()-1)
 		tokenCounter2++;
 		return points;
 	}
@@ -417,5 +417,8 @@ public class Game {
 	}
 	public int getTokenCounter2() {
 		return tokenCounter2;
+	}
+	public int getNumberOfPlayers() {
+		return playersList.size();
 	}
 }
