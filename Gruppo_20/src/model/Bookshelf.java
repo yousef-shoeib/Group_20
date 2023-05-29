@@ -151,7 +151,8 @@ public class Bookshelf extends Grid {
 		return size;
 	}
 
-	private void countGroups() {
+	public void countGroups() {
+		adjacentTiles= new ArrayList<>();
 		for (ItemTileType type : types) {
 			boolean visited[][] = new boolean[rows][columns];
 			for (int i = 0; i < this.rows; ++i)
@@ -159,7 +160,7 @@ public class Bookshelf extends Grid {
 
 					if (!this.getSlot(i, j).isEmpty() && this.getItemTileType(i, j) == type && !visited[i][j]) {
 						int size = count(i, j, visited, type);
-						if (size > 2)
+						if (size > 1)
 							adjacentTiles.add(size);
 					}
 		}

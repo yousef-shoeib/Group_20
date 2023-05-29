@@ -7,7 +7,7 @@ public class CommonGoalCard3 extends CommonGoalCard {
 	
 	public CommonGoalCard3() {}
 	
-	public int countVertical(Bookshelf bookshelf, int nTiles) {
+	/*public int countVertical(Bookshelf bookshelf, int nTiles) {
 		int count=0;
 		for(int i=0; i<bookshelf.getRows()-nTiles+1; i++) {
 			for(int j=0; j<bookshelf.getColumns(); j++) {
@@ -45,15 +45,19 @@ public class CommonGoalCard3 extends CommonGoalCard {
 			}
 		}
 	  return count;
-	}
+	}*/
 	
 	@Override
 	public boolean CheckTarget(Bookshelf bookshelf) {
-		int countVertical, countHorizontal;
-		countVertical = countVertical(bookshelf,4);
-		countHorizontal = countHorizontal(bookshelf,4);
-		if((countVertical+countHorizontal) >= 4) return true;
-		else return false;
+		bookshelf.countGroups();
+		int groups=0;
+		for(int i: bookshelf.getAdjacentTiles()) {
+			if(i>=4)
+				groups++;
+			if(groups>=4)
+				return true;
+		}
+		return false;
 	}
 	
 	public String getPath() {

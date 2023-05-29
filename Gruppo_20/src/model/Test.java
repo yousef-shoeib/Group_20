@@ -39,30 +39,31 @@ public class Test {
 		//p1.getBookshelf().addItemTiles(1, tiles2);
 		//p1.getBookshelf().addItemTiles(2, tiles3);
 		
-		/*
-		 * area di fra
-		 */
+		
 		//number=p.getPersonalGoalCard().countMatches(p.getBookshelf());
 		for(int i=0;i<1;i++) {
 		p1.getBookshelf().setTile(0, i, tile1);
 		}
-		for(int i=0;i<1;i++) {
+		for(int i=0;i<2;i++) {
 			p1.getBookshelf().setTile(1, i, tile2);
 			}
 		for(int i=0;i<2;i++) {
 			p1.getBookshelf().setTile(2, i, tile3);
 			}
-		for(int i=0;i<3;i++) {
+		for(int i=0;i<2;i++) {
 			p1.getBookshelf().setTile(3, i, tile4);
 			}
-		for(int i=0;i<4;i++) {
+		for(int i=0;i<2;i++) {
 			p1.getBookshelf().setTile(4, i, tile5);
 			}
-		for(int i=0;i<5;i++) {
+		for(int i=0;i<2;i++) {
+			p1.getBookshelf().setTile(5, i, tile6);
+			}
+		for(int i=3;i<4;i++) {
 			p1.getBookshelf().setTile(5, i, tile6);
 			}
 		
-		CommonGoalCard commonGoal=new CommonGoalCard12();
+		CommonGoalCard commonGoal=new CommonGoalCard4();
 		System.out.println(commonGoal.CheckTarget(p1.getBookshelf()));
 		//commonGoal.CheckTarget(p1.getBookshelf());
 		//p.getBookshelf().setTile(4, 0, new ItemTile("blu", "blu"));

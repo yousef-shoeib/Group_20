@@ -2,30 +2,23 @@ package commongoal;
 import model.Slot;
 import model.Bookshelf;
 
-public class CommonGoalCard4 extends CommonGoalCard3{
+public class CommonGoalCard4 extends CommonGoalCard{
 	
 	private String path = "./resources/Assets/commonGoalCards/4.jpg";
 	
-	public CommonGoalCard4() {
-		super();
-	}
-
-	@Override
-	public int countVertical(Bookshelf bookshelf ,int nTiles) {
-		return super.countVertical(bookshelf ,nTiles);
-	}
-
-	@Override
-	public int countHorizontal(Bookshelf bookshelf ,int nTiles) {
-		return super.countHorizontal(bookshelf ,nTiles);
-	}
+	public CommonGoalCard4() {}
 
 	@Override
 	public boolean CheckTarget(Bookshelf bookshelf) {
-		int countVertical = countVertical(bookshelf ,2);
-		int countHorizontal = countHorizontal(bookshelf ,2);
-		if((countVertical+countHorizontal)>=6) return true;
-		else return false;
+		bookshelf.countGroups();
+		int groups=0;
+		for(int i: bookshelf.getAdjacentTiles()) {
+			if(i>=2)
+				groups++;
+			if(groups>=6)
+				return true;
+		}
+		return false;
 	}
 	
 	

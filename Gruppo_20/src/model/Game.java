@@ -60,6 +60,8 @@ public class Game {
 		setCurrentPlayer();
 		commonGoal1=CommonGoalCard.assignCommonGoalCard();
 		commonGoal2=CommonGoalCard.assignCommonGoalCard();
+		tokenCounter1=0;
+		tokenCounter2=0;
 		fillScoringTokens(numberOfPlayers);
 		this.maxNumberGettableTile = this.playersList.get(currentPlayer).getBookshelf().maxDrawableTiles();
 	}
