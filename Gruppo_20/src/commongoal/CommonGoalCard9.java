@@ -19,7 +19,7 @@ public class CommonGoalCard9 extends CommonGoalCard{
 						for(int l=0; l<bookshelf.getColumns(); l++) {
 							if(k==i && l<=j) continue;
 							if(!bookshelf.getSlot(k, l).isEmpty()) {
-								if(bookshelf.getTile(k, l).equals(bookshelf.getTile(i, j))) {
+								if((bookshelf.getTile(k, l).getType()).equals(bookshelf.getTile(i, j).getType())) {
 									matchCount++;
 									if(matchCount==8) {
 										count=1;
