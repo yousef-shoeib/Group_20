@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -88,7 +89,7 @@ public class LivingRoomBoard extends Grid {
 	public void putItemTiles(List<ItemTile> listItemTile)
 	{
 		Random random = new Random();
-				
+		Collections.shuffle(listItemTile);
 		for(int x = 0; x < this.rows; x++)
 		{
 			for(int y = 0; y < this.columns; y++)
