@@ -358,11 +358,13 @@ public class Game {
 	}
 	public int getScoringToken1Points() {
 		int points=tokensList1.get(tokenCounter1).getValue();
+		if(tokenCounter1<tokensList1.size())
 		tokenCounter1++;
 		return points;
 	}
 	public int getScoringToken2Points() {
 		int points=tokensList2.get(tokenCounter2).getValue();
+		if(tokenCounter2<tokensList2.size())
 		tokenCounter2++;
 		return points;
 	}
