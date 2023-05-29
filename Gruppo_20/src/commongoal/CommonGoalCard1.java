@@ -2,7 +2,13 @@ package commongoal;
 
 import model.Bookshelf;
 import model.ItemTileType;
-
+/**
+ * La CommonGoalCard1 ha come obiettivo due gruppi separati di 4 tessere dello 
+ * stesso tipo che formano un quadrato 2x2.Le tessere dei due gruppi devono essere 
+ * dello stesso tipo.
+ * @author Anton
+ *
+ */
 public class CommonGoalCard1 extends CommonGoalCard{
 	private String path = "./resources/Assets/commonGoalCards/1.jpg";
 	public CommonGoalCard1() {}
