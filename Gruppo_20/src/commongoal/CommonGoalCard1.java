@@ -1,6 +1,7 @@
 package commongoal;
 
 import model.Bookshelf;
+import model.ItemTileType;
 
 public class CommonGoalCard1 extends CommonGoalCard{
 	private String path = "./resources/Assets/commonGoalCards/1.jpg";
@@ -15,9 +16,10 @@ public class CommonGoalCard1 extends CommonGoalCard{
 				   !bookshelf.getSlot(i, j+1).isEmpty() &&
 				   !bookshelf.getSlot(i+1, j).isEmpty() &&
 				   !bookshelf.getSlot(i+1,j+1).isEmpty()) {
-						if(bookshelf.getTile(i, j).equals(bookshelf.getTile(i, j+1)) &&
-						   bookshelf.getTile(i, j).equals(bookshelf.getTile(i+1, j)) &&
-						   bookshelf.getTile(i, j).equals(bookshelf.getTile(i+1, j+1))) {
+					ItemTileType type= bookshelf.getTile(i, j).getType();
+						if(type.equals(bookshelf.getTile(i, j+1).getType()) &&
+						   type.equals(bookshelf.getTile(i+1, j).getType()) &&
+						   type.equals(bookshelf.getTile(i+1, j+1).getType())) {
 							count++;
 						}
 				      }
