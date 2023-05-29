@@ -6,7 +6,12 @@ import java.util.Set;
 import model.Bookshelf;
 import model.ItemTile;
 import model.ItemTileType;
-
+/**
+ * La CommonGoalCard6 ha come obiettivo due righe formate ciascuna 
+ * da 5 diversi tipi di tessere.
+ * @author Anton
+ *
+ */
 public class CommonGoalCard6 extends CommonGoalCard {
 	
 	private String path = "./resources/Assets/commonGoalCards/6.jpg";
