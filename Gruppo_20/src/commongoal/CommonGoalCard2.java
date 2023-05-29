@@ -14,6 +14,25 @@ public class CommonGoalCard2 extends CommonGoalCard{
 	@Override
 	public boolean CheckTarget(Bookshelf bookshelf) {
 		int unique_columns=0;
+		for(int column=0; column<bookshelf.getColumns(); column++) {
+			Set<ItemTileType> types= new HashSet<>();
+			for(int row=0; row<bookshelf.getRows(); row++) {
+				if(bookshelf.getSlot(row,column).isEmpty()) {
+					break;
+				}
+				types.add(bookshelf.getItemTileType(row, column));
+			}
+			if(types.size()==6)
+				unique_columns++;
+			
+			if(unique_columns==2) 
+				return true;
+		}
+		return false;
+	}
+	/*
+	public boolean CheckTarget(Bookshelf bookshelf) {
+		int unique_columns=0;
 		for(int column1=0; column1<bookshelf.getColumns(); column1++) {
 			for(int column2=column1+1; column2<bookshelf.getColumns(); column2++) {
 				boolean only_uniques = true;
@@ -38,7 +57,7 @@ public class CommonGoalCard2 extends CommonGoalCard{
 		    }
 	    }
 		return false;
-	}
+	}*/
 	
 	public String getPath() {
 		return path;

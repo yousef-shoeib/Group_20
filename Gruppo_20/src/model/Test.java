@@ -41,26 +41,26 @@ public class Test {
 		
 		
 		//number=p.getPersonalGoalCard().countMatches(p.getBookshelf());
-		for(int i=0;i<3;i++) {
-		p1.getBookshelf().setTile(i, 0, tile1);
+		for(int i=0;i<4;i++) {
+		p1.getBookshelf().setTile(0, i, tile1);
 		}
-		for(int i=0;i<1;i++) {
-			p1.getBookshelf().setTile(i, 1, tile2);
-			}
-		for(int i=0;i<3;i++) {
-			p1.getBookshelf().setTile(i, 2, tile3);
+		for(int i=0;i<4;i++) {
+			p1.getBookshelf().setTile(1, i, tile2);
 			}
 		for(int i=0;i<5;i++) {
-			p1.getBookshelf().setTile(i, 3, tile4);
+			p1.getBookshelf().setTile(2, i, tile3);
 			}
-		for(int i=0;i<5;i++) {
-			p1.getBookshelf().setTile(i, 4, tile5);
+		for(int i=0;i<4;i++) {
+			p1.getBookshelf().setTile(3, i, tile4);
 			}
-		/*for(int i=0;i<5;i++) {
-			p1.getBookshelf().setTile(i, 5, tile3);
-			}*/
+		for(int i=0;i<4;i++) {
+			p1.getBookshelf().setTile(4, i, tile5);
+			}
+		for(int i=0;i<4;i++) {
+			p1.getBookshelf().setTile(5, i, tile6);
+			}
 		
-		CommonGoalCard commonGoal=new CommonGoalCard6();
+		CommonGoalCard commonGoal=new CommonGoalCard2();
 		System.out.println(commonGoal.CheckTarget(p1.getBookshelf()));
 		//commonGoal.CheckTarget(p1.getBookshelf());
 		//p.getBookshelf().setTile(4, 0, new ItemTile("blu", "blu"));
