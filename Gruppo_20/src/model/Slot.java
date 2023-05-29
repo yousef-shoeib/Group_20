@@ -42,7 +42,7 @@ public class Slot {
 		this.x = slot.x;
 		this.y = slot.y;
 		this.state = slot.state;
-		if(!slot.isEmpty()){
+		if(slot.isActive() && !slot.isEmpty()){
 		this.itemTile = new ItemTile(slot.itemTile);
 		}
 		else {
