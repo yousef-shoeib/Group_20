@@ -1,7 +1,13 @@
 package commongoal;
 
 import model.Bookshelf;
-
+/**
+ * La CommoonGoalCard3 ha come obiettivo quattro gruppi separati formati ciascuno 
+ * da quattro tessere adiacenti dello stesso tipo, Verticalmente oppure orizzontalmente. 
+ * Le tessere di un gruppo possono essere diverse da quelle di un altro gruppo. 
+ * @author Anton
+ *
+ */
 public class CommonGoalCard3 extends CommonGoalCard {
 	private String path = "./resources/Assets/commonGoalCards/3.jpg";
 	
