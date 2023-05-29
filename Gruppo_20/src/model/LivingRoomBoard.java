@@ -75,7 +75,7 @@ public class LivingRoomBoard extends Grid {
 			for(int y = 0; y < this.columns; y++)
 			{
 				if(tempConfigMatr[x][y] == 0){
-					matrGrid[x][y].setState(false);
+					matrGrid[x][y].setState(State.INACTIVE);
 				}
 			}
 		}
@@ -93,7 +93,7 @@ public class LivingRoomBoard extends Grid {
 		{
 			for(int y = 0; y < this.columns; y++)
 			{				
-				if(matrGrid[x][y].getState() && matrGrid[x][y].isEmpty())
+				if(matrGrid[x][y].isActive() && matrGrid[x][y].isEmpty())
 				{
 					ItemTile itemTile = listItemTile.remove(random.nextInt(listItemTile.size()));
 					matrGrid[x][y].setItemTile(itemTile);
