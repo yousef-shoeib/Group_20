@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import model.Bookshelf;
-
+import model.ItemTileType;
 public class CommonGoalCard2 extends CommonGoalCard{
 	private String path = "./resources/Assets/commonGoalCards/2.jpg";
 	
@@ -17,11 +17,11 @@ public class CommonGoalCard2 extends CommonGoalCard{
 		for(int column1=0; column1<bookshelf.getColumns(); column1++) {
 			for(int column2=column1+1; column2<bookshelf.getColumns(); column2++) {
 				boolean only_uniques = true;
-				Set<ItemTile> TilesColumn1 = new HashSet<ItemTile>();
-				Set<ItemTile> TilesColumn2 = new HashSet<ItemTile>();
+				Set<ItemTileType> TilesColumn1 = new HashSet<ItemTileType>();
+				Set<ItemTileType> TilesColumn2 = new HashSet<ItemTileType>();
 				for(int row=0; row<bookshelf.getRows(); row++) {
-					ItemTile tiles1 = bookshelf.getTile(row, column1);
-					ItemTile tiles2 = bookshelf.getTile(row, column2);
+					ItemTileType tiles1 = bookshelf.getTile(row, column1).getType();
+					ItemTileType tiles2 = bookshelf.getTile(row, column2).getType();
 					if(TilesColumn1.contains(tiles1)||TilesColumn2.contains(tiles2)) {
 						only_uniques = false;
 						break;
