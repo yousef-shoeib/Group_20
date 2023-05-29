@@ -11,7 +11,7 @@ public class Slot {
 	
 	private final int x;
 	private final int y;
-	private boolean state;
+	private State state;
 	private ItemTile itemTile;
 	
 	/**
@@ -30,7 +30,7 @@ public class Slot {
 		
 		this.x = x;
 		this.y = y;
-		this.state = true;
+		this.state = State.ACTIVE;
 		this.itemTile = null;
 	}
 	/**
@@ -55,6 +55,9 @@ public class Slot {
 	 */
 	public boolean isEmpty()
 	{
+		if(!this.isActive()) {
+			throw new InactiveSlotException("Slot is not Active");
+		}
 		if(this.itemTile == null){
 			return true;
 		}
@@ -63,9 +66,9 @@ public class Slot {
 	
 	/**
 	 * Imposta lo stato dello slot.
-	 * @param state Vero per attivarlo.
+	 * @param enum State: Active o Inactive
 	 */
-	public void setState(boolean state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 	
@@ -74,7 +77,7 @@ public class Slot {
 	 * @param itemTile tessera da inserire all'interno dello slot.
 	 */
 	public void setItemTile(ItemTile itemTile) {
-		if(!this.getState()) {
+		if(!this.isActive()) {
 			throw new InactiveSlotException("Slot is not Active");
 		}
 		this.itemTile = itemTile;
@@ -84,6 +87,9 @@ public class Slot {
 	 * Se lo slot è pieno restituisce la tessera in esso contenuta.
 	 */
 	public ItemTile getItemTile() {
+		if(!this.isActive()) {
+			throw new InactiveSlotException("Slot is not Active");
+		}
 		if(this.isEmpty()) {
 			throw new NullPointerException("no tile in slot");
 		}
@@ -91,11 +97,14 @@ public class Slot {
 	}
 	
 	/**
-	 * Restituisce lo stato dello slot.
-	 * @return vero se lo slot è utilizzabile
+	 * Verifica se lo Slot è Attivo.
+	 * @return vero se lo slot è attivo
 	 */
-	public boolean getState() {
-		return state;
+	public boolean isActive() {
+		if(this.state.equals(State.ACTIVE)) {
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -111,19 +120,4 @@ public class Slot {
 	public int getY() {
 		return y;
 	}
-
-
-
-
-
-
-
-
-
-
-	
-	
-				
-
-
 }

@@ -94,7 +94,7 @@ public abstract class Grid {
 		{	
 			for(int y = 0; y < this.columns ; y++)
 			{
-				if(matrGrid[x][y].getState() && !matrGrid[x][y].isEmpty())
+				if(matrGrid[x][y].isActive() && !matrGrid[x][y].isEmpty())
 				{
 					if(matrGrid[x][y].getItemTile().getId() == itemTile.getId())
 						return matrGrid[x][y];
@@ -114,7 +114,7 @@ public abstract class Grid {
 		{	
 			for(int y = 0; y < this.columns ; y++)
 			{
-				if(matrGrid[x][y].getState() && !matrGrid[x][y].isEmpty())
+				if(matrGrid[x][y].isActive() && !matrGrid[x][y].isEmpty())
 				{
 					if(matrGrid[x][y].getItemTile().getId() == tileId)
 						return matrGrid[x][y].getItemTile();
@@ -157,22 +157,22 @@ public abstract class Grid {
 		int y = currentSlot.getY();
 		
 		if(x > 0) {
-			if(this.matrGrid[(x-1)][y].getState() && !this.matrGrid[(x-1)][y].isEmpty()) {
+			if(this.matrGrid[(x-1)][y].isActive() && !this.matrGrid[(x-1)][y].isEmpty()) {
 				return true;
 			}
 		}
 		if(x < (this.rows-1)) {
-			if(this.matrGrid[(x+1)][y].getState() && !this.matrGrid[(x+1)][y].isEmpty()) {
+			if(this.matrGrid[(x+1)][y].isActive() && !this.matrGrid[(x+1)][y].isEmpty()) {
 				return true;
 			}
 		}
 		if(y > 0) {
-			if(this.matrGrid[x][(y-1)].getState() && !this.matrGrid[x][(y-1)].isEmpty()) {
+			if(this.matrGrid[x][(y-1)].isActive() && !this.matrGrid[x][(y-1)].isEmpty()) {
 				return true;
 			}
 		}
 		if(y < (this.columns-1)) {
-			if(this.matrGrid[x][(y+1)].getState() && !this.matrGrid[x][(y+1)].isEmpty()) {
+			if(this.matrGrid[x][(y+1)].isActive() && !this.matrGrid[x][(y+1)].isEmpty()) {
 				return true;
 			}
 		}
@@ -188,7 +188,7 @@ public abstract class Grid {
 		{
 			for(int column = 0; column < this.columns; column ++)
 			{
-				if(matrGrid[row][column].getState() && !matrGrid[row][column].isEmpty())
+				if(matrGrid[row][column].isActive() && !matrGrid[row][column].isEmpty())
 				{
 					 if(hasAdjacent(matrGrid[row][column].getItemTile())){
 						 return true;
@@ -279,13 +279,13 @@ public abstract class Grid {
 		Slot slot3 = matrGrid[(x+1)][y];
 		Slot slot4 = matrGrid[x][(y+1)];
 		
-		if(!slot1.getState() || slot1.isEmpty())
+		if(!slot1.isActive() || slot1.isEmpty())
 			return true;
-		if(!slot2.getState() || slot2.isEmpty())
+		if(!slot2.isActive() || slot2.isEmpty())
 			return true;
-		if(!slot3.getState() || slot3.isEmpty())
+		if(!slot3.isActive() || slot3.isEmpty())
 			return true;
-		if(!slot4.getState() || slot4.isEmpty())
+		if(!slot4.isActive() || slot4.isEmpty())
 			return true;
 		
 		return false;
@@ -334,7 +334,7 @@ public abstract class Grid {
 		{	
 			for(int y = 0; y < this.columns ; y++)
 			{
-				if(matrGrid[x][y].getState() && !matrGrid[x][y].isEmpty())
+				if(matrGrid[x][y].isActive() && !matrGrid[x][y].isEmpty())
 				{
 					if(matrGrid[x][y].getItemTile().getId() == item.getId())
 					{

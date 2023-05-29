@@ -338,7 +338,7 @@ public class MainFrame extends JFrame {
 		{			
 			for(int y = 0; y < columns; y++)
 			{
-				if(matrGrindLiving[x][y].getState())
+				if(matrGrindLiving[x][y].isActive())
 				{	
 					ItemTile itemTile = matrGrindLiving[x][y].getItemTile();
 					JLabel itemTileLabel = new JLabel("");
@@ -374,7 +374,7 @@ public class MainFrame extends JFrame {
 		{			
 			for(int y = 0; y < columns; y++)
 			{
-				if(matrGrindLiving[x][y].getState() && !matrGrindLiving[x][y].isEmpty())
+				if(matrGrindLiving[x][y].isActive() && !matrGrindLiving[x][y].isEmpty())
 				{	
 					ItemTile itemTile = matrGrindLiving[x][y].getItemTile();
 					ImageIcon tempIcon = new ImageIcon(ConfigPath.getItemTilePath()+ itemTile.getPathImg()+".png");
