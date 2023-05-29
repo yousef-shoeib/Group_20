@@ -7,6 +7,13 @@ import model.ItemTileType;
 import java.util.Set;
 import java.util.HashSet;
 
+/**
+ * La CommonGoalCard5 ha come obiettivo tre colonne formate ciascuna da 
+ * 6 tessere di uno, due o tre tipi differenti. Colonne diverse possono avere 
+ * combinazioni diverse di tipi di tessere.
+ * @author Anton
+ *
+ */
 public class CommonGoalCard5 extends CommonGoalCard{
 	
 	private String path = "./resources/Assets/commonGoalCards/5.jpg";
