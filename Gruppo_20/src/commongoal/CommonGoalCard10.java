@@ -4,7 +4,12 @@ import model.Bookshelf;
 import model.ItemTile;
 import model.ItemTileType;
 import model.Slot;
-
+/**
+ * La CommonGoalCard10 ha come obiettivo cinque tessere dello stesso tipo 
+ * che formano una X.
+ * @author Anton
+ *
+ */
 public class CommonGoalCard10 extends CommonGoalCard{
 	
 	private String path = "./resources/Assets/commonGoalCards/10.jpg"; //percorso
