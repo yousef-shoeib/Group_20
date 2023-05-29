@@ -1,7 +1,13 @@
 package commongoal;
 
 import model.Bookshelf;
-
+/**
+ * La CommonGoalCard12 ha come obiettivo cinque colonne di altezza crescente o 
+ * decrescente: a partire dalla prima colonna a sinistra o a destra, ogni colonna successiva 
+ * deve essere formata da una tessera in più. Le tessere possono essere di qualsiasi tipo. 
+ * @author Anton
+ *
+ */
 public class CommonGoalCard12 extends CommonGoalCard{
 	
 	private String path = "./resources/Assets/commonGoalCards/12.jpg";

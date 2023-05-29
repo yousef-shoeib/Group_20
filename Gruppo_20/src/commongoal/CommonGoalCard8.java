@@ -1,6 +1,13 @@
 package commongoal;
 import model.Bookshelf;
 import model.ItemTileType;
+
+/**
+ * La CommonGoalCard8 ha come obiettivo quattro tessere dello stesso tipo 
+ * ai quattro angoli della Libreria.
+ * @author Anton
+ *
+ */
 public class CommonGoalCard8 extends CommonGoalCard{
 	
 	private String path = "./resources/Assets/commonGoalCards/8.jpg";

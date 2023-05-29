@@ -5,6 +5,12 @@ import java.util.Random;
 import java.util.ArrayList;
 import model.Bookshelf;
 
+/**
+ * classe astratta per la creazione delle 12 carte degli obiettivi comuni
+ * @author Anton
+ *
+ */
+
 public abstract class CommonGoalCard {
 	static int count=1; //variable that counts the number of times a goal has been achieved
 	private String path;
@@ -13,6 +19,10 @@ public abstract class CommonGoalCard {
 	
 	abstract public boolean CheckTarget(Bookshelf bookshelf);
 	
+	/**
+	 * metodo per assegnare in modo random un carta delle 12 carte degli obiettivi comuni
+	 * @return carta obiettivo comune
+	 */
 	public static CommonGoalCard assignCommonGoalCard() {
 		Random random = new Random();
 		int num = random.nextInt(12)+1;
@@ -58,7 +68,11 @@ public abstract class CommonGoalCard {
 		return card;
 	}
 	
-	
+	/**
+	 * metodo per calcolare i punti in base al numero di volte che un obiettivo comune è stato raggiunto
+	 * @param b libreria di un giocatore
+	 * @return conteggio del numero di volte che un obiettivo comune è stato raggiunto
+	 */
 	public int Counter(Bookshelf b) {
 		if(CheckTarget(b)) {
 			count++;
@@ -66,7 +80,11 @@ public abstract class CommonGoalCard {
 		return count;
 	}
 	
-	
+	/**
+	 * metodo per ritornare i punti in base al numero di giocatori
+	 * @param players numero di giocatori
+	 * @return punti da assegnare
+	 */
 	
 	public int ReturnPoints(int players) {
 		int points=0;
@@ -111,6 +129,7 @@ public abstract class CommonGoalCard {
 		count++;
 		return points;
 	}	
+	
 	
 	public String getPath() {
 		return path;

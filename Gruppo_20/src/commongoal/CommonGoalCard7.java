@@ -5,7 +5,13 @@ import model.ItemTileType;
 
 import java.util.Set;
 import java.util.HashSet;
-
+/**
+ * La CommonGoalCard7 ha come obiettivo quattro righe formate ciascuna 
+ * da 5 tessere di uno, due o tre tipi differenti. Righe diverse possono avere 
+ * combinazioni diverse di tipi di tessere.
+ * @author Anton
+ *
+ */
 public class CommonGoalCard7 extends CommonGoalCard{
 	
 	private String path = "./resources/Assets/commonGoalCards/7.jpg";

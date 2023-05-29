@@ -1,7 +1,12 @@
 package commongoal;
 
 import model.Bookshelf;
-
+/**
+ * La CommonGoalCard9 ha come obiettivo otto tessere dello stesso tipo. Non ci 
+ * sono restrizioni sulla posizione di queste tessere.
+ * @author Anton
+ *
+ */
 public class CommonGoalCard9 extends CommonGoalCard{
 	
 	private String path = "./resources/Assets/commonGoalCards/9.jpg";

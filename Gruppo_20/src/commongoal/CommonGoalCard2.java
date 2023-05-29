@@ -1,11 +1,19 @@
 package commongoal;
 import model.ItemTile;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
 import model.Bookshelf;
 import model.ItemTileType;
+
+/**
+ * La CommonGoalCard2 ha come obiettivo due colonne formate ciascuna 
+ * da 6 diversi tipi di tessere.
+ * @author Anton
+ *
+ */
 public class CommonGoalCard2 extends CommonGoalCard{
 	private String path = "./resources/Assets/commonGoalCards/2.jpg";
 	
