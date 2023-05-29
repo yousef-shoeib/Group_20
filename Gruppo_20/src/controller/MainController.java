@@ -45,7 +45,7 @@ public class MainController {
 	int checkBookshelf = 0;
 	int check = 0;
 	boolean placing=false;
-	boolean taken = false;
+	boolean taken = false, enabledLivingRoomBoard = true;
 	int positionToSwap=0; //to order box getted tiles
 	private Map<Integer,JLabel> labelToRemove;
 
@@ -87,7 +87,7 @@ public class MainController {
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
 					
-					if(!taken) {
+					if(!taken && enabledLivingRoomBoard) {
 						String[] coordinates = label.getName().split("_");
 						int row = Integer.parseInt(coordinates[0]);
 						int column = Integer.parseInt(coordinates[1]);
@@ -190,7 +190,7 @@ public class MainController {
 					mainFrame.getBoxedGettedTileLabel().get("boxedGettedTileLabel_"+i).setVisible(true);
 					tempLabel.setVisible(false);
 					taken = true;
-
+					enabledLivingRoomBoard = false;
 					i++;
 				}
 				
@@ -218,7 +218,7 @@ public class MainController {
 				loadScoringTokens();
 				mainFrame.getPlayerNameLabel().setText("Player " + (game.getCurrentPlayer()+1) +": "+ game.getCurrentPlayerName());
 				mainFrame.getPlayerPointsLabel().setText("Points: " + game.getCurrentPlayerPoints());
-
+				enabledLivingRoomBoard = true;
 				mainFrame.getEndRoundButton().setEnabled(false);
 				assignFirstPlayerTokenLabel();
 			}
