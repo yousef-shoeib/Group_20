@@ -5,6 +5,7 @@ import java.util.Set;
 
 import model.Bookshelf;
 import model.ItemTile;
+import model.ItemTileType;
 
 public class CommonGoalCard6 extends CommonGoalCard {
 	
@@ -14,6 +15,24 @@ public class CommonGoalCard6 extends CommonGoalCard {
 	
 	@Override
 	public boolean CheckTarget(Bookshelf bookshelf) {
+		int unique_rows=0;
+		for(int row=0; row < bookshelf.getRows(); row++) {
+			Set<ItemTileType> types= new HashSet<>();
+			for(int column=0; column<bookshelf.getColumns(); column++) {
+				if(bookshelf.getSlot(row,column).isEmpty()) {
+					break;
+				}
+				types.add(bookshelf.getItemTileType(row, column));
+			}
+			if(types.size()==5)
+				unique_rows++;
+			
+			if(unique_rows==2) 
+				return true;
+		}
+		return false;
+	}
+	/*public boolean CheckTarget(Bookshelf bookshelf) {
 		int unique_rows=0;
 		for(int row1=0; row1 < bookshelf.getRows(); row1++) {
 			for(int row2=row1+1; row2<bookshelf.getRows(); row2++) {
@@ -39,7 +58,7 @@ public class CommonGoalCard6 extends CommonGoalCard {
 		    }
 	    }
 	 return false;
-  }
+  }*/
 	
 	public String getPath() {
 		return path;

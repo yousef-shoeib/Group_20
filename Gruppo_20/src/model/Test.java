@@ -7,9 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import commongoal.CommonGoalCard;
-import commongoal.CommonGoalCard5;
-import commongoal.CommonGoalCard7;
+import commongoal.*;
 
 public class Test {
 
@@ -23,6 +21,8 @@ public class Test {
 		ItemTile tile2=new ItemTile("verde", "verde");
 		ItemTile tile3=new ItemTile("bianco", "bianco");
 		ItemTile tile4=new ItemTile("azzurro", "azzurro");
+		ItemTile tile5=new ItemTile("arancione", "arancione");
+		ItemTile tile6=new ItemTile("rosa", "rosa");
 		ArrayList<ItemTile> tiles=new ArrayList<>();
 		tiles.add(tile4);
 		tiles.add(tile1);
@@ -44,23 +44,23 @@ public class Test {
 		for(int i=0;i<3;i++) {
 		p1.getBookshelf().setTile(i, 0, tile1);
 		}
-		for(int i=0;i<3;i++) {
-			p1.getBookshelf().setTile(i, 1, tile1);
+		for(int i=0;i<1;i++) {
+			p1.getBookshelf().setTile(i, 1, tile2);
 			}
 		for(int i=0;i<3;i++) {
 			p1.getBookshelf().setTile(i, 2, tile3);
 			}
 		for(int i=0;i<5;i++) {
-			p1.getBookshelf().setTile(i, 3, tile2);
+			p1.getBookshelf().setTile(i, 3, tile4);
 			}
 		for(int i=0;i<5;i++) {
-			p1.getBookshelf().setTile(i, 4, tile2);
+			p1.getBookshelf().setTile(i, 4, tile5);
 			}
 		/*for(int i=0;i<5;i++) {
 			p1.getBookshelf().setTile(i, 5, tile3);
 			}*/
 		
-		CommonGoalCard commonGoal=new CommonGoalCard7();
+		CommonGoalCard commonGoal=new CommonGoalCard6();
 		System.out.println(commonGoal.CheckTarget(p1.getBookshelf()));
 		//commonGoal.CheckTarget(p1.getBookshelf());
 		//p.getBookshelf().setTile(4, 0, new ItemTile("blu", "blu"));
