@@ -8,7 +8,7 @@ public class CommonGoalCard12 extends CommonGoalCard{
 	
 	public CommonGoalCard12() {}
 	
-	private boolean isTriangularSX_DX(Bookshelf bookshelf) {
+	/*private boolean isTriangularSX_DX(Bookshelf bookshelf) {
 		int count1=0;
 		int count2=0;
 		
@@ -45,13 +45,31 @@ public class CommonGoalCard12 extends CommonGoalCard{
 		}
 		if((count1+count2)==25) return true;
 		else return false;
+	}*/
+	private boolean decreasingHeight(Bookshelf bookshelf) {// or increasing
+		int heightFirstColumn=bookshelf.freeSlotsInColumn(0);
+		for(int column=1;column<bookshelf.getColumns();column++) {
+			if(bookshelf.freeSlotsInColumn(column)-column!=heightFirstColumn) {
+				return false;
+			}
+		}
+		return true;
+	}
+	private boolean increasingHeight(Bookshelf bookshelf) {// or increasing
+		int heightFirstColumn=bookshelf.freeSlotsInColumn(0);
+		for(int column=1;column<bookshelf.getColumns();column++) {
+			if(bookshelf.freeSlotsInColumn(column)+column!=heightFirstColumn) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
 	public boolean CheckTarget(Bookshelf bookshelf) {
-		boolean checkGoal;
-		checkGoal = isTriangularSX_DX(bookshelf) || isTriangularDX_SX(bookshelf);
-		if(checkGoal) return true;
+		if(increasingHeight(bookshelf)||decreasingHeight(bookshelf)) {
+			return true;
+		}
 		else return false;
 	}
 	
