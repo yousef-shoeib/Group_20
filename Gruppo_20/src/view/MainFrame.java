@@ -66,6 +66,8 @@ public class MainFrame extends JFrame {
 	
 
 	private JLabel scoringTokenLabel2;
+	private JLabel commonGoalToken1Label;
+	private JLabel commonGoalToken2Label;
 	/**
 	 * Create the frame.
 	 */
@@ -244,7 +246,7 @@ public class MainFrame extends JFrame {
 		
 		//playerInfoPane
 		playerInfoPane = new JPanel();		
-		playerInfoPane.setBounds(75, 50, 300, 100);
+		playerInfoPane.setBounds(75, 50, 480, 100);
 		//playerInfoPane.setBorder(new LineBorder(new Color(0,0,0), 3));
 		playerInfoPane.setBackground(new Color(0, 127, 255));
 		playerInfoPane.setLayout(null);
@@ -275,6 +277,14 @@ public class MainFrame extends JFrame {
 		firstPlayerTokenLabel.setIcon(FirstPlayerTokenIcon);
 		playerInfoPane.add(firstPlayerTokenLabel);
 		
+		commonGoalToken1Label = new JLabel("");
+		commonGoalToken1Label.setBounds(305, 11, 75, 75);
+		playerInfoPane.add(commonGoalToken1Label);
+		
+		commonGoalToken2Label = new JLabel("");
+		commonGoalToken2Label.setBounds(395, 11, 75, 75);
+		playerInfoPane.add(commonGoalToken2Label);
+		
 		takeTileButton = new JButton("Take");
 		takeTileButton.setBounds(743, 200, 77, 41);
 		takeTileButton.setEnabled(false);///
@@ -303,6 +313,14 @@ public class MainFrame extends JFrame {
 		createBoxedLabel();
 	}
 	
+	public JLabel getCommonGoalToken1Label() {
+		return commonGoalToken1Label;
+	}
+
+	public JLabel getCommonGoalToken2Label() {
+		return commonGoalToken2Label;
+	}
+
 	public JButton getQuitGameButton() {
 		return quitGameButton;
 	}

@@ -222,6 +222,7 @@ public class MainController {
 				enabledLivingRoomBoard = true;
 				mainFrame.getEndRoundButton().setEnabled(false);
 				assignFirstPlayerTokenLabel();
+				loadPlayerTokens();
 			}
 		});
 	}
@@ -321,11 +322,11 @@ public class MainController {
 				
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					//label.setBorder(new LineBorder(new Color(255, 255, 255), 3));
+					
 				}
 				
 				@Override
-				public void mousePressed(MouseEvent e) {///////////
+				public void mousePressed(MouseEvent e) {
 					String[] index = label.getName().split("_");
 					int i= Integer.parseInt(index[1]);
 					if(!placing) {
@@ -424,9 +425,6 @@ public class MainController {
 	private void loadPersonalGoalCard()
 	{
 		PersonalGoalCard personalGoal = game.currentPlayer().getPersonalGoalCard();	
-		//ImageIcon tempIcon =new ImageIcon(personalGoal.getPath());
-		//ImageIcon icon= new ImageIcon(tempIcon.getImage().getScaledInstance(150, 250,Image.SCALE_SMOOTH));
-		//mainFrame.getPersonalGoalCardLabel().setIcon(icon);
 	}
 	private void loadCommonGoalCards()
 	{
@@ -539,12 +537,10 @@ public class MainController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//mainFrame.getGameOverPanel().setVisible(false);
-				//mainFrame.remove(mainFrame.getGameOverPanel());
 				mainFrame.dispose();
 				mainFrame.getGameOverPanel().dispose();
 				mainFrame.getGlassPane().setVisible(false);
-				Game.setState(GameState.NEW_GAME);//////////////////
+				Game.setState(GameState.NEW_GAME);
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {	
@@ -565,6 +561,20 @@ public class MainController {
 		}
 		else {
 			mainFrame.getFirstPlayerTokenLabel().setVisible(false);
+		}
+	}
+	private void loadPlayerTokens() {
+		if(game.currentPlayer().getScoringToken1()!=null) {
+			TokenPoint scoringToken1 = game.currentPlayer().getScoringToken1();
+			ImageIcon tempIcon1 =new ImageIcon(scoringToken1.getPathImg());
+			ImageIcon icon1= new ImageIcon(tempIcon1.getImage().getScaledInstance(75, 75,Image.SCALE_SMOOTH));
+			mainFrame.getCommonGoalToken1Label().setIcon(icon1);
+		}
+		if(game.currentPlayer().getScoringToken2()!=null) {
+			TokenPoint scoringToken2 = game.currentPlayer().getScoringToken2();
+			ImageIcon tempIcon2 =new ImageIcon(scoringToken2.getPathImg());
+			ImageIcon icon2= new ImageIcon(tempIcon2.getImage().getScaledInstance(75, 75,Image.SCALE_SMOOTH));
+			mainFrame.getCommonGoalToken2Label().setIcon(icon2);
 		}
 	}
 }
