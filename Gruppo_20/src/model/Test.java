@@ -52,16 +52,16 @@ public class Test {
 		for(int i=0;i<5;i++) {
 			//p1.getBookshelf().setTile(3, i, tile1);
 			}
-		for(int i=0;i<3;i++) {
+		for(int i=0;i<2;i++) {
 			p1.getBookshelf().setTile(4, i, tile1);
 			}
-		for(int i=0;i<3;i++) {
+		for(int i=0;i<2;i++) {
 			p1.getBookshelf().setTile(5, i, tile1);
 			}
-		for(int i=3;i<5;i++) {
+		for(int i=2;i<4;i++) {
 			p1.getBookshelf().setTile(4, i, tile2);
 			}
-		for(int i=3;i<5;i++) {
+		for(int i=2;i<4;i++) {
 			p1.getBookshelf().setTile(5, i, tile2);
 			}
 		
@@ -83,8 +83,8 @@ public class Test {
 		for(int i=0;i<test2.size();i++) {
 			System.out.println(test2.get(i));
 		}*/
-		System.out.println(p1.getBookshelf().isComplete());
-		System.out.println(p1.getBookshelf().adjacentTilesPoints());
+		//System.out.println(p1.getBookshelf().isComplete());
+		//System.out.println(p1.getBookshelf().adjacentTilesPoints());
 		//System.out.println(p2.getBookshelf().adjacentTilesPoints());
 		//System.out.println(number);
 		//System.out.println(p.getPersonalGoalCard().getPath());

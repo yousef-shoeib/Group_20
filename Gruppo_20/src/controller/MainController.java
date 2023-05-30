@@ -68,7 +68,7 @@ public class MainController {
 		loadCommonGoalCards();
 		flipPersonalGoalCard();
 		loadScoringTokens();
-		mainFrame.getPlayerNameLabel().setText("Player " + (game.getCurrentPlayer()+1) +": "+ game.getCurrentPlayerName());
+		mainFrame.getPlayerNameLabel().setText(/*"Player " + (game.getCurrentPlayer()+1) +": "+ */game.getCurrentPlayerName());
 		mainFrame.getPlayerPointsLabel().setText("Points: "+ game.getCurrentPlayerPoints());
 	}
 	private void assignLivingTileLabelController()
@@ -217,7 +217,7 @@ public class MainController {
 				loadBookshelf();
 				loadPersonalGoalCard();
 				loadScoringTokens();
-				mainFrame.getPlayerNameLabel().setText("Player " + (game.getCurrentPlayer()+1) +": "+ game.getCurrentPlayerName());
+				mainFrame.getPlayerNameLabel().setText(/*"Player " + (game.getCurrentPlayer()+1) +": "+ */game.getCurrentPlayerName());
 				mainFrame.getPlayerPointsLabel().setText("Points: " + game.getCurrentPlayerPoints());
 				enabledLivingRoomBoard = true;
 				mainFrame.getEndRoundButton().setEnabled(false);
