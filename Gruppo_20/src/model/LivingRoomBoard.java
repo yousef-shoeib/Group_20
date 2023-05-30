@@ -107,7 +107,7 @@ public class LivingRoomBoard extends Grid {
 	 * Verifica se una tessera è prendibile.
 	 * @param tileToCheck
 	 * @return vero se è prendibile.
-	 * @throws @TileHasNotFreeSideException se la tessera non ha lati liberi
+	 * @throws @NoFreeSideTileException se la tessera non ha lati liberi
 	 */
 	public boolean takeableTile(ItemTile tileToCheck) throws Exception
 	{
@@ -124,7 +124,7 @@ public class LivingRoomBoard extends Grid {
 	 * @param tile1
 	 * @param tile2
 	 * @return vero se le tessere sono prendibili
-	 * @throws @TilesAreNotAdjacentException se le tessere non sono adiacenti
+	 * @throws @NoAdjacentTilesException se le tessere non sono adiacenti
 	 */
 	public boolean takeableTile(ItemTile tile1, ItemTile tile2) throws Exception
 	{
@@ -145,8 +145,8 @@ public class LivingRoomBoard extends Grid {
 	 * @param tile2
 	 * @param tile3
 	 * @return vero se sono prendibili
-	 * @throws @TilesAreNotAdjacentException se non sono adiacenti
-	 * @throws @TilesAreNotInlineException se non sono tutte sulla stessa riga o colonna
+	 * @throws @NoAdjacentTilesException se non sono adiacenti
+	 * @throws @NotInlineTilesException se non sono tutte sulla stessa riga o colonna
 	 */
 	public boolean takeableTile(ItemTile tile1, ItemTile tile2,ItemTile tile3) throws Exception
 	{

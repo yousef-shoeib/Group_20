@@ -74,10 +74,10 @@ public class Game {
 	 * @param column colonna in cui si trova la tessera
 	 * @return la tessera se è stata aggiunta.
 	 * @throws @MaxSelectedItemTileException se già sono state aggiunte il numero massimo di tessere prendibili
-	 * @throws @TileAlreadySelectedException se già è stata aggiunta la tessera alla lista
-	 * @throws @throwsTileHasNotFreeSideException se la tessera non ha un lato libero
-	 * @throws @throwsTilesAreNotAdjacentException se la tessera non è adiacente alle tessere aggiunte precendentemente
-	 * @throws @throwsTilesAreNotInlineException se la tessera non è in linea con le tessere aggiunte precedentemente
+	 * @throws @AlreadySelectedTileException se già è stata aggiunta la tessera alla lista
+	 * @throws @NoFreeSideTileException se la tessera non ha un lato libero
+	 * @throws @NoAdjacentTilesException se la tessera non è adiacente alle tessere aggiunte precendentemente
+	 * @throws @NotInlineTilesException se la tessera non è in linea con le tessere aggiunte precedentemente
 	 */
 	public int addToSelectedTileList(int row,int column) throws Exception   
 	{
