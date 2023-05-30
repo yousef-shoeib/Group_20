@@ -182,4 +182,18 @@ public class Bookshelf extends Grid {
 	public ItemTileType getItemTileType(int row, int column) {
 		return this.getSlot(row, column).getItemTile().getType();
 	}
+	/**
+	 * metodo per stampare la libreria a console
+	 */
+	public void printBookshelf() {
+		for(int i = 0;i<6;i++) {
+			for (int j=0;j<5;j++) {
+				if(getSlot(i, j).isEmpty())
+					System.out.print(".....\t");
+				else
+				System.out.print(getItemTileType(i, j).toString()+"\t");				
+			}
+			System.out.println();
+		}
+	}
 }
