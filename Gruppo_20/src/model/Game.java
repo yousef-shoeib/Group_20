@@ -49,7 +49,7 @@ public class Game {
 		tokensList2 = new ArrayList<>();
 		tokenCounter1=0;
 		tokenCounter2=0;
-		PersonalGoalCard.resetAssignedCards();
+		PersonalGoalCard.resetAssignedPersonalGoalCards();
 	}
 	public void start(int numberOfPlayers,List<String> namePlayers)
 	{

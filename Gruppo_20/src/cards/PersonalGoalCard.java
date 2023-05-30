@@ -151,7 +151,7 @@ public abstract class PersonalGoalCard {
 		}
 		return card;
 	}
-	public static void resetAssignedCards() {
+	public static void resetAssignedPersonalGoalCards() {
 		assignedCards=new ArrayList<>();
 	}
 	
