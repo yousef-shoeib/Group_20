@@ -564,17 +564,23 @@ public class MainController {
 		}
 	}
 	private void loadPlayerTokens() {
+		if(game.currentPlayer().getScoringToken1()==null)
+			mainFrame.getCommonGoalToken1Label().setVisible(false);
 		if(game.currentPlayer().getScoringToken1()!=null) {
 			TokenPoint scoringToken1 = game.currentPlayer().getScoringToken1();
 			ImageIcon tempIcon1 =new ImageIcon(scoringToken1.getPathImg());
 			ImageIcon icon1= new ImageIcon(tempIcon1.getImage().getScaledInstance(75, 75,Image.SCALE_SMOOTH));
 			mainFrame.getCommonGoalToken1Label().setIcon(icon1);
+			mainFrame.getCommonGoalToken1Label().setVisible(true);
 		}
+		if(game.currentPlayer().getScoringToken2()==null)
+			mainFrame.getCommonGoalToken2Label().setVisible(false);
 		if(game.currentPlayer().getScoringToken2()!=null) {
 			TokenPoint scoringToken2 = game.currentPlayer().getScoringToken2();
 			ImageIcon tempIcon2 =new ImageIcon(scoringToken2.getPathImg());
 			ImageIcon icon2= new ImageIcon(tempIcon2.getImage().getScaledInstance(75, 75,Image.SCALE_SMOOTH));
 			mainFrame.getCommonGoalToken2Label().setIcon(icon2);
+			mainFrame.getCommonGoalToken2Label().setVisible(true);
 		}
 	}
 }
