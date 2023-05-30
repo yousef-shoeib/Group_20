@@ -69,6 +69,15 @@ public class Test {
 		CommonGoalCard commonGoal=new CommonGoalCard1();
 		p1.getBookshelf().printBookshelf();
 		System.out.println(commonGoal.CheckTarget(p1.getBookshelf()));
+		
+		
+		
+		
+		/*int n=5;
+		List<Integer> numeri= new ArrayList<>();
+		System.out.println(numeri.contains(n));
+		numeri.add(1);
+		System.out.println(numeri.contains(n));*/
 		//commonGoal.CheckTarget(p1.getBookshelf());
 		//p.getBookshelf().setTile(4, 0, new ItemTile("blu", "blu"));
 		//p.getBookshelf().setTile(3, 0, new ItemTile("blu", "blu"));

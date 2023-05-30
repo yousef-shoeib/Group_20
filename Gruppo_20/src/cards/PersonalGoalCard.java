@@ -103,12 +103,12 @@ public abstract class PersonalGoalCard {
 	public static PersonalGoalCard assignPersonalGoalCard() {
 		PersonalGoalCard card = null;
 		Random r = new Random();
-		int n=r.nextInt(12)+1;
-		for(int i :assignedCards) {
-		if(n==i){
+		int n=0;
+		
+		do{
 		 n=r.nextInt(12)+1;		 
-		}
-		}
+		}while(assignedCards.contains(n));
+		
 		assignedCards.add(n);
 		switch(n) {
 		case 1:
@@ -151,7 +151,9 @@ public abstract class PersonalGoalCard {
 		}
 		return card;
 	}
-
+	public static void resetAssignedCards() {
+		assignedCards=new ArrayList<>();
+	}
 	
 	
 

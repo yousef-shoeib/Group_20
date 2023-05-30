@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import cards.PersonalGoalCard;
 import commongoal.CommonGoalCard;
 import exception.MaxSelectedTileException;
 import scoringTokens.TokenPoint;
@@ -48,6 +49,7 @@ public class Game {
 		tokensList2 = new ArrayList<>();
 		tokenCounter1=0;
 		tokenCounter2=0;
+		PersonalGoalCard.resetAssignedCards();
 	}
 	public void start(int numberOfPlayers,List<String> namePlayers)
 	{
