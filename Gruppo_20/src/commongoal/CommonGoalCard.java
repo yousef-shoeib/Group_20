@@ -14,6 +14,7 @@ import model.Bookshelf;
 public abstract class CommonGoalCard {
 	static int count=1; //variable that counts the number of times a goal has been achieved
 	private String path;
+	private static int assignedCard=0;
 	
 	public CommonGoalCard() {}
 	
@@ -24,9 +25,16 @@ public abstract class CommonGoalCard {
 	 * @return carta obiettivo comune
 	 */
 	public static CommonGoalCard assignCommonGoalCard() {
-		Random random = new Random();
-		int num = random.nextInt(12)+1;
 		CommonGoalCard card = null;
+		Random random = new Random();
+		int num;
+		
+		
+		do {
+			num = random.nextInt(12)+1;
+		}while(assignedCard == num);
+		assignedCard = num;
+		
 		switch(num) {
 			case 1:
 				card = new CommonGoalCard1();
@@ -135,4 +143,7 @@ public abstract class CommonGoalCard {
 		return path;
 	}
 	
+	public static void resetAssignedCommonGoalCards() {
+		assignedCard=0;
+	}
 }
