@@ -50,6 +50,7 @@ public class Game {
 		tokenCounter1=0;
 		tokenCounter2=0;
 		PersonalGoalCard.resetAssignedPersonalGoalCards();
+		CommonGoalCard.resetAssignedCommonGoalCards();
 	}
 	public void start(int numberOfPlayers,List<String> namePlayers)
 	{
