@@ -27,8 +27,8 @@ public class PersonalGoalCard1 extends PersonalGoalCard {
 	public int getCardNumber() {
 		return this.number;
 	}
-	@Override
 	
+	@Override	
 	public ArrayList<Match> fillMatches() {
 		ArrayList<Match> matches= new ArrayList<>();
 		matches.add(match1);
@@ -49,7 +49,10 @@ public class PersonalGoalCard1 extends PersonalGoalCard {
 		}
 		return counter;
 	}
-	
+	/**
+	 * metodo per ritornare i punti in base a quante delle
+	 * tessere sono le stesse dettate dal personal goal
+	 */
 	public int getPoints(Bookshelf b) {
 		int numberOfMatches=this.countMatches(b);
 		int points=0;

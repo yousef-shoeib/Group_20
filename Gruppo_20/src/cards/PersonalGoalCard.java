@@ -23,6 +23,10 @@ public abstract class PersonalGoalCard {
 	private String path;
 	private static List<Integer> assignedCards=new ArrayList<>();
 	private ArrayList<Match> matches=null;
+	/**
+	 * metodo per mettere i match in una lista
+	 * @return lista di 6 match
+	 */
 	protected ArrayList<Match> fillMatches() {
 		ArrayList<Match> matches= new ArrayList<>();
 		matches.add(match1);
@@ -40,7 +44,13 @@ public abstract class PersonalGoalCard {
 	public int getCardNumber() {
 		return this.number;
 	}
-	
+	/**
+	 * metodo per controlloare se la tessere nella liberia è uguale a quella 
+	 * del personal goal
+	 * @param bookshelf del giocatore 
+	 * @param m passato dalla lista di match del personal goal
+	 * @return true se il tipo è lo stesso
+	 */
 	protected boolean isColorMatching(Bookshelf bookshelf, Match m) {
 		if(!bookshelf.getSlot(m.getRow(), m.getColumn()).isEmpty() && 
 				bookshelf.getTile(m.getRow(), m.getColumn()).getType().equals(m.getType())) {
@@ -51,7 +61,11 @@ public abstract class PersonalGoalCard {
 			return false;
 		}
 	}
-	
+	/**
+	 * conta quanti dei 6 match sono completati
+	 * @param b libreria del giocatore
+	 * @return numero degli obiettivi fatti
+	 */
 	private int countMatches(Bookshelf b) {
 		this.fillMatches();
 		int counter=0;
@@ -151,6 +165,10 @@ public abstract class PersonalGoalCard {
 		}
 		return card;
 	}
+	/**
+	 * metodo per resettare i personal goal assegnati 
+	 * nella partita precedente
+	 */
 	public static void resetAssignedPersonalGoalCards() {
 		assignedCards=new ArrayList<>();
 	}

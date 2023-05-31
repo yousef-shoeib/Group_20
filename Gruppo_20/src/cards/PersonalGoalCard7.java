@@ -17,12 +17,12 @@ public class PersonalGoalCard7 extends PersonalGoalCard {
 	 * 5.2 libro
 	 */
 	private int number=7;
-	private Match match1= new Match(0, 0, ItemTileType.TROPHY);
-	private Match match2= new Match(1, 3, ItemTileType.TROPHY);
-	private Match match3= new Match(2, 1, ItemTileType.TROPHY);
+	private Match match1= new Match(0, 0, ItemTileType.CAT);
+	private Match match2= new Match(1, 3, ItemTileType.FRAME);
+	private Match match3= new Match(2, 1, ItemTileType.PLANT);
 	private Match match4= new Match(3, 0, ItemTileType.TROPHY);
-	private Match match5= new Match(4, 4, ItemTileType.TROPHY);
-	private Match match6= new Match(5, 2, ItemTileType.TROPHY);
+	private Match match5= new Match(4, 4, ItemTileType.GAME);
+	private Match match6= new Match(5, 2, ItemTileType.BOOK);
 	
 	private String path="./resources/Assets/personalGoalCards/Personal_Goals7.png";
 	@Override
@@ -51,6 +51,10 @@ public class PersonalGoalCard7 extends PersonalGoalCard {
 		}
 		return counter;
 	}
+	/**
+	 * metodo per ritornare i punti in base a quante delle
+	 * tessere sono le stesse dettate dal personal goal
+	 */
 	public int getPoints(Bookshelf b) {
 		int numberOfMatches=this.countMatches(b);
 		int points=0;

@@ -49,6 +49,10 @@ public class PersonalGoalCard3 extends PersonalGoalCard {
 		}
 		return counter;
 	}
+	/**
+	 * metodo per ritornare i punti in base a quante delle
+	 * tessere sono le stesse dettate dal personal goal
+	 */
 	public int getPoints(Bookshelf b) {
 		int numberOfMatches=this.countMatches(b);
 		int points=0;
