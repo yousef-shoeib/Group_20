@@ -3,7 +3,7 @@ package scoringTokens;
 public class TokenPoint2 extends TokenPoint
 {
 	private String pathImg="./resources/Assets/scoringTokens/scoring_2.jpg";
-	private int value = 2;
+	private final int value = 2;
 	
 	public TokenPoint2()
 	{

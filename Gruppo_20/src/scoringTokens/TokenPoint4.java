@@ -4,7 +4,7 @@ public class TokenPoint4 extends TokenPoint
 {
 
 	private String pathImg="./resources/Assets/scoringTokens/scoring_4.jpg";
-	private int value = 4;
+	private final int value = 4;
 	
 	public TokenPoint4()
 	{
