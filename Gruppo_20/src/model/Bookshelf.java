@@ -134,12 +134,27 @@ public class Bookshelf extends Grid {
 		}
 		return points;
 	}
+	/**
+	 * metodo di controllo per il conto di tessere adiacenti 
+	 * @param row riga della casella 
+	 * @param col colonna della casella 
+	 * @param visited matrice di controllo 
+	 * @param type tipo delle caselle nel gruppo 
+	 * @return true se la cesella è dentro la matrice, non è stata gia visitata e ha lo stesso tipo 
+	 */
 	private boolean isSafe(int row, int col, boolean visited[][], ItemTileType type) {
 		return (row >= 0) && (row < this.rows) && (col >= 0) && (col < this.columns)
 				&& !this.getSlot(row, col).isEmpty()
 				&& (this.getItemTileType(row, col).equals(type) && !visited[row][col]);
 	}
-
+	/**
+	 * conta in numero di tessere in un gruppo di tessere adiacenti dello stesso tipo
+	 * @param row riga della casella 
+	 * @param col	colonna della casella 
+	 * @param visited matrice di controllo per non visitare piu volte la stessa casella 
+	 * @param type	tipo delle tessere nel gruppo 
+	 * @return numero di tessere nel gruppo
+	 */
 	private int count(int row, int col, boolean visited[][], ItemTileType type) {
 		int rowNumber[] = new int[] { -1, 0, 0, 1 };
 		int colNumber[] = new int[] { 0, -1, 1, 0 };
@@ -150,7 +165,10 @@ public class Bookshelf extends Grid {
 				size += count(row + rowNumber[k], col + colNumber[k], visited, type);
 		return size;
 	}
-
+	/**
+	 * conta il numero di tessere in ogni gruppo di tessere adiacenti dello stesso tipo
+	 * mette i numeri nella lista "adjacentTiles"
+	 */
 	public void countGroups() {
 		adjacentTiles= new ArrayList<>();
 		for (ItemTileType type : types) {
