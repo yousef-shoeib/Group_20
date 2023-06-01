@@ -40,7 +40,9 @@ public class Game {
 	private List <TokenPoint> tokensList2;
 	private int tokenCounter1;
 	private int tokenCounter2;
-	
+	/**
+	 * costruttore che inizializza tutti i valori 
+	 */
 	public Game()
 	{	
 		playersList = new ArrayList<>();
@@ -52,6 +54,11 @@ public class Game {
 		PersonalGoalCard.resetAssignedPersonalGoalCards();
 		CommonGoalCard.resetAssignedCommonGoalCards();
 	}
+	/**
+	 * metodo per assegnare i giocatori alla lista di giocatori e assegnare i common goal
+	 * @param numberOfPlayers
+	 * @param namePlayers
+	 */
 	public void start(int numberOfPlayers,List<String> namePlayers)
 	{
 		livingRoomBoard = new LivingRoomBoard(numberOfPlayers);
@@ -330,6 +337,10 @@ public class Game {
 		}
 		return false;
 	}
+	/**
+	 * metodo per mettere i token punti in base al numero di giocatori
+	 * @param numberOfPlayers
+	 */
 	private void fillScoringTokens(int numberOfPlayers) {
 		switch(numberOfPlayers) {
 		case 2:
@@ -361,12 +372,20 @@ public class Game {
 			break;
 		}
 	}
+	/**metodo per ritornare i punti dei token relativi al primo common goal
+	 * 
+	 * @return punti 
+	 */
 	public int getScoringToken1Points() {
 		int points=tokensList1.get(tokenCounter1).getValue();
 		if(tokenCounter1<tokensList1.size()-1)
 		tokenCounter1++;
 		return points;
 	}
+	/**metodo per ritornare i punti dei token relativi al secondo common goal
+	 * 
+	 * @return punti 
+	 */
 	public int getScoringToken2Points() {
 		int points=tokensList2.get(tokenCounter2).getValue();
 		if(tokenCounter2<tokensList2.size()-1)

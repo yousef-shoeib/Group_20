@@ -20,11 +20,6 @@ public class Player {
 	private TokenPoint scoringToken1;
 	private TokenPoint scoringToken2;
 	
-    /*private int IDGenerator() 
-    {
-        return PLAYERCOUNTER++;
-        
-    }*/
 	/**
 	 * crea un giocatore con il nome inserito come parametro
 	 * @param name nome del giocatore 
@@ -57,18 +52,6 @@ public class Player {
 		}
 		
 	}
-	
-	/*public Grid getBookshelf() {
-		return bookshelfDisplay;
-	}
-	public Slot getBookshelfSlot(int row, int column) {
-		Slot slot=this.getBookshelf().getSlot(row, column);
-		return slot;
-	}
-
-	public void setBookshelf(Grid bookshelf) {
-		this.bookshelfDisplay= bookshelf;
-	}*/
 
 	public int getPoints() {
 		return points;
