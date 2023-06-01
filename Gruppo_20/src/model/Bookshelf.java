@@ -57,7 +57,7 @@ public class Bookshelf extends Grid {
 	}
 	//questo metodo resta "public" solo per la fase di test 
 	//usare il metodo addItemTiles per implementazioni permanenti
-	public void setTile(int row, int column, ItemTile tile) {
+	private void setTile(int row, int column, ItemTile tile) {
 		this.getSlot(row, column).setItemTile(tile);
 	}
 	/**

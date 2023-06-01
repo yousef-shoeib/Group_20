@@ -40,7 +40,7 @@ public class Test {
 		//p1.getBookshelf().addItemTiles(2, tiles3);
 		
 		//number=p.getPersonalGoalCard().countMatches(p.getBookshelf());
-		for(int i=0;i<5;i++) {
+		/*for(int i=0;i<5;i++) {
 			//p1.getBookshelf().setTile(0, i, tile1);
 		}
 		for(int i=0;i<1;i++) {
@@ -57,7 +57,7 @@ public class Test {
 			}
 		for(int i=0;i<1;i++) {
 			p1.getBookshelf().setTile(5, i, tile1);
-			}
+			}*/
 		
 		System.out.println(p1.getPersonalGoalCard().getCardNumber());
 		
