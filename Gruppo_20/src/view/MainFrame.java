@@ -293,7 +293,6 @@ public class MainFrame extends JFrame {
 		String endTurn = "End \nTurn";
 		endRoundButton = new JButton("<html>"+endTurn.replaceAll("\\n", "<br>")+"</html>");
 		endRoundButton.setBounds(743, 540, 77, 41);
-		//setBounds(743, 490, 77, 41);
 		endRoundButton.setEnabled(false);
 		livingPane.add(endRoundButton);
 		

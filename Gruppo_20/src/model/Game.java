@@ -251,6 +251,10 @@ public class Game {
 			playersList.add(player);
 		}
 	}
+	/**
+	 * metedo che assegna il primo turno a un giocatore casuale
+	 * @param numberOfPlayers
+	 */
 	private void assignFirstPlayerSeat(int numberOfPlayers) {
 		Random r= new Random();
 		int i= r.nextInt(numberOfPlayers);
@@ -296,11 +300,16 @@ public class Game {
 	public int getCurrentPlayerNumber() {
 		return currentPlayer;
 	}
-	
+	/**
+	 * metodo che controlla se i common goal sono completati
+	 */
 	public void checkCommonGoal() {
 		checkCommonGoal1();
 		checkCommonGoal2();
 	}
+	/**
+	 * metodo che controlla se il giocatore corrente ha completato il commongoal1 in questo turno 
+	 */
 	private void checkCommonGoal1() {
 		if(playersList.get(currentPlayer).getScoringToken1()== null 
 				&&commonGoal1.CheckTarget(currentPlayer().getBookshelf())) {
@@ -308,6 +317,9 @@ public class Game {
 			playersList.get(currentPlayer).addPoints(getScoringToken1Points());
 		}
 	}
+	/**
+	 * metodo che controlla se il giocatore corrente ha completato il commongoal2 in questo turno 
+	 */
 	private void checkCommonGoal2() {
 		if(playersList.get(currentPlayer).getScoringToken2()== null 
 				&&commonGoal2.CheckTarget(currentPlayer().getBookshelf())) {
@@ -315,6 +327,10 @@ public class Game {
 			playersList.get(currentPlayer).addPoints(getScoringToken2Points());
 		}
 	}
+	/**
+	 * metodo che trova il giocatore con piu punti (vincitore)
+	 * @return giocatore con piu punti
+	 */
 	public Player getWinner() {
 		Player winner=playersList.get(0);
 		for(Player p: playersList) {

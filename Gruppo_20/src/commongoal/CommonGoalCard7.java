@@ -34,9 +34,9 @@ public class CommonGoalCard7 extends CommonGoalCard{
 				}
 				if(differentType.size()<=3 && j==4) countRows++;
 			}
+			if(countRows>=4) return true;
 		}
-		if(countRows>=4) return true;
-		else return false;
+		return false;
 	}
 	@Override
 	public boolean CheckTarget(Bookshelf bookshelf) {
