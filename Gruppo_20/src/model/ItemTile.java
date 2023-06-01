@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * classe ItemTile crea una tessera con un tipo e un id
+ * @author yousef, Marco
+ *
+ */
 public class ItemTile {
 		private String pathImg;
 		private int id;
