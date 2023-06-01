@@ -36,9 +36,9 @@ public class CommonGoalCard5 extends CommonGoalCard{
 				}
 				if(differentTypes.size()<=3 && i== 5) countColumns++;
 			}
+			if(countColumns>=3) return true;
 		}
-		if(countColumns>=3) return true;
-		else return false;
+		return false;
 	}
 	
 	@Override
