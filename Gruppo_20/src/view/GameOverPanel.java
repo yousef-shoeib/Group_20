@@ -30,7 +30,11 @@ import javax.swing.border.LineBorder;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * pannello di fine partita con punti dei vari giocatori e il vincitore
+ * @author youse
+ *
+ */
 public class GameOverPanel extends JDialog {
 
 	private JLabel titleLabel;

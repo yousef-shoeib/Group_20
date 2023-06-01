@@ -1,5 +1,9 @@
 package scoringTokens;
-
+/**
+ * classe super per gli scoring token 
+ * @author Dario
+ *
+ */
 public abstract class TokenPoint {
 
 	private String pathImg;

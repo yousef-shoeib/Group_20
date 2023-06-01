@@ -38,7 +38,11 @@ import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.Font;
-
+/**
+ * frame principale del gioco con tabellone, common goal e panello del giocatore
+ * @author Marco, youse
+ *
+ */
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -90,14 +94,13 @@ public class MainFrame extends JFrame {
 		//Master Panel
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		
+		setContentPane(contentPane);		
 		contentPane.setBounds(0, 0, 1500, 920);
 		contentPane.setLayout(null);
 		contentPane.setBackground(Color.DARK_GRAY);
+		
 		//LivingRoomBoard Panel
 		livingPane = new JPanel();
-		//livingPane.setBorder(new LineBorder(new Color(0,0,0), 3));
 		livingPane.setBounds(10, 0, 850, 780);
 		livingPane.setLayout(null);
 		livingPane.setBackground(Color.DARK_GRAY);
@@ -105,7 +108,6 @@ public class MainFrame extends JFrame {
 		
 		//BookShelf Panel
 		bookShelfPane = new JPanel();
-		//bookShelfPane.setBorder(new LineBorder(new Color(0,0,0), 3));
 		bookShelfPane.setBounds(850, 180, 680, 600);
 		bookShelfPane.setLayout(null);
 		bookShelfPane.setBackground(Color.DARK_GRAY);
@@ -113,13 +115,12 @@ public class MainFrame extends JFrame {
 		
 		//CommonGoalCards Panel
 		commonGoalCardsPane = new JPanel();
-		//commonGoalCardsPane.setBorder(new LineBorder(new Color(0,0,0), 3));
 		commonGoalCardsPane.setBounds(850,0, 680, 180);
 		commonGoalCardsPane.setLayout(null);
 		commonGoalCardsPane.setBackground(Color.DARK_GRAY);
 		contentPane.add(commonGoalCardsPane);
 		
-		//scoring tokens label////////////////////////////////////////////////
+		//scoring tokens label
 		JLabel scoringTokensLabel = new JLabel() {
 			protected void paintComponent(Graphics g) {
 			Graphics2D g2 = (Graphics2D)g;
@@ -146,7 +147,6 @@ public class MainFrame extends JFrame {
 		
 		//LivingRoomBoard Label
 		background = new JLabel();		
-		//int x = (getWidth()/2)-350;
 		background.setBounds(20, 50, 700, 700);
 		background.setLayout(null);
 		ImageIcon tempBackground =new ImageIcon(ConfigPath.getLivingRoomBoardPath());
@@ -247,7 +247,6 @@ public class MainFrame extends JFrame {
 		//playerInfoPane
 		playerInfoPane = new JPanel();		
 		playerInfoPane.setBounds(75, 50, 480, 100);
-		//playerInfoPane.setBorder(new LineBorder(new Color(0,0,0), 3));
 		playerInfoPane.setBackground(new Color(0, 127, 255));
 		playerInfoPane.setLayout(null);
 		playerInfoPane.setVisible(true);
@@ -518,7 +517,6 @@ public class MainFrame extends JFrame {
 		});
 		Container glassPane=(Container)getGlassPane();
 		glassPane.setVisible(true);
-		//contentPane.add((Component)gameOverPanel,BorderLayout.CENTER);
 	}
 
 	public JLabel getFirstPlayerTokenLabel() {

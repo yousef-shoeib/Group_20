@@ -17,7 +17,11 @@ import java.awt.Insets;
 
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-
+/**
+ * frame per inserimento dei giocatori
+ * @author Marco
+ *
+ */
 public class SetGameFrame extends JFrame {
 
 	private JPanel contentPane;
